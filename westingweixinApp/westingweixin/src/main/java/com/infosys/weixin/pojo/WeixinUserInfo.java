@@ -1,11 +1,6 @@
 package com.infosys.weixin.pojo;
 
-/**
- * 微信用户的基本信息
- * 
- * @author liufeng
- * @date 2013-11-09
- */
+
 public class WeixinUserInfo {
 	// 用户的标识
 	private String openId;

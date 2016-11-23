@@ -1,11 +1,5 @@
 package com.infosys.weixin.pojo;
 
-/**
- * 微信通用接口凭证
- * 
- * @author liufeng
- * @date 2013-08-08
- */
 public class AccessToken {
 	// 获取到的凭证
 	private String token;

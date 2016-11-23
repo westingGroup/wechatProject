@@ -1,11 +1,5 @@
 package com.infosys.weixin.pojo;
 
-/**
- * 公众账号分组信息
- * 
- * @author liufeng
- * @date 2013-11-09
- */
 public class WeixinGroup {
 	// 分组id
 	private int id;

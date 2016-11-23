@@ -1,11 +1,5 @@
 package com.infosys.weixin.pojo;
 
-/**
- * 媒体文件信息
- * 
- * @author liufeng
- * @date 2013-11-09
- */
 public class WeixinMedia {
 	// 媒体文件类型
 	private String type;

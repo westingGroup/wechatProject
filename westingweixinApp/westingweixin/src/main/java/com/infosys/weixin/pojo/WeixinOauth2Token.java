@@ -1,11 +1,6 @@
 package com.infosys.weixin.pojo;
 
-/**
- * 网页授权信息
- * 
- * @author liufeng
- * @date 2013-11-09
- */
+
 public class WeixinOauth2Token {
 	// 网页授权接口调用凭证
 	private String accessToken;

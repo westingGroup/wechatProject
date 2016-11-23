@@ -1,11 +1,5 @@
 package com.infosys.weixin.pojo;
 
-/**
- * 临时二维码信息
- * 
- * @author liufeng
- * @date 2013-11-10
- */
 public class WeixinQRCode {
 	// 获取的二维码ticket
 	private String ticket;
