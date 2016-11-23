@@ -1,6 +1,0 @@
-[ERROR] 2016-11-23 12:11:05,975    com.infosys.course.util.WeixinUtil     - 创建菜单失败 errcode:40019 errmsg:invalid button key size hint: [dgxs.a0265vr20]
-[INFO ] 2016-11-23 12:11:05,975   com.infosys.weixin.main.MenuManager     - 菜单创建失败，错误码：40019
-[ERROR] 2016-11-23 12:12:06,175    com.infosys.course.util.WeixinUtil     - 创建菜单失败 errcode:40019 errmsg:invalid button key size hint: [HPyHLA0326vr19]
-[INFO ] 2016-11-23 12:12:06,190   com.infosys.weixin.main.MenuManager     - 菜单创建失败，错误码：40019
-[INFO ] 2016-11-23 12:14:47,941   com.infosys.weixin.main.MenuManager     - 菜单创建成功！
-[INFO ] 2016-11-23 12:15:22,301   com.infosys.weixin.main.MenuManager     - 菜单创建成功！
