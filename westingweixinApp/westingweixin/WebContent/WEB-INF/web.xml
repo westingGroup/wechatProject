@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>westingweixin</display-name>
+
+
+	<servlet>  
+        <servlet-name>initServlet</servlet-name>  
+        <servlet-class>  
+            com.infosys.weixin.servlet.InitServlet  
+        </servlet-class>  
+        <init-param>  
+            <param-name>appid</param-name>  
+            <param-value>wx20ec6258cf135ad3</param-value>  
+        </init-param>  
+        <init-param>  
+            <param-name>appsecret</param-name>  
+            <param-value>fc68f34f4897fed7025a9b9e60d3dba2</param-value>  
+        </init-param>  
+        <load-on-startup>0</load-on-startup>  
+    </servlet>  
+    
+	<servlet>
+		<servlet-name>coreServlet</servlet-name>
+		<servlet-class>com.infosys.course.servlet.CoreServlet</servlet-class>
+	</servlet>
+	
+
+
+	<!-- url-pattern中配置的/coreServlet用于指定该Servlet的访问路径 -->
+	<servlet-mapping>
+		<servlet-name>coreServlet</servlet-name>
+		<url-pattern>/coreServlet</url-pattern>
+	</servlet-mapping>
+	
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
+
