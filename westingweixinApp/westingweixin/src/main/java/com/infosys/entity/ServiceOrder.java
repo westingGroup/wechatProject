@@ -75,13 +75,13 @@ public class ServiceOrder implements Serializable {
     @Column(name = "PHONE")
     private String phone;
 
-    @Column(name = "remark1")
+    @Column(name = "REMARK1")
     private String remark1;
 
-    @Column(name = "remark2")
+    @Column(name = "REMARK2")
     private String remark2;
 
-    @Column(name = "remark3")
+    @Column(name = "REMARK3")
     private String remark3;
 
     @Column(name = "STATUS")
