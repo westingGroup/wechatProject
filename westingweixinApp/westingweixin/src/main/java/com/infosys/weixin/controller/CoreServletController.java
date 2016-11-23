@@ -2,13 +2,10 @@ package com.infosys.weixin.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +16,6 @@ import com.infosys.course.util.SignUtil;
 
 @Controller
 public class CoreServletController {
-    private static Logger log = LoggerFactory.getLogger(CoreServletController.class);
 
     @RequestMapping(value = "/coreServlet", method = RequestMethod.GET)
     public ModelAndView doCoreServletGet(HttpServletRequest request, HttpServletResponse response) throws IOException {// 微信加密签名
@@ -55,6 +51,7 @@ public class CoreServletController {
         // 随机数
         String nonce = request.getParameter("nonce");
         // 随机字符串
+        @SuppressWarnings("unused")
         String echostr = request.getParameter("echostr");
 
         if (SignUtil.checkSignature(signature, timestamp, nonce)) {
