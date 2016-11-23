@@ -138,6 +138,10 @@
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.kenai.nbpwr</groupId>
+			<artifactId>javax-inject</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>westingweixin</finalName>
