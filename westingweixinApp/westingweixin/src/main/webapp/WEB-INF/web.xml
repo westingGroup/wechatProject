@@ -59,13 +59,13 @@
 		<session-timeout>0</session-timeout>
 	</session-config>
 		
-	<servlet>  
+	<!-- <servlet>  
         <servlet-name>initServlet</servlet-name>  
         <servlet-class>  
             com.infosys.weixin.servlet.InitServlet 
-        </servlet-class>  
+        </servlet-class> -->  
         <!-- 配置获取access_token所需参数appid和appsecret -->  
-        <init-param>  
+        <!-- <init-param>  
             <param-name>appid</param-name>  
             <param-value>wx20ec6258cf135ad3</param-value>  
         </init-param>  
@@ -74,7 +74,7 @@
             <param-value>fc68f34f4897fed7025a9b9e60d3dba2</param-value>  
         </init-param>  
         <load-on-startup>0</load-on-startup>  
-    </servlet>  
+    </servlet>   -->
     
 
 	<welcome-file-list>
