@@ -110,7 +110,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 * @see org.konghao.baisc.dao.IBaseDao#load(int)
 	 */
 	@Override
-	public T load(long id) {
+	public T load(int id) {
 		return (T)getSession().load(getClz(), id);
 	}
 	

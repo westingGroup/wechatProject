@@ -29,7 +29,7 @@ public interface IBaseDao<T> {
 	 * @param id
 	 * @return
 	 */
-	public T load(long id);
+	public T load(int id);
 	
 }
 
