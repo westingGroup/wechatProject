@@ -59,23 +59,30 @@
 		<session-timeout>0</session-timeout>
 	</session-config>
 		
-	<!-- <servlet>  
-        <servlet-name>initServlet</servlet-name>  
-        <servlet-class>  
-            com.infosys.weixin.servlet.InitServlet 
-        </servlet-class> -->  
-        <!-- 配置获取access_token所需参数appid和appsecret -->  
-        <!-- <init-param>  
-            <param-name>appid</param-name>  
-            <param-value>wx20ec6258cf135ad3</param-value>  
-        </init-param>  
-        <init-param>  
-            <param-name>appsecret</param-name>  
-            <param-value>fc68f34f4897fed7025a9b9e60d3dba2</param-value>  
-        </init-param>  
-        <load-on-startup>0</load-on-startup>  
-    </servlet>   -->
+	<!-- <servlet>
+		<servlet-name>initServlet</servlet-name>
+		<servlet-class>com.infosys.weixin.web.servlet.InitServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
     
+    <filter>
+		<filter-name>WeixinAuthFilter</filter-name>
+		<filter-class>com.infosys.weixin.web.filter.WeixinAuthFilter</filter-class>
+	</filter>
+ 	
+	<filter-mapping>
+		<filter-name>WeixinAuthFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>AuthFilter</filter-name>
+		<filter-class>com.infosys.weixin.web.filter.AuthFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>AuthFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
 
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
