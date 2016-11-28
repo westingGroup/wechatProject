@@ -1,5 +1,7 @@
 package com.infosys.basic.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +10,15 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="t_user")
-public class User {
-	private int id;
+public class User implements Serializable {
+	/**    
+     * serialVersionUID:
+     *    
+     * @since Ver 1.1    
+     */    
+    
+    private static final long serialVersionUID = -8644735720724713765L;
+    private int id;
 	private String nickname;
 	private String password;
 	private String username;

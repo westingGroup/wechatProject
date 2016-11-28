@@ -1,5 +1,6 @@
 package com.infosys.basic.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,9 +13,16 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="t_weixinqr")
-public class WeixinQr {
+public class WeixinQr implements Serializable {
 	
-	public final static int MAX_BASE_SNUM = 100000;
+	/**    
+     *    
+     * @since Ver 1.1    
+     */    
+    
+    private static final long serialVersionUID = 8041103151678325626L;
+
+    public final static int MAX_BASE_SNUM = 100000;
 	
 	public final static int REPASSWORD_TYPE = 1;
 	public final static int SET_GROUP_TYPE = 2;

@@ -1,5 +1,7 @@
 package com.infosys.basic.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,11 +10,15 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="t_weixin_menu")
-public class WeixinMenu {
-	
-	
+public class WeixinMenu implements Serializable {
 
-	private int id;
+	/**    
+     *    
+     * @since Ver 1.1    
+     */    
+    
+    private static final long serialVersionUID = 7752696929904854001L;
+    private int id;
 	private String name;
 	private String content;
 	private String url;
