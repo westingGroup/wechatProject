@@ -1,11 +1,11 @@
-package com.infosys.course.dao;
+package com.infosys.basic.dao;
 
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.infosys.course.dao.base.BaseDao;
-import com.infosys.course.entity.User;
+import com.infosys.basic.dao.base.BaseDao;
+import com.infosys.basic.entity.User;
 
 @Repository("userDao")
 public class UserDao extends BaseDao<User> implements IUserDao {

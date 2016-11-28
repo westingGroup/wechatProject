@@ -1,11 +1,11 @@
-package com.infosys.course.dao;
+package com.infosys.basic.dao;
 
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.infosys.course.dao.base.BaseDao;
-import com.infosys.course.entity.WeixinQr;
+import com.infosys.basic.dao.base.BaseDao;
+import com.infosys.basic.entity.WeixinQr;
 
 @Repository("weixinQrDao")
 public class WeixinQrDao extends BaseDao<WeixinQr> implements IWeixinQrDao {

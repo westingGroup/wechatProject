@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.infosys.course.util.JsonUtil;
+import com.infosys.basic.util.JsonUtil;
 import com.infosys.weixin.kit.WeixinBasicKit;
 import com.infosys.weixin.model.WeixinFinalValue;
 

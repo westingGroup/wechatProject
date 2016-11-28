@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.infosys.course.entity.WeixinMenu;
-import com.infosys.course.service.IWeixinMenuService;
+import com.infosys.basic.entity.WeixinMenu;
+import com.infosys.basic.service.IWeixinMenuService;
 import com.infosys.weixin.service.IWMenuService;
 
 @RequestMapping("/weixinMenu")

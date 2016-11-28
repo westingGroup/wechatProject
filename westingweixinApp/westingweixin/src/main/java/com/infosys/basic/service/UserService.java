@@ -1,4 +1,4 @@
-package com.infosys.course.service;
+package com.infosys.basic.service;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.infosys.course.dao.IUserDao;
-import com.infosys.course.entity.User;
+import com.infosys.basic.dao.IUserDao;
+import com.infosys.basic.entity.User;
 
 @Service("userService")
 @Transactional

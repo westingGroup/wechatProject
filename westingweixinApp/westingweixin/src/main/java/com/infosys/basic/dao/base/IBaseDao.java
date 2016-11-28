@@ -1,4 +1,4 @@
-package com.infosys.course.dao.base;
+package com.infosys.basic.dao.base;
 
 
 /**

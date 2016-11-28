@@ -1,4 +1,4 @@
-package com.infosys.course.util;
+package com.infosys.basic.util;
 
 public class BasicKit {
 

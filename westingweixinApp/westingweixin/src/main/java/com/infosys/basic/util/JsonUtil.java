@@ -1,4 +1,4 @@
-package com.infosys.course.util;
+package com.infosys.basic.util;
 
 import java.io.IOException;
 import java.io.StringWriter;

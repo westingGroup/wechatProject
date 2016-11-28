@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.infosys.course.entity.User;
-import com.infosys.course.entity.WeixinQr;
-import com.infosys.course.service.IUserService;
-import com.infosys.course.service.IWeixinQrService;
+import com.infosys.basic.entity.User;
+import com.infosys.basic.entity.WeixinQr;
+import com.infosys.basic.service.IUserService;
+import com.infosys.basic.service.IWeixinQrService;
 import com.infosys.weixin.service.IKfService;
 
 @RequestMapping("/user")

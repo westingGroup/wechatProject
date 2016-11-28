@@ -2,7 +2,7 @@ package com.infosys.weixin.quartz;
 
 import org.springframework.stereotype.Component;
 
-import com.infosys.course.util.JsonUtil;
+import com.infosys.basic.util.JsonUtil;
 import com.infosys.weixin.json.AccessToken;
 import com.infosys.weixin.kit.WeixinBasicKit;
 import com.infosys.weixin.model.WeixinFinalValue;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.infosys.course.dao.base;
+package com.infosys.basic.dao.base;
 
 import java.lang.reflect.ParameterizedType;
 import java.math.BigInteger;
@@ -18,9 +18,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
 
-import com.infosys.course.util.model.Pager;
-import com.infosys.course.util.model.SystemRequest;
-import com.infosys.course.util.model.SystemRequestHolder;
+import com.infosys.basic.util.model.Pager;
+import com.infosys.basic.util.model.SystemRequest;
+import com.infosys.basic.util.model.SystemRequestHolder;
 
 
 /**

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.infosys.course.util.BasicKit;
+import com.infosys.basic.util.BasicKit;
 import com.infosys.weixin.kit.SecurityKit;
 import com.infosys.weixin.kit.WeixinMessageKit;
 import com.infosys.weixin.web.servlet.WeixinContext;

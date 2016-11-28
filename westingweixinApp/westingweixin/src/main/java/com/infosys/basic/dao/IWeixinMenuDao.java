@@ -1,9 +1,9 @@
-package com.infosys.course.dao;
+package com.infosys.basic.dao;
 
 import java.util.List;
 
-import com.infosys.course.dao.base.IBaseDao;
-import com.infosys.course.entity.WeixinMenu;
+import com.infosys.basic.dao.base.IBaseDao;
+import com.infosys.basic.entity.WeixinMenu;
 
 public interface IWeixinMenuDao extends IBaseDao<WeixinMenu>{
 	public WeixinMenu loadByKey(String key);

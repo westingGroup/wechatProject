@@ -1,4 +1,4 @@
-package com.infosys.course.entity;
+package com.infosys.basic.entity;
 
 import java.util.Date;
 

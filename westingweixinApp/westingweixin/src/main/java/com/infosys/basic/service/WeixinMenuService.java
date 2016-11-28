@@ -1,4 +1,4 @@
-package com.infosys.course.service;
+package com.infosys.basic.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.infosys.course.dao.IWeixinMenuDao;
-import com.infosys.course.entity.WeixinMenu;
+import com.infosys.basic.dao.IWeixinMenuDao;
+import com.infosys.basic.entity.WeixinMenu;
 import com.infosys.weixin.model.WeixinMenuDto;
 
 @Service("weixinMenuService")

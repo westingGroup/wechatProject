@@ -1,8 +1,8 @@
-package com.infosys.course.service;
+package com.infosys.basic.service;
 
 import java.util.List;
 
-import com.infosys.course.entity.User;
+import com.infosys.basic.entity.User;
 
 public interface IUserService {
 	public void add(User user);

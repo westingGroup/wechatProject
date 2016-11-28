@@ -3,7 +3,7 @@ package com.infosys.weixin.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.infosys.course.entity.User;
+import com.infosys.basic.entity.User;
 
 public class WUser {
 	private int subscribe;

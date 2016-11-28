@@ -1,4 +1,4 @@
-package com.infosys.course.service;
+package com.infosys.basic.service;
 
 import java.util.Date;
 import java.util.List;
@@ -9,8 +9,8 @@ import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.infosys.course.dao.IWeixinQrDao;
-import com.infosys.course.entity.WeixinQr;
+import com.infosys.basic.dao.IWeixinQrDao;
+import com.infosys.basic.entity.WeixinQr;
 import com.infosys.weixin.service.IWqrService;
 
 @Service("weixinQrService")

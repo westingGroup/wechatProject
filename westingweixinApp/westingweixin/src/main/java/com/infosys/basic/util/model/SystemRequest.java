@@ -1,4 +1,4 @@
-package com.infosys.course.util.model;
+package com.infosys.basic.util.model;
 
 import javax.servlet.http.HttpServletRequest;
 

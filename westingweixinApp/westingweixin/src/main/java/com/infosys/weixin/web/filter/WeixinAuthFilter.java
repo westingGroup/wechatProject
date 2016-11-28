@@ -13,8 +13,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.infosys.course.entity.User;
-import com.infosys.course.service.IUserService;
+import com.infosys.basic.entity.User;
+import com.infosys.basic.service.IUserService;
 import com.infosys.weixin.model.WeixinFinalValue;
 import com.infosys.weixin.service.IWUserService;
 import com.infosys.weixin.web.servlet.BeanFactoryContext;

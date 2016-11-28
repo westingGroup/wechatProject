@@ -18,8 +18,8 @@ import org.springframework.expression.ParseException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.infosys.course.util.JsonUtil;
-import com.infosys.course.util.PropertiesUtil;
+import com.infosys.basic.util.JsonUtil;
+import com.infosys.basic.util.PropertiesUtil;
 import com.infosys.weixin.web.servlet.WeixinContext;
 
 public class WeixinBasicKit {

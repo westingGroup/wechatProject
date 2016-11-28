@@ -1,8 +1,8 @@
-package com.infosys.course.service;
+package com.infosys.basic.service;
 
 import java.util.List;
 
-import com.infosys.course.entity.WeixinMenu;
+import com.infosys.basic.entity.WeixinMenu;
 import com.infosys.weixin.model.WeixinMenuDto;
 
 public interface IWeixinMenuService {

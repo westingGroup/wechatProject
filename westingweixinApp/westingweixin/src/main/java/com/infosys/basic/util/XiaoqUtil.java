@@ -1,4 +1,4 @@
-package com.infosys.course.util;
+package com.infosys.basic.util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

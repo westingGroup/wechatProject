@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.infosys.course.entity.WeixinQr;
-import com.infosys.course.service.IWeixinQrService;
+import com.infosys.basic.entity.WeixinQr;
+import com.infosys.basic.service.IWeixinQrService;
 
 @Controller
 @RequestMapping("/wqr")

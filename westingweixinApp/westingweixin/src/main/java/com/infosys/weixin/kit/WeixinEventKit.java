@@ -3,12 +3,12 @@ package com.infosys.weixin.kit;
 import java.io.IOException;
 import java.util.Map;
 
-import com.infosys.course.entity.User;
-import com.infosys.course.entity.WeixinMenu;
-import com.infosys.course.entity.WeixinQr;
-import com.infosys.course.service.IUserService;
-import com.infosys.course.service.IWeixinMenuService;
-import com.infosys.course.service.IWeixinQrService;
+import com.infosys.basic.entity.User;
+import com.infosys.basic.entity.WeixinMenu;
+import com.infosys.basic.entity.WeixinQr;
+import com.infosys.basic.service.IUserService;
+import com.infosys.basic.service.IWeixinMenuService;
+import com.infosys.basic.service.IWeixinQrService;
 import com.infosys.weixin.model.WGroup;
 import com.infosys.weixin.model.WUser;
 import com.infosys.weixin.service.IWGroupService;

@@ -1,10 +1,10 @@
-package com.infosys.course.dao;
+package com.infosys.basic.service;
 
 import java.util.List;
 
-import com.infosys.course.entity.WeixinQr;
+import com.infosys.basic.entity.WeixinQr;
 
-public interface IWeixinQrDao {
+public interface IWeixinQrService {
 	public WeixinQr add(WeixinQr wq);
 	
 	public void delete(String id);
