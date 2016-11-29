@@ -37,10 +37,7 @@ public class WeixinAuthFilter implements Filter {
 		if(tu==null) {
 			String agent = hRequest.getHeader("User-Agent");
 			System.out.println("agent::::::::::::"+agent);
-			//micromessenger是微信客户端，电脑浏览器里没有这个micromessenger，电脑端直接chain.doFilter
 			if(agent!=null&&agent.toLowerCase().indexOf("micromessenger")>=0) {
-			    //sendRedirect请求到微信服务器，微信服务器返回到的REDIRECT_URI，就是我们的应用的请求地址，filter拦截所有的请求，就进来到了WeixinAuthFilter
-			    //微信服务器会带回来认证code和state，state可以自己设置
 				String code = request.getParameter("code");
 				String state = request.getParameter("state");
 				if(code!=null&&state!=null&&state.equals("1")) {
@@ -67,12 +64,12 @@ public class WeixinAuthFilter implements Filter {
 					if(query!=null) {
 						path = path+"?"+query;
 					}
+					System.out.println("path-----"+path);
 					String uri = WeixinFinalValue.AUTH_URL;
 					uri = uri.replace("APPID", WeixinContext.getInstance().getAppId())
 					   .replace("REDIRECT_URI",URLEncoder.encode(path, "UTF-8"))
 					   .replace("SCOPE", "snsapi_base")
 					   .replace("STATE", "1");
-					//只能是sendRedirect，因为如果是sendGet(uri)是以当前服务器来请求到微信服务器，会提示请使用微信浏览器 ,sendRedirect先定向到微信服务器
 					hResponse.sendRedirect(uri);
 //					System.out.println(uri);
 					return;
