@@ -1,0 +1,108 @@
+.linklist {
+	width: 100%;
+	height: 100%;
+	border: 1px solid rgb(0, 89, 143);
+}
+
+/*tabҳ*/
+.add_head {
+	padding-top: 10px;
+	padding-left: 14px;
+	padding-bottom: 0px;
+	border-top: 1px solid rgb(0, 89, 143);
+	border-left: 1px solid rgb(0, 89, 143);
+	border-right: 1px solid rgb(0, 89, 143);
+	width: 100%;
+	height: 39px;
+	background: rgb(192, 232, 255);
+}
+
+.add_head a {
+	width: 130px;
+	height: 28px;
+	float: left;
+	text-align: center;
+	font-weight: bold;
+	line-height: 28px;
+	background: rgb(0, 124, 195);
+	border-left: 2px solid rgb(0, 89, 143);
+	border-right: 2px solid rgb(0, 89, 143);
+	border-top: 2px solid rgb(0, 89, 143);
+	font-size: 13px;
+	color: white;
+	display: block;
+	margin-right: 10px;
+	text-decoration: none;
+	display: block;
+	font-size: 13px;
+}
+
+.add_head a:hover {
+	background: #fff;
+	color: rgb(151, 152, 154);
+	text-decoration: none;
+}
+
+.add_head .current {
+	background: #fff;
+	color: rgb(151, 152, 154);
+	border-bottom: none;
+	height: 28px;
+}
+
+.add_header .current:before {
+	border-bottom: 2px solid rgb(0, 89, 143);
+}
+
+.tab_search {
+	width: 100%;
+	background: #fff;
+	padding: 15px 8px 5px 8px;
+}
+
+.tab_hidden {
+	display: none;
+}
+
+.searchTable {
+	border-collapse: separate;
+	border-spacing: 2px;
+}
+
+.searchTable th {
+	text-align: center;
+	background: rgb(217, 217, 217);
+	color: rgb(130, 131, 133);
+	font-size: 16px !important;
+}
+
+.searchTable tr:nth-child(odd) td {
+	text-align: center;
+	background: rgb(203, 215, 233);
+}
+
+.searchTable tr:nth-child(even) td {
+	text-align: center;
+	background: rgb(231, 246, 245);
+}
+
+.approval_info {
+	width: 98%;
+	margin-left: 7px;
+	margin-top: 40px;
+}
+
+.approval_info .table td {
+	vertical-align: middle;
+	border-top: none;
+}
+
+.approvalBtn {
+	background: rgb(255, 0, 0);
+	color: white;
+}
+
+.rejectBtn {
+	background: rgb(71, 186, 235);
+	color: white;
+}
