@@ -47,7 +47,7 @@
 
 .subject .content {
 	width: 100%;
-	height:auto;
+	height: auto;
 	color: black;
 	text-align: left;
 	font-size: 14px;
@@ -86,12 +86,57 @@
 	width: 80%;
 }
 
-.subject .content .contact, .subject .content .company {
+.subject .content .select {
+	width: 80%;
+	border: none;
+	font-size: 10px;
+	/*很关键：将默认的select选择框样式清除*/
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	/*在选择框的最右侧中间显示小箭头图片*/
+	background: url("../../img/select.png") no-repeat scroll right center
+		transparent;
+}
+
+.subject .content .contact, .subject .content .company, .subject .content .service
+	{
 	margin-top: 40px;
 }
 
 .subject .content .company {
 	margin-top: 60px;
+}
+
+.subject .content .categoryStyle {
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-top: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	display: inline-table;
+	border: 2px solid rgb(192, 0, 0);
+}
+
+.subject .content .categoryStyle div {
+	width: 25%;
+	display: table-cell;
+	text-align: center;
+}
+
+.subject .content .categoryStyle img {
+	margin: auto;
+}
+
+/**实现高亮*/
+.subject .content .categoryStyle img:HOVER {
+	transform: scale(1.2);
+    transition: all 1s ease 0s;
+    -webkit-transform: scale(1.2);
+    -webkit-transition: all 1s ease 0s;
+    border: 4px solid rgb(203,127,4);
+    border-radius:25px !important;
 }
 
 .subject .footer {
