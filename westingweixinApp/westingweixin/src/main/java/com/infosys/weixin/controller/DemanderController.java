@@ -6,11 +6,14 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.infosys.basic.entity.ServiceOrder;
 import com.infosys.basic.entity.User;
@@ -67,6 +70,8 @@ public class DemanderController {
         order.setCreateDate(new Date());
         order.setStatus(0);//新需求
         order.setServiceOrderId(String.valueOf(RandomUtils.nextInt(10000)));
+        order.setCategory(ServiceOrder.CategoryType.valueOf(order.getCategory()).getInfo());
+        order.setServiceType(ServiceOrder.ServiceType.valueOf(order.getServiceType()).getInfo());
         serviceOrderService.add(order);
 		return "redirect:/demander/list";
 	}
@@ -86,6 +91,18 @@ public class DemanderController {
         model.addAttribute("categoryType", ServiceOrder.CategoryType.values());  
         model.addAttribute("order", new ServiceOrder());
         return "redirect:/demander/add";
+    }
+	
+	@RequestMapping(value="/evaluate/{id}",method=RequestMethod.POST)
+	@ResponseBody
+    public String update(@PathVariable int id,String evaluate) {
+	    ServiceOrder tu = serviceOrderService.load(id);
+	    if(StringUtils.isNotBlank(tu.getEvaluate())){
+	        return "您已经评价过";
+	    }
+        tu.setEvaluate(evaluate);
+        serviceOrderService.update(tu);
+        return "评价成功";
     }
     
     
