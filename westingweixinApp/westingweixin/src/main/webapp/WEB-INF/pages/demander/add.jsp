@@ -50,22 +50,22 @@
 				<div class="categoryStyle">
 					<div>
 						<img alt="电缆"
-							src="<%=request.getContextPath()%>/assets/img/电缆.png"
+							src="<%=request.getContextPath()%>/assets/img/category_cable.png"
 							width="42px" height="42px">
 					</div>
 					<div>
 						<img alt="灯具"
-							src="<%=request.getContextPath()%>/assets/img/灯具.png"
+							src="<%=request.getContextPath()%>/assets/img/category_light.png"
 							width="42px" height="42px">
 					</div>
 					<div>
 						<img alt="电器件"
-							src="<%=request.getContextPath()%>/assets/img/电器件.png"
+							src="<%=request.getContextPath()%>/assets/img/category_electrical.png"
 							width="42px" height="42px">
 					</div>
 					<div>
 						<img alt="其他"
-							src="<%=request.getContextPath()%>/assets/img/其他.png"
+							src="<%=request.getContextPath()%>/assets/img/category_other.png"
 							width="42px" height="42px">
 					</div>
 				</div>
