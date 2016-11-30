@@ -30,20 +30,22 @@
 </head>
 <body>
 	<div class="subject">
-		<div class="head">
-			<div class="back">
-				<!-- <a><img alt="返回"
-					src="<%=request.getContextPath()%>/assets/img/back.png"
-					width="25px" height="25px">返回</a> -->
-			</div>
-			<div class="title"><!-- 派单服务 --></div>
-			<div class="person">
-				<!-- <img alt="人员信息"
-					src="<%=request.getContextPath()%>/assets/img/person.png"
-					width="25px" height="25px" /> -->
+		<div class="container head">
+			<div class="row">
+				<div class="col-md-1 col-xs-3 back">
+					<a><img alt="返回"
+						src="<%=request.getContextPath()%>/assets/img/back.png"
+						width="25px" height="25px">返回</a>
+				</div>
+				<div class="col-md-10 col-xs-6 title">派单服务</div>
+				<div class="col-md-1 col-xs-3 person">
+					<img alt="人员信息"
+						src="<%=request.getContextPath()%>/assets/img/person.png"
+						width="25px" height="25px" />
+				</div>
 			</div>
 		</div>
-		<sf:form modelAttribute="user" id="adminForm" method="post" action="">
+		<sf:form modelAttribute="order" id="adminForm" method="post" action="">
 			<div class="content">
 				<div class="categoryStyle">
 					<div>
@@ -67,40 +69,49 @@
 							width="42px" height="42px">
 					</div>
 				</div>
-				<div class="commonStyle contact">
-					<div class="serviceType">
-						<span class="label">&nbsp;<font color="red"
-							style="margin-left: 16px;">*</font>&nbsp;服务类型：
-						</span>
-						<sf:select path="" cssClass="select">
-							<sf:option value="">安装</sf:option>
-							<sf:option value="">调试</sf:option>
-							<sf:option value="" selected="selected">检修</sf:option>
-							<sf:option value="">保养</sf:option>
-							<sf:option value="">其他</sf:option>
-						</sf:select>
+				<div class="container commonStyle contact">
+					<div class="row serviceType">
+						<div class="col-md-1 col-xs-3 label">
+							&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;服务类型：
+						</div>
+						<div class="col-md-11 col-xs-9">
+							<sf:select path="serviceType" cssClass="select">
+								<sf:options items="${serviceType}" itemLabel="info"
+									itemValue="info" />
+							</sf:select>
+						</div>
 					</div>
 					<hr class="commonHr" />
-					<div class="contactPerson">
-						<span class="label"><img alt="联系人"
-							src="<%=request.getContextPath()%>/assets/img/contactPerson.png"
-							width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;联系人：</span>
-						<sf:input path="" cssClass="text" />
+					<div class="row contactPerson">
+						<div class="col-md-1 col-xs-3 label">
+							<img alt="联系人"
+								src="<%=request.getContextPath()%>/assets/img/contactPerson.png"
+								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;联系人：
+						</div>
+						<div class="col-md-11 col-xs-9">
+							<sf:input path="" cssClass="text" />
+						</div>
 					</div>
 					<hr class="commonHr" />
-					<div class="contactPhone">
-						<span class="label"><img alt="联系电话"
-							src="<%=request.getContextPath()%>/assets/img/contactPhone.png"
-							width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;联系电话：</span>
-						<sf:input path="" cssClass="text" />
+					<div class="row contactPhone">
+						<div class="col-md-1 col-xs-3 label">
+							<img alt="联系电话"
+								src="<%=request.getContextPath()%>/assets/img/contactPhone.png"
+								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;联系电话：
+						</div>
+						<div class="col-md-11 col-xs-9">
+							<sf:input path="" cssClass="text" />
+						</div>
 					</div>
 				</div>
-				<div class="commonStyle service">
-					<div class="serviceContent">
-						<span class="label" style="vertical-align: top;">&nbsp;<font
-							color="red" style="margin-left: 16px;">*</font>&nbsp;服务内容要求：
-						</span>
-						<sf:textarea path="" cssClass="textarea" rows="3" />
+				<div class="container commonStyle service">
+					<div class="row serviceContent">
+						<div class="col-md-1 col-xs-4 label">
+							&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;服务内容要求：
+						</div>
+						<div class="col-md-11 col-xs-8">
+							<sf:textarea path="" cssClass="textarea" rows="3" />
+						</div>
 					</div>
 				</div>
 			</div>
