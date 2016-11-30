@@ -32,29 +32,40 @@
 	<div class="subject">
 		<div class="head">
 			<div class="back">
-				<a><img alt="返回"
+				<!-- <a><img alt="返回"
 					src="<%=request.getContextPath()%>/assets/img/back.png"
-					width="25px" height="25px">返回</a>
+					width="25px" height="25px">返回</a> -->
 			</div>
-			<div class="title">派单服务</div>
+			<div class="title"><!-- 派单服务 --></div>
 			<div class="person">
-				<img alt="人员信息"
+				<!-- <img alt="人员信息"
 					src="<%=request.getContextPath()%>/assets/img/person.png"
-					width="25px" height="25px" />
+					width="25px" height="25px" /> -->
 			</div>
 		</div>
 		<sf:form modelAttribute="user" id="adminForm" method="post" action="">
 			<div class="content">
 				<div class="categoryStyle">
-					<div><img alt="电缆"
-						src="<%=request.getContextPath()%>/assets/img/电缆.png" width="50px"
-						height="50px"></div> <div><img alt="灯具"
-						src="<%=request.getContextPath()%>/assets/img/灯具.png" width="50px"
-						height="50px"></div><div><img alt="电器件"
-						src="<%=request.getContextPath()%>/assets/img/电器件.png"
-						width="50px" height="50px"></div><div><img alt="其他"
-						src="<%=request.getContextPath()%>/assets/img/其他.png" width="50px"
-						height="50px"></div>
+					<div>
+						<img alt="电缆"
+							src="<%=request.getContextPath()%>/assets/img/电缆.png"
+							width="42px" height="42px">
+					</div>
+					<div>
+						<img alt="灯具"
+							src="<%=request.getContextPath()%>/assets/img/灯具.png"
+							width="42px" height="42px">
+					</div>
+					<div>
+						<img alt="电器件"
+							src="<%=request.getContextPath()%>/assets/img/电器件.png"
+							width="42px" height="42px">
+					</div>
+					<div>
+						<img alt="其他"
+							src="<%=request.getContextPath()%>/assets/img/其他.png"
+							width="42px" height="42px">
+					</div>
 				</div>
 				<div class="commonStyle contact">
 					<div class="serviceType">

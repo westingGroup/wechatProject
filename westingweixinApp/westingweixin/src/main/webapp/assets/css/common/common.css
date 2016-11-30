@@ -20,7 +20,7 @@ body {
 	margin-left: 70px !important;
 }
 
-/**鎵嬫満(灏忎簬768px)*/
+/**超小屏幕(手机，小于768px)*/
 @media ( max-width :767px) {
 	html {
 		width: 100%;
@@ -29,28 +29,28 @@ body {
 	}
 }
 
-/**骞虫澘(澶т簬绛変簬768px;灏忎簬992px)*/
+/**小屏幕(平板，大于等于768px)*/
 @media ( min-width :768px) and (max-width:991px) {
 	html {
-		width: 768px;
+		width: 100%;
 		height: 100%;
 		margin: auto;
 	}
 }
 
-/**鍙板紡鐢佃剳(澶т簬绛変簬992px锛屽皬浜�1200px)*/
+/**中等屏幕(桌面显示器，大于等于992px)*/
 @media ( min-width :992px) and (max-width:1199px) {
 	html {
-		width: 768px;
+		width: 100%;
 		height: 100%;
 		margin: auto;
 	}
 }
 
-/**澶у彴寮忕數鑴�(澶т簬绛変簬1200px)*/
+/**大屏幕(大桌面显示器，大于等于1200px)*/
 @media ( min-width :1200px) {
 	html {
-		width: 768px;
+		width: 100%;
 		height: 100%;
 		margin: auto;
 	}

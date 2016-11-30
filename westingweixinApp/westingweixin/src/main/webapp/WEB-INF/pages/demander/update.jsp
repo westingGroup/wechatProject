@@ -30,51 +30,66 @@
 </head>
 <body>
 	<div class="subject">
-		<div class="head">
-			<div class="back">
-				<a><img alt="返回"
-					src="<%=request.getContextPath()%>/assets/img/back.png"
-					width="25px" height="25px">返回</a>
-			</div>
-			<div class="title">服务需求方注册</div>
-			<div class="person">
-				<img alt="人员信息"
-					src="<%=request.getContextPath()%>/assets/img/person.png"
-					width="25px" height="25px" />
+		<div class="container head">
+			<div class="row">
+				<div class="col-md-1 col-xs-3 back">
+					<a><img alt="返回"
+						src="<%=request.getContextPath()%>/assets/img/back.png"
+						width="25px" height="25px">返回</a>
+				</div>
+				<div class="col-md-10 col-xs-6 title">服务需求方注册</div>
+				<div class="col-md-1 col-xs-3 person">
+					<img alt="人员信息"
+						src="<%=request.getContextPath()%>/assets/img/person.png"
+						width="25px" height="25px" />
+				</div>
 			</div>
 		</div>
 		<sf:form modelAttribute="user" id="adminForm" method="post"
 			action="/demander/update">
 			<div class="content">
 				<sf:hidden path="id" />
-				<div class="commonStyle contact">
+				<div class="container commonStyle contact">
 					<hr class="commonHr" />
-					<div class="contactPerson">
-						<span class="label"><img alt="联系人"
-							src="<%=request.getContextPath()%>/assets/img/contactPerson.png"
-							width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;联系人：</span>
-						<sf:input path="linkname" cssClass="text" />
+					<div class="row contactPerson">
+						<div class="col-md-1 col-xs-3 label">
+							<img alt="联系人"
+								src="<%=request.getContextPath()%>/assets/img/contactPerson.png"
+								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;联系人：
+						</div>
+						<div class="col-md-11 col-xs-9">
+							<sf:input path="linkname" cssClass="text" />
+						</div>
 					</div>
 					<hr class="commonHr" />
-					<div class="contactPhone">
-						<span class="label"><img alt="联系电话"
-							src="<%=request.getContextPath()%>/assets/img/contactPhone.png"
-							width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;联系电话：</span>
-						<sf:input path="linkphone" cssClass="text" />
+					<div class="row contactPhone">
+						<div class="col-md-1 col-xs-3 label">
+							<img alt="联系电话"
+								src="<%=request.getContextPath()%>/assets/img/contactPhone.png"
+								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;联系电话：
+						</div>
+						<div class="col-md-11 col-xs-9">
+							<sf:input path="linkphone" cssClass="text" />
+						</div>
 					</div>
 				</div>
-				<div class="commonStyle company">
-					<div class="companyBusiness">
-						<span class="label">&nbsp;<font color="red"
-							style="margin-left: 16px;">*</font>&nbsp;相关业务：
-						</span>
-						<sf:input path="business" cssClass="text" />
+				<div class="container commonStyle company">
+					<div class="row companyBusiness">
+						<div class="col-md-1 col-xs-3 label">
+							&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;相关业务：
+						</div>
+						<div class="col-md-11 col-xs-9">
+							<sf:input path="business" cssClass="text" />
+						</div>
 					</div>
 					<hr class="commonHr" />
-					<div class="companyName">
-						<span class="label" style="vertical-align: top;"><span
-							style="margin-left: 26px;">公司名称：</span></span>
-						<sf:textarea path="company" cssClass="textarea" />
+					<div class="row companyName">
+						<div class="col-md-1 col-xs-3 label">
+							<span style="margin-left: 26px;"></span>公司名称：
+						</div>
+						<div class="col-md-11 col-xs-9">
+							<sf:textarea path="company" cssClass="textarea" rows="3" />
+						</div>
 					</div>
 				</div>
 			</div>
