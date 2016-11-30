@@ -48,6 +48,7 @@
 		<sf:form modelAttribute="user" id="adminForm" method="post"
 			action="/provider/update">
 			<sf:hidden path="id" />
+			<input type="hidden" name="fromPath" id="fromPath" value="${fromPath}"></input>
 			<div class="content">
 				<div class="container commonStyle contact">
 					<div class="row contactPerson">

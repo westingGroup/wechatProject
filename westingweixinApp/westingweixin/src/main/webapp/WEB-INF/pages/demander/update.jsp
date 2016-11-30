@@ -45,8 +45,10 @@
 				</div>
 			</div>
 		</div>
+		
 		<sf:form modelAttribute="user" id="adminForm" method="post"
 			action="/demander/update">
+			<input type="hidden" name="fromPath" id="fromPath" value="${fromPath}"></input>
 			<div class="content">
 				<sf:hidden path="id" />
 				<div class="container commonStyle contact">
