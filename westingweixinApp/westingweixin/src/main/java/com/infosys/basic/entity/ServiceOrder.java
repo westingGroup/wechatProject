@@ -126,6 +126,8 @@ public class ServiceOrder implements Serializable {
     private String remark4;
 
     private String remark5;
+    
+    private String evaluate;//服务评价
 
     public ServiceOrder() {
     }
@@ -296,6 +298,14 @@ public class ServiceOrder implements Serializable {
 
     public void setCreatename(String createname) {
         this.createname = createname;
+    }
+
+    public String getEvaluate() {
+        return evaluate;
+    }
+
+    public void setEvaluate(String evaluate) {
+        this.evaluate = evaluate;
     }
 
 }

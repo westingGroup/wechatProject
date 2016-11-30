@@ -43,7 +43,16 @@ public class ServiceOrderService implements IServiceOrderService {
 
     @Override
     public List<ServiceOrder> list(ServiceOrder order) {
-        return serviceOrderDao.list(order);
+        List<ServiceOrder> orders = serviceOrderDao.list(order);
+        /*if(orders!=null &&orders.size()>0){
+            ServiceOrder sOrder;
+            for (int i = 0; i < orders.size(); i++) {
+                sOrder = orders.get(i);
+                sOrder.setCategory(ServiceOrder.CategoryType.valueOf(sOrder.getCategory()).getInfo());
+                sOrder.setServiceType(ServiceOrder.ServiceType.valueOf(sOrder.getServiceType()).getInfo());
+            } 
+        }*/
+        return orders;
     }
 
 }
