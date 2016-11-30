@@ -27,4 +27,14 @@ public class UserDao extends BaseDao<User> implements IUserDao {
 		return super.list("from User");
 	}
 
+    @Override
+    public List<User> listDemander(String demander) {
+        return super.list("from User where demander = ?", demander);
+    }
+    
+    @Override
+    public List<User> listProvider(String provider) {
+        return super.list("from User where provider = ?", provider);
+    }
+
 }

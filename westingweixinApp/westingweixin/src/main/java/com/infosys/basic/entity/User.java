@@ -34,8 +34,11 @@ public class User implements Serializable {
 	private String company;
 	private String qualification;
 	
+	private int demander;//0 没有注册为需求方  1 已经注册为需求方 2 审批通过
+	private int provider;//0 没有注册为提供商  1 已经注册为提供商  2 审批通过
 	
-	@Id
+	
+    @Id
 	@GeneratedValue
 	public int getId() {
 		return id;
@@ -121,5 +124,17 @@ public class User implements Serializable {
     }
     public void setQualification(String qualification) {
         this.qualification = qualification;
+    }
+    public int getDemander() {
+        return demander;
+    }
+    public void setDemander(int demander) {
+        this.demander = demander;
+    }
+    public int getProvider() {
+        return provider;
+    }
+    public void setProvider(int provider) {
+        this.provider = provider;
     }
 }

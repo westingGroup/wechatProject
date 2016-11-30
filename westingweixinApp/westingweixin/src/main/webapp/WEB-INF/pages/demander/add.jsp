@@ -8,6 +8,32 @@
 <title>服务申请</title>
 </head>
 <body>
-	派单服务页面
+	<sf:form modelAttribute="order" id="adminForm" method="post" action="/demander/add">
+		<table cellpadding="0" cellspacing="0">
+		<tr>
+		<td>产品类型</td>
+		<td><sf:select path="category" items="${categoryType}" itemLabel="info"/></td>
+		</tr>
+		<tr>
+		<td>服务类型</td>
+		<td><sf:select path="serviceType" items="${serviceType}" itemLabel="info"/></td>
+		</tr>
+		<tr>
+		<td>联系人</td>
+		<td><sf:input path="linkname"/></td>
+		</tr>
+		<tr>
+		<td>联系电话</td>
+		<td><sf:input path="linkphone"/></td>
+		</tr>
+		<tr>
+		<td>服务内容要求</td>
+		<td><sf:input path="content"/></td>
+		</tr>
+		<tr>
+		<td colspan="2"><input type="submit"/></td>
+		</tr>
+		</table>
+	</sf:form>
 </body>
 </html>

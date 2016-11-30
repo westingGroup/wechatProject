@@ -63,4 +63,14 @@ public class UserService implements IUserService {
 		return u;
 	}
 
+    @Override
+    public List<User> listDemander(String demander) {
+        return userDao.listDemander(demander);
+    }
+
+    @Override
+    public List<User> listProvider(String provider) {
+        return userDao.listProvider(provider);
+    }
+
 }

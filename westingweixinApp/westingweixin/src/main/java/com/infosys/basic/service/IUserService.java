@@ -13,4 +13,6 @@ public interface IUserService {
 	public User loadByOpenid(String openid);
 	public User login(String username,String password);
 	public List<User> list();
+	public List<User> listDemander(String demander);
+	public List<User> listProvider(String provider);
 }

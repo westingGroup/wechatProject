@@ -133,7 +133,8 @@ public class WeixinEventKit {
 			}
 		}
 		if(u.getBind()==0) {
-			String bindUrl = "http://30b93410.ngrok.io/weixin-project/user/bindExistUser";
+			String bindUrl = WeixinContext.getInstance().getBaseUrl();
+			bindUrl += bindUrl+"/user/bindExistUser";
 			return WeixinMessageKit.map2xml(MessageCreateKit.createTextMsg(msgMap, "<a href=\""+bindUrl+"\">请点击绑定用户获得更好的体验</a>"));
 		} else {
 			String bindUrl = WeixinContext.getInstance().getBaseUrl();
