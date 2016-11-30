@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.infosys.basic.entity.ServiceOrder;
@@ -36,12 +37,13 @@ public class DemanderController {
         if(u.getDemander()==0) {
             model.addAttribute("user", u);
             //进入服务需求方-注册页面
+            model.addAttribute("fromPath", "2");
             return "demander/update";
         }
         //进入服务需求方-我的服务
         ServiceOrder order = new ServiceOrder();
         order.setCreateBy(u.getId());
-        List<ServiceOrder> orders = serviceOrderService.list(order);
+        List<ServiceOrder> orders = serviceOrderService.listDemander(order);
         model.addAttribute("orders", orders);
         return "demander/list"; 
 	}
@@ -53,6 +55,7 @@ public class DemanderController {
         if(u.getDemander()==0) {
             model.addAttribute("user", u);
             //进入服务需求方-注册页面
+            model.addAttribute("fromPath", "1");
             return "demander/update";
         }
         //进入服务需求方-服务申请
@@ -62,6 +65,7 @@ public class DemanderController {
 		return "demander/add";
 	}
 	
+	//我的申请
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String add(ServiceOrder order,HttpSession session) {
 	    User u = (User)session.getAttribute("user");
@@ -78,7 +82,7 @@ public class DemanderController {
 	
 	//进入服务需求方-注册
 	@RequestMapping(value="/update",method=RequestMethod.POST)
-    public String update(User user,HttpSession session,Model model) {
+    public String update(@RequestParam(value = "fromPath", required = false) String fromPath,User user,HttpSession session,Model model) {
 	    User tu = userService.load(user.getId());
         tu.setLinkname(user.getLinkname());
         tu.setLinkphone(user.getLinkphone());
@@ -87,9 +91,11 @@ public class DemanderController {
         tu.setDemander(1);
         userService.update(tu);
         session.setAttribute("user", tu);
-        model.addAttribute("serviceType", ServiceOrder.ServiceType.values());  
-        model.addAttribute("categoryType", ServiceOrder.CategoryType.values());  
-        model.addAttribute("order", new ServiceOrder());
+        if(fromPath.equals("1")){
+            return "redirect:/demander/add";
+        }else if(fromPath.equals("2")){
+            return "redirect:/demander/list";
+        }
         return "redirect:/demander/add";
     }
 	

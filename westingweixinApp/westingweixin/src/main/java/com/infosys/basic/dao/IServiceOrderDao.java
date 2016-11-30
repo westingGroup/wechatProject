@@ -8,4 +8,5 @@ import com.infosys.basic.entity.ServiceOrder;
 public interface IServiceOrderDao extends IBaseDao<ServiceOrder>{
 	public ServiceOrder loadByServiceOrderId(String serviceOrderId);
 	public List<ServiceOrder> list(ServiceOrder order);
+    public List<ServiceOrder> listProvider(ServiceOrder order);
 }
