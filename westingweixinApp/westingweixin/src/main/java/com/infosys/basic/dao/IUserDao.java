@@ -9,4 +9,6 @@ public interface IUserDao extends IBaseDao<User>{
 	public User loadByUsername(String username);
 	public User loadByOpenId(String openid);
 	public List<User> list();
+    public List<User> listDemander(String demander);
+    public List<User> listProvider(String provider);
 }

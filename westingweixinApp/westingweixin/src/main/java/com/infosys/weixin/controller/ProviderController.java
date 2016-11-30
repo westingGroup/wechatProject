@@ -21,7 +21,7 @@ public class ProviderController {
 	@RequestMapping("/list")
 	public String list(HttpSession session,Model model) {
 		User u = (User)session.getAttribute("user");
-        if(u.getBind()==0) {
+        if(u.getProvider()==0) {
             model.addAttribute("user", u);
             //进入服务供应商-注册页面
             return "provider/update";
@@ -35,7 +35,7 @@ public class ProviderController {
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public String add(HttpSession session,Model model) {
 	    User u = (User)session.getAttribute("user");
-        if(u.getBind()==0) {
+        if(u.getProvider()==0) {
             model.addAttribute("user", u);
             //进入服务供应商-注册页面
             return "provider/update";
@@ -47,8 +47,7 @@ public class ProviderController {
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String add(User user) {
-		user.setBind(0);
-		userService.add(user);
+		
 		return "redirect:/provider/list";
 	}
 	
@@ -59,7 +58,8 @@ public class ProviderController {
         tu.setLinkphone(user.getLinkphone());
         tu.setBusiness(user.getBusiness());
         tu.setCompany(user.getCompany());
-        tu.setBind(1);
+        tu.setQualification(user.getQualification());
+        tu.setProvider(1);
         userService.update(tu);
         session.setAttribute("user", tu);
         return "redirect:/provider/add";
