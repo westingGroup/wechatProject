@@ -9,7 +9,7 @@
 	content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<title>我的申请-服务需求方-我的服务页面</title>
+<title>我的服务-服务需求方</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
@@ -32,61 +32,19 @@
 	src="<%=request.getContextPath()%>/assets/raty/lib/jquery.raty.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/common/slide_screen.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/js/common/dem_pro_list_common.js"></script>
 <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
 <script type="text/javascript">
 	var basePath = "<%=request.getContextPath()%>";
 	$(function() {
 		$.fn.raty.defaults.path = basePath + "/assets/raty/lib/img";
 		<c:forEach items="${orders}" var="order" varStatus="status">
-		//添加星级评价
-		$("#raty${status.index}").raty({
-			score : "${order.evaluate}",
-			click : function(score, evt) {
-				$("#evaluate${status.index}").val(score);
-			}
-		});
-		//如果已经评价完成，则不能再次评价，隐藏服务评价按钮
-		if ("${order.evaluate != null && order.evaluate != ''}" == "true")
-			$("#but${status.index}").addClass("hidden");
-		
-		//服务评价
-		$("#but${status.index}").click(
-				function() {
-					$.post(basePath + "/demander/evaluate/"
-							+ $("#id${status.index}").val(), {
-						evaluate : $("#evaluate${status.index}").val()
-					}, function(data, status) {
-						if(status == "success"){
-							alert(data);
-							$("#but${status.index}").addClass("hidden");
-						}
-					});
-				});
-
-		//将除去提交时间之外的所有信息隐藏
-		$(".hidden${status.index}").addClass("hidden");
-		//点击展开时，展开服务信息
-		$("#zhankai${status.index}").click(function() {
-			$(".hidden${status.index}").removeClass("hidden").addClass("show");
-			$(this).removeClass("show").addClass("hidden");
-			$("#zhedie${status.index}").removeClass("hidden").addClass("show");
-			if ("${status.last}" != "true")
-				$("#order${status.index}").css("marginBottom", "40px");
-		});
-
-		//点击折叠时，折叠服务信息
-		$("#zhedie${status.index}").click(
-				function() {
-					$(".hidden${status.index}").removeClass("show").addClass(
-							"hidden");
-					$(this).removeClass("show").addClass("hidden");
-					$("#zhankai${status.index}").removeClass("hidden")
-							.addClass("show");
-					if ("${status.last}" != "true")
-						$("#order${status.index}").css("marginBottom", "0px");
-				});
+			//渲染列表
+			renderingList("${status.index}", "${order.evaluate}", "${status.last}", "demander");
 		</c:forEach>
 
+		//定义滑动操作
 		isTouchDevice();
 	});
 </script>
