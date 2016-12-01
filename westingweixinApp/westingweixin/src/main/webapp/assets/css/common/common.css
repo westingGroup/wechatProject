@@ -20,6 +20,14 @@ body {
 	margin-left: 70px !important;
 }
 
+.hidden{
+	display: none;
+}
+
+.show{
+	display:block;
+}
+
 /**超小屏幕(手机，小于768px)*/
 @media ( max-width :767px) {
 	html {
