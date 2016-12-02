@@ -10,6 +10,7 @@
 				<th>联系方式</th>
 				<th>相关业务</th>
 				<th>公司名称</th>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -20,13 +21,6 @@
 				<td></td>
 				<td></td>
 				<td></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox"/></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
 				<td></td>
 			</tr>
 			<tr>
@@ -36,9 +30,20 @@
 				<td></td>
 				<td></td>
 				<td></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td><input type="checkbox"/></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox"/></td>
+				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
