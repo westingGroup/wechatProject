@@ -48,13 +48,16 @@
 		</tbody>
 	</table>
 	<div class="pager">
-		<div class="gigantic pagination">
-			<a href="#" class="first" data-action="first">&laquo;</a> <a href="#"
-				class="previous" data-action="previous">&lsaquo;</a> <input
-				type="text" readonly="readonly" data-max-page="40"> <a
-				href="#" class="next" data-action="next">&rsaquo;</a> <a href="#"
-				class="last" data-action="last">&raquo;</a>
+		<div class="pageNum">
+			<div class="gigantic pagination">
+				<a href="#" class="first" data-action="first">&laquo;</a> <a
+					href="#" class="previous" data-action="previous">&lsaquo;</a> <input
+					type="text" readonly="readonly" data-max-page="40"> <a
+					href="#" class="next" data-action="next">&rsaquo;</a> <a href="#"
+					class="last" data-action="last">&raquo;</a>
+			</div>
 		</div>
+		<div class="minMaxResult">view 1-10 of 23</div>
 	</div>
 	<div class="approval_info">
 		<table class="table">

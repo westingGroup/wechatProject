@@ -50,41 +50,28 @@
 				<div class="waitingTaskTitle">待接的任务</div>
 				<div class="container waitingTaskCommonStyle waitingTaskInfo">
 					<div class="row serialNumberWaiting">
-						<div class="col-md-1 col-xs-3 label">流水号：</div>
-						<div class="col-md-11 col-xs-9 viewContent">2016112201</div>
+						<div class="col-md-1 col-xs-4 label">流水号：</div>
+						<div class="col-md-11 col-xs-8 viewContent">2016112201</div>
 					</div>
-					<hr class="waitingHr" />
 					<div class="row categoryWaiting">
-						<div class="col-md-1 col-xs-3 label">类别：</div>
-						<div class="col-md-11 col-xs-9 viewContent">电缆</div>
+						<div class="col-md-1 col-xs-4 label">类别：</div>
+						<div class="col-md-11 col-xs-8 viewContent">电缆</div>
 					</div>
-					<hr class="waitingHr" />
 					<div class="row serviceTypeWaiting">
-						<div class="col-md-1 col-xs-3 label">服务类型：</div>
-						<div class="col-md-11 col-xs-9 viewContent">检修</div>
+						<div class="col-md-1 col-xs-4 label">服务类型：</div>
+						<div class="col-md-11 col-xs-8 viewContent">检修</div>
 					</div>
-					<hr class="waitingHr" />
 					<div class="row statusWaiting">
-						<div class="col-md-1 col-xs-3 label">状态：</div>
-						<div class="col-md-11 col-xs-9 viewContent">已申领待分配</div>
+						<div class="col-md-1 col-xs-4 label">状态：</div>
+						<div class="col-md-11 col-xs-8 viewContent">已申领待分配</div>
 					</div>
-					<hr class="waitingHr" />
 					<div class="row submitTimeWaiting">
-						<div class="col-md-1 col-xs-3 label">提交时间：</div>
-						<div class="col-md-11 col-xs-9 viewContent">2016年11月22号</div>
+						<div class="col-md-1 col-xs-4 label">任务申请时间：</div>
+						<div class="col-md-11 col-xs-8 viewContent">2016年11月22号</div>
 					</div>
-					<hr class="waitingHr" />
 					<div class="row serviceDemandWaiting">
-						<div class="col-md-1 col-xs-3 label">服务需求</div>
-						<div class="col-md-11 col-xs-9 viewContent">电缆检修</div>
-					</div>
-				</div>
-				<div class="container commonStyle taskApply">
-					<div class="row applyTime">
-						<div class="col-md-1 col-xs-4 label">待办任务申请时间：</div>
-						<div class="col-md-11 col-xs-8">
-							<input class="text" />
-						</div>
+						<div class="col-md-1 col-xs-4 label">服务需求：</div>
+						<div class="col-md-11 col-xs-8 viewContent">电缆检修</div>
 					</div>
 				</div>
 				<div class="container taskPriceAndFinishTime">
