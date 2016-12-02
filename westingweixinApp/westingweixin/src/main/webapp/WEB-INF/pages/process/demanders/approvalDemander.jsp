@@ -21,13 +21,22 @@
 	href="<%=request.getContextPath()%>/assets/css/common/common.css" />
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/css/common/common_list.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/assets/jqPagination/css/jqpagination.css" />
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/common/common.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/jqPagination/js/jquery.jqpagination.js"></script>
 <script type="text/javascript">
 	$(function() {
 		switchTab('newDemander');
+		$('.pagination').jqPagination({
+			paged : function(page) {
+				// 分页事件
+			}
+		});
 	});
 </script>
 </head>

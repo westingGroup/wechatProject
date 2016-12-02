@@ -97,6 +97,12 @@
 	border-top: none;
 }
 
+.pager{
+	width: 100%;
+	background: rgb(239,243,248);
+	margin-top: 20px;
+}
+
 .linklist .select {
 	width: 50%;
 	margin-left:0px;
