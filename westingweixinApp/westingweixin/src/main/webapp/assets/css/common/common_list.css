@@ -97,6 +97,22 @@
 	border-top: none;
 }
 
+.linklist .select {
+	width: 50%;
+	margin-left:0px;
+	font-size: 12px;
+	border: 2px solid rgb(166,166,166);
+	/*很关键：将默认的select选择框样式清除*/
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	/*在选择框的最右侧中间显示小箭头图片*/
+	background: url("../../img/select.png") no-repeat scroll right center
+		transparent;
+	background-size: 10px;
+	appearance: none;
+}
+
 .approvalBtn {
 	background: rgb(255, 0, 0);
 	color: white;
