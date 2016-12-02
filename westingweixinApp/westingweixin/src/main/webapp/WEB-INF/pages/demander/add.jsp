@@ -71,10 +71,10 @@
 				</div>
 				<div class="container commonStyle contact">
 					<div class="row serviceType">
-						<div class="col-md-1 col-xs-3 label">
+						<div class="col-md-1 col-xs-4 label">
 							&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;服务类型：
 						</div>
-						<div class="col-md-11 col-xs-9">
+						<div class="col-md-11 col-xs-8">
 							<sf:select path="serviceType" cssClass="select">
 								<sf:options items="${serviceType}" itemLabel="info"
 									itemValue="info" />
@@ -83,33 +83,33 @@
 					</div>
 					<hr class="commonHr" />
 					<div class="row contactPerson">
-						<div class="col-md-1 col-xs-3 label">
+						<div class="col-md-1 col-xs-4 label">
 							<img alt="联系人"
 								src="<%=request.getContextPath()%>/assets/img/contactPerson.png"
 								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;联系人：
 						</div>
-						<div class="col-md-11 col-xs-9">
+						<div class="col-md-11 col-xs-8">
 							<sf:input path="" cssClass="text" />
 						</div>
 					</div>
 					<hr class="commonHr" />
 					<div class="row contactPhone">
-						<div class="col-md-1 col-xs-3 label">
+						<div class="col-md-1 col-xs-4 label">
 							<img alt="联系电话"
 								src="<%=request.getContextPath()%>/assets/img/contactPhone.png"
 								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;联系电话：
 						</div>
-						<div class="col-md-11 col-xs-9">
+						<div class="col-md-11 col-xs-8">
 							<sf:input path="" cssClass="text" />
 						</div>
 					</div>
 				</div>
 				<div class="container commonStyle service">
 					<div class="row serviceContent">
-						<div class="col-md-1 col-xs-4 label">
+						<div class="col-md-1 col-xs-5 label">
 							&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;服务内容要求：
 						</div>
-						<div class="col-md-11 col-xs-8">
+						<div class="col-md-11 col-xs-7">
 							<sf:textarea path="" cssClass="textarea" rows="3" />
 						</div>
 					</div>
