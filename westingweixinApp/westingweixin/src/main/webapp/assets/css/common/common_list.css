@@ -89,7 +89,7 @@
 .approval_info {
 	width: 98%;
 	margin-left: 7px;
-	margin-top: 40px;
+	margin-top: 20px;
 }
 
 .approval_info .table td {
@@ -101,6 +101,18 @@
 	width: 100%;
 	background: rgb(239,243,248);
 	margin-top: 20px;
+	display: inline-table;
+}
+
+.pager .pageNum{
+	width: 80%;
+	display: table-cell;
+}
+
+.pager .minMaxResult{
+	display: table-cell;
+	text-align: right;
+	vertical-align: middle;
 }
 
 .linklist .select {
