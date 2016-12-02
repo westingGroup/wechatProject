@@ -72,7 +72,9 @@
 				<div class="container commonStyle contact">
 					<div class="row serviceType">
 						<div class="col-md-1 col-xs-4 label">
-							&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;服务类型：
+							<img alt="联系人"
+								src="<%=request.getContextPath()%>/assets/img/edit.png"
+								width="16px" height="16px"> &nbsp;<font color="red">*</font>&nbsp;服务类型：
 						</div>
 						<div class="col-md-11 col-xs-8">
 							<sf:select path="serviceType" cssClass="select">

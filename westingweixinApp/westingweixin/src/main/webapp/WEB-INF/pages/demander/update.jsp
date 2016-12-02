@@ -45,19 +45,20 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<sf:form modelAttribute="user" id="adminForm" method="post"
 			action="/demander/update">
-			<input type="hidden" name="fromPath" id="fromPath" value="${fromPath}"></input>
+			<input type="hidden" name="fromPath" id="fromPath"
+				value="${fromPath}"></input>
 			<div class="content">
 				<sf:hidden path="id" />
 				<div class="container commonStyle contact">
 					<hr class="commonHr" />
 					<div class="row contactPerson">
 						<div class="col-md-1 col-xs-4 label">
-							<img alt="联系人"
+							<img alt="姓名"
 								src="<%=request.getContextPath()%>/assets/img/contactPerson.png"
-								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;联系人：
+								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;姓名：
 						</div>
 						<div class="col-md-11 col-xs-8">
 							<sf:input path="linkname" cssClass="text" />
@@ -66,9 +67,20 @@
 					<hr class="commonHr" />
 					<div class="row contactPhone">
 						<div class="col-md-1 col-xs-4 label">
-							<img alt="联系电话"
+							<img alt="电话"
 								src="<%=request.getContextPath()%>/assets/img/contactPhone.png"
-								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;联系电话：
+								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;电话：
+						</div>
+						<div class="col-md-11 col-xs-8">
+							<sf:input path="linkphone" cssClass="text" />
+						</div>
+					</div>
+					<hr class="commonHr" />
+					<div class="row contactBirthday">
+						<div class="col-md-1 col-xs-4 label">
+							<img alt="出生年月"
+								src="<%=request.getContextPath()%>/assets/img/calendar.png"
+								width="16px" height="16px">&nbsp;&nbsp;出生年月：
 						</div>
 						<div class="col-md-11 col-xs-8">
 							<sf:input path="linkphone" cssClass="text" />
@@ -78,7 +90,7 @@
 				<div class="container commonStyle company">
 					<div class="row companyBusiness">
 						<div class="col-md-1 col-xs-4 label">
-							&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;相关业务：
+							&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;公司名称：
 						</div>
 						<div class="col-md-11 col-xs-8">
 							<sf:input path="business" cssClass="text" />
@@ -86,10 +98,10 @@
 					</div>
 					<hr class="commonHr" />
 					<div class="row companyName">
-						<div class="col-md-1 col-xs-4 label">
-							<span style="margin-left: 26px;"></span>公司名称：
+						<div class="col-md-1 col-xs-5 label">
+							&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;行业和相关业务：
 						</div>
-						<div class="col-md-11 col-xs-8">
+						<div class="col-md-11 col-xs-7">
 							<sf:textarea path="company" cssClass="textarea" rows="3" />
 						</div>
 					</div>
