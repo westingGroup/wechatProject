@@ -69,7 +69,7 @@ public class ServiceOrder implements Serializable {
     }
 
     @Column(name = "service_type")
-    private String serviceType ;
+    private String serviceType;
 
     public static enum ServiceType {
         install("安装"), debug("调试"), repair("检修"), maintain("保养"), other("其他");
@@ -101,33 +101,34 @@ public class ServiceOrder implements Serializable {
     private String createname;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "apply_date")
-    private Date applyDate;
+    @Column(name = "last_apply_date")
+    private Date lastApplyDate;
 
-    @Column(name = "apply_by")
-    private int applyBy;
-    private String applyname;
-    
+    @Column(name = "last_apply_by")
+    private int lastApplyBy;
+
+    @Column(name = "last_apply_name")
+    private String lastApplyName;
+
     @Column(name = "status")
     private int status;
 
-    private int price;
+    private String evaluate;// 服务评价
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "complete_date")
-    private Date completeDate;
+    @Column(name = "deal_date")
+    private Date dealDate;
+
+    @Column(name = "deal_by")
+    private int dealBy;
+
+    private String dealname;
 
     private String remark1;
 
     private String remark2;
 
     private String remark3;
-
-    private String remark4;
-
-    private String remark5;
-    
-    private String evaluate;//服务评价
 
     public ServiceOrder() {
     }
@@ -188,36 +189,12 @@ public class ServiceOrder implements Serializable {
         this.createDate = createDate;
     }
 
-    public Date getApplyDate() {
-        return applyDate;
+    public int getId() {
+        return id;
     }
 
-    public void setApplyDate(Date applyDate) {
-        this.applyDate = applyDate;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public Date getCompleteDate() {
-        return completeDate;
-    }
-
-    public void setCompleteDate(Date completeDate) {
-        this.completeDate = completeDate;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getCreateBy() {
@@ -228,20 +205,76 @@ public class ServiceOrder implements Serializable {
         this.createBy = createBy;
     }
 
-    public int getApplyBy() {
-        return applyBy;
+    public String getCreatename() {
+        return createname;
     }
 
-    public void setApplyBy(int applyBy) {
-        this.applyBy = applyBy;
+    public void setCreatename(String createname) {
+        this.createname = createname;
     }
 
-    public String getApplyname() {
-        return applyname;
+    public int getStatus() {
+        return status;
     }
 
-    public void setApplyname(String applyname) {
-        this.applyname = applyname;
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getEvaluate() {
+        return evaluate;
+    }
+
+    public void setEvaluate(String evaluate) {
+        this.evaluate = evaluate;
+    }
+
+    public Date getLastApplyDate() {
+        return lastApplyDate;
+    }
+
+    public void setLastApplyDate(Date lastApplyDate) {
+        this.lastApplyDate = lastApplyDate;
+    }
+
+    public int getLastApplyBy() {
+        return lastApplyBy;
+    }
+
+    public void setLastApplyBy(int lastApplyBy) {
+        this.lastApplyBy = lastApplyBy;
+    }
+
+    public String getLastApplyName() {
+        return lastApplyName;
+    }
+
+    public void setLastApplyName(String lastApplyName) {
+        this.lastApplyName = lastApplyName;
+    }
+
+    public Date getDealDate() {
+        return dealDate;
+    }
+
+    public void setDealDate(Date dealDate) {
+        this.dealDate = dealDate;
+    }
+
+    public int getDealBy() {
+        return dealBy;
+    }
+
+    public void setDealBy(int dealBy) {
+        this.dealBy = dealBy;
+    }
+
+    public String getDealname() {
+        return dealname;
+    }
+
+    public void setDealname(String dealname) {
+        this.dealname = dealname;
     }
 
     public String getRemark1() {
@@ -266,46 +299,6 @@ public class ServiceOrder implements Serializable {
 
     public void setRemark3(String remark3) {
         this.remark3 = remark3;
-    }
-
-    public String getRemark4() {
-        return remark4;
-    }
-
-    public void setRemark4(String remark4) {
-        this.remark4 = remark4;
-    }
-
-    public String getRemark5() {
-        return remark5;
-    }
-
-    public void setRemark5(String remark5) {
-        this.remark5 = remark5;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getCreatename() {
-        return createname;
-    }
-
-    public void setCreatename(String createname) {
-        this.createname = createname;
-    }
-
-    public String getEvaluate() {
-        return evaluate;
-    }
-
-    public void setEvaluate(String evaluate) {
-        this.evaluate = evaluate;
     }
 
 }

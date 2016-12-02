@@ -110,8 +110,6 @@ public class WUser {
 	public User getUser() {
 		User u = new User();
 		u.setBind(0);
-		u.setDemander(0);
-		u.setProvider(0);
 		u.setImgUrl(this.getHeadimgurl());
 		u.setNickname(this.getNickname());
 		u.setOpenid(this.getOpenid());

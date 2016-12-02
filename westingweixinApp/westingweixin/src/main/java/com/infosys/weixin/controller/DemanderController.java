@@ -16,100 +16,103 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.infosys.basic.entity.Demander;
 import com.infosys.basic.entity.ServiceOrder;
 import com.infosys.basic.entity.User;
+import com.infosys.basic.service.IDemanderService;
 import com.infosys.basic.service.IServiceOrderService;
-import com.infosys.basic.service.IUserService;
+import com.infosys.basic.util.Constants;
 
 //服务需求方
 @RequestMapping("/demander")
 @Controller
 public class DemanderController {
-	@Inject
-	private IUserService userService;
     @Inject
     private IServiceOrderService serviceOrderService;
-	
-	//我的服务
-	@RequestMapping("/list")
-	public String list(HttpSession session,Model model) {
-	    User u = (User)session.getAttribute("user");
-        if(u.getDemander()==0) {
-            model.addAttribute("user", u);
-            //进入服务需求方-注册页面
+
+    @Inject
+    private IDemanderService demanderService;
+
+    // 我的服务
+    @RequestMapping("/list")
+    public String list(HttpSession session, Model model) {
+        User u = (User) session.getAttribute(Constants.WEIXIN_USER);
+        Demander demander = demanderService.loadByOpenid(u.getOpenid());
+        if (demander == null) {
+            model.addAttribute("demander", new Demander());
+            // 进入服务需求方-注册页面
             model.addAttribute("fromPath", "2");
-            return "demander/update";
+            model.addAttribute("openid", u.getOpenid());
+            return "demander/register";
         }
-        //进入服务需求方-我的服务
+        // 进入服务需求方-我的服务
         ServiceOrder order = new ServiceOrder();
         order.setCreateBy(u.getId());
         List<ServiceOrder> orders = serviceOrderService.listDemander(order);
         model.addAttribute("orders", orders);
-        return "demander/list"; 
-	}
-	
-	//服务申请
-	@RequestMapping(value="/add",method=RequestMethod.GET)
-	public String add(HttpSession session,Model model) {
-	    User u = (User)session.getAttribute("user");
-        if(u.getDemander()==0) {
-            model.addAttribute("user", u);
-            //进入服务需求方-注册页面
+        return "demander/list";
+    }
+
+    // 服务申请
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String add(HttpSession session, Model model) {
+        User u = (User) session.getAttribute(Constants.WEIXIN_USER);
+        Demander demander = demanderService.loadByOpenid(u.getOpenid());
+        if (demander == null) {
+            model.addAttribute("demander", new Demander());
+            // 进入服务需求方-注册页面
             model.addAttribute("fromPath", "1");
-            return "demander/update";
+            model.addAttribute("openid", u.getOpenid());
+            return "demander/register";
         }
-        //进入服务需求方-服务申请
-        model.addAttribute("serviceType", ServiceOrder.ServiceType.values());  
-        model.addAttribute("categoryType", ServiceOrder.CategoryType.values());  
+        // 进入服务需求方-服务申请
+        model.addAttribute("serviceType", ServiceOrder.ServiceType.values());
+        model.addAttribute("categoryType", ServiceOrder.CategoryType.values());
         model.addAttribute("order", new ServiceOrder());
-		return "demander/add";
-	}
-	
-	//我的申请
-	@RequestMapping(value="/add",method=RequestMethod.POST)
-	public String add(ServiceOrder order,HttpSession session) {
-	    User u = (User)session.getAttribute("user");
+        return "demander/add";
+    }
+
+    // 我的申请
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String add(ServiceOrder order, HttpSession session) {
+        User u = (User) session.getAttribute(Constants.WEIXIN_USER);
         order.setCreateBy(u.getId());
         order.setCreatename(u.getUsername());
         order.setCreateDate(new Date());
-        order.setStatus(0);//新需求
+        order.setStatus(0);// 新需求
         order.setServiceOrderId(String.valueOf(RandomUtils.nextInt(10000)));
-        order.setCategory(ServiceOrder.CategoryType.valueOf(order.getCategory()).getInfo());
-        order.setServiceType(ServiceOrder.ServiceType.valueOf(order.getServiceType()).getInfo());
+        order.setCategory(order.getCategory());
+        order.setServiceType(order.getServiceType());
         serviceOrderService.add(order);
-		return "redirect:/demander/list";
-	}
-	
-	//进入服务需求方-注册
-	@RequestMapping(value="/update",method=RequestMethod.POST)
-    public String update(@RequestParam(value = "fromPath", required = false) String fromPath,User user,HttpSession session,Model model) {
-	    User tu = userService.load(user.getId());
-        tu.setLinkname(user.getLinkname());
-        tu.setLinkphone(user.getLinkphone());
-        tu.setBusiness(user.getBusiness());
-        tu.setCompany(user.getCompany());
-        tu.setDemander(1);
-        userService.update(tu);
-        session.setAttribute("user", tu);
-        if(fromPath.equals("1")){
+        return "redirect:/demander/list";
+    }
+
+    // 进入服务需求方-注册
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String register(@RequestParam(value = "fromPath", required = false) String fromPath,
+            @RequestParam(value = "openid", required = false) String openid, Demander demander, HttpSession session,
+            Model model) {
+        demander.setOpenid(openid);
+        demander.setStatus(1);
+        demanderService.add(demander);
+        if (fromPath.equals("1")) {
             return "redirect:/demander/add";
-        }else if(fromPath.equals("2")){
+        } else if (fromPath.equals("2")) {
             return "redirect:/demander/list";
         }
         return "redirect:/demander/add";
     }
-	
-	@RequestMapping(value="/evaluate/{id}",method=RequestMethod.POST)
-	@ResponseBody
-    public String update(@PathVariable int id,String evaluate) {
-	    ServiceOrder tu = serviceOrderService.load(id);
-	    if(StringUtils.isNotBlank(tu.getEvaluate())){
-	        return "您已经评价过";
-	    }
+
+    @RequestMapping(value = "/evaluate/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public String update(@PathVariable int id, String evaluate) {
+        ServiceOrder tu = serviceOrderService.load(id);
+        if (StringUtils.isNotBlank(tu.getEvaluate())) {
+            return "您已经评价过";
+        }
         tu.setEvaluate(evaluate);
         serviceOrderService.update(tu);
         return "评价成功";
     }
-    
-    
+
 }

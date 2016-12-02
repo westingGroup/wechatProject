@@ -11,7 +11,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.infosys.basic.entity.InsideProvider;
 import com.infosys.basic.entity.User;
+import com.infosys.basic.util.CheckMobile;
+import com.infosys.basic.util.Constants;
 
 
 
@@ -32,11 +35,24 @@ public class AuthFilter implements Filter{
 			chain.doFilter(httpReq, httpResp);
 			return;
 		} else {
-			User u = (User)httpReq.getSession().getAttribute("user");
-			if(u==null) {
-				httpResp.sendRedirect(httpReq.getContextPath()+"/user/login");
-				return;
-			}
+		    String userAgent =  httpReq.getHeader( "User-Agent" ).toLowerCase(); 
+		    boolean isFromMobile = CheckMobile.check(userAgent); 
+		    if(isFromMobile){  
+                System.out.println("移动端访问");
+                User u = (User)httpReq.getSession().getAttribute(Constants.WEIXIN_USER);
+                if(u==null) {
+                    httpResp.sendRedirect(httpReq.getContextPath()+Constants.LOGIN);
+                    return;
+                }
+            } else {  
+                System.out.println("pc端访问");
+                InsideProvider u = (InsideProvider)httpReq.getSession().getAttribute(Constants.USER_NAME);
+                if(u==null) {
+                    httpResp.sendRedirect(httpReq.getContextPath()+Constants.LOGIN);
+                    return;
+                }
+            }  
+			
 			chain.doFilter(httpReq, httpResp);
 		}
 	}

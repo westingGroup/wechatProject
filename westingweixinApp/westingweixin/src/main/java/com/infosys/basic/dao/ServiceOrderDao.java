@@ -13,14 +13,14 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
 
     @Override
     public ServiceOrder loadByServiceOrderId(String serviceOrderId) {
-        return (ServiceOrder)super.queryObject("from ServiceOrder where serviceOrderId=?", serviceOrderId);
+        return (ServiceOrder) super.queryObject("from ServiceOrder where serviceOrderId=?", serviceOrderId);
     }
 
     @Override
     public List<ServiceOrder> list(ServiceOrder order) {
         List<Object> params = new ArrayList<Object>();
-        StringBuffer hql = new StringBuffer("from ServiceOrder where 1=1 ") ;
-        if(order.getCreateBy()>0){
+        StringBuffer hql = new StringBuffer("from ServiceOrder where 1=1 ");
+        if (order.getCreateBy() > 0) {
             hql.append(" and createBy = ? ");
             params.add(order.getCreateBy());
         }
@@ -31,16 +31,9 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
     @Override
     public List<ServiceOrder> listProvider(ServiceOrder order) {
         List<Object> params = new ArrayList<Object>();
-        StringBuffer hql = new StringBuffer("from ServiceOrder where status = 0 ") ;
-        if(order.getApplyBy()>0){
-            hql.append(" or applyBy = ? ");
-            params.add(order.getApplyBy());
-        }
+        StringBuffer hql = new StringBuffer("from ServiceOrder where status = 0 ");
         hql.append(" order by createDate desc ");
         return super.list(hql.toString(), params.toArray());
     }
-
-
-
 
 }

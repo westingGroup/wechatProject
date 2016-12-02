@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name="t_user")
 public class User implements Serializable {
@@ -27,15 +28,6 @@ public class User implements Serializable {
 	private int status;
 	private int sex;
 	private int bind;
-	
-	private String linkname;
-	private String linkphone;
-	private String business;
-	private String company;
-	private String qualification;
-	
-	private int demander;//0 没有注册为需求方  1 已经注册为需求方 2 审批通过
-	private int provider;//0 没有注册为提供商  1 已经注册为提供商  2 审批通过
 	
 	
     @Id
@@ -95,46 +87,5 @@ public class User implements Serializable {
 	public void setBind(int bind) {
 		this.bind = bind;
 	}
-    public String getLinkname() {
-        return linkname;
-    }
-    public void setLinkname(String linkname) {
-        this.linkname = linkname;
-    }
-    public String getLinkphone() {
-        return linkphone;
-    }
-    public void setLinkphone(String linkphone) {
-        this.linkphone = linkphone;
-    }
-    public String getBusiness() {
-        return business;
-    }
-    public void setBusiness(String business) {
-        this.business = business;
-    }
-    public String getCompany() {
-        return company;
-    }
-    public void setCompany(String company) {
-        this.company = company;
-    }
-    public String getQualification() {
-        return qualification;
-    }
-    public void setQualification(String qualification) {
-        this.qualification = qualification;
-    }
-    public int getDemander() {
-        return demander;
-    }
-    public void setDemander(int demander) {
-        this.demander = demander;
-    }
-    public int getProvider() {
-        return provider;
-    }
-    public void setProvider(int provider) {
-        this.provider = provider;
-    }
+   
 }

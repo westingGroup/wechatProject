@@ -46,8 +46,6 @@ public class UserController {
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String add(User user) {
 		user.setBind(0);
-		user.setDemander(0);
-		user.setProvider(0);
 		userService.add(user);
 		return "redirect:/user/list";
 	}

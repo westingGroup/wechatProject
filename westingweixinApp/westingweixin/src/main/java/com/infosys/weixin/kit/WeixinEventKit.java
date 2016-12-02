@@ -3,9 +3,13 @@ package com.infosys.weixin.kit;
 import java.io.IOException;
 import java.util.Map;
 
+import com.infosys.basic.entity.Demander;
+import com.infosys.basic.entity.Provider;
 import com.infosys.basic.entity.User;
 import com.infosys.basic.entity.WeixinMenu;
 import com.infosys.basic.entity.WeixinQr;
+import com.infosys.basic.service.IDemanderService;
+import com.infosys.basic.service.IProviderService;
 import com.infosys.basic.service.IUserService;
 import com.infosys.basic.service.IWeixinMenuService;
 import com.infosys.basic.service.IWeixinQrService;
@@ -18,6 +22,14 @@ import com.infosys.weixin.web.servlet.WeixinContext;
 
 public class WeixinEventKit {
 
+    private static IProviderService providerService = (IProviderService)BeanFactoryContext.getService("providerService");
+    private static IDemanderService demanderService = (IDemanderService)BeanFactoryContext.getService("demanderService");
+    private static IWeixinQrService weixinQrService = (IWeixinQrService)BeanFactoryContext.getService("weixinQrService");
+    private static IWGroupService wGroupService = (IWGroupService)BeanFactoryContext.getService("wGroupService");
+    private static IUserService userService = (IUserService)BeanFactoryContext.getService("userService");
+    private static IWUserService wUserService = (IWUserService)BeanFactoryContext.getService("wUserService");
+    private static IWeixinMenuService weixinMenuService = (IWeixinMenuService)BeanFactoryContext.getService("weixinMenuService");
+    
 	public static String handlerEventMsg(Map<String, String> msgMap) throws IOException {
 		String event = msgMap.get("Event");
 		System.out.println(event);
@@ -38,14 +50,12 @@ public class WeixinEventKit {
 		handlerUserInfo(msgMap);
 		String snum = getSence(msgMap, false);
 		String openid = msgMap.get("FromUserName");
-		IWeixinQrService weixinQrService = (IWeixinQrService)BeanFactoryContext.getService("weixinQrService");
 		WeixinQr wq = weixinQrService.loadBySnum(Integer.parseInt(snum));
 		if(wq.getType()==WeixinQr.REPASSWORD_TYPE) {
 			//处理修改密码操作
 			return WeixinMessageKit.map2xml(MessageCreateKit.createTextMsg(msgMap, "<a href=\""+wq.getQrData()+"\">"+wq.getMsg()+"</a>"));
 		} else if(wq.getType()==WeixinQr.SET_GROUP_TYPE) {
 			//处理设置用户组的操作
-			IWGroupService wGroupService = (IWGroupService)BeanFactoryContext.getService("wGroupService");
 			wGroupService.moveUserToGroup(openid, Integer.parseInt(wq.getQrData()));
 			WGroup wg = wGroupService.queryUserGroup(openid);
 			return WeixinMessageKit.map2xml(MessageCreateKit.createTextMsg(msgMap, "你的用户组已经修改,用户组修改为:"+wg.getName()));
@@ -67,18 +77,41 @@ public class WeixinEventKit {
 
 	private static User getUser(Map<String, String> msgMap) {
 		String openid = msgMap.get("FromUserName");
-		IUserService userService = (IUserService)BeanFactoryContext.getService("userService");
 		User u = userService.loadByOpenid(openid);
 		return u;
 	}
+	
+	private static Provider getProvider(Map<String, String> msgMap) {
+        String openid = msgMap.get("FromUserName");
+        Provider u = providerService.loadByOpenid(openid);
+        return u;
+    }
+	
+	private static Demander getDemander(Map<String, String> msgMap) {
+        String openid = msgMap.get("FromUserName");
+        Demander u = demanderService.loadByOpenid(openid);
+        return u;
+    }
 
 	private static String handlerUnsubscribeEvent(Map<String, String> msgMap) {
 		User u = getUser(msgMap);
-		IUserService userService = (IUserService)BeanFactoryContext.getService("userService");
-		if(u!=null) {
-			u.setStatus(0);
-			userService.update(u);
-		}
+		Provider per = getProvider(msgMap);
+		Demander der = getDemander(msgMap);
+        if (u != null) {
+            if (per == null && der == null) {
+            } else {
+                u.setStatus(0);
+                userService.update(u);
+                if (per != null) {
+                    per.setStatus(0);
+                    providerService.update(per);
+                }
+                if (der != null) {
+                    der.setStatus(0);
+                    demanderService.update(der);
+                }
+            }
+        }
 		return null;
 	}
 
@@ -92,19 +125,27 @@ public class WeixinEventKit {
 	}
 	
 	private static User handlerUserInfo(Map<String, String> msgMap) {
-		IUserService userService = (IUserService)BeanFactoryContext.getService("userService");
 		String openid = msgMap.get("FromUserName");
 		User u = getUser(msgMap);
 		if(u==null) {
-			IWUserService wUserService = (IWUserService)BeanFactoryContext.getService("wUserService");
 			WUser wu = wUserService.queryByOpenid(openid);
 			u = wu.getUser();
 			userService.add(u);
 		} else {
+	        Provider per = getProvider(msgMap);
+	        Demander der = getDemander(msgMap);
 			if(u.getStatus()==0) {
 				u.setStatus(1);
 				userService.update(u);
-			}
+            }
+            if (per != null && per.getStatus()==0) {
+                per.setStatus(1);
+                providerService.update(per);
+            }
+            if (der != null&& der.getStatus()==0) {
+                der.setStatus(1);
+                demanderService.update(der);
+            }
 		}
 		return u;
 	}
@@ -114,9 +155,7 @@ public class WeixinEventKit {
 		String snum = getSence(msgMap, true);
 		String openid = msgMap.get("FromUserName");
 		if(snum!=null) {
-			IWeixinQrService weixinQrService = (IWeixinQrService)BeanFactoryContext.getService("weixinQrService");
 			WeixinQr wq = weixinQrService.loadBySnum(Integer.parseInt(snum));
-			IWGroupService wGroupService = (IWGroupService)BeanFactoryContext.getService("wGroupService");
 			if(wq.getType()==WeixinQr.SET_GROUP_TYPE) {
 			    //处理未关注扫描 设置分组 二维码
 				wGroupService.moveUserToGroup(openid, Integer.parseInt(wq.getQrData()));
@@ -144,7 +183,6 @@ public class WeixinEventKit {
 
 	private static String handlerClickEvent(Map<String, String> msgMap) throws IOException {
 		String keyCode = msgMap.get("EventKey");
-		IWeixinMenuService weixinMenuService = (IWeixinMenuService)BeanFactoryContext.getService("weixinMenuService");
 		WeixinMenu wm = weixinMenuService.loadByKey(keyCode);
 		if(wm!=null&&wm.getRespType()==1) {
 			Map<String,Object> map = MessageCreateKit.createTextMsg(msgMap, wm.getContent());

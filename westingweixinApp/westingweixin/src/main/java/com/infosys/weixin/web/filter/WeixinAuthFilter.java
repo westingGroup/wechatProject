@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.infosys.basic.entity.User;
 import com.infosys.basic.service.IUserService;
+import com.infosys.basic.util.Constants;
 import com.infosys.weixin.model.WeixinFinalValue;
 import com.infosys.weixin.service.IWUserService;
 import com.infosys.weixin.web.servlet.BeanFactoryContext;
@@ -32,7 +33,7 @@ public class WeixinAuthFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest hRequest = (HttpServletRequest)request;
 		HttpServletResponse hResponse = (HttpServletResponse)response;
-		User tu = (User)hRequest.getSession().getAttribute("user");
+		User tu = (User)hRequest.getSession().getAttribute(Constants.WEIXIN_USER);
 //		System.out.println(tu+"------");
 		if(tu==null) {
 			String agent = hRequest.getHeader("User-Agent");
@@ -56,7 +57,7 @@ public class WeixinAuthFilter implements Filter {
 								userService.update(u);
 							}
 						}
-						hRequest.getSession().setAttribute("user", u);
+						hRequest.getSession().setAttribute(Constants.WEIXIN_USER, u);
 					}
 				} else {
 					String path = hRequest.getRequestURL().toString();
@@ -64,7 +65,7 @@ public class WeixinAuthFilter implements Filter {
 					if(query!=null) {
 						path = path+"?"+query;
 					}
-					System.out.println("path-----"+path);
+					//System.out.println("path-----"+path);
 					String uri = WeixinFinalValue.AUTH_URL;
 					uri = uri.replace("APPID", WeixinContext.getInstance().getAppId())
 					   .replace("REDIRECT_URI",URLEncoder.encode(path, "UTF-8"))
