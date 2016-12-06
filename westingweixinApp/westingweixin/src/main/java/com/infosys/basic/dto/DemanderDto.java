@@ -27,9 +27,17 @@ public class DemanderDto implements Serializable {
 
     private String qualification;
 
-    private int status;
+    private String status;
 
     private String remark;
+
+    private String username;
+
+    private String phone;
+
+    private String sex;
+
+    private String password;
 
     public int getId() {
         return id;
@@ -95,12 +103,28 @@ public class DemanderDto implements Serializable {
         this.qualification = qualification;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getRemark() {
@@ -109,6 +133,22 @@ public class DemanderDto implements Serializable {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

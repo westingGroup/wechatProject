@@ -11,6 +11,8 @@ public class Constants {
 	public final static int T_USER_STATUS_REJECT = 10;
 	public final static int T_USER_STATUS_PASS = 11;
 	
+	public final static String T_USER_STATUS_NORMAL_STR = "1";
+	
 	//新需求 未申领
 	public final static int T_SERVICE_ORDER_STATUS_NEW = 0;
 	//已申领待分配

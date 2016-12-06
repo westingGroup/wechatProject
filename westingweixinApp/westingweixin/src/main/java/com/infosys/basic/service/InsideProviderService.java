@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.infosys.basic.dao.IInsideProviderDao;
+import com.infosys.basic.dto.DemanderDto;
+import com.infosys.basic.dto.DemanderModel;
+import com.infosys.basic.dto.PagerInfo;
 import com.infosys.basic.entity.InsideProvider;
 
 @Service("insideProviderService")
@@ -56,6 +59,11 @@ public class InsideProviderService implements IInsideProviderService {
     @Override
     public List<InsideProvider> list() {
         return insideProviderDao.list();
+    }
+
+    @Override
+    public PagerInfo<DemanderDto> listInsideProviderByKeyword(DemanderModel demanderModel) {
+        return insideProviderDao.listInsideProviderByKeyword(demanderModel);
     }
 
    

@@ -8,10 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.infosys.basic.dao.IServiceOrderDao;
-import com.infosys.basic.dto.DemanderDto;
-import com.infosys.basic.dto.DemanderModel;
 import com.infosys.basic.dto.PagerInfo;
 import com.infosys.basic.dto.ServiceOrderDto;
+import com.infosys.basic.dto.ServiceOrderModel;
 import com.infosys.basic.entity.ServiceOrder;
 import com.infosys.basic.util.model.Pager;
 
@@ -55,9 +54,9 @@ public class ServiceOrderService implements IServiceOrderService {
     public List<ServiceOrder> listProvider(ServiceOrder order) {
         return serviceOrderDao.listProvider(order);
     }
-    
+
     @Override
-    public List<ServiceOrderDto> listProviderServiceOrder(String openid){
+    public List<ServiceOrderDto> listProviderServiceOrder(String openid) {
         return serviceOrderDao.listProviderServiceOrder(openid);
     }
 
@@ -67,8 +66,8 @@ public class ServiceOrderService implements IServiceOrderService {
     }
 
     @Override
-    public PagerInfo<DemanderDto> listDemanderByKewword(DemanderModel demanderModel) {
-        return serviceOrderDao.listDemanderByKewword(demanderModel);
+    public PagerInfo<ServiceOrderDto> listServiceOrderByKeyword(ServiceOrderModel serviceOrderModel) {
+        return serviceOrderDao.listServiceOrderByKeyword(serviceOrderModel);
     }
 
 }

@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.infosys.basic.dao.IDemanderDao;
+import com.infosys.basic.dto.DemanderDto;
+import com.infosys.basic.dto.DemanderModel;
+import com.infosys.basic.dto.PagerInfo;
 import com.infosys.basic.entity.Demander;
 
 @Service("demanderService")
@@ -45,6 +48,10 @@ public class DemanderService implements IDemanderService {
     public List<Demander> list() {
         return demanderDao.list();
     }
-
+    
+    @Override
+    public PagerInfo<DemanderDto> listDemanderByKeyword(DemanderModel demanderModel) {
+        return demanderDao.listDemanderByKeyword(demanderModel);
+    }
 
 }

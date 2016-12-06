@@ -1,6 +1,6 @@
 package com.infosys.basic.dto;
 
-public class DemanderModel extends SearchModel<DemanderDto> {
+public class ServiceOrderModel extends SearchModel<ServiceOrderDto> {
 
     private static final long serialVersionUID = 1L;
 
@@ -14,13 +14,7 @@ public class DemanderModel extends SearchModel<DemanderDto> {
 
     private String status;
 
-    private String username;
-
-    private String phone;
-
-    private String sex;
-
-    private String password;
+    private String createBy;
 
     public String getStartTime() {
         return startTime;
@@ -62,36 +56,12 @@ public class DemanderModel extends SearchModel<DemanderDto> {
         this.status = status;
     }
 
-    public String getUsername() {
-        return username;
+    public String getCreateBy() {
+        return createBy;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
     }
 
 }

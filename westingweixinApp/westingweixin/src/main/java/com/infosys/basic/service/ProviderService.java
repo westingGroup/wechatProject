@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.infosys.basic.dao.IProviderDao;
+import com.infosys.basic.dto.DemanderDto;
+import com.infosys.basic.dto.DemanderModel;
+import com.infosys.basic.dto.PagerInfo;
 import com.infosys.basic.entity.Provider;
 
 @Service("providerService")
@@ -45,6 +48,11 @@ public class ProviderService implements IProviderService {
     @Override
     public List<Provider> list() {
         return providerDao.list();
+    }
+
+    @Override
+    public PagerInfo<DemanderDto> listProviderByKeyword(DemanderModel demanderModel) {
+        return providerDao.listProviderByKeyword(demanderModel);
     }
 
 

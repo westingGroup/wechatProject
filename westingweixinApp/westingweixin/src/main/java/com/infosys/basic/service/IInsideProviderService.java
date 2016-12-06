@@ -2,6 +2,9 @@ package com.infosys.basic.service;
 
 import java.util.List;
 
+import com.infosys.basic.dto.DemanderDto;
+import com.infosys.basic.dto.DemanderModel;
+import com.infosys.basic.dto.PagerInfo;
 import com.infosys.basic.entity.InsideProvider;
 
 public interface IInsideProviderService {
@@ -12,4 +15,5 @@ public interface IInsideProviderService {
     public InsideProvider loadByUsername(String username);
     public InsideProvider login(String username,String password);
     public List<InsideProvider> list();
+    public PagerInfo<DemanderDto> listInsideProviderByKeyword(DemanderModel demanderModel);
 }
