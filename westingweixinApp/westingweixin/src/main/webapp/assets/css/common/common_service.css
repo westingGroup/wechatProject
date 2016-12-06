@@ -136,6 +136,13 @@
 	border-radius: 27px !important;
 }
 
+.subject .content .categoryStyle .currentimg {
+	width:54px;
+	height:54px;
+	border: 4px solid rgb(203, 127, 4);
+	border-radius: 27px !important;
+}
+
 .subject .content .waitingTaskTitle {
 	width: 100%;
 	color: white;

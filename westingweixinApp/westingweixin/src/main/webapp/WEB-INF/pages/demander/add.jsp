@@ -131,15 +131,31 @@
 		$("#orderTypes").val(_orderType);
 		$("#img1").click(function(){
 			$("#categoryId").val("电缆");
+			$("#img1").addClass("currentimg");
+			$("#img2").removeClass("currentimg");
+			$("#img3").removeClass("currentimg");
+			$("#img4").removeClass("currentimg");
 		});
 		$("#img2").click(function(){
 			$("#categoryId").val("灯具");
+			$("#img1").removeClass("currentimg");
+			$("#img2").addClass("currentimg");
+			$("#img3").removeClass("currentimg");
+			$("#img4").removeClass("currentimg");
 		});
 		$("#img3").click(function(){
 			$("#categoryId").val("电器件");
+			$("#img1").removeClass("currentimg");
+			$("#img2").removeClass("currentimg");
+			$("#img3").addClass("currentimg");
+			$("#img4").removeClass("currentimg");
 		});
 		$("#img4").click(function(){
 			$("#categoryId").val("其他");
+			$("#img1").removeClass("currentimg");
+			$("#img2").removeClass("currentimg");
+			$("#img3").removeClass("currentimg");
+			$("#img4").addClass("currentimg");
 		});
 		
 	});
