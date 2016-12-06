@@ -1,5 +1,6 @@
 package com.infosys.basic.dao;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -7,8 +8,12 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.infosys.basic.dao.base.BaseDao;
+import com.infosys.basic.dto.DemanderDto;
+import com.infosys.basic.dto.DemanderModel;
+import com.infosys.basic.dto.PagerInfo;
 import com.infosys.basic.dto.ServiceOrderDto;
 import com.infosys.basic.entity.ServiceOrder;
+import com.infosys.basic.util.model.Pager;
 
 @Repository("serviceOrderDao")
 public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOrderDao {
@@ -58,6 +63,63 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
             orderDtoList.add(order);
         }
         return orderDtoList;
+    }
+    
+    public Pager<ServiceOrder> find(ServiceOrder order,int pageSize,int pageOffset) {
+        getSystemRequest().setPageSize(pageSize);
+        getSystemRequest().setPageOffset(pageOffset);
+        List<Object> params = new ArrayList<Object>();
+        StringBuffer hql = new StringBuffer("from ServiceOrder where 1=1 ");
+        if (order.getCreateBy() > 0) {
+            hql.append(" and createBy = ? ");
+            params.add(order.getCreateBy());
+        }
+        hql.append(" order by createDate desc ");
+        return super.find(hql.toString(), params.toArray());
+    }
+
+    private long getDemanderTotalByConditions() {
+        StringBuffer sb = new StringBuffer();
+        long num = 0L;
+        sb.append("select count(*) as total from t_demander c where STATUS=1");
+        String sql = sb.toString();
+        List<Map<String, Object>> userListInDB = this.listBySql(sql, null);
+        for (Map<String, Object> valuesMap : userListInDB) {
+            num = new BigDecimal(valuesMap.get("total").toString()).intValue();
+        }
+        sb = null;
+        return num;
+    }
+    
+    @Override
+    public PagerInfo<DemanderDto> listDemanderByKewword(DemanderModel demanderModel) {
+        PagerInfo<DemanderDto> demanderDtoPager = demanderModel.getPager();
+        demanderDtoPager.setTotalRecords(this.getDemanderTotalByConditions()); // 总数
+        StringBuffer sb = new StringBuffer(
+                "SELECT id,IFNULL(DATE_FORMAT(birthDate,'%Y-%m-%d'),'') birthDate ,IFNULL(business,'') business,IFNULL(company,'') company,IFNULL(linkname,'') linkname,IFNULL(linkphone,'') linkphone,IFNULL(openid,'') openid,IFNULL(qualification,'') qualification,IFNULL(remark,'') remark,STATUS FROM t_demander WHERE STATUS=1");
+       sb.append(" limit ").append((demanderDtoPager.getCurrentPage() - 1)
+               * demanderDtoPager.getPageSize()).append(",").append(demanderDtoPager.getPageSize());
+        String sql = sb.toString();
+        List<Map<String, Object>> userListInDB = this.listBySql(sql, null);
+        List<DemanderDto> DemanderDtoList = new ArrayList<DemanderDto>();
+        for (Map<String, Object> valuesMap : userListInDB) {
+            DemanderDto demanderDto = new DemanderDto();
+            demanderDto.setId(Integer.valueOf(valuesMap.get("id").toString()));
+            demanderDto.setBirthDate(valuesMap.get("birthDate").toString());
+            demanderDto.setBusiness(valuesMap.get("business").toString());
+            demanderDto.setCompany(valuesMap.get("company").toString());
+            demanderDto.setLinkname(valuesMap.get("linkname").toString());
+            demanderDto.setLinkphone(valuesMap.get("linkphone").toString());
+            demanderDto.setOpenid(valuesMap.get("openid").toString());
+            demanderDto.setQualification(valuesMap.get("qualification").toString());
+            demanderDto.setRemark(valuesMap.get("remark").toString());
+            demanderDto.setStatus(Integer.valueOf(valuesMap.get("STATUS").toString()));
+            DemanderDtoList.add(demanderDto);
+            demanderDto = null;
+        }
+        demanderDtoPager.setRecords(DemanderDtoList);
+        sb = null;
+        return demanderDtoPager;
     }
 
 }

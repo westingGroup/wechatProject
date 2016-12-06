@@ -21,4 +21,7 @@ public class Constants {
     public final static int T_SERVICE_ORDER_STATUS_DEALING_DONE = 9;
     //转废单
     public final static int T_SERVICE_ORDER_STATUS_CANCEL = 10;
+    
+    
+    public final static int DEFAULT_DISPLAY_ITEM_NUM = 10;
 }
