@@ -1674,7 +1674,6 @@
 
 /*-----------------------*/
 function initDatePickerForDay() {
-
 	$(".form_datetime_day").datetimepicker({
 		language : 'zh-CN',
 		format : "yyyy-mm-dd",

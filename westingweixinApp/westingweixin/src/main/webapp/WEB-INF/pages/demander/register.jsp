@@ -20,13 +20,28 @@
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/media/css/style.css" />
 <link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/assets/media/css/datetimepicker.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/assets/media/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/css/common/common.css" />
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/css/common/common_service.css" />
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/media/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/media/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/media/js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/common/common.js"></script>
+<script type="text/javascript">
+	$(function() {
+		initDatePickerForDay();
+	});
+</script>
 </head>
 <body>
 	<div class="subject">
@@ -47,7 +62,8 @@
 		</div>
 		<sf:form modelAttribute="demander" id="adminForm" method="post"
 			action="/demander/register">
-			<input type="hidden" name="fromPath" id="fromPath" value="${fromPath}"></input>
+			<input type="hidden" name="fromPath" id="fromPath"
+				value="${fromPath}"></input>
 			<input type="hidden" name="openid" id="openid" value="${openid}"></input>
 			<div class="content">
 				<sf:hidden path="id" />
@@ -81,8 +97,20 @@
 								src="<%=request.getContextPath()%>/assets/img/calendar.png"
 								width="16px" height="16px">&nbsp;&nbsp;出生年月：
 						</div>
-						<div class="col-md-11 col-xs-8">
-							<input type="text" id="birth" name="birth" cssClass="text"/>
+
+						<div
+							class="col-md-11 col-xs-8 input-append date form_datetime_day"
+							style="padding: 0px;">
+							<div class="row">
+								<div class="col-md-10 col-xs-7" style="padding: 0px;">
+									<input type="text" class="text" name="birth"/>
+								</div>
+								<div class="col-md-2 col-xs-5"
+									style="padding: 0px; text-align: right;">
+									<span class="add-on"><i class="icon-remove"></i></span> <span
+										class="add-on"><i class="icon-calendar"></i></span>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -110,7 +138,7 @@
 				<button class="btn" type="submit">提交</button>
 			</div>
 		</sf:form>
-		
+
 	</div>
 </body>
 </html>
