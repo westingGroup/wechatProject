@@ -36,7 +36,7 @@ public class DemanderController {
     // 我的服务
     @RequestMapping("/list")
     public String list(HttpSession session, Model model) {
-        User u = (User) session.getAttribute(Constants.WEIXIN_USER);
+        User u = (User) session.getAttribute(Constants.WEIXIN_SESSION_USER);
         Demander demander = demanderService.loadByOpenid(u.getOpenid());
         if (demander == null) {
             model.addAttribute("demander", new Demander());
@@ -56,7 +56,7 @@ public class DemanderController {
     // 服务申请
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(HttpSession session, Model model) {
-        User u = (User) session.getAttribute(Constants.WEIXIN_USER);
+        User u = (User) session.getAttribute(Constants.WEIXIN_SESSION_USER);
         Demander demander = demanderService.loadByOpenid(u.getOpenid());
         if (demander == null) {
             model.addAttribute("demander", new Demander());
@@ -75,11 +75,11 @@ public class DemanderController {
     // 我的申请
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(ServiceOrder order, HttpSession session) {
-        User u = (User) session.getAttribute(Constants.WEIXIN_USER);
+        User u = (User) session.getAttribute(Constants.WEIXIN_SESSION_USER);
         order.setCreateBy(u.getId());
         order.setCreatename(u.getUsername());
         order.setCreateDate(new Date());
-        order.setStatus(0);// 新需求
+        order.setStatus(Constants.T_SERVICE_ORDER_STATUS_NEW);// 新需求
         order.setServiceOrderId(String.valueOf(RandomUtils.nextInt(10000)));
         order.setCategory(order.getCategory());
         order.setServiceType(order.getServiceType());
@@ -93,7 +93,7 @@ public class DemanderController {
             @RequestParam(value = "openid", required = false) String openid, Demander demander, HttpSession session,
             Model model) {
         demander.setOpenid(openid);
-        demander.setStatus(1);
+        demander.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_NORMAL);
         demanderService.add(demander);
         if (fromPath.equals("1")) {
             return "redirect:/demander/add";

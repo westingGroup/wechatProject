@@ -94,11 +94,11 @@
 	width: 100%;
 	font-size: 12px;
 	border: none;
-	/*很关键：将默认的select选择框样式清除*/
+	/*锟杰关硷拷锟斤拷锟斤拷默锟较碉拷select选锟斤拷锟斤拷锟绞斤拷锟斤拷*/
 	appearance: none;
 	-moz-appearance: none;
 	-webkit-appearance: none;
-	/*在选择框的最右侧中间显示小箭头图片*/
+	/*锟斤拷选锟斤拷锟斤拷锟斤拷锟揭诧拷锟叫硷拷锟斤拷示小锟斤拷头图片*/
 	background: url("../../img/select.png") no-repeat scroll right center
 		transparent;
 	background-size: 10px;
@@ -126,7 +126,7 @@
 	margin: auto;
 }
 
-/**实现高亮*/
+/**实锟街革拷锟斤拷*/
 .subject .content .categoryStyle img:HOVER {
 	transform: scale(1.3);
 	transition: all 1s ease 0s;

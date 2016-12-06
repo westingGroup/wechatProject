@@ -13,9 +13,12 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.infosys.basic.entity.Demander;
+import com.infosys.basic.entity.Provider;
 import com.infosys.basic.entity.User;
+import com.infosys.basic.service.IDemanderService;
+import com.infosys.basic.service.IProviderService;
 import com.infosys.basic.service.IUserService;
-import com.infosys.basic.util.Constants;
 import com.infosys.weixin.model.WeixinFinalValue;
 import com.infosys.weixin.service.IWUserService;
 import com.infosys.weixin.web.servlet.BeanFactoryContext;
@@ -23,17 +26,16 @@ import com.infosys.weixin.web.servlet.WeixinContext;
 
 public class WeixinAuthFilter implements Filter {
 
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-
-	}
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+    }
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest hRequest = (HttpServletRequest)request;
 		HttpServletResponse hResponse = (HttpServletResponse)response;
-		User tu = (User)hRequest.getSession().getAttribute(Constants.WEIXIN_USER);
+		User tu = (User)hRequest.getSession().getAttribute(com.infosys.basic.util.Constants.WEIXIN_SESSION_USER);
 //		System.out.println(tu+"------");
 		if(tu==null) {
 			String agent = hRequest.getHeader("User-Agent");
@@ -43,21 +45,37 @@ public class WeixinAuthFilter implements Filter {
 				String state = request.getParameter("state");
 				if(code!=null&&state!=null&&state.equals("1")) {
 					//通过Code获取openid来进行授权
-					IWUserService wUserService = (IWUserService)BeanFactoryContext.getService("wUserService");
+				    IWUserService wUserService = (IWUserService) BeanFactoryContext.getService("wUserService");
 					String openid = wUserService.queryOpenidByCode(code);
 					if(openid!=null) {
-						IUserService userService = (IUserService)BeanFactoryContext.getService("userService");
+					    IUserService userService = (IUserService) BeanFactoryContext.getService("userService");
 						User u = userService.loadByOpenid(openid);
 						if(u==null) {
 							u = wUserService.queryByOpenid(openid).getUser();
 							userService.add(u);
 						} else {
-							if(u.getStatus()==0) {
-								u.setStatus(1);
+							if(u.getStatus()==com.infosys.basic.util.Constants.T_USER_STATUS_DELETE) {
+								u.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_NORMAL);
 								userService.update(u);
 							}
+							IDemanderService demanderService = (IDemanderService)BeanFactoryContext.getService("demanderService");
+							IProviderService providerService = (IProviderService)BeanFactoryContext.getService("providerService");
+							Provider per = providerService.loadByOpenid(openid);
+                            Demander der = demanderService.loadByOpenid(openid);
+                            if (u.getStatus() == com.infosys.basic.util.Constants.T_USER_STATUS_DELETE) {
+                                u.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_NORMAL);
+                                userService.update(u);
+                            }
+                            if (per != null && per.getStatus() == com.infosys.basic.util.Constants.T_USER_STATUS_DELETE) {
+                                per.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_NORMAL);
+                                providerService.update(per);
+                            }
+                            if (der != null && der.getStatus() == com.infosys.basic.util.Constants.T_USER_STATUS_DELETE) {
+                                der.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_NORMAL);
+                                demanderService.update(der);
+                            }
 						}
-						hRequest.getSession().setAttribute(Constants.WEIXIN_USER, u);
+						hRequest.getSession().setAttribute(com.infosys.basic.util.Constants.WEIXIN_SESSION_USER, u);
 					}
 				} else {
 					String path = hRequest.getRequestURL().toString();

@@ -2,6 +2,7 @@ package com.infosys.basic.service;
 
 import java.util.List;
 
+import com.infosys.basic.dto.ServiceOrderDto;
 import com.infosys.basic.entity.ServiceOrder;
 
 public interface IServiceOrderService {
@@ -12,4 +13,5 @@ public interface IServiceOrderService {
 	public ServiceOrder loadByServiceOrderId(String serviceOrderId);
 	public List<ServiceOrder> listDemander(ServiceOrder order);
 	public List<ServiceOrder> listProvider(ServiceOrder order);
+    public List<ServiceOrderDto> listProviderServiceOrder(String openid);
 }

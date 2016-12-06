@@ -45,31 +45,31 @@
 				</div>
 			</div>
 		</div>
-		<sf:form modelAttribute="order" id="adminForm" method="post" action="">
+		<sf:form modelAttribute="order" id="adminForm" method="post" action="/demander/add">
 			<div class="content">
 				<div class="categoryStyle">
 					<div>
-						<img alt="电缆"
+						<img id="img1" alt="电缆"
 							src="<%=request.getContextPath()%>/assets/img/category_cable.png"
 							width="42px" height="42px">
 					</div>
 					<div>
-						<img alt="灯具"
+						<img id="img2" alt="灯具"
 							src="<%=request.getContextPath()%>/assets/img/category_light.png"
 							width="42px" height="42px">
 					</div>
 					<div>
-						<img alt="电器件"
+						<img id="img3" alt="电器件"
 							src="<%=request.getContextPath()%>/assets/img/category_electrical.png"
 							width="42px" height="42px">
 					</div>
 					<div>
-						<img alt="其他"
+						<img id="img4" alt="其他"
 							src="<%=request.getContextPath()%>/assets/img/category_other.png"
 							width="42px" height="42px">
 					</div>
 				</div>
-				<sf:hidden path="category" value="电缆"/>
+				<sf:hidden id="categoryId" path="category" value="电缆"/>
 				<div class="container commonStyle contact">
 					<div class="row serviceType">
 						<div class="col-md-1 col-xs-4 label">
@@ -78,10 +78,11 @@
 								width="16px" height="16px"> &nbsp;<font color="red">*</font>&nbsp;服务类型：
 						</div>
 						<div class="col-md-11 col-xs-8">
-							<sf:select path="serviceType" cssClass="select">
+							<sf:select id="orderTypes" path="serviceType" cssClass="select">
 								<sf:options items="${serviceType}" itemLabel="info"
-									itemValue="info" />
+									itemValue="info"/>
 							</sf:select>
+							
 						</div>
 					</div>
 					<hr class="commonHr" />
@@ -92,7 +93,7 @@
 								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;联系人：
 						</div>
 						<div class="col-md-11 col-xs-8">
-							<sf:input path="" cssClass="text" />
+							<sf:input path="linkname" cssClass="text" />
 						</div>
 					</div>
 					<hr class="commonHr" />
@@ -103,7 +104,7 @@
 								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;联系电话：
 						</div>
 						<div class="col-md-11 col-xs-8">
-							<sf:input path="" cssClass="text" />
+							<sf:input path="linkphone" cssClass="text" />
 						</div>
 					</div>
 				</div>
@@ -113,7 +114,7 @@
 							&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;服务内容要求：
 						</div>
 						<div class="col-md-11 col-xs-7">
-							<sf:textarea path="" cssClass="textarea" rows="3" />
+							<sf:textarea path="content" cssClass="textarea" rows="3" />
 						</div>
 					</div>
 				</div>
@@ -121,7 +122,27 @@
 			<div class="footer">
 				<button class="btn" type="submit">提交</button>
 			</div>
+			<input type="hidden" id="_orderTypes"  value="检修"/>
 		</sf:form>
 	</div>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		var _orderType=$("#_orderTypes").val();
+		$("#orderTypes").val(_orderType);
+		$("#img1").click(function(){
+			$("#categoryId").val("电缆");
+		});
+		$("#img2").click(function(){
+			$("#categoryId").val("灯具");
+		});
+		$("#img3").click(function(){
+			$("#categoryId").val("电器件");
+		});
+		$("#img4").click(function(){
+			$("#categoryId").val("其他");
+		});
+		
+	});
+	</script>
 </body>
 </html>

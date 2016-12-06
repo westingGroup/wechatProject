@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.infosys.basic.dao.IServiceOrderDao;
+import com.infosys.basic.dto.ServiceOrderDto;
 import com.infosys.basic.entity.ServiceOrder;
 
 @Service("serviceOrderService")
@@ -49,6 +50,11 @@ public class ServiceOrderService implements IServiceOrderService {
     @Override
     public List<ServiceOrder> listProvider(ServiceOrder order) {
         return serviceOrderDao.listProvider(order);
+    }
+    
+    @Override
+    public List<ServiceOrderDto> listProviderServiceOrder(String openid){
+        return serviceOrderDao.listProviderServiceOrder(openid);
     }
 
 }

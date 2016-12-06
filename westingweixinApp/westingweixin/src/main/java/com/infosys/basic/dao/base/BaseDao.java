@@ -261,6 +261,15 @@ public class BaseDao<T> implements IBaseDao<T> {
 		return query.uniqueResult();
 	}
 	
+
+    public <N extends Object> List<N> listBySql(String sql, Object[] args) {
+        sql = initSort(sql);
+        SQLQuery sq = getSession().createSQLQuery(sql);
+        setParameter(sq, args);
+        sq.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+        return sq.list();
+    }
+	
 	public <N extends Object>List<N> listBySql(String sql,Class<?> clz, boolean hasEntity,Object ...args) {
 		return this.listBySql(sql,null, clz, hasEntity, args);
 	}

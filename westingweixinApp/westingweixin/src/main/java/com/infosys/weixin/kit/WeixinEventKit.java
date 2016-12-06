@@ -100,14 +100,14 @@ public class WeixinEventKit {
         if (u != null) {
             if (per == null && der == null) {
             } else {
-                u.setStatus(0);
+                u.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_DELETE);
                 userService.update(u);
                 if (per != null) {
-                    per.setStatus(0);
+                    per.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_DELETE);
                     providerService.update(per);
                 }
                 if (der != null) {
-                    der.setStatus(0);
+                    der.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_DELETE);
                     demanderService.update(der);
                 }
             }
@@ -134,16 +134,16 @@ public class WeixinEventKit {
 		} else {
 	        Provider per = getProvider(msgMap);
 	        Demander der = getDemander(msgMap);
-			if(u.getStatus()==0) {
-				u.setStatus(1);
+			if(u.getStatus()==com.infosys.basic.util.Constants.T_USER_STATUS_DELETE) {
+				u.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_NORMAL);
 				userService.update(u);
             }
-            if (per != null && per.getStatus()==0) {
-                per.setStatus(1);
+            if (per != null && per.getStatus()==com.infosys.basic.util.Constants.T_USER_STATUS_DELETE) {
+                per.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_NORMAL);
                 providerService.update(per);
             }
-            if (der != null&& der.getStatus()==0) {
-                der.setStatus(1);
+            if (der != null&& der.getStatus()==com.infosys.basic.util.Constants.T_USER_STATUS_DELETE) {
+                der.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_NORMAL);
                 demanderService.update(der);
             }
 		}

@@ -62,6 +62,7 @@ public class UserController {
 		User tu = userService.load(id);
 		tu.setNickname(user.getNickname());
 		tu.setPassword(user.getPassword());
+		tu.setUsername(user.getUsername());
 		userService.update(tu);
 		return "redirect:/user/list";
 	}

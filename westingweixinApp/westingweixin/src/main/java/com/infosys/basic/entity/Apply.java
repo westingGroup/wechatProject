@@ -28,7 +28,7 @@ public class Apply implements Serializable {
     private int id;
 
     @Column(name = "s_id")
-    private String sId;
+    private int sId;
 
     private String linkname;
 
@@ -47,6 +47,9 @@ public class Apply implements Serializable {
     @Column(name = "apply_by")
     private int applyBy;
 
+    @Column(name = "apply_by_inside")
+    private int applyByInside;
+    
     private String applyname;
 
     @Column(name = "status")
@@ -63,11 +66,11 @@ public class Apply implements Serializable {
         this.id = id;
     }
 
-    public String getsId() {
+    public int getsId() {
         return sId;
     }
 
-    public void setsId(String sId) {
+    public void setsId(int sId) {
         this.sId = sId;
     }
 
@@ -133,6 +136,14 @@ public class Apply implements Serializable {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public int getApplyByInside() {
+        return applyByInside;
+    }
+
+    public void setApplyByInside(int applyByInside) {
+        this.applyByInside = applyByInside;
     }
 
 }

@@ -9,7 +9,7 @@
 <title>insides list</title>
 </head>
 <body>
-<a href="add">添加用户</a>&nbsp;<a href="list">用户列表</a>&nbsp;<a href="logout">退出</a>
+<a href="add">添加用户</a>&nbsp;<a href="forgetPwd">修改密码</a>&nbsp;<a href="list">用户列表</a>&nbsp;<a href="logout">退出</a>
 <table width="900" align="center" border="1">
 <tr>
 <td>ID</td><td>username</td><td>phone</td><td>status</td>

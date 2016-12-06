@@ -94,7 +94,10 @@
 					<hr class="commonHr hidden${status.index}" />
 					<div class="row statusView hidden${status.index}">
 						<div class="col-md-1 col-xs-3 label">状态：</div>
-						<div class="col-md-11 col-xs-9 viewContent">${order.status }</div>
+						<div class="col-md-11 col-xs-9 viewContent">
+							<c:if test="${order.status==0}">新需求</c:if>
+							<c:if test="${order.status==1}">待分配</c:if>
+						</div>
 					</div>
 					<hr class="commonHr hidden${status.index}" />
 					<div class="row submitTimeView">

@@ -2,7 +2,7 @@
 function isTouchDevice() {
 	try {
 		document.createEvent("TouchEvent");
-		//alert("支持TouchEvent事件！");
+		alert("支持TouchEvent事件！");
 		bindEvent(); // 绑定事件
 	} catch (e) {
 		//alert("不支持TouchEvent事件！" + e.message);

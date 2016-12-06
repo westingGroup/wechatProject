@@ -20,7 +20,7 @@ public class UserService implements IUserService {
 	public void add(User user) {
 		User u = this.loadByUsername(user.getUsername());
 		if(u!=null) throw new RuntimeException("用户名已经存在");
-		user.setStatus(1);
+		user.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_NORMAL);
 		userDao.add(user);
 	}
 
