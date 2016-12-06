@@ -61,7 +61,7 @@
 			</div>
 		</div>
 		<sf:form modelAttribute="demander" id="adminForm" method="post"
-			action="/demander/register">
+			action="/demander/register" onsubmit="return validate('adminForm')">
 			<input type="hidden" name="fromPath" id="fromPath"
 				value="${fromPath}"></input>
 			<input type="hidden" name="openid" id="openid" value="${openid}"></input>
@@ -76,7 +76,8 @@
 								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;姓名：
 						</div>
 						<div class="col-md-11 col-xs-8">
-							<sf:input path="linkname" cssClass="text" />
+							<sf:input path="linkname" cssClass="text required maxlength"
+								label="姓名" maxlength="255" />
 						</div>
 					</div>
 					<hr class="commonHr" />
@@ -87,7 +88,9 @@
 								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;电话：
 						</div>
 						<div class="col-md-11 col-xs-8">
-							<sf:input path="linkphone" cssClass="text" />
+							<sf:input path="linkphone"
+								cssClass="text required phone maxlength" label="电话"
+								maxlength="13" />
 						</div>
 					</div>
 					<hr class="commonHr" />
@@ -103,7 +106,8 @@
 							style="padding: 0px;">
 							<div class="row">
 								<div class="col-md-10 col-xs-7" style="padding: 0px;">
-									<input type="text" class="text" name="birth"/>
+									<input type="text" class="text" name="birth"
+										readonly="readonly" />
 								</div>
 								<div class="col-md-2 col-xs-5"
 									style="padding: 0px; text-align: right;">
@@ -120,7 +124,8 @@
 							&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;公司名称：
 						</div>
 						<div class="col-md-11 col-xs-8">
-							<sf:input path="business" cssClass="text" />
+							<sf:input path="business" cssClass="text required maxlength"
+								label="公司名称" maxlength="255" />
 						</div>
 					</div>
 					<hr class="commonHr" />
@@ -129,7 +134,9 @@
 							&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;行业和相关业务：
 						</div>
 						<div class="col-md-11 col-xs-7">
-							<sf:textarea path="company" cssClass="textarea" rows="3" />
+							<sf:textarea path="company"
+								cssClass="textarea required maxlength" rows="3" label="行业和相关业务"
+								maxlength="255" />
 						</div>
 					</div>
 				</div>

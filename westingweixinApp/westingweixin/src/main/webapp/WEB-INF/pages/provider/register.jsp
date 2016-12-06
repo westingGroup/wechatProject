@@ -61,7 +61,7 @@
 			</div>
 		</div>
 		<sf:form modelAttribute="provider" id="adminForm" method="post"
-			action="/provider/register">
+			action="/provider/register" onsubmit="return validate('adminForm')">
 			<sf:hidden path="id" />
 			<input type="hidden" name="fromPath" id="fromPath"
 				value="${fromPath}"></input>
@@ -75,7 +75,8 @@
 								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;姓名：
 						</div>
 						<div class="col-md-11 col-xs-8">
-							<sf:input path="linkname" cssClass="text" />
+							<sf:input path="linkname" cssClass="text required maxlength"
+								label="姓名" maxlength="255" />
 						</div>
 					</div>
 					<hr class="commonHr" />
@@ -86,7 +87,9 @@
 								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;电话：
 						</div>
 						<div class="col-md-11 col-xs-8">
-							<sf:input path="linkphone" cssClass="text" />
+							<sf:input path="linkphone"
+								cssClass="text required phone maxlength" label="电话"
+								maxlength="13" />
 						</div>
 					</div>
 					<hr class="commonHr" />
@@ -101,7 +104,8 @@
 							style="padding: 0px;">
 							<div class="row">
 								<div class="col-md-10 col-xs-7" style="padding: 0px;">
-									<input type="text" class="text" name="birth" />
+									<input type="text" class="text" name="birth"
+										readonly="readonly"/>
 								</div>
 								<div class="col-md-2 col-xs-5"
 									style="padding: 0px; text-align: right;">
@@ -118,7 +122,8 @@
 							&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;擅长业务：
 						</div>
 						<div class="col-md-11 col-xs-8">
-							<sf:input path="business" cssClass="text" />
+							<sf:input path="business" cssClass="text required maxlength"
+								label="擅长业务" maxlength="255" />
 						</div>
 					</div>
 					<hr class="commonHr" />
@@ -127,7 +132,8 @@
 							<span style="margin-left: 26px;"></span>职称/资质：
 						</div>
 						<div class="col-md-11 col-xs-8">
-							<sf:input path="qualification" cssClass="text" />
+							<sf:input path="qualification" cssClass="text maxlength"
+								label="职称/资质" maxlength="255" />
 						</div>
 					</div>
 					<hr class="commonHr" />
@@ -136,7 +142,8 @@
 							<span style="margin-left: 26px;">公司名称：</span>
 						</div>
 						<div class="col-md-11 col-xs-8">
-							<sf:input path="company" cssClass="text" />
+							<sf:input path="company" cssClass="text maxlength" label="公司名称"
+								maxlength="255" />
 						</div>
 					</div>
 				</div>
