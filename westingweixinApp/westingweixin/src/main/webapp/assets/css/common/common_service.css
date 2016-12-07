@@ -135,6 +135,8 @@
 	-webkit-transition: all 1s ease 0s;
 	border: 4px solid rgb(203, 127, 4);
 	border-radius: 27px !important;
+	max-width: 54px;
+	max-height: 54px;
 }
 
 .subject .content .categoryStyle .currentimg {

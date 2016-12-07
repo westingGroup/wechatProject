@@ -39,7 +39,7 @@
 	var basePath = "<%=request.getContextPath()%>";
 	$(function() {
 		$.fn.raty.defaults.path = basePath + "/assets/raty/lib/img";
-		<c:forEach items="${orders}" var="order" varStatus="status">
+		<c:forEach items="${orders.records}" var="order" varStatus="status">
 			//渲染列表
 			renderingList("${status.index}", "${order.evaluate}", "${status.last}", "demander");
 		</c:forEach>
@@ -68,7 +68,7 @@
 		</div>
 		<div class="content">
 			<div class="viewTaskTitle">我的服务单</div>
-			<c:forEach items="${orders}" var="order" varStatus="status">
+			<c:forEach items="${orders.records}" var="order" varStatus="status">
 				<div class="container viewTaskCommonStyle" id="order${status.index}">
 					<c:if test="${status.index!=0}">
 						<hr class="viewHr" />

@@ -5,7 +5,7 @@ function isTouchDevice() {
 		alert("支持TouchEvent事件！");
 		bindEvent(); // 绑定事件
 	} catch (e) {
-		//alert("不支持TouchEvent事件！" + e.message);
+		// alert("不支持TouchEvent事件！" + e.message);
 	}
 }
 
@@ -49,7 +49,13 @@ function touchMoveFunc(evt) {
 					window).height())) {
 				// 当底部基本距离+滚动的高度〉=文档的高度-窗体的高度时；
 				// 我们需要去异步加载数据了
-				alert("下一页==============================");
+				$.post(basePath + "/demander/mydemanders", {
+					currentPage : 2,
+					pageSize : 10,
+					createBy : "2"
+				}, function(data, status) {
+					alert(data.totalPage);
+				},"json");
 			}
 		}
 

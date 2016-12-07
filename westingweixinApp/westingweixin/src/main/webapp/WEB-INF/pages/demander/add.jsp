@@ -45,7 +45,8 @@
 				</div>
 			</div>
 		</div>
-		<sf:form modelAttribute="order" id="adminForm" method="post" action="/demander/add">
+		<sf:form modelAttribute="order" id="adminForm" method="post"
+			action="/demander/add" onsubmit="return validate('adminForm')">
 			<div class="content">
 				<div class="categoryStyle">
 					<div>
@@ -69,7 +70,7 @@
 							width="42px" height="42px">
 					</div>
 				</div>
-				<sf:hidden id="categoryId" path="category" value="电缆"/>
+				<sf:hidden id="categoryId" path="category" value="电缆" />
 				<div class="container commonStyle contact">
 					<div class="row serviceType">
 						<div class="col-md-1 col-xs-4 label">
@@ -80,9 +81,9 @@
 						<div class="col-md-11 col-xs-8">
 							<sf:select id="orderTypes" path="serviceType" cssClass="select">
 								<sf:options items="${serviceType}" itemLabel="info"
-									itemValue="info"/>
+									itemValue="info" />
 							</sf:select>
-							
+
 						</div>
 					</div>
 					<hr class="commonHr" />
@@ -93,7 +94,8 @@
 								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;联系人：
 						</div>
 						<div class="col-md-11 col-xs-8">
-							<sf:input path="linkname" cssClass="text" />
+							<sf:input path="linkname" cssClass="text required maxlength"
+								label="联系人" maxlength="255" />
 						</div>
 					</div>
 					<hr class="commonHr" />
@@ -104,7 +106,9 @@
 								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;联系电话：
 						</div>
 						<div class="col-md-11 col-xs-8">
-							<sf:input path="linkphone" cssClass="text" />
+							<sf:input path="linkphone"
+								cssClass="text required phone maxlength" label="联系电话"
+								maxlength="13" />
 						</div>
 					</div>
 				</div>
@@ -114,7 +118,9 @@
 							&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;服务内容要求：
 						</div>
 						<div class="col-md-11 col-xs-7">
-							<sf:textarea path="content" cssClass="textarea" rows="3" />
+							<sf:textarea path="content"
+								cssClass="textarea required maxlength" rows="3" label="服务内容要求"
+								maxlength="255" />
 						</div>
 					</div>
 				</div>
@@ -122,43 +128,43 @@
 			<div class="footer">
 				<button class="btn" type="submit">提交</button>
 			</div>
-			<input type="hidden" id="_orderTypes"  value="检修"/>
+			<input type="hidden" id="_orderTypes" value="检修" />
 		</sf:form>
 	</div>
 	<script type="text/javascript">
-	$(document).ready(function(){
-		var _orderType=$("#_orderTypes").val();
-		$("#orderTypes").val(_orderType);
-		$("#img1").click(function(){
-			$("#categoryId").val("电缆");
-			$("#img1").addClass("currentimg");
-			$("#img2").removeClass("currentimg");
-			$("#img3").removeClass("currentimg");
-			$("#img4").removeClass("currentimg");
+		$(document).ready(function() {
+			var _orderType = $("#_orderTypes").val();
+			$("#orderTypes").val(_orderType);
+			$("#img1").click(function() {
+				$("#categoryId").val("电缆");
+				$("#img1").addClass("currentimg");
+				$("#img2").removeClass("currentimg");
+				$("#img3").removeClass("currentimg");
+				$("#img4").removeClass("currentimg");
+			});
+			$("#img2").click(function() {
+				$("#categoryId").val("灯具");
+				$("#img1").removeClass("currentimg");
+				$("#img2").addClass("currentimg");
+				$("#img3").removeClass("currentimg");
+				$("#img4").removeClass("currentimg");
+			});
+			$("#img3").click(function() {
+				$("#categoryId").val("电器件");
+				$("#img1").removeClass("currentimg");
+				$("#img2").removeClass("currentimg");
+				$("#img3").addClass("currentimg");
+				$("#img4").removeClass("currentimg");
+			});
+			$("#img4").click(function() {
+				$("#categoryId").val("其他");
+				$("#img1").removeClass("currentimg");
+				$("#img2").removeClass("currentimg");
+				$("#img3").removeClass("currentimg");
+				$("#img4").addClass("currentimg");
+			});
+
 		});
-		$("#img2").click(function(){
-			$("#categoryId").val("灯具");
-			$("#img1").removeClass("currentimg");
-			$("#img2").addClass("currentimg");
-			$("#img3").removeClass("currentimg");
-			$("#img4").removeClass("currentimg");
-		});
-		$("#img3").click(function(){
-			$("#categoryId").val("电器件");
-			$("#img1").removeClass("currentimg");
-			$("#img2").removeClass("currentimg");
-			$("#img3").addClass("currentimg");
-			$("#img4").removeClass("currentimg");
-		});
-		$("#img4").click(function(){
-			$("#categoryId").val("其他");
-			$("#img1").removeClass("currentimg");
-			$("#img2").removeClass("currentimg");
-			$("#img3").removeClass("currentimg");
-			$("#img4").addClass("currentimg");
-		});
-		
-	});
 	</script>
 </body>
 </html>

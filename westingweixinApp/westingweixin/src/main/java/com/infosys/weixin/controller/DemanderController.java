@@ -76,7 +76,7 @@ public class DemanderController {
 
     // 我的服务
     @RequestMapping("/list")
-    public String list(HttpSession session, Model model, int pageSize, int pageOffset) {
+    public String list(HttpSession session, Model model) {
         User u = (User) session.getAttribute(Constants.WEIXIN_SESSION_USER);
         Demander demander = demanderService.loadByOpenid(u.getOpenid());
         if (demander == null) {
