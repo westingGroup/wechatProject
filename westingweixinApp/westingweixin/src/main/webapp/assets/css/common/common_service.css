@@ -72,6 +72,11 @@
 .subject .content .viewContent {
 	color: rgb(109, 110, 113);
 	text-align: left;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 90%;
 }
 
 .subject .content .text {
@@ -106,12 +111,12 @@
 	appearance: none
 }
 
-.subject .content .requireStyle{
+.subject .content .requireStyle {
 	border: 2px solid red;
 }
 
-.subject .content .noRequireStyle{
-	border:none;
+.subject .content .noRequireStyle {
+	border: none;
 }
 
 .subject .content .categoryStyle {
@@ -180,12 +185,6 @@
 	margin-right: 10px;
 }
 
-.subject .content .waitingHr {
-	color: white;
-	width: 100%;
-	margin: 0px;
-}
-
 .subject .content .viewTaskTitle {
 	width: 100%;
 	color: white;
@@ -217,6 +216,25 @@
 
 .subject .content .company {
 	margin-top: 60px;
+}
+
+/*服务申领时间*/
+.subject .priceAndFinishTime {
+	height: 120px;
+}
+
+.subject .priceAndFinishTime .row{
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.subject .priceAndFinishTime .label {
+	color: rgb(109, 110, 113);
+	text-align: right;
+}
+
+.subject .priceAndFinishTime .text{
+	width: 50px;
 }
 
 .subject .btn {

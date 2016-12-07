@@ -72,7 +72,7 @@
 					<c:if test="${status.index!=0}">
 						<hr class="viewHr" />
 					</c:if>
-					<div class="row serialNumberView hidden${status.index}">
+					<div class="row serialNumber hidden${status.index}">
 						<div class="col-md-1 col-xs-3 label">流水号：</div>
 						<div class="col-md-10 col-xs-7 viewContent">${order.serviceOrderId}</div>
 						<div class="col-md-1 col-xs-2">
