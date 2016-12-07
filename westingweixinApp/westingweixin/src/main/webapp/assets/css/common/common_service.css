@@ -106,6 +106,14 @@
 	appearance: none
 }
 
+.subject .content .requireStyle{
+	border: 2px solid red;
+}
+
+.subject .content .noRequireStyle{
+	border:none;
+}
+
 .subject .content .categoryStyle {
 	width: 90%;
 	margin-left: 5%;

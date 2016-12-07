@@ -60,6 +60,7 @@
 				</div>
 			</div>
 		</div>
+		<jsp:include page="../showTips.jsp"></jsp:include>
 		<sf:form modelAttribute="provider" id="adminForm" method="post"
 			action="/provider/register" onsubmit="return validate('adminForm')">
 			<sf:hidden path="id" />

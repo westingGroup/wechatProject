@@ -45,6 +45,7 @@
 				</div>
 			</div>
 		</div>
+		<jsp:include page="../showTips.jsp"></jsp:include>
 		<sf:form modelAttribute="order" id="adminForm" method="post"
 			action="/demander/add" onsubmit="return validate('adminForm')">
 			<div class="content">
@@ -74,12 +75,13 @@
 				<div class="container commonStyle contact">
 					<div class="row serviceType">
 						<div class="col-md-1 col-xs-4 label">
-							<img alt="联系人"
+							<img alt="服务类型"
 								src="<%=request.getContextPath()%>/assets/img/edit.png"
 								width="16px" height="16px"> &nbsp;<font color="red">*</font>&nbsp;服务类型：
 						</div>
 						<div class="col-md-11 col-xs-8">
-							<sf:select id="orderTypes" path="serviceType" cssClass="select">
+							<sf:select id="orderTypes" path="serviceType"
+								cssClass="select required" label="服务类型">
 								<sf:options items="${serviceType}" itemLabel="info"
 									itemValue="info" />
 							</sf:select>
@@ -135,6 +137,11 @@
 		$(document).ready(function() {
 			var _orderType = $("#_orderTypes").val();
 			$("#orderTypes").val(_orderType);
+			$("#categoryId").val("电缆");
+			$("#img1").addClass("currentimg");
+			$("#img2").removeClass("currentimg");
+			$("#img3").removeClass("currentimg");
+			$("#img4").removeClass("currentimg");
 			$("#img1").click(function() {
 				$("#categoryId").val("电缆");
 				$("#img1").addClass("currentimg");
