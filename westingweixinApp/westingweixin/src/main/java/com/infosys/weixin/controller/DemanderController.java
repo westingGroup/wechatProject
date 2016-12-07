@@ -7,8 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.RandomUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,8 +37,6 @@ public class DemanderController {
     @Inject
     private IDemanderService demanderService;
 
-    private static final Log LOG = LogFactory.getLog(DemanderController.class);
-
     // 分页
     @RequestMapping(value = "/mydemanders", method = RequestMethod.POST)
     public @ResponseBody String mydemanders(String currentPage, String pageSize, String createBy, HttpSession session) {
@@ -59,7 +55,7 @@ public class DemanderController {
         } else {
             demanderPage.setPageSize(Long.valueOf(pageSize));
         }
-        
+
         demanderSearchModal.setCreateBy(StringUtils.isBlank(createBy) ? String.valueOf(u.getId()) : createBy.trim());
         demanderSearchModal.setPager(demanderPage);
         PagerInfo<ServiceOrderDto> userResult = serviceOrderService.listServiceOrderByKeyword(demanderSearchModal);
