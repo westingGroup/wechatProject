@@ -16,4 +16,7 @@ public interface IServiceOrderDao extends IBaseDao<ServiceOrder>{
     public List<ServiceOrderDto> listProviderServiceOrder(String openid);
     public Pager<ServiceOrder> find(ServiceOrder order,int pageSize,int pageOffset);
     public PagerInfo<ServiceOrderDto> listServiceOrderByKeyword(ServiceOrderModel serviceOrderModel);
+    public PagerInfo<ServiceOrderDto> listServiceOrderByKeywordForMobileApply(ServiceOrderModel serviceOrderModel);
+    public PagerInfo<ServiceOrderDto> listServiceOrderByKeywordForMyMobileApplys(ServiceOrderModel serviceOrderModel);
+    public PagerInfo<ServiceOrderDto> listProcessServiceOrders(ServiceOrderModel demanderSearchModal);
 }

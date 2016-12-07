@@ -70,4 +70,19 @@ public class ServiceOrderService implements IServiceOrderService {
         return serviceOrderDao.listServiceOrderByKeyword(serviceOrderModel);
     }
 
+    @Override
+    public PagerInfo<ServiceOrderDto> listServiceOrderByKeywordForMobileApply(ServiceOrderModel serviceOrderModel) {
+        return serviceOrderDao.listServiceOrderByKeywordForMobileApply(serviceOrderModel);
+    }
+
+    @Override
+    public PagerInfo<ServiceOrderDto> listServiceOrderByKeywordForMyMobileApplys(ServiceOrderModel serviceOrderModel) {
+        return serviceOrderDao.listServiceOrderByKeywordForMyMobileApplys(serviceOrderModel);
+    }
+
+    @Override
+    public PagerInfo<ServiceOrderDto> listProcessServiceOrders(ServiceOrderModel demanderSearchModal) {
+        return serviceOrderDao.listProcessServiceOrders(demanderSearchModal);
+    }
+
 }

@@ -16,6 +16,10 @@ public class ServiceOrderModel extends SearchModel<ServiceOrderDto> {
 
     private String createBy;
 
+    private String applyBy;
+
+    private String dealBy;
+
     public String getStartTime() {
         return startTime;
     }
@@ -62,6 +66,22 @@ public class ServiceOrderModel extends SearchModel<ServiceOrderDto> {
 
     public void setCreateBy(String createBy) {
         this.createBy = createBy;
+    }
+
+    public String getApplyBy() {
+        return applyBy;
+    }
+
+    public void setApplyBy(String applyBy) {
+        this.applyBy = applyBy;
+    }
+
+    public String getDealBy() {
+        return dealBy;
+    }
+
+    public void setDealBy(String dealBy) {
+        this.dealBy = dealBy;
     }
 
 }

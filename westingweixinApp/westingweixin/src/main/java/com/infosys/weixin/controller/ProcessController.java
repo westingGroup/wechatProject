@@ -1,5 +1,8 @@
 package com.infosys.weixin.controller;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -13,11 +16,16 @@ import org.springframework.web.servlet.ModelAndView;
 import com.infosys.basic.dto.DemanderDto;
 import com.infosys.basic.dto.DemanderModel;
 import com.infosys.basic.dto.PagerInfo;
+import com.infosys.basic.dto.ServiceOrderDto;
+import com.infosys.basic.dto.ServiceOrderModel;
 import com.infosys.basic.entity.Demander;
+import com.infosys.basic.entity.InsideProvider;
 import com.infosys.basic.entity.Provider;
+import com.infosys.basic.entity.ServiceOrder;
 import com.infosys.basic.service.IDemanderService;
 import com.infosys.basic.service.IInsideProviderService;
 import com.infosys.basic.service.IProviderService;
+import com.infosys.basic.service.IServiceOrderService;
 import com.infosys.basic.util.JsonUtil;
 
 @RequestMapping("/process")
@@ -32,9 +40,12 @@ public class ProcessController {
     @Inject
     private IProviderService providerService;
 
+    @Inject
+    private IServiceOrderService serviceOrderService;
+
     // 首页
     @RequestMapping(value = "/registers")
-    public ModelAndView index() {
+    public ModelAndView approvalRegister() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("process/registers/approvalRegister");
         return modelAndView;
@@ -86,8 +97,9 @@ public class ProcessController {
         return jsonUtil.obj2json(userResult);
     }
 
-    @RequestMapping(value = "/dealDemander", method = RequestMethod.POST)
-    public @ResponseBody String dealDemander(String type, String demanderIds, String remark, int dealType,
+    // pc处理注册的需求方和提供商
+    @RequestMapping(value = "/dealRegister", method = RequestMethod.POST)
+    public @ResponseBody String dealRegister(String type, String demanderIds, String remark, int dealType,
             HttpSession session) {
         String rtnStr = "操作失败";
         if (StringUtils.isNotBlank(demanderIds)) {
@@ -129,13 +141,97 @@ public class ProcessController {
         return rtnStr;
     }
 
-    
-    
     // 首页
     @RequestMapping(value = "/demanders")
-    public ModelAndView approvalDemand() {
+    public ModelAndView approvalDemander() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("process/demanders/approvalDemander");
         return modelAndView;
     }
+
+    // type 1新需求 2处理中 9完成 10废单
+    @RequestMapping(value = "/listOrdersByPage", method = RequestMethod.POST)
+    public @ResponseBody String listByPageForDemander(String currentPage, String pageSize, String linkname,
+            String linkphone, String type, HttpSession session) {
+        JsonUtil jsonUtil = JsonUtil.getInstance();
+        ServiceOrderModel demanderSearchModal = new ServiceOrderModel();
+        PagerInfo<ServiceOrderDto> demanderPage = new PagerInfo<ServiceOrderDto>();
+        if (StringUtils.isBlank(currentPage)) {
+            demanderPage.setCurrentPage(1L);
+        } else {
+            demanderPage.setCurrentPage(Long.valueOf(currentPage));
+        }
+
+        if (StringUtils.isBlank(pageSize)) {
+            demanderPage.setPageSize(10L);
+        } else {
+            demanderPage.setPageSize(Long.valueOf(pageSize));
+        }
+
+        demanderSearchModal.setLinkname(StringUtils.isBlank(linkname) ? "" : linkname.trim());
+        demanderSearchModal.setLinkphone(StringUtils.isBlank(linkphone) ? "" : linkphone.trim());
+        demanderSearchModal.setStatus(type.trim());
+        demanderSearchModal.setPager(demanderPage);
+        PagerInfo<ServiceOrderDto> userResult = serviceOrderService.listProcessServiceOrders(demanderSearchModal);
+        userResult.setTotalPage(userResult.getTotalPages());
+        if (userResult.getCurrentPage() > 1L) { // 如果大于1表示可以点击上一页
+            userResult.setIsCanUp(1);
+        }
+
+        if (userResult.getTotalPage() > userResult.getCurrentPage()) { // 表示可以点击下一页
+            userResult.setIsCanDown(1);
+        }
+        return jsonUtil.obj2json(userResult);
+    }
+    
+  
+    
+    @RequestMapping(value = "/insideProviderList", method = RequestMethod.POST)
+    public @ResponseBody String insideProviderList(HttpSession session) {
+        JsonUtil jsonUtil = JsonUtil.getInstance();
+        List<InsideProvider> providers = insideProviderService.list();
+        return jsonUtil.obj2json(providers); 
+    }
+
+    @RequestMapping(value = "/dealDemander", method = RequestMethod.POST)
+    public @ResponseBody String dealDemander(String type, String demanderIds, String remark, int dealType,
+            int createBy, String createName, HttpSession session) {
+        String rtnStr = "操作失败";
+        if (StringUtils.isNotBlank(demanderIds)) {
+            String[] deIds = demanderIds.split(",");
+            if (deIds.length > 0) {
+                ServiceOrder serviceOrder;
+                for (int i = 0; i < deIds.length; i++) {
+                    String id = deIds[i];
+                    serviceOrder = serviceOrderService.load(Integer.parseInt(id));
+                    if (type.equals("1")) {
+                        serviceOrder.setRemark1(remark.trim());
+                        if (dealType == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_ALLOCATED_DEALING) {
+                            serviceOrder.setCreateBy(createBy);
+                            serviceOrder.setCreateDate(new Date());
+                            serviceOrder.setCreatename(createName.trim());
+                            serviceOrder.setStatus(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_CANCEL);
+                        } else if (dealType == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_CANCEL) {
+                            serviceOrder.setStatus(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_CANCEL);
+                        }
+                    } else if (type.equals("2")) {
+                        serviceOrder.setRemark2(remark.trim());
+                        if (dealType == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_DEALING_DONE) {
+                            serviceOrder.setStatus(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_DEALING_DONE);
+                        } else if (dealType == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_CANCEL) {
+                            serviceOrder.setStatus(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_CANCEL);
+                        }
+                    }
+                    
+                    serviceOrderService.update(serviceOrder);
+                }
+                serviceOrder = null;
+                rtnStr = "操作成功";
+            }
+        } else {
+            rtnStr = "请选择";
+        }
+        return rtnStr;
+    }
+
 }
