@@ -35,7 +35,7 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/common/dem_pro_list_common.js"></script>
 <script type="text/javascript"
-	src="<%=request.getContextPath()%>/assets/js/demander/demander.js"></script>
+	src="<%=request.getContextPath()%>/assets/js/demander/list.js"></script>
 <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
 <script type="text/javascript">
 	var basePath = "<%=request.getContextPath()%>";

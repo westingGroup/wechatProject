@@ -128,7 +128,7 @@ public class ProviderController {
 		ServiceOrderModel demanderSearchModal = new ServiceOrderModel();
 		PagerInfo<ServiceOrderDto> demanderPage = new PagerInfo<ServiceOrderDto>();
 		demanderPage.setCurrentPage(1L);
-		demanderPage.setPageSize(2L);
+		demanderPage.setPageSize(10L);
 		demanderSearchModal.setApplyBy(String.valueOf(provider.getId()));
 		demanderSearchModal.setPager(demanderPage);
 		PagerInfo<ServiceOrderDto> userResult = serviceOrderService
@@ -162,7 +162,7 @@ public class ProviderController {
 		}
 
 		if (StringUtils.isBlank(pageSize)) {
-			demanderPage.setPageSize(2L);
+			demanderPage.setPageSize(10L);
 		} else {
 			demanderPage.setPageSize(Long.valueOf(pageSize));
 		}
