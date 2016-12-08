@@ -1,5 +1,7 @@
 package com.infosys.basic.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -13,10 +15,11 @@ import com.infosys.basic.entity.Apply;
 public class ApplyService implements IApplyService {
     @Inject
     private IApplyDao applyDao;
+
     @Override
     public void add(Apply apply) {
         apply.setStatus(1);
-        applyDao.add(apply);        
+        applyDao.add(apply);
     }
 
     @Override
@@ -34,6 +37,9 @@ public class ApplyService implements IApplyService {
         return applyDao.load(id);
     }
 
-
+    @Override
+    public List<Apply> listBySId(String sId) {
+        return applyDao.listBySId(sId);
+    }
 
 }
