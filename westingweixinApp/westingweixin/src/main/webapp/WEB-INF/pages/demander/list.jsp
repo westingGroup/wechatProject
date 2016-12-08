@@ -39,20 +39,15 @@
 <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
 <script type="text/javascript">
 	var basePath = "<%=request.getContextPath()%>";
-	var currPage;
-	var totalPage;
-	var isCanDown;
+	var currPage = "${orders.currentPage}";
+	var totalPage = "${orders.totalPage}";
+	var isCanDown = "${orders.isCanDown}";
 	$(function() {
 		$.fn.raty.defaults.path = basePath + "/assets/raty/lib/img";
 		<c:forEach items="${orders.records}" var="order" varStatus="status">
 		//渲染列表
-		renderingList("${order.id}", "${order.evaluate}", "${status.last}",
-				"demander");
+		renderingList("${order.id}", "${order.evaluate}", "demander");
 		</c:forEach>
-
-		currPage = "${orders.currentPage}";
-		totalPage = "${orders.totalPage}";
-		isCanDown = "${orders.isCanDown}";
 		//定义滑动操作
 		isTouchDevice("pageMyDemanders");
 	});
@@ -77,7 +72,11 @@
 		</div>
 		<div class="content">
 			<div class="viewTaskTitle">我的服务单</div>
+<<<<<<< HEAD
+			<input type="hidden" id="demanderId" value="${demanderId }"/>
+=======
 			<input type="hidden" name="createBy" value="${demanderId}" id="createBy"/> 
+>>>>>>> refs/remotes/origin/master
 			<c:forEach items="${orders.records}" var="order" varStatus="status">
 				<div class="container viewTaskCommonStyle" id="order${order.id}">
 					<c:if test="${status.index!=0}">

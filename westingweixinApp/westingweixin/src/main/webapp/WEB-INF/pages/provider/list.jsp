@@ -34,17 +34,22 @@
 	src="<%=request.getContextPath()%>/assets/js/common/slide_screen.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/common/dem_pro_list_common.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/js/provider/list.js"></script>
 <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
 <script type="text/javascript">
-	$(function(){
-		$.fn.raty.defaults.path = "<%=request.getContextPath()%>/assets/raty/lib/img";
-		<c:forEach items="${orders}" var="order" varStatus="status">
+	var basePath = "<%=request.getContextPath()%>";
+	var currPage = "${orders.currentPage}";
+	var totalPage = "${orders.totalPage}";
+	var isCanDown = "${orders.isCanDown}";
+	$(function() {
+		$.fn.raty.defaults.path = basePath + "/assets/raty/lib/img";
+		<c:forEach items="${orders.records}" var="order" varStatus="status">
 		//渲染列表
-		renderingList("${status.index}", "${order.evaluate}", "${status.last}",
-				"provider");
+		renderingList("${order.id}", "${order.evaluate}", "provider");
 		</c:forEach>
 		//定义滑动操作
-		isTouchDevice();
+		isTouchDevice("pageMyMobileApplys");
 	});
 </script>
 </head>
@@ -67,59 +72,57 @@
 		</div>
 		<div class="content">
 			<div class="viewTaskTitle">我的服务单</div>
-			<c:forEach items="${orders}" var="order" varStatus="status">
-				<div class="container viewTaskCommonStyle" id="order${status.index}">
-					<c:if test="${status.index!=0}">
+			<input type="hidden" id="providerId" value="${providerId}"/>
+			<c:forEach items="${orders.records}" var="order" varStatus="sta">
+				<div class="container viewTaskCommonStyle" id="order${order.id}">
+					<c:if test="${sta.index!=0}">
 						<hr class="viewHr" />
 					</c:if>
-					<div class="row serialNumber hidden${status.index}">
+					<div class="row serialNumber hidden${order.id}">
 						<div class="col-md-1 col-xs-3 label">流水号：</div>
 						<div class="col-md-10 col-xs-7 viewContent">${order.serviceOrderId}</div>
 						<div class="col-md-1 col-xs-2">
 							<img alt="折叠" class="hidden"
 								src="<%=request.getContextPath()%>/assets/img/zhedie.png"
-								id="zhedie${status.index}">
+								id="zhedie${order.id}">
 						</div>
 					</div>
-					<hr class="commonHr hidden${status.index}" />
-					<div class="row categoryView hidden${status.index}">
+					<hr class="commonHr hidden${order.id}" />
+					<div class="row categoryView hidden${order.id}">
 						<div class="col-md-1 col-xs-3 label">类别：</div>
 						<div class="col-md-11 col-xs-9 viewContent">${order.category }</div>
 					</div>
-					<hr class="commonHr hidden${status.index}" />
-					<div class="row serviceTypeView hidden${status.index}">
+					<hr class="commonHr hidden${order.id}" />
+					<div class="row serviceTypeView hidden${order.id}">
 						<div class="col-md-1 col-xs-3 label">服务类型：</div>
 						<div class="col-md-11 col-xs-9 viewContent">${order.serviceType }</div>
 					</div>
-					<hr class="commonHr hidden${status.index}" />
-					<div class="row statusView hidden${status.index}">
+					<hr class="commonHr hidden${order.id}" />
+					<div class="row statusView hidden${order.id}">
 						<div class="col-md-1 col-xs-3 label">状态：</div>
-						<div class="col-md-11 col-xs-9 viewContent">
-							<c:if test="${order.status==0}">新需求</c:if>
-							<c:if test="${order.status==1}">待分配</c:if>
+						<div class="col-md-11 col-xs-9 viewContent">${order.status}
 						</div>
 					</div>
-					<hr class="commonHr hidden${status.index}" />
+					<hr class="commonHr hidden${order.id}" />
 					<div class="row submitTimeView">
 						<div class="col-md-1 col-xs-3 label">提交时间：</div>
 						<div class="col-md-10 col-xs-7 viewContent zhedie">${order.createDate }</div>
 						<div class="col-md-1 col-xs-2">
 							<img alt="展开" class="show"
 								src="<%=request.getContextPath()%>/assets/img/zhankai.png"
-								id="zhankai${status.index}">
+								id="zhankai${order.id}">
 						</div>
 					</div>
-					<hr class="commonHr hidden${status.index}" />
-					<div class="row serviceDemandView hidden${status.index}">
+					<hr class="commonHr hidden${order.id}" />
+					<div class="row serviceDemandView hidden${order.id}">
 						<div class="col-md-1 col-xs-3 label">服务需求：</div>
 						<div class="col-md-11 col-xs-9 viewContent">${order.content }</div>
 					</div>
-					<hr class="commonHr hidden${status.index}">
-					<div class="row serviceEvaluate hidden${status.index}">
+					<hr class="commonHr hidden${order.id}">
+					<div class="row serviceEvaluate hidden${order.id}">
 						<div class="col-md-1 col-xs-3 label">客户反馈：</div>
 						<div class="col-md-11 col-xs-9">
-							<div class="raty" id="raty${status.index}"
-								style="margin-right: 0px;"></div>
+							<div class="raty" id="raty${order.id}" style="margin-right: 0px;"></div>
 						</div>
 					</div>
 				</div>

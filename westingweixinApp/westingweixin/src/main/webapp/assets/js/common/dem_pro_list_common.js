@@ -1,10 +1,10 @@
 /** 定义服务需求方和服务供应方列表的公共方法 */
-function renderingList(orderId, evaluate, last, type) {
+function renderingList(orderId, evaluate, type) {
 	ratyInit(orderId, evaluate, type);// 初始化星级评价操作
 	if (type == "demander")// 只有服务需求方才有按钮
 		ratyBtnInit(orderId, evaluate);// 初始化星级评价按钮
-	openInit(orderId, last);// 点击展开时，展开服务信息
-	foldInit(orderId, last);// 点击折叠时，折叠服务信息
+	openInit(orderId);// 点击展开时，展开服务信息
+	foldInit(orderId);// 点击折叠时，折叠服务信息
 	// 将除去提交时间之外的所有信息隐藏
 	$(".hidden" + orderId).addClass("hidden");
 }
@@ -60,25 +60,21 @@ function ratyBtnInit(orderId, evaluate) {
 /**
  * 点击展开时，展开服务信息
  */
-function openInit(orderId, last) {
+function openInit(orderId) {
 	$("#zhankai" + orderId).click(function() {
 		$(".hidden" + orderId).removeClass("hidden").addClass("show");
 		$(this).removeClass("show").addClass("hidden");
 		$("#zhedie" + orderId).removeClass("hidden").addClass("show");
-		if (last != "true")
-			$("#order" + orderId).css("marginBottom", "40px");
 	});
 }
 
 /**
  * 点击折叠时，折叠服务信息
  */
-function foldInit(orderId, last) {
+function foldInit(orderId) {
 	$("#zhedie" + orderId).click(function() {
 		$(".hidden" + orderId).removeClass("show").addClass("hidden");
 		$(this).removeClass("show").addClass("hidden");
 		$("#zhankai" + orderId).removeClass("hidden").addClass("show");
-		if (last != "true")
-			$("#order" + orderId).css("marginBottom", "0px");
 	});
 }

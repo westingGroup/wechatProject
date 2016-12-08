@@ -14,11 +14,7 @@ function renderList(orderId) {
 	});
 	// 将除去提交时间之外的所有信息隐藏
 	$(".hidden" + orderId).addClass("hidden");
-	$(".waitingTaskCommonStyle").css("backgroundColor", "white");
-	// 如果已经选择了某一条记录，又进行了翻页操作，则将该记录的背景颜色设置为选择
-	if ($("#id").val() != null && $("#id").val() != "")
-		$("#order" + $("#id").val()).css("backgroundColor",
-				"rgb(247, 156, 127)");
+	$("#order"+orderId).css("backgroundColor", "white");
 }
 
 /**
@@ -30,10 +26,10 @@ function openInit(orderId) {
 	$(".waitingTaskCommonStyle").each(function() {
 		count++;
 		if (count == $(".waitingTaskCommonStyle").length)// 最后一个
-			foldInit($(this).attr("orderId"), true);
+			foldInit($(this).attr("orderId"));
 		else
 			// 非最后一个
-			foldInit($(this).attr("orderId"), false);
+			foldInit($(this).attr("orderId"));
 	});
 
 	$(".hidden" + orderId).removeClass("hidden").addClass("show");
