@@ -59,7 +59,7 @@ public class ProviderController {
         PagerInfo<ServiceOrderDto> demanderPage = new PagerInfo<ServiceOrderDto>();
         demanderPage.setCurrentPage(1L);
         demanderPage.setPageSize(10L);
-        serviceOrderModel.setDealBy(String.valueOf(u.getOpenid()));
+        serviceOrderModel.setDealBy(String.valueOf(u.getId()));
         serviceOrderModel.setPager(demanderPage);
         PagerInfo<ServiceOrderDto> userResult = serviceOrderService
                 .listServiceOrderByKeywordForMyMobileApplys(serviceOrderModel);
@@ -94,7 +94,7 @@ public class ProviderController {
             demanderPage.setPageSize(Long.valueOf(pageSize));
         }
 
-        demanderSearchModal.setDealBy(StringUtils.isBlank(dealBy) ? String.valueOf(u.getOpenid()) : dealBy.trim());
+        demanderSearchModal.setDealBy(StringUtils.isBlank(dealBy) ? String.valueOf(u.getId()) : dealBy.trim());
         demanderSearchModal.setPager(demanderPage);
         PagerInfo<ServiceOrderDto> userResult = serviceOrderService
                 .listServiceOrderByKeywordForMyMobileApplys(demanderSearchModal);
@@ -127,7 +127,7 @@ public class ProviderController {
         PagerInfo<ServiceOrderDto> demanderPage = new PagerInfo<ServiceOrderDto>();
         demanderPage.setCurrentPage(1L);
         demanderPage.setPageSize(10L);
-        demanderSearchModal.setApplyBy(String.valueOf(u.getOpenid()));
+        demanderSearchModal.setApplyBy(String.valueOf(u.getId()));
         demanderSearchModal.setPager(demanderPage);
         PagerInfo<ServiceOrderDto> userResult = serviceOrderService
                 .listServiceOrderByKeywordForMobileApply(demanderSearchModal);
@@ -164,7 +164,7 @@ public class ProviderController {
             demanderPage.setPageSize(Long.valueOf(pageSize));
         }
 
-        demanderSearchModal.setApplyBy(StringUtils.isBlank(applyBy) ? String.valueOf(u.getOpenid()) : applyBy.trim());
+        demanderSearchModal.setApplyBy(StringUtils.isBlank(applyBy) ? String.valueOf(u.getId()) : applyBy.trim());
         demanderSearchModal.setPager(demanderPage);
         PagerInfo<ServiceOrderDto> userResult = serviceOrderService
                 .listServiceOrderByKeywordForMobileApply(demanderSearchModal);
