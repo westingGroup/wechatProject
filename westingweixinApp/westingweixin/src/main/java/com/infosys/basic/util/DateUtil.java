@@ -31,7 +31,6 @@ public class DateUtil {
 			java.text.DateFormat df = new java.text.SimpleDateFormat(format);
 			date = (java.util.Date) df.parse(dateStr);
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 		return date;

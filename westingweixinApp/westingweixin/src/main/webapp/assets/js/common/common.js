@@ -70,49 +70,58 @@ function validate(form) {
 	var flag = true;
 	// 校验字符输入值
 	$("input[type=text]", $("#" + form)[0]).each(function() {
-		// 校验必须项
-		if ($("#" + this.id).hasClass("required")) {
-			flag = validateRequired(this.id, "text");
-			if(!flag)
-				return flag;
-		}
-		// 校验手机号
-		if ($("#" + this.id).hasClass("phone")) {
-			flag = validatePhone(this.id);
-			if(!flag)
-				return flag;
-		}
-		// 校验最大长度
-		if ($("#" + this.id).hasClass("maxlength")) {
-			flag = validateMaxLength(this.id);
-			if(!flag)
-				return flag;
-		}
+		flag = validateComponent(this.id, "text");
+		if (!flag)
+			return flag;
 	});
 	if (!flag)
 		return flag;
 
 	// 校验选择框
 	$("select", $("#" + form)[0]).each(function() {
-		if ($(this).hasClass("required")){
-			flag = validateRequired(this.id, "select");
-			if(!flag)
-				return flag;
-		}
-			
+		flag = validateComponent(this.id, "select");
+		if (!flag)
+			return flag;
 	});
 	if (!flag)
 		return flag;
 
 	// 校验文本域
 	$("textarea", $("#" + form)[0]).each(function() {
-		if ($("#" + this.id).hasClass("required")){
-			flag = validateRequired(this.id, "textarea");
-			if(!flag)
-				return flag;
-		}
+		flag = validateComponent(this.id, "textarea");
+		if (!flag)
+			return flag;
 	});
 
+	return flag;
+}
+
+/**
+ * 校验组件
+ * 
+ * @param id
+ * @param type
+ */
+function validateComponent(id, type) {
+	var flag = true;
+	// 校验必须项
+	if ($("#" + id).hasClass("required")) {
+		flag = validateRequired(id, type);
+		if (!flag)
+			return flag;
+	}
+	// 校验手机号
+	if ($("#" + id).hasClass("phone")) {
+		flag = validatePhone(id);
+		if (!flag)
+			return flag;
+	}
+	// 校验最大长度
+	if ($(this).hasClass("maxlength")) {
+		flag = validateMaxLength(id);
+		if (!flag)
+			return flag;
+	}
 	return flag;
 }
 
