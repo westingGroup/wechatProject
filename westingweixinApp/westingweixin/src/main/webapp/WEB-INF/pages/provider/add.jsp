@@ -40,7 +40,7 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/common/common.js"></script>
 <script type="text/javascript"
-	src="<%=request.getContextPath()%>/assets/js/demander/add.js"></script>
+	src="<%=request.getContextPath()%>/assets/js/provider/add.js"></script>
 <script type="text/javascript">
 	var currPage = "${orders.currentPage}";
 	var totalPage = "${orders.totalPage}";
