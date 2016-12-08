@@ -59,7 +59,7 @@ public class ProviderController {
         PagerInfo<ServiceOrderDto> demanderPage = new PagerInfo<ServiceOrderDto>();
         demanderPage.setCurrentPage(1L);
         demanderPage.setPageSize(10L);
-        serviceOrderModel.setDealBy(String.valueOf(u.getId()));
+        serviceOrderModel.setDealBy(String.valueOf(provider.getId()));
         serviceOrderModel.setPager(demanderPage);
         PagerInfo<ServiceOrderDto> userResult = serviceOrderService
                 .listServiceOrderByKeywordForMyMobileApplys(serviceOrderModel);
@@ -71,14 +71,15 @@ public class ProviderController {
             userResult.setIsCanDown(1);
         }
         model.addAttribute("orders", userResult);
+        model.addAttribute("providerId", provider.getId());
         return "provider/list";
     }
 
     // 分页
     // 手机端 认领服务列表
+    //dealBy 对应  model.addAttribute("providerId", provider.getId());
     @RequestMapping(value = "/myMobileApplys", method = RequestMethod.POST)
     public @ResponseBody String myMobileApplys(String currentPage, String pageSize, String dealBy, HttpSession session) {
-        User u = (User) session.getAttribute(Constants.WEIXIN_SESSION_USER);
         JsonUtil jsonUtil = JsonUtil.getInstance();
         ServiceOrderModel demanderSearchModal = new ServiceOrderModel();
         PagerInfo<ServiceOrderDto> demanderPage = new PagerInfo<ServiceOrderDto>();
@@ -94,7 +95,7 @@ public class ProviderController {
             demanderPage.setPageSize(Long.valueOf(pageSize));
         }
 
-        demanderSearchModal.setDealBy(StringUtils.isBlank(dealBy) ? String.valueOf(u.getId()) : dealBy.trim());
+        demanderSearchModal.setDealBy(dealBy);
         demanderSearchModal.setPager(demanderPage);
         PagerInfo<ServiceOrderDto> userResult = serviceOrderService
                 .listServiceOrderByKeywordForMyMobileApplys(demanderSearchModal);
@@ -127,7 +128,7 @@ public class ProviderController {
         PagerInfo<ServiceOrderDto> demanderPage = new PagerInfo<ServiceOrderDto>();
         demanderPage.setCurrentPage(1L);
         demanderPage.setPageSize(10L);
-        demanderSearchModal.setApplyBy(String.valueOf(u.getId()));
+        demanderSearchModal.setApplyBy(String.valueOf(provider.getId()));
         demanderSearchModal.setPager(demanderPage);
         PagerInfo<ServiceOrderDto> userResult = serviceOrderService
                 .listServiceOrderByKeywordForMobileApply(demanderSearchModal);
@@ -146,9 +147,9 @@ public class ProviderController {
 
     // 分页
     // 手机端 认领服务列表
+    //applyBy  对应  model.addAttribute("provider", provider); 中设置的 provider的id
     @RequestMapping(value = "/mobileApply", method = RequestMethod.POST)
     public @ResponseBody String mobileApply(String currentPage, String pageSize, String applyBy, HttpSession session) {
-        User u = (User) session.getAttribute(Constants.WEIXIN_SESSION_USER);
         JsonUtil jsonUtil = JsonUtil.getInstance();
         ServiceOrderModel demanderSearchModal = new ServiceOrderModel();
         PagerInfo<ServiceOrderDto> demanderPage = new PagerInfo<ServiceOrderDto>();
@@ -164,7 +165,7 @@ public class ProviderController {
             demanderPage.setPageSize(Long.valueOf(pageSize));
         }
 
-        demanderSearchModal.setApplyBy(StringUtils.isBlank(applyBy) ? String.valueOf(u.getId()) : applyBy.trim());
+        demanderSearchModal.setApplyBy(applyBy);
         demanderSearchModal.setPager(demanderPage);
         PagerInfo<ServiceOrderDto> userResult = serviceOrderService
                 .listServiceOrderByKeywordForMobileApply(demanderSearchModal);

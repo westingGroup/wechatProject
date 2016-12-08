@@ -40,7 +40,6 @@ public class DemanderController {
     // 分页
     @RequestMapping(value = "/mydemanders", method = RequestMethod.POST)
     public @ResponseBody String mydemanders(String currentPage, String pageSize, String createBy, HttpSession session) {
-        User u = (User) session.getAttribute(Constants.WEIXIN_SESSION_USER);
         JsonUtil jsonUtil = JsonUtil.getInstance();
         ServiceOrderModel demanderSearchModal = new ServiceOrderModel();
         PagerInfo<ServiceOrderDto> demanderPage = new PagerInfo<ServiceOrderDto>();
@@ -56,7 +55,7 @@ public class DemanderController {
             demanderPage.setPageSize(Long.valueOf(pageSize));
         }
 
-        demanderSearchModal.setCreateBy(StringUtils.isBlank(createBy) ? String.valueOf(u.getId()) : createBy.trim());
+        demanderSearchModal.setCreateBy(createBy);
         demanderSearchModal.setPager(demanderPage);
         PagerInfo<ServiceOrderDto> userResult = serviceOrderService.listServiceOrderByKeyword(demanderSearchModal);
         userResult.setTotalPage(userResult.getTotalPages());
@@ -91,7 +90,7 @@ public class DemanderController {
         PagerInfo<ServiceOrderDto> demanderPage = new PagerInfo<ServiceOrderDto>();
         demanderPage.setCurrentPage(1L);
         demanderPage.setPageSize(10L);
-        demanderSearchModal.setCreateBy(String.valueOf(u.getId()));
+        demanderSearchModal.setCreateBy(String.valueOf(demander.getId()));
         demanderSearchModal.setPager(demanderPage);
         PagerInfo<ServiceOrderDto> userResult = serviceOrderService.listServiceOrderByKeyword(demanderSearchModal);
         userResult.setTotalPage(userResult.getTotalPages());
@@ -102,6 +101,7 @@ public class DemanderController {
             userResult.setIsCanDown(1);
         }
         model.addAttribute("orders", userResult);
+        model.addAttribute("demanderId", demander.getId());
         return "demander/list";
     }
 
@@ -121,15 +121,15 @@ public class DemanderController {
         model.addAttribute("serviceType", ServiceOrder.ServiceType.values());
         model.addAttribute("categoryType", ServiceOrder.CategoryType.values());
         model.addAttribute("order", new ServiceOrder());
+        model.addAttribute("demander", demander);
         return "demander/add";
     }
 
     // 我的申请
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(ServiceOrder order, HttpSession session) {
-        User u = (User) session.getAttribute(Constants.WEIXIN_SESSION_USER);
-        order.setCreateBy(u.getId());
-        order.setCreatename(u.getUsername());
+    public String add(ServiceOrder order,int demanderId,String demanderName, HttpSession session) {
+        order.setCreateBy(demanderId);
+        order.setCreatename(demanderName);
         order.setCreateDate(new Date());
         order.setStatus(Constants.T_SERVICE_ORDER_STATUS_NEW);// 新需求
         order.setServiceOrderId(String.valueOf(RandomUtils.nextInt(10000)));
