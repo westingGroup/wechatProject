@@ -18,8 +18,8 @@
 
       <form class="form-signin" role="form" method="post">
         <h2 class="form-signin-heading">后台管理登录</h2>
-        <input type="text" class="form-control" placeholder="Username" required autofocus>
-        <input type="password" class="form-control" placeholder="Password" required>
+        <input type="text" name="username" class="form-control"  placeholder="Username" required autofocus>
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
