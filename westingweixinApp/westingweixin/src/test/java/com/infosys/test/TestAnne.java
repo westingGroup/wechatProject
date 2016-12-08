@@ -59,5 +59,10 @@ public class TestAnne {
                 .listServiceOrderByKeywordForMyMobileApplys(demanderSearchModal);
         userResult.setTotalPage(userResult.getTotalPages());
     }
+    
+    
+    @Test
+    public void testMethod() throws UnsupportedEncodingException {
+    }
 
 }

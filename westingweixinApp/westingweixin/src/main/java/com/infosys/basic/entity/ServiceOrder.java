@@ -130,7 +130,7 @@ public class ServiceOrder implements Serializable {
 
     private String remark3;
 
-    @Column(name = "deal_by_inside")
+    @Column(name = "deal_by_inside", columnDefinition = "INT default 0")
     private int dealByInside;
 
     public ServiceOrder() {
