@@ -4,7 +4,7 @@
 function pageMyDemanders() {
 	if (isCanDown == 1)//如果可以向下翻页
 		$.post(basePath + "/demander/mydemanders", {
-			currentPage : parseInt(currPage)+1
+			currentPage : parseInt(currPage)+1,createBy:$("#createBy").val()
 		}, function(data, status) {
 			var record;
 			for(var i = 0; i < data.records.length; i++){
