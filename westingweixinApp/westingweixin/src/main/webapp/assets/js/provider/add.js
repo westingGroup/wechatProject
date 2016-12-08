@@ -59,7 +59,7 @@ function foldInit(orderId) {
 function mobileApply() {
 	if (isCanDown == 1)// 如果可以向下翻页
 		$.post(basePath + "/provider/mobileApply", {
-			currentPage : parseInt(currPage) + 1
+			currentPage : parseInt(currPage) + 1,applyBy:$("#applyBy").val()
 		}, function(data, status) {
 			var records = data.records;
 			currPage = data.currentPage;

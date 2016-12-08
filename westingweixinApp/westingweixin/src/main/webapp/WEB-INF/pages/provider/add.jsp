@@ -76,10 +76,10 @@
 		<jsp:include page="../showTips.jsp"></jsp:include>
 		<div class="content">
 			<div class="waitingTaskTitle">待接的任务</div>
-			<input type="hidden" name="providerId" value="${provider.id}"
-				id="providerId" /> <input type="hidden" name="providerName"
-				value="${provider.linkname}" id="providerName" /> <input
-				type="hidden" name="id" id="id" value="0" />
+			<input type="hidden" name="providerId" value="${provider.id}" id="providerId" /> 
+			<input type="hidden" name="providerName" value="${provider.linkname}" id="providerName" /> 
+			<input type="hidden" name="applyBy" value="${provider.id}" id="applyBy"/> 
+			<input type="hidden" name="id" id="id" value="0" />
 			<c:forEach items="${orders.records}" var="order" varStatus="status">
 				<div class="container waitingTaskCommonStyle" id="order${order.id}"
 					orderId="${order.id}">

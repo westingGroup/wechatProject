@@ -126,9 +126,7 @@ public class DemanderController {
 
     // 我的申请
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(ServiceOrder order,int demanderId,String demanderName, HttpSession session) {
-        order.setCreateBy(demanderId);
-        order.setCreatename(demanderName);
+    public String add(ServiceOrder order, HttpSession session) {
         order.setCreateDate(new Date());
         order.setStatus(Constants.T_SERVICE_ORDER_STATUS_NEW);// 新需求
         order.setServiceOrderId(String.valueOf(System.currentTimeMillis()));

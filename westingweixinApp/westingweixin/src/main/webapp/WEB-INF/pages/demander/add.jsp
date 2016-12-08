@@ -72,6 +72,8 @@
 					</div>
 				</div>
 				<sf:hidden id="categoryId" path="category" value="电缆" />
+				<sf:hidden path="createBy" value="${demander.id }" />
+				<sf:hidden path="createname" value="${demander.linkname }" />
 				<div class="container commonStyle contact">
 					<div class="row serviceType">
 						<div class="col-md-1 col-xs-4 label">
