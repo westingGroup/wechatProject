@@ -50,7 +50,7 @@ function ratyBtnInit(orderId, evaluate) {
 			evaluate : $("#evaluate" + orderId).val()
 		}, function(data, status) {
 			if (status == "success") {
-				alert(data);
+				showTipsSucc(data);
 				$("#but" + orderId).addClass("hidden");
 			}
 		});

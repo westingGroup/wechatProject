@@ -70,6 +70,7 @@
 				</div>
 			</div>
 		</div>
+		<jsp:include page="../showTips.jsp"></jsp:include>
 		<div class="content">
 			<div class="viewTaskTitle">我的服务单</div>
 			<input type="hidden" name="createBy" value="${demanderId}" id="createBy"/> 

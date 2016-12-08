@@ -39,7 +39,8 @@ function appendRecord(recordContent) {
 	record += "<hr class='commonHr hidden" + recordContent.id + "' />";
 	record += "<div class='row categoryView hidden" + recordContent.id + "'>";
 	record += "<div class='col-md-1 col-xs-3 label'>类别：</div>";
-	record += "<div class='col-md-11 col-xs-9 viewContent'>${order.category }</div>";
+	record += "<div class='col-md-11 col-xs-9 viewContent'>"
+			+ recordContent.category + "</div>";
 	record += "</div>";
 	record += "<hr class='commonHr hidden" + recordContent.id + "' />";
 	record += "<div class='row serviceTypeView hidden" + recordContent.id

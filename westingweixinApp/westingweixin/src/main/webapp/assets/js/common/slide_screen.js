@@ -35,9 +35,7 @@ function bindKeyEvent() {
 			new func();
 			break;
 		}
-		if(event.keyCode == 116)//刷新页面
-			return true;
-		return false;
+		return true;
 	});
 }
 
