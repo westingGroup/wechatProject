@@ -72,11 +72,7 @@
 		</div>
 		<div class="content">
 			<div class="viewTaskTitle">我的服务单</div>
-<<<<<<< HEAD
-			<input type="hidden" id="demanderId" value="${demanderId }"/>
-=======
 			<input type="hidden" name="createBy" value="${demanderId}" id="createBy"/> 
->>>>>>> refs/remotes/origin/master
 			<c:forEach items="${orders.records}" var="order" varStatus="status">
 				<div class="container viewTaskCommonStyle" id="order${order.id}">
 					<c:if test="${status.index!=0}">

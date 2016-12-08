@@ -4,12 +4,8 @@
 function pageMyDemanders() {
 	if (isCanDown == 1)// 如果可以向下翻页
 		$.post(basePath + "/demander/mydemanders", {
-<<<<<<< HEAD
 			currentPage : parseInt(currPage) + 1,
-			createBy:$("#demanderId").val()
-=======
-			currentPage : parseInt(currPage)+1,createBy:$("#createBy").val()
->>>>>>> refs/remotes/origin/master
+			createBy : $("#createBy").val()
 		}, function(data, status) {
 			var records = data.records;
 			currPage = data.currentPage;
