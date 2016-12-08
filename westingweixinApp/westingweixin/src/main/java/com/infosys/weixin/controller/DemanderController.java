@@ -6,7 +6,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -132,7 +131,7 @@ public class DemanderController {
         order.setCreatename(demanderName);
         order.setCreateDate(new Date());
         order.setStatus(Constants.T_SERVICE_ORDER_STATUS_NEW);// 新需求
-        order.setServiceOrderId(String.valueOf(RandomUtils.nextInt(10000)));
+        order.setServiceOrderId(String.valueOf(System.currentTimeMillis()));
         order.setCategory(order.getCategory());
         order.setServiceType(order.getServiceType());
         serviceOrderService.add(order);

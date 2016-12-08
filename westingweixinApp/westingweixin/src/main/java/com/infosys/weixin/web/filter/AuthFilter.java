@@ -31,7 +31,7 @@ public class AuthFilter implements Filter{
 		HttpServletRequest httpReq = (HttpServletRequest)req;
 		HttpServletResponse httpResp = (HttpServletResponse)resp;
 		String url = httpReq.getRequestURI();
-		if(url.indexOf("resources")>0||url.indexOf("login")>0||url.indexOf("/wreceive")>0||url.indexOf("logout")>0) {
+		if(url.indexOf("resources")>0||url.indexOf("assets")>0||url.indexOf("login")>0||url.indexOf("/wreceive")>0||url.indexOf("logout")>0) {
 			chain.doFilter(httpReq, httpResp);
 			return;
 		} else {

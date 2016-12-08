@@ -18,10 +18,12 @@ import com.infosys.basic.dto.DemanderModel;
 import com.infosys.basic.dto.PagerInfo;
 import com.infosys.basic.dto.ServiceOrderDto;
 import com.infosys.basic.dto.ServiceOrderModel;
+import com.infosys.basic.entity.Apply;
 import com.infosys.basic.entity.Demander;
 import com.infosys.basic.entity.InsideProvider;
 import com.infosys.basic.entity.Provider;
 import com.infosys.basic.entity.ServiceOrder;
+import com.infosys.basic.service.IApplyService;
 import com.infosys.basic.service.IDemanderService;
 import com.infosys.basic.service.IInsideProviderService;
 import com.infosys.basic.service.IProviderService;
@@ -42,6 +44,9 @@ public class ProcessController {
 
     @Inject
     private IServiceOrderService serviceOrderService;
+
+    @Inject
+    private IApplyService applyService;
 
     // 首页
     @RequestMapping(value = "/registers")
@@ -98,6 +103,7 @@ public class ProcessController {
     }
 
     // pc处理注册的需求方和提供商
+    // dealType 对应 11 批准10拒绝
     @RequestMapping(value = "/dealRegister", method = RequestMethod.POST)
     public @ResponseBody String dealRegister(String type, String demanderIds, String remark, int dealType,
             HttpSession session) {
@@ -114,21 +120,19 @@ public class ProcessController {
                         demander.setRemark(remark);
                         if (dealType == com.infosys.basic.util.Constants.T_USER_STATUS_PASS) {
                             demander.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_PASS);
-                            demanderService.update(demander);
                         } else if (dealType == com.infosys.basic.util.Constants.T_USER_STATUS_REJECT) {
                             demander.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_REJECT);
-                            demanderService.update(demander);
                         }
+                        demanderService.update(demander);
                     } else if (type.equals("provider")) {
                         provider = providerService.load(Integer.parseInt(id));
                         provider.setRemark(remark);
                         if (dealType == com.infosys.basic.util.Constants.T_USER_STATUS_PASS) {
                             provider.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_PASS);
-                            providerService.update(provider);
                         } else if (dealType == com.infosys.basic.util.Constants.T_USER_STATUS_REJECT) {
                             provider.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_REJECT);
-                            providerService.update(provider);
                         }
+                        providerService.update(provider);
                     }
                 }
                 demander = null;
@@ -183,19 +187,25 @@ public class ProcessController {
         }
         return jsonUtil.obj2json(userResult);
     }
-    
-  
-    
+
     @RequestMapping(value = "/insideProviderList", method = RequestMethod.POST)
     public @ResponseBody String insideProviderList(HttpSession session) {
         JsonUtil jsonUtil = JsonUtil.getInstance();
         List<InsideProvider> providers = insideProviderService.list();
-        return jsonUtil.obj2json(providers); 
+        return jsonUtil.obj2json(providers);
     }
 
+    @RequestMapping(value = "/outsideProviderList", method = RequestMethod.POST)
+    public @ResponseBody String insideProviderList(String sId, HttpSession session) {
+        JsonUtil jsonUtil = JsonUtil.getInstance();
+        List<Apply> applys = applyService.listBySId(sId);
+        return jsonUtil.obj2json(applys);
+    }
+
+    // InsideOrOutSide inside or outside
     @RequestMapping(value = "/dealDemander", method = RequestMethod.POST)
     public @ResponseBody String dealDemander(String type, String demanderIds, String remark, int dealType,
-            int createBy, String createName, HttpSession session) {
+            String InsideOrOutSide, int dealBy, String dealName, HttpSession session) {
         String rtnStr = "操作失败";
         if (StringUtils.isNotBlank(demanderIds)) {
             String[] deIds = demanderIds.split(",");
@@ -205,24 +215,29 @@ public class ProcessController {
                     String id = deIds[i];
                     serviceOrder = serviceOrderService.load(Integer.parseInt(id));
                     if (type.equals("1")) {
-                        serviceOrder.setRemark1(remark.trim());
+                        serviceOrder.setRemark1(StringUtils.isEmpty(remark) ? "" : remark.trim());
                         if (dealType == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_ALLOCATED_DEALING) {
-                            serviceOrder.setCreateBy(createBy);
-                            serviceOrder.setCreateDate(new Date());
-                            serviceOrder.setCreatename(createName.trim());
-                            serviceOrder.setStatus(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_CANCEL);
+                            if (InsideOrOutSide.equals("inside")) {
+                                serviceOrder.setDealByInside(dealBy);
+                            } else {
+                                serviceOrder.setDealBy(dealBy);
+                            }
+                            serviceOrder.setDealDate(new Date());
+                            serviceOrder.setDealname(dealName.trim());
+                            serviceOrder
+                                    .setStatus(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_ALLOCATED_DEALING);
                         } else if (dealType == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_CANCEL) {
                             serviceOrder.setStatus(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_CANCEL);
                         }
                     } else if (type.equals("2")) {
-                        serviceOrder.setRemark2(remark.trim());
+                        serviceOrder.setRemark2(StringUtils.isEmpty(remark) ? "" : remark.trim());
                         if (dealType == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_DEALING_DONE) {
-                            serviceOrder.setStatus(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_DEALING_DONE);
+                            serviceOrder
+                                    .setStatus(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_DEALING_DONE);
                         } else if (dealType == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_CANCEL) {
                             serviceOrder.setStatus(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_CANCEL);
                         }
                     }
-                    
                     serviceOrderService.update(serviceOrder);
                 }
                 serviceOrder = null;

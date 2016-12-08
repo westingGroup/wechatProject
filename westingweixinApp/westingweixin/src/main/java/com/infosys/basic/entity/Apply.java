@@ -47,9 +47,6 @@ public class Apply implements Serializable {
     @Column(name = "apply_by")
     private int applyBy;
 
-    @Column(name = "apply_by_inside")
-    private int applyByInside;
-    
     private String applyname;
 
     @Column(name = "status")
@@ -136,14 +133,6 @@ public class Apply implements Serializable {
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public int getApplyByInside() {
-        return applyByInside;
-    }
-
-    public void setApplyByInside(int applyByInside) {
-        this.applyByInside = applyByInside;
     }
 
 }
