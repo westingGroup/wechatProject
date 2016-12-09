@@ -76,13 +76,16 @@
 	font-size: 16px !important;
 }
 
-.searchTable tr:nth-child(odd) td {
+.searchTable td{
 	text-align: center;
+	font-size: 12px !important;
+}
+
+.searchTable tr:nth-child(odd) td {
 	background: rgb(203, 215, 233);
 }
 
 .searchTable tr:nth-child(even) td {
-	text-align: center;
 	background: rgb(231, 246, 245);
 }
 

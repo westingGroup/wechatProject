@@ -54,6 +54,23 @@
   border: none;
   vertical-align: middle;
   text-align: center; }
+  
+.pagination .select {
+	width:50px;
+	height:30px;
+	margin-left:0px;
+	font-size: 15px;
+	/*很关键：将默认的select选择框样式清除*/
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	/*在选择框的最右侧中间显示小箭头图片*/
+	background: url("../../img/select.png") no-repeat scroll right center
+		transparent;
+	background-size: 10px;
+	border: 1px solid #CDCDCD;
+	background-color: white;
+}
 
 /* gigantic class for demo purposes */
 .gigantic.pagination {

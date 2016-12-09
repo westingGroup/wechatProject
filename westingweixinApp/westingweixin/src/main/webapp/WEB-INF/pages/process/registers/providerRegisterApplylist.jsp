@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/js/process/registers/providerRegisterApplylist.js"></script>
 <div>
 	<table class="searchTable table table-hover table-bordered">
 		<thead>
@@ -12,44 +14,12 @@
 				<th>公司名称</th>
 			</tr>
 		</thead>
-		<tbody>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
+		<tbody id="providerRegisterApplyListBody">
 		</tbody>
 	</table>
 	<div class="pager">
 		<div class="pageNum">
-			<div class="gigantic pagination">
+			<div class="gigantic pagination" id="providerApplyPagination">
 				<a href="#" class="first" data-action="first">&laquo;</a> <a
 					href="#" class="previous" data-action="previous">&lsaquo;</a> <input
 					type="text" readonly="readonly" data-max-page="40"> <a
@@ -57,17 +27,25 @@
 					class="last" data-action="last">&raquo;</a>
 			</div>
 		</div>
-		<div class="minMaxResult">view 1-10 of 23</div>
+		<div class="minMaxResult">
+			view <span id="providerApplyFirstResult"></span>-<span
+				id="providerApplyMaxResult"></span> of <span
+				id="providerApplyTotalRecords"></span>
+		</div>
 	</div>
 	<div class="approval_info">
+		<input type="hidden" id="providerApplyIds" />
 		<table class="table">
 			<tr>
-				<td style="width: 60%;"><textarea rows="3" cols="40"></textarea></td>
-				<td style="width: 20%;"><button class="btn approvalBtn">
+				<td style="width: 60%;"><textarea rows="3" cols="40"
+						id="providerRemark"></textarea></td>
+				<td style="width: 20%;"><button class="btn approvalBtn"
+						id="providerApplyApprovalBtn">
 						<span class="btnText">批准</span> <img class="btnImg"
 							src="<%=request.getContextPath()%>/assets/img/right_arrow.png">
 					</button></td>
-				<td style="width: 20%;"><button class="btn rejectBtn">
+				<td style="width: 20%;"><button class="btn rejectBtn"
+						id="providerApplyRejectBtn">
 						<span class="btnText">拒绝</span> <img class="btnImg"
 							src="<%=request.getContextPath()%>/assets/img/right_arrow.png">
 					</button></td>

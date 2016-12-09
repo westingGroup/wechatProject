@@ -28,15 +28,20 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/common/common.js"></script>
 <script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/media/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/media/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/media/js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/jqPagination/js/jquery.jqpagination.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/js/process/registers/approvalRegister.js"></script>
 <script type="text/javascript">
+	var basePath = "<%=request.getContextPath()%>";
 	$(function() {
+		initRegisters();
 		switchTab('dispatchRegisterApply');
-		$('.pagination').jqPagination({
-			paged : function(page) {
-				// 分页事件
-			}
-		});
 	});
 </script>
 </head>
@@ -53,16 +58,16 @@
 				href="javascript:switchTab('ordersCustomer')" id="ordersCustomerTab">服务提供商列表</a>
 		</div>
 		<div class="tab_search" id="dispatchRegisterApply">
-			<jsp:include page="dispatchRegisterApplylist.jsp"></jsp:include>
+			<jsp:include page="demanderRegisterApplylist.jsp"></jsp:include>
 		</div>
 		<div class="tab_search" id="ordersRegisterApply">
-			<jsp:include page="ordersRegisterApplylist.jsp"></jsp:include>
+			<jsp:include page="providerRegisterApplylist.jsp"></jsp:include>
 		</div>
 		<div class="tab_search" id="dispatchCustomer">
-			<jsp:include page="dispatchCustomerlist.jsp"></jsp:include>
+			<jsp:include page="demanderCustomerlist.jsp"></jsp:include>
 		</div>
 		<div class="tab_search" id="ordersCustomer">
-			<jsp:include page="ordersCustomerlist.jsp"></jsp:include>
+			<jsp:include page="providerCustomerlist.jsp"></jsp:include>
 		</div>
 	</div>
 </body>
