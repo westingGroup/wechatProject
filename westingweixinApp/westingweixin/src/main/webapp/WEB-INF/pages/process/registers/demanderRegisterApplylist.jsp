@@ -6,7 +6,7 @@
 	<table class="searchTable table table-hover table-bordered">
 		<thead>
 			<tr>
-				<th><input type="checkbox"></th>
+				<th><input type="checkbox" id="demanderApplyAll"></th>
 				<th>序号</th>
 				<th>联系人</th>
 				<th>联系方式</th>
@@ -17,7 +17,7 @@
 		<tbody id="demanderRegisterApplyListBody">
 		</tbody>
 	</table>
-	<div class="pager">
+	<div class="pager" id="demanderApplyPager">
 		<div class="pageNum">
 			<div class="gigantic pagination" id="demanderApplyPagination">
 				<a href="#" class="first" data-action="first">&laquo;</a> <a
@@ -39,8 +39,8 @@
 				id="demanderApplyTotalRecords"></span>
 		</div>
 	</div>
-	<div class="approval_info">
-		<input type="hidden" id="demanderApplyIds"/>
+	<div class="approval_info" id="demanderApplyApproval">
+		<input type="hidden" id="demanderApplyIds" />
 		<table class="table">
 			<tr>
 				<td style="width: 60%;"><textarea rows="3" cols="40"

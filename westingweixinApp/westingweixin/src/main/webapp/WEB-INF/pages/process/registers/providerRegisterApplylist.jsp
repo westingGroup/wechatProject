@@ -6,7 +6,7 @@
 	<table class="searchTable table table-hover table-bordered">
 		<thead>
 			<tr>
-				<th><input type="checkbox"></th>
+				<th><input type="checkbox" id="providerApplyAll"></th>
 				<th>序号</th>
 				<th>联系人</th>
 				<th>联系方式</th>
@@ -17,14 +17,20 @@
 		<tbody id="providerRegisterApplyListBody">
 		</tbody>
 	</table>
-	<div class="pager">
+	<div class="pager" id="providerApplyPager">
 		<div class="pageNum">
 			<div class="gigantic pagination" id="providerApplyPagination">
 				<a href="#" class="first" data-action="first">&laquo;</a> <a
 					href="#" class="previous" data-action="previous">&lsaquo;</a> <input
 					type="text" readonly="readonly" data-max-page="40"> <a
 					href="#" class="next" data-action="next">&rsaquo;</a> <a href="#"
-					class="last" data-action="last">&raquo;</a>
+					class="last" data-action="last">&raquo;</a><select class="select"
+					id="providerApplyPageSize" data-action="select">
+					<option>10</option>
+					<option>20</option>
+					<option>50</option>
+					<option>100</option>
+				</select>
 			</div>
 		</div>
 		<div class="minMaxResult">
@@ -33,7 +39,7 @@
 				id="providerApplyTotalRecords"></span>
 		</div>
 	</div>
-	<div class="approval_info">
+	<div class="approval_info" id="providerApplyApproval">
 		<input type="hidden" id="providerApplyIds" />
 		<table class="table">
 			<tr>

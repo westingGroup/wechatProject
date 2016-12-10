@@ -2,7 +2,7 @@
  * 初始化服务方注册申请列表
  */
 function initProviderRegisterApplyList(currPage, pageSize) {
-	$('#providerApplyPagination').jqPagination({
+	providerApplyPagination = $('#providerApplyPagination').jqPagination({
 		link_type : "self",
 		link_string : basePath + "/process/listByPage",
 		callback_fun : "getProviderRegisterApplyList",
@@ -25,6 +25,12 @@ function initProviderRegisterApplyList(currPage, pageSize) {
 			function() {
 				approvalDemanderApply("provider", 10, "providerApplyIds",
 						"providerRemark");
+			});
+
+	$("#providerApplyAll").click(
+			function() {
+				checkAllApplyForSelect("providerApplyAll", "providerApplyId",
+						"providerApplyIds");
 			});
 
 	$("#providerApplyIds").val("");
@@ -56,8 +62,13 @@ function appendProviderRegisterApply(registers, firstRegisterIndex) {
 	$("#providerRegisterApplyListBody").empty();
 	for (var i = 0; i < registers.length; i++) {
 		var register = "<tr>";
-		register += "<td><input type='checkbox' name='providerApplyId' value="
-				+ registers[i].id + "></td>";
+		if (checkApplyInStrForJudge(registers[i].id, "providerApplyIds"))// 如果选中
+			register += "<td><input type='checkbox' name='providerApplyId' value="
+					+ registers[i].id + " checked></td>";
+		else
+			// 如果未选中
+			register += "<td><input type='checkbox' name='providerApplyId' value="
+					+ registers[i].id + "></td>";
 		register += "<td>" + (firstRegisterIndex + i) + "</td>";
 		register += "<td>" + registers[i].linkname + "</td>";
 		register += "<td>" + registers[i].linkphone + "</td>";
@@ -67,7 +78,25 @@ function appendProviderRegisterApply(registers, firstRegisterIndex) {
 		$("#providerRegisterApplyListBody").append(register);
 	}
 
-	$("input[name=providerApplyId]").click(function() {
-		checkApply($(this).val(), $(this).prop("checked"), "providerApplyIds");
-	});
+	$("#providerApplyPager").show();
+	$("#providerApplyApproval").show();
+	if (registers.length == 0) {// 如果没有记录
+		var noTr = $("<tr></tr>");
+		var td = "<td colspan='6' style='text-align:center;'>暂无符合条件的记录</td>";
+		noTr.html(td);
+		$("#providerRegisterApplyListBody").append(noTr);
+		$("#providerApplyPager").hide();
+		$("#providerApplyApproval").hide();
+	}
+
+	// 如果当前页的所有项都被选中，则全选按钮被选中;如果当前页的所有项没有都被选中，则全选按钮不选中
+	checkAllInStrForJudge("providerApplyId", "providerApplyIds",
+			"providerApplyAll");
+
+	$("input[name=providerApplyId]").click(
+			function() {
+				checkApplyForSelect(2, $(this).val(), $(this).prop("checked"),
+						"providerApplyIds", "providerApplyId",
+						"providerApplyAll");
+			});
 }

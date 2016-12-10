@@ -68,6 +68,10 @@
 					&& base.isNumber(base.$input.data('current-page'))) {
 				base.options.current_page = base.$input.data('current-page');
 			}
+			
+			if(base.$select[0].value != undefined && base.isNumber(base.$select[0].value)){
+				base.options.page_size = base.$select[0].value;
+			}
 
 			// remove the readonly attribute as JavaScript must be working by
 			// now ;-)
@@ -470,18 +474,16 @@
 		}
 
 		// if we're not dealing with a method, initialise plugin
-		self.each(function() {
-			(new $.jqPagination(this, args[0]));
-		});
+//		self.each(function() {
+//			alert("调用一次================================");
+//			return (new $.jqPagination(this, args[0]));
+//		});
+		return (new $.jqPagination(this, args[0]));
 	};
+	
 
 	$.fn.setMaxPage = function() {
 	}
-	
-	$.fn.updateSelfInput = function(){
-		
-	}
-
 })(jQuery);
 
 // polyfill, provide a fallback if the console doesn't exist

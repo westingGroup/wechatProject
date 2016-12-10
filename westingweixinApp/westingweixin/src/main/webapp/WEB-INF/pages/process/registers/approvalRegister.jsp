@@ -56,6 +56,8 @@
 				href="javascript:switchTab('dispatchCustomer')"
 				id="dispatchCustomerTab">服务需求方列表</a> <a
 				href="javascript:switchTab('ordersCustomer')" id="ordersCustomerTab">服务提供商列表</a>
+			<a href="javascript:switchTab('insideCustomer')"
+				id="insideCustomerTab">内部提供商列表</a>
 		</div>
 		<div class="tab_search" id="dispatchRegisterApply">
 			<jsp:include page="demanderRegisterApplylist.jsp"></jsp:include>
@@ -68,6 +70,9 @@
 		</div>
 		<div class="tab_search" id="ordersCustomer">
 			<jsp:include page="providerCustomerlist.jsp"></jsp:include>
+		</div>
+		<div class="tab_search" id="insideCustomer">
+			<jsp:include page="insideCustomerlist.jsp"></jsp:include>
 		</div>
 	</div>
 </body>

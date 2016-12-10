@@ -2,7 +2,7 @@
  * 初始化需求方注册申请列表
  */
 function initDemanderRegisterApplyList(currPage, pageSize) {
-	$('#demanderApplyPagination').jqPagination({
+	demanderApplyPagination = $('#demanderApplyPagination').jqPagination({
 		link_type : "self",
 		link_string : basePath + "/process/listByPage",
 		callback_fun : "getDemanderRegisterApplyList",
@@ -25,6 +25,12 @@ function initDemanderRegisterApplyList(currPage, pageSize) {
 			function() {
 				approvalDemanderApply("demander", 10, "demanderApplyIds",
 						"demanderRemark");
+			});
+
+	$("#demanderApplyAll").click(
+			function() {
+				checkAllApplyForSelect("demanderApplyAll", "demanderApplyId",
+						"demanderApplyIds");
 			});
 
 	$("#demanderApplyIds").val("");
@@ -56,8 +62,15 @@ function appendDemanderRegisterApply(registers, firstRegisterIndex) {
 	$("#demanderRegisterApplyListBody").empty();
 	for (var i = 0; i < registers.length; i++) {
 		var register = "<tr>";
-		register += "<td><input type='checkbox' name='demanderApplyId' value="
-				+ registers[i].id + "></td>";
+		register += "<td>";
+		if (checkApplyInStrForJudge(registers[i].id, "demanderApplyIds"))// 如果选中
+			register += "<input type='checkbox' name='demanderApplyId' value="
+					+ registers[i].id + " checked>";
+		else
+			// 如果未选中
+			register += "<input type='checkbox' name='demanderApplyId' value="
+					+ registers[i].id + ">";
+		register += "</td>";
 		register += "<td>" + (firstRegisterIndex + i) + "</td>";
 		register += "<td>" + registers[i].linkname + "</td>";
 		register += "<td>" + registers[i].linkphone + "</td>";
@@ -66,8 +79,26 @@ function appendDemanderRegisterApply(registers, firstRegisterIndex) {
 		register += "</tr>";
 		$("#demanderRegisterApplyListBody").append(register);
 	}
+	$("#demanderApplyPager").show();
+	$("#demanderApplyApproval").show();
 
-	$("input[name=demanderApplyId]").click(function() {
-		checkApply($(this).val(), $(this).prop("checked"), "demanderApplyIds");
-	});
+	if (registers.length == 0) {// 如果没有记录
+		var noTr = $("<tr></tr>");
+		var td = "<td colspan='6' style='text-align:center;'>暂无符合条件的记录</td>";
+		noTr.html(td);
+		$("#demanderRegisterApplyListBody").append(noTr);
+		$("#demanderApplyPager").hide();
+		$("#demanderApplyApproval").hide();
+	}
+
+	// 如果当前页的所有项都被选中，则全选按钮被选中;如果当前页的所有项没有都被选中，则全选按钮不选中
+	checkAllInStrForJudge("demanderApplyId", "demanderApplyIds",
+			"demanderApplyAll");
+
+	$("input[name=demanderApplyId]").click(
+			function() {
+				checkApplyForSelect(2, $(this).val(), $(this).prop("checked"),
+						"demanderApplyIds", "demanderApplyId",
+						"demanderApplyAll");
+			});
 }
