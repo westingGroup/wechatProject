@@ -214,7 +214,7 @@ public class ProcessController {
 	}
 
 	// InsideOrOutSide inside or outside
-	@RequestMapping(value = "/dealDemander", method = RequestMethod.POST)
+	@RequestMapping(value = "/dealDemander", method = RequestMethod.POST, produces = "application/text; charset=utf-8")
 	public @ResponseBody String dealDemander(String type, String demanderIds,
 			String remark, int dealType, String InsideOrOutSide, int dealBy,
 			String dealName, HttpSession session) {

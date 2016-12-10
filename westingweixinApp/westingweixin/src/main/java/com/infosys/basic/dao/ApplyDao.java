@@ -10,9 +10,9 @@ import com.infosys.basic.entity.Apply;
 @Repository("applyDao")
 public class ApplyDao extends BaseDao<Apply> implements IApplyDao {
 
-    @Override
-    public List<Apply> listBySId(String sId) {
-        return this.list("from Apply where sId = ?", sId);
-    }
+	@Override
+	public List<Apply> listBySId(String sId) {
+		return this.list("from Apply where sId = ?", Integer.parseInt(sId));
+	}
 
 }

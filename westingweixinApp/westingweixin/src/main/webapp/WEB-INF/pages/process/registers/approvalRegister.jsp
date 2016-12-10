@@ -36,6 +36,8 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/jqPagination/js/jquery.jqpagination.js"></script>
 <script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/js/process/common.js"></script>
+<script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/process/registers/approvalRegister.js"></script>
 <script type="text/javascript">
 	var basePath = "<%=request.getContextPath()%>";

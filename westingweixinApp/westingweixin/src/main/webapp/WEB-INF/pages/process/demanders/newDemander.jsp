@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/js/process/demander/newDemander.js"></script>
 <div>
 	<table class="searchTable table table-hover table-bordered">
 		<thead>
 			<tr>
-				<th><input type="checkbox"></th>
+				<th></th>
 				<th>流水号</th>
 				<th>产品类别</th>
 				<th>服务类型</th>
@@ -15,76 +17,49 @@
 				<th>联系方式</th>
 			</tr>
 		</thead>
-		<tbody>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
+		<tbody id="newDemanderBody">
 		</tbody>
 	</table>
-	<div class="pager">
+	<div class="pager" id="newDemanderPager">
 		<div class="pageNum">
-			<div class="gigantic pagination">
+			<div class="gigantic pagination" id="newDemanderPagination">
 				<a href="#" class="first" data-action="first">&laquo;</a> <a
 					href="#" class="previous" data-action="previous">&lsaquo;</a> <input
 					type="text" readonly="readonly" data-max-page="40"> <a
 					href="#" class="next" data-action="next">&rsaquo;</a> <a href="#"
-					class="last" data-action="last">&raquo;</a>
+					class="last" data-action="last">&raquo;</a><select class="select"
+					id="newDemanderPageSize" data-action="select">
+					<option>10</option>
+					<option>20</option>
+					<option>50</option>
+					<option>100</option>
+				</select>
 			</div>
 		</div>
-		<div class="minMaxResult">view 1-10 of 23</div>
+		<div class="minMaxResult">
+			view <span id="newDemanderFirstResult"></span>-<span
+				id="newDemanderMaxResult"></span> of <span
+				id="newDemanderTotalRecords"></span>
+		</div>
 	</div>
-	<div class="approval_info">
+	<div class="approval_info" id="newDemanderApproval">
+		<input type="hidden" id="selectNewDemanderId" /> <input type="hidden"
+			id="insideOrOutSide" /> <input type="hidden" id="newDemanderType"
+			value="1" />
 		<table class="table">
 			<tr>
-				<td style="width: 30%;"><textarea rows="3" cols="40"></textarea></td>
-				<td style="width: 30%;"><select class="select"><option>工程师</select></td>
-				<td style="width: 20%;"><button class="btn approvalBtn">
+				<td style="width: 30%;"><textarea rows="3" cols="40"
+						class="required" id="newDemanderRemark" label="备注"></textarea></td>
+				<td style="width: 30%;"><select class="select required"
+					id="newDemanderEngineer" label="工程师"><option value="">工程师</select></td>
+				<td style="width: 20%;"><button class="btn approvalBtn"
+						id="newDemanderApprovalBtn">
 						<span class="btnText">转处理中</span> <img class="btnImg"
 							style="margin-left: 55px !important;"
 							src="<%=request.getContextPath()%>/assets/img/right_arrow.png">
 					</button></td>
-				<td style="width: 20%;"><button class="btn rejectBtn">
+				<td style="width: 20%;"><button class="btn rejectBtn"
+						id="newDemanderRejectBtn">
 						<span class="btnText">转废单</span> <img class="btnImg"
 							src="<%=request.getContextPath()%>/assets/img/right_arrow.png">
 					</button></td>

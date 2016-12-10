@@ -29,14 +29,15 @@
 	src="<%=request.getContextPath()%>/assets/js/common/common.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/jqPagination/js/jquery.jqpagination.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/js/process/common.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/js/process/demander/approvalDemander.js"></script>
 <script type="text/javascript">
+	var basePath = "<%=request.getContextPath()%>";
 	$(function() {
 		switchTab('newDemander');
-		$('.pagination').jqPagination({
-			paged : function(page) {
-				// 分页事件
-			}
-		});
+		initDemander();
 	});
 </script>
 </head>

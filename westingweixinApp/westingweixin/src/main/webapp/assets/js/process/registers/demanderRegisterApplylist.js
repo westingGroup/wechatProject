@@ -32,8 +32,7 @@ function initDemanderRegisterApplyList(currPage, pageSize) {
 				checkAllApplyForSelect("demanderApplyAll", "demanderApplyId",
 						"demanderApplyIds");
 			});
-
-	$("#demanderApplyIds").val("");
+	clearDemanderApply();
 }
 
 /**
@@ -101,4 +100,12 @@ function appendDemanderRegisterApply(registers, firstRegisterIndex) {
 						"demanderApplyIds", "demanderApplyId",
 						"demanderApplyAll");
 			});
+}
+
+/**
+ * 清空需求方申请
+ */
+function clearDemanderApply(){
+	$("#demanderApplyIds").val("");
+	$("#demanderRemark").val("");
 }

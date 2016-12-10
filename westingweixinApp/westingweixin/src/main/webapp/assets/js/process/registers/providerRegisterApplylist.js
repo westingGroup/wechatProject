@@ -32,8 +32,7 @@ function initProviderRegisterApplyList(currPage, pageSize) {
 				checkAllApplyForSelect("providerApplyAll", "providerApplyId",
 						"providerApplyIds");
 			});
-
-	$("#providerApplyIds").val("");
+	clearProviderApply();//清除服务提供商参数
 }
 
 /**
@@ -99,4 +98,12 @@ function appendProviderRegisterApply(registers, firstRegisterIndex) {
 						"providerApplyIds", "providerApplyId",
 						"providerApplyAll");
 			});
+}
+
+/**
+ * 清除服务申请参数
+ */
+function clearProviderApply(){
+	$("#providerApplyIds").val("");
+	$("#providerRemark").val("");
 }
