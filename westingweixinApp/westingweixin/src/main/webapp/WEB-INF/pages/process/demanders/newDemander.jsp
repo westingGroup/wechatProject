@@ -43,9 +43,8 @@
 		</div>
 	</div>
 	<div class="approval_info" id="newDemanderApproval">
-		<input type="hidden" id="selectNewDemanderId" /> <input type="hidden"
-			id="insideOrOutSide" /> <input type="hidden" id="newDemanderType"
-			value="1" />
+		<input type="hidden" id="selectNewDemanderId" /><input type="hidden"
+			id="newDemanderType" value="1" />
 		<table class="table">
 			<tr>
 				<td style="width: 30%;"><textarea rows="3" cols="40"

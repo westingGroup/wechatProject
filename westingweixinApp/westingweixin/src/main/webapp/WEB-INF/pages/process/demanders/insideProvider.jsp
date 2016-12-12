@@ -2,17 +2,12 @@
 	pageEncoding="UTF-8"%>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/process/demander/insideProvider.js"></script>
-<script type="text/javascript">
-	$(function() {
-		initInsideProvider();
-	});
-</script>
 <div id="insideProvider" class="modal  fade" tabindex="-1"
 	data-focus-on="input:first" aria-hidden="true"
 	style="display: none; background-color: #fff; max-width: 80%; max-height: 400px; margin: auto;">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"
-			aria-hidden="true"></button>
+			aria-hidden="true" onclick="clearInsideProvider()"></button>
 		<h4 style="margin: 5px 0px;">内部员工</h4>
 	</div>
 	<div class="modal-body">
@@ -22,7 +17,7 @@
 					<td>姓名:</td>
 					<td><input type="text" id="userName" /></td>
 					<td>电话:</td>
-					<td><input type="text" id="realName" /></td>
+					<td><input type="text" id="phone" /></td>
 					<td style="text-align: right;">
 						<button type="button" id="insideProviderBtn" class="btn btn-main">查询</button>
 					</td>
@@ -48,10 +43,12 @@
 	</div>
 
 	<div class="modal-footer">
+		<input type="hidden" id="insideProviderId" /> <input type="hidden"
+			id="insideProviderName" />
 		<div style="text-align: left;" id="insideProviderTipsInfo"></div>
 		<button type="button" class="btn btn-main"
 			id="insideProviderConfirmBtn">确定</button>
 		<button type="button" class="btn btn-main" data-dismiss="modal"
-			aria-hidden="true">关闭</button>
+			aria-hidden="true" id="insideProviderCancelBtn">关闭</button>
 	</div>
 </div>

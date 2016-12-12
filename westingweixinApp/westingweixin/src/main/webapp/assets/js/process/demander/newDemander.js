@@ -21,9 +21,10 @@ function initNewDemanderList(currPage, pageSize) {
 	$("#newDemanderRejectBtn").click(function() {
 		approvalNewDemander(10);
 	});
-	
-	//内部员工
-	$("#insideEngineerImg").click(function(){
+
+	// 内部员工
+	$("#insideEngineerImg").click(function() {
+		initInsideProvider();
 		$("#insideProvider").modal("show");
 	});
 
@@ -58,7 +59,7 @@ function appendNewDemander(registers, firstRegisterIndex) {
 		var register = "<tr>";
 		register += "<td>";
 		register += "<input type='radio' name='newDemanderId' value="
-				+ registers[i].id + " sideType='outside'>";
+				+ registers[i].id + ">";
 		register += "</td>";
 		register += "<td>" + registers[i].serviceOrderId + "</td>";
 		register += "<td>" + registers[i].category + "</td>";
@@ -86,15 +87,15 @@ function appendNewDemander(registers, firstRegisterIndex) {
 	$("input[name=newDemanderId]").click(
 			function() {
 				$("#selectNewDemanderId").val($(this).val());
-				$("#insideOrOutSide").val($(this).attr("sideType"));
 				$.post(basePath + "/process/outsideProviderList", {
 					sId : $(this).val(),
 				}, function(data, status) {
 					$("#newDemanderEngineer").empty();
 					var options = "<option value=''>工程师</option>";
 					for (var i = 0; i < data.length; i++) {
-						options += "<option value=" + data[i].applyBy + ">"
-								+ data[i].applyname + "</option>";
+						options += "<option value=" + data[i].applyBy
+								+ " sideType='outside'>" + data[i].applyname
+								+ "</option>";
 					}
 					$("#newDemanderEngineer").html(options);
 				}, "json");
@@ -106,10 +107,10 @@ function appendNewDemander(registers, firstRegisterIndex) {
  */
 function approvalNewDemander(dealType) {
 	var selectNewDemanderId = $("#selectNewDemanderId").val();
-	var insideOrOutSide = $("#insideOrOutSide").val();
 	var remark = $("#newDemanderRemark").val();
 	var dealBy = "";
 	var dealName = "";
+	var insideOrOutSide = "";
 	if (selectNewDemanderId == null || selectNewDemanderId == "") {
 		showTipsError("请选择需要处理的需求");
 		return false;
@@ -120,11 +121,14 @@ function approvalNewDemander(dealType) {
 			return false;
 		dealBy = $("#newDemanderEngineer").val();
 		dealName = $('#newDemanderEngineer option:selected').text();
+		insideOrOutSide = $('#newDemanderEngineer option:selected').attr(
+				"sideType");
 	} else if (dealType == 10) {// 如果转废单，则需要输入备注信息
 		if (!validateComponent("newDemanderRemark", "textarea"))
 			return false;
 		dealBy = 0;
 		dealName = "";
+		insideOrOutSide = "";
 	}
 	$.post(basePath + "/process/dealDemander", {
 		type : $("#newDemanderType").val(),// 新需求
