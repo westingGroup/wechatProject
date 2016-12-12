@@ -1,33 +1,52 @@
 /**
- * 初始化需求方注册申请列表
+ * 初始化新需求页面
  */
-function initNewDemanderList(currPage, pageSize) {
-	newDemanderPagination = $('#newDemanderPagination').jqPagination({
-		link_type : "self",
-		link_string : basePath + "/process/listOrdersByPage",
-		callback_fun : "getNewDemanderList",
-		current_page : currPage, // 设置当前页 默认为1
-		paraData : {
-			type : $("#newDemanderType").val()
-		}
+function initNewDemander(){
+	//点击查询按钮，执行查询操作
+	$("#newDemanderBtn").click(function(){
+		initNewDemanderList(1);
 	});
-
-	// 通过
+	
+	// 点击审批通过按钮
 	$("#newDemanderApprovalBtn").click(function() {
 		approvalNewDemander(2);
 	});
 
-	// 拒绝
+	// 点击拒绝按钮
 	$("#newDemanderRejectBtn").click(function() {
 		approvalNewDemander(10);
 	});
 
 	// 内部员工
 	$("#insideEngineerImg").click(function() {
-		initInsideProvider();
+		var selectNewDemanderId = $("#selectNewDemanderId").val();
+		if (selectNewDemanderId == null || selectNewDemanderId == "") {// 如果没有选择要处理的新需求，则返回
+			showTipsError("请选择需要处理的需求");
+			return false;
+		}
+		initInsideProviderList(1);
 		$("#insideProvider").modal("show");
 	});
-
+	//执行查询列表操作
+	initNewDemanderList(1);
+}
+/**
+ * 初始化新需求列表
+ */
+function initNewDemanderList(currPage) {
+	newDemanderPagination = $('#newDemanderPagination').jqPagination({
+		link_type : "self",
+		link_string : basePath + "/process/listOrdersByPage",
+		callback_fun : "getNewDemanderList",
+		current_page : currPage, // 设置当前页 默认为1
+		paraData : {
+			type : $("#newDemanderType").val(),
+			serviceOrderId : $("#newDemanderSOI").val(),// 流水号
+			linkname : $("#newDemanderLN").val(),// 联系人
+			linkphone : $("#newDemanderLP").val()
+		// 联系方式
+		}
+	});
 	clearNewDemander();
 }
 

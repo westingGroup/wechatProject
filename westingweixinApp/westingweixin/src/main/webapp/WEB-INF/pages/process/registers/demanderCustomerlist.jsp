@@ -3,7 +3,7 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/process/registers/demanderCustomerlist.js"></script>
 <div>
-	<table class="searchTable table table-hover table-bordered">
+	<table class="resultTable table table-hover table-bordered">
 		<thead>
 			<tr>
 				<th>序号</th>

@@ -1,13 +1,18 @@
+var insideProviderPagination = null;
 /**
  * 初始化内部员工列表
  */
 function initInsideProvider() {
-	getInsideProvider(1);
 	// 确定按钮
 	$("#insideProviderConfirmBtn")
 			.click(
 					function() {
-						var option
+						if ($("#insideProviderId").val() == null
+								|| $("#insideProviderId").val() == "") {
+							$("#insideProviderTipsInfo").html("请选择要处理的内部人员");
+							return false;
+						}
+						
 						$("#newDemanderEngineer option:first").remove();
 						$("#newDemanderEngineer").prepend(
 								"<option value=" + $("#insideProviderId").val()
@@ -16,7 +21,8 @@ function initInsideProvider() {
 										+ "</option>");
 						$("#newDemanderEngineer").prepend(
 								"<option value=''>工程师</option>");
-						clearInsideProvider();
+						$("#insideProviderTipsInfo").html("操作成功");
+						setTimeout(clearInsideProvider(),5000);//5秒后执行方法
 					});
 	// 取消按钮
 	$("#insideProviderCancelBtn").click(function() {
@@ -25,28 +31,46 @@ function initInsideProvider() {
 
 	// 查询按钮
 	$("#insideProviderBtn").click(function() {
-		getInsideProvider(1);
+		initInsideProviderList(1);
 	});
 }
 /**
  * 初始化内部员工列表
  */
-function getInsideProvider(currPage) {
-	$.post(basePath + "/process/listInsideProviderByPage", {
-		currentPage : parseInt(currPage) + 1,
+function initInsideProviderList(currPage) {
+	insideProviderPagination = $('#insideProviderPagination').jqPagination({
+		link_type : "self",
+		link_string : basePath + "/process/listInsideProviderByPage",
+		callback_fun : "initInsideProviderListCallback",
+		current_page : currPage, // 设置当前页 默认为1
 		paraData : {
 			linkname : $("#userName").val(),
 			linkphone : $("#phone").val()
 		}
-	}, function(data, status) {
-		appendInsideProvider(data.records);
-	}, "json");
+	});
+}
+
+/**
+ * 初始化内部员工列表回调函数
+ */
+function initInsideProviderListCallback(currPage, pageSize, totalPage,
+		totalRecords, records) {
+	var firstRegisterIndex = (parseInt(currPage) - 1) * parseInt(pageSize) + 1;
+	var maxRegisterIndex = 0;
+	if (currPage != totalPage)
+		maxRegisterIndex = parseInt(currPage) * parseInt(pageSize);
+	else
+		maxRegisterIndex = totalRecords;
+	$("#insideProviderFirstResult").text(firstRegisterIndex);
+	$("#insideProviderMaxResult").text(maxRegisterIndex);
+	$("#insideProviderTotalRecords").text(totalRecords);
+	appendInsideProvider(records, firstRegisterIndex);
 }
 
 /**
  * 添加内部人员数据
  */
-function appendInsideProvider(records) {
+function appendInsideProvider(records, firstRegisterIndex) {
 	$("#insideProviderBody").empty();
 	for (var i = 0; i < records.length; i++) {
 		var record = "<tr>";
@@ -71,12 +95,9 @@ function appendInsideProvider(records) {
  */
 function clearInsideProvider() {
 	$("#userName").val("");
-	$("#realName").val("");
+	$("#phone").val("");
+	$("#insideProviderId").val("");
 	$("#insideProviderName").val("");
-	$("#insideProviderConfirmBtn").val("");
 	$("#insideProviderTipsInfo").html("");
 	$("#insideProvider").modal("hide");
-	$("#insideProviderConfirmBtn").unbind("click");
-	$("#insideProviderCancelBtn").unbind("click");
-	$("#insideProviderBtn").unbind("click");
 }

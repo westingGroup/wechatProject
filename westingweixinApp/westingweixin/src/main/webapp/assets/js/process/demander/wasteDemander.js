@@ -1,19 +1,33 @@
 /**
+ * 初始化废单服务单
+ */
+function initWasteDemander() {
+	// 点击查询按钮，进行数据的查询
+	$("#wasteDemanderBtn").click(function() {
+		initWasteDemanderList(1);
+	});
+	initWasteDemanderList(1);
+}
+/**
  * 初始化废单服务单列表
+ * 
  * @param currPage
  * @param pageSize
  */
-function initWasteDemanderList(currPage, pageSize){
-	wasteDemanderPagination = $('#wasteDemanderPagination').jqPagination(
-			{
-				link_type : "self",
-				link_string : basePath + "/process/listOrdersByPage",
-				callback_fun : "getWasteDemanderList",
-				current_page : currPage, // 设置当前页 默认为1
-				paraData : {
-					type : $("#wasteDemanderType").val()
-				}
-			});
+function initWasteDemanderList(currPage, pageSize) {
+	wasteDemanderPagination = $('#wasteDemanderPagination').jqPagination({
+		link_type : "self",
+		link_string : basePath + "/process/listOrdersByPage",
+		callback_fun : "getWasteDemanderList",
+		current_page : currPage, // 设置当前页 默认为1
+		paraData : {
+			type : $("#wasteDemanderType").val(),
+			serviceOrderId : $("#wasteDemanderSOI").val(),// 流水号
+			linkname : $("#wasteDemanderLN").val(),// 联系人
+			linkphone : $("#wasteDemanderLP").val()
+		// 联系方式
+		}
+	});
 }
 
 /**

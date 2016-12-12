@@ -6,8 +6,10 @@ var wasteDemanderPagination = null;
  * 初始化需求信息
  */
 function initDemander() {
-	initNewDemanderList(1, 10);
-	initProcessDemanderList(1, 10);
-	initFinishedDemanderList(1, 10);
-	initWasteDemanderList(1, 10);
+	initNewDemander();
+	initProcessDemander();
+	initFinishedDemander();
+	initWasteDemander();
+	initInsideProvider();
+	$(".search").val("");
 }

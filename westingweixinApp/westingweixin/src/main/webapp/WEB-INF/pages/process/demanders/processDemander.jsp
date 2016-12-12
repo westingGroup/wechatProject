@@ -3,7 +3,22 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/process/demander/processDemander.js"></script>
 <div>
-	<table class="searchTable table table-hover table-bordered">
+	<table class="searchTable table">
+		<tbody>
+			<tr>
+				<td>流水号:</td>
+				<td><input type="text" id="processDemanderSOI" class="search" /></td>
+				<td>联系人:</td>
+				<td><input type="text" id="processDemanderLN" class="search" /></td>
+				<td>联系方式:</td>
+				<td><input type="text" id="processDemanderLP" class="search" /></td>
+				<td style="text-align: right;">
+					<button type="button" id="processDemanderBtn" class="btn btn-main">查询</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="resultTable table table-hover table-bordered">
 		<thead>
 			<tr>
 				<th><input type="checkbox" id="processDemanderAll"></th>
@@ -44,8 +59,8 @@
 		</div>
 	</div>
 	<div class="approval_info" id="processDemanderApproval">
-		<input type="hidden" id="processDemanderIds" />
-		<input type="hidden" id="processDemanderType" value="2"/>
+		<input type="hidden" id="processDemanderIds" /> <input type="hidden"
+			id="processDemanderType" value="2" />
 		<table class="table">
 			<tr>
 				<td style="width: 60%;"><textarea rows="3" cols="40"

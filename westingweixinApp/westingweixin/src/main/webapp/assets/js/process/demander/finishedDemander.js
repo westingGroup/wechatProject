@@ -1,10 +1,20 @@
 /**
+ * 初始化已完成的服务单
+ */
+function initFinishedDemander() {
+	// 点击查询按钮，进行数据的查询
+	$("#finishedDemanderBtn").click(function() {
+		initFinishedDemanderList(1);
+	});
+	initFinishedDemanderList(1);
+}
+/**
  * 初始化已完成的服务单列表
  * 
  * @param currPage当前页
  * @param pageSize每页的记录条数
  */
-function initFinishedDemanderList(currPage, pageSize) {
+function initFinishedDemanderList(currPage) {
 	finishedDemanderPagination = $('#finishedDemanderPagination').jqPagination(
 			{
 				link_type : "self",
@@ -12,7 +22,11 @@ function initFinishedDemanderList(currPage, pageSize) {
 				callback_fun : "getFinishedDemanderList",
 				current_page : currPage, // 设置当前页 默认为1
 				paraData : {
-					type : $("#finishedDemanderType").val()
+					type : $("#finishedDemanderType").val(),
+					serviceOrderId : $("#finishedDemanderSOI").val(),// 流水号
+					linkname : $("#finishedDemanderLN").val(),// 联系人
+					linkphone : $("#finishedDemanderLP").val()
+				// 联系方式
 				}
 			});
 }

@@ -205,8 +205,8 @@ public class ProcessController {
             demanderPage.setPageSize(Long.valueOf(pageSize));
         }
 
-        demanderSearchModal.setLinkname(StringUtils.isBlank(linkname) ? "" : linkname.trim());
-        demanderSearchModal.setLinkphone(StringUtils.isBlank(linkphone) ? "" : linkphone.trim());
+        demanderSearchModal.setUsername(StringUtils.isBlank(linkname) ? "" : linkname.trim());
+        demanderSearchModal.setPhone(StringUtils.isBlank(linkphone) ? "" : linkphone.trim());
         demanderSearchModal.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_NORMAL_STR);
         demanderSearchModal.setPager(demanderPage);
         PagerInfo<DemanderDto> userResult = insideProviderService.listInsideProviderByKeyword(demanderSearchModal);

@@ -1,35 +1,49 @@
 /**
+ * 初始化处理中需求
+ */
+function initProcessDemander() {
+	$("#processDemanderBtn").click(function() {
+		initProcessDemanderList(1);
+	});
+
+	// 审批通过
+	$("#processDemanderApprovalBtn").click(function() {
+		approvalProcessDemander(9);
+	});
+
+	// 审批拒绝
+	$("#processDemanderRejectBtn").click(function() {
+		approvalProcessDemander(10);
+	});
+
+	// 全选时
+	$("#processDemanderAll").click(
+			function() {
+				checkAllApplyForSelect("processDemanderAll",
+						"processDemanderId", "processDemanderIds");
+			});
+	initProcessDemanderList(1);
+}
+/**
  * 初始化处理中需求列表
  * 
  * @param currPage
  * @param pageSize
  */
-function initProcessDemanderList(currPage, pageSize) {
+function initProcessDemanderList(currPage) {
 	processDemanderPagination = $('#processDemanderPagination').jqPagination({
 		link_type : "self",
 		link_string : basePath + "/process/listOrdersByPage",
 		callback_fun : "getProcessDemanderList",
 		current_page : currPage, // 设置当前页 默认为1
 		paraData : {
-			type : $("#processDemanderType").val()
+			type : $("#processDemanderType").val(),
+			serviceOrderId : $("#processDemanderSOI").val(),// 流水号
+			linkname : $("#processDemanderLN").val(),// 联系人
+			linkphone : $("#processDemanderLP").val()
+		// 联系方式
 		}
 	});
-
-	// 通过
-	$("#processDemanderApprovalBtn").click(function() {
-		approvalProcessDemander(9);
-	});
-
-	// 拒绝
-	$("#processDemanderRejectBtn").click(function() {
-		approvalProcessDemander(10);
-	});
-
-	$("#processDemanderAll").click(
-			function() {
-				checkAllApplyForSelect("processDemanderAll",
-						"processDemanderId", "processDemanderIds");
-			});
 	clearProcessDemander();
 }
 

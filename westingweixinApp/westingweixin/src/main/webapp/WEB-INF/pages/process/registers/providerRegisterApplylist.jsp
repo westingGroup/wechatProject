@@ -3,7 +3,7 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/process/registers/providerRegisterApplylist.js"></script>
 <div>
-	<table class="searchTable table table-hover table-bordered">
+	<table class="resultTable table table-hover table-bordered">
 		<thead>
 			<tr>
 				<th><input type="checkbox" id="providerApplyAll"></th>

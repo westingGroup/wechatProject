@@ -3,7 +3,22 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/process/demander/finishedDemander.js"></script>
 <div>
-	<table class="searchTable table table-hover table-bordered">
+	<table class="searchTable table">
+		<tbody>
+			<tr>
+				<td>流水号:</td>
+				<td><input type="text" id="finishedDemanderSOI" class="search" /></td>
+				<td>联系人:</td>
+				<td><input type="text" id="finishedDemanderLN" class="search" /></td>
+				<td>联系方式:</td>
+				<td><input type="text" id="finishedDemanderLP" class="search" /></td>
+				<td style="text-align: right;">
+					<button type="button" id="finishedDemanderBtn" class="btn btn-main">查询</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="resultTable table table-hover table-bordered">
 		<thead>
 			<tr>
 				<th>流水号</th>
