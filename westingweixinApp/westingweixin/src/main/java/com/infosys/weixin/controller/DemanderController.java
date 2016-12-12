@@ -166,4 +166,31 @@ public class DemanderController {
         return "评价成功";
     }
 
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+    public String update(@PathVariable int id, Model model) {
+        Demander u = demanderService.load(id);
+        model.addAttribute("demander", u);
+        return "demander/update";
+    }
+
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    public String update(@PathVariable int id, Demander demander) {
+        Demander tu = demanderService.load(id);
+        tu.setBirthDate(demander.getBirthDate());
+        tu.setBusiness(demander.getBusiness());
+        tu.setCompany(demander.getCompany());
+        tu.setLinkname(demander.getLinkname());
+        tu.setLinkphone(demander.getLinkphone());
+        demanderService.update(tu);
+        return "redirect:/demander/list";
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable int id) {
+        Demander tu = demanderService.load(id);
+        tu.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_DELETE);
+        demanderService.delete(id);
+        return "redirect:/demander/list";
+    }
+
 }
