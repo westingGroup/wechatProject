@@ -3,6 +3,19 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/process/registers/providerRegisterApplylist.js"></script>
 <div>
+	<table class="searchTable table">
+		<tbody>
+			<tr>
+				<td>联系人:</td>
+				<td><input type="text" id="providerApplyLN" class="search" /></td>
+				<td>联系方式:</td>
+				<td><input type="text" id="providerApplyLP" class="search" /></td>
+				<td style="text-align: right;">
+					<button type="button" id="providerApplyBtn" class="btn btn-main">查询</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 	<table class="resultTable table table-hover table-bordered">
 		<thead>
 			<tr>

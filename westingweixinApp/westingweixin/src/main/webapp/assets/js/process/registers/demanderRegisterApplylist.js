@@ -1,7 +1,38 @@
 /**
+ * 初始化新注册需求方
+ */
+function initDemanderRegisterApply() {
+	// 点击查询按钮，进行查询操作
+	$("#demanderApplyBtn").click(function() {
+		initDemanderRegisterApplyList(1);
+	});
+
+	// 审批通过
+	$("#demanderApplyApprovalBtn").click(
+			function() {
+				approvalDemanderApply("demander", 11, "demanderApplyIds",
+						"demanderRemark");
+			});
+
+	// 审批拒绝
+	$("#demanderApplyRejectBtn").click(
+			function() {
+				approvalDemanderApply("demander", 10, "demanderApplyIds",
+						"demanderRemark");
+			});
+
+	// 点击全选按钮
+	$("#demanderApplyAll").click(
+			function() {
+				checkAllApplyForSelect("demanderApplyAll", "demanderApplyId",
+						"demanderApplyIds");
+			});
+	initDemanderRegisterApplyList(1);
+}
+/**
  * 初始化需求方注册申请列表
  */
-function initDemanderRegisterApplyList(currPage, pageSize) {
+function initDemanderRegisterApplyList(currPage) {
 	demanderApplyPagination = $('#demanderApplyPagination').jqPagination({
 		link_type : "self",
 		link_string : basePath + "/process/listByPage",
@@ -9,29 +40,13 @@ function initDemanderRegisterApplyList(currPage, pageSize) {
 		current_page : currPage, // 设置当前页 默认为1
 		paraData : {
 			type : "demander",
-			status : 1
+			status : 1,
+			linkname : $("#demanderApplyLN").val(),// 联系人
+			linkphone : $("#demanderApplyLP").val()
+		// 联系方式
 		}
 	});
 
-	// 通过
-	$("#demanderApplyApprovalBtn").click(
-			function() {
-				approvalDemanderApply("demander", 11, "demanderApplyIds",
-						"demanderRemark");
-			});
-
-	// 拒绝
-	$("#demanderApplyRejectBtn").click(
-			function() {
-				approvalDemanderApply("demander", 10, "demanderApplyIds",
-						"demanderRemark");
-			});
-
-	$("#demanderApplyAll").click(
-			function() {
-				checkAllApplyForSelect("demanderApplyAll", "demanderApplyId",
-						"demanderApplyIds");
-			});
 	clearDemanderApply();
 }
 
@@ -105,7 +120,7 @@ function appendDemanderRegisterApply(registers, firstRegisterIndex) {
 /**
  * 清空需求方申请
  */
-function clearDemanderApply(){
+function clearDemanderApply() {
 	$("#demanderApplyIds").val("");
 	$("#demanderRemark").val("");
 }

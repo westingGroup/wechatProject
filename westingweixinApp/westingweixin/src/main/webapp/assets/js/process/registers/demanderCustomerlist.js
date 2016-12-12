@@ -1,7 +1,17 @@
 /**
  * 初始化需求方列表
  */
-function initDemanderCustomerList(currPage, pageSize) {
+function initDemanderCustomer() {
+	// 点击查询按钮，进行查询操作
+	$("#demanderCustomerBtn").click(function() {
+		initDemanderCustomerList(1);
+	});
+	initDemanderCustomerList(1);
+}
+/**
+ * 初始化需求方列表
+ */
+function initDemanderCustomerList(currPage) {
 	demanderCustomerPagination = $('#demanderCustomerPagination').jqPagination(
 			{
 				link_type : "self",
@@ -10,8 +20,11 @@ function initDemanderCustomerList(currPage, pageSize) {
 				current_page : currPage, // 设置当前页 默认为1
 				paraData : {
 					type : "demander",// 服务需求方
-					status : 11
-				// 已经注册通过的
+					status : 11,
+					// 已经注册通过的
+					linkname : $("#demanderCustomerLN").val(),// 联系人
+					linkphone : $("#demanderCustomerLP").val()
+				// 联系方式
 				}
 			});
 }

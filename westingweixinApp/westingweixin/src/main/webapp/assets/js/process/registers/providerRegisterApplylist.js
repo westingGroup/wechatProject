@@ -1,16 +1,9 @@
 /**
- * 初始化服务方注册申请列表
+ * 初始化新注册服务提供商页面
  */
-function initProviderRegisterApplyList(currPage, pageSize) {
-	providerApplyPagination = $('#providerApplyPagination').jqPagination({
-		link_type : "self",
-		link_string : basePath + "/process/listByPage",
-		callback_fun : "getProviderRegisterApplyList",
-		current_page : currPage, // 设置当前页 默认为1
-		paraData : {
-			type : "provider",
-			status : 1
-		}
+function initProviderRegisterApply() {
+	$("#providerApplyBtn").click(function() {
+		initProviderRegisterApplyList(1);
 	});
 
 	// 通过
@@ -32,7 +25,27 @@ function initProviderRegisterApplyList(currPage, pageSize) {
 				checkAllApplyForSelect("providerApplyAll", "providerApplyId",
 						"providerApplyIds");
 			});
-	clearProviderApply();//清除服务提供商参数
+	initProviderRegisterApplyList(1);
+}
+/**
+ * 初始化服务方注册申请列表
+ */
+function initProviderRegisterApplyList(currPage) {
+	providerApplyPagination = $('#providerApplyPagination').jqPagination({
+		link_type : "self",
+		link_string : basePath + "/process/listByPage",
+		callback_fun : "getProviderRegisterApplyList",
+		current_page : currPage, // 设置当前页 默认为1
+		paraData : {
+			type : "provider",
+			status : 1,
+			linkname : $("#providerApplyLN").val(),// 联系人
+			linkphone : $("#providerApplyLP").val()
+		// 联系方式
+		}
+	});
+
+	clearProviderApply();// 清除服务提供商参数
 }
 
 /**
@@ -103,7 +116,7 @@ function appendProviderRegisterApply(registers, firstRegisterIndex) {
 /**
  * 清除服务申请参数
  */
-function clearProviderApply(){
+function clearProviderApply() {
 	$("#providerApplyIds").val("");
 	$("#providerRemark").val("");
 }

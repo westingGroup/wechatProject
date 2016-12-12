@@ -7,11 +7,12 @@ var insideCustomerPagination = null;
  * 初始化注册列表信息
  */
 function initRegisters() {
-	initDemanderRegisterApplyList(1, 10);
-	initProviderRegisterApplyList(1, 10);
-	initDemanderCustomerList(1, 10);
-	initProviderCustomerList(1, 10);
-	initInsideCustomerList(1,10);
+	initDemanderRegisterApply();
+	initProviderRegisterApply();
+	initDemanderCustomer();
+	initProviderCustomer();
+	initInsideCustomer();
+	$(".search").val("");
 }
 
 /**

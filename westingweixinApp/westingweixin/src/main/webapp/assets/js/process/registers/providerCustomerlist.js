@@ -1,7 +1,17 @@
 /**
+ * 初始化服务提供商页面
+ */
+function initProviderCustomer() {
+	// 点击查询按钮，进行查询操作
+	$("#providerCustomerBtn").click(function() {
+		initProviderCustomerList(1);
+	});
+	initProviderCustomerList(1);
+}
+/**
  * 初始化服务方列表
  */
-function initProviderCustomerList(currPage, pageSize) {
+function initProviderCustomerList(currPage) {
 	providerCustomerPagination = $('#providerCustomerPagination').jqPagination(
 			{
 				link_type : "self",
@@ -10,8 +20,11 @@ function initProviderCustomerList(currPage, pageSize) {
 				current_page : currPage, // 设置当前页 默认为1
 				paraData : {
 					type : "provider",// 服务提供方
-					status : 11
-				// 已经注册通过的
+					status : 11,
+					// 已经注册通过的
+					linkname : $("#providerCustomerLN").val(),// 联系人
+					linkphone : $("#providerCustomerLP").val()
+				// 联系方式
 				}
 			});
 }

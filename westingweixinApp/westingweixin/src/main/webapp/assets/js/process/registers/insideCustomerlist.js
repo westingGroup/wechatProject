@@ -1,7 +1,18 @@
 /**
+ * 初始化内部提供商页面
+ */
+function initInsideCustomer() {
+	// 点击查询按钮，执行查询操作
+	$("#insideCustomerBtn").click(function() {
+		alert("执行查询操作");
+		initInsideCustomerList(1);
+	});
+	initInsideCustomerList(1);
+}
+/**
  * 初始化内部提供商列表
  */
-function initInsideCustomerList(currPage, pageSize) {
+function initInsideCustomerList(currPage) {
 	insideCustomerPagination = $('#insideCustomerPagination').jqPagination({
 		link_type : "self",
 		link_string : basePath + "/process/listByPage",
@@ -9,8 +20,11 @@ function initInsideCustomerList(currPage, pageSize) {
 		current_page : currPage, // 设置当前页 默认为1
 		paraData : {
 			type : "inside",// 内部服务提供商
-			status : 1
-		// 正常用户
+			status : 1,
+			// 正常用户
+			linkname : $("#insideCustomerLN").val(),// 联系人
+			linkphone : $("#insideCustomerLP").val()
+		// 联系方式
 		}
 	});
 }
