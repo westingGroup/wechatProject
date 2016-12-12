@@ -280,7 +280,7 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
         dtoPager.setTotalRecords(this.getOrdersTotalByConditionsForProcess(demanderSearchModal)); // 总数
         StringBuffer sb = new StringBuffer(
                 "SELECT s.id id,s.service_order_id service_order_id,s.category category,s.service_type service_type,"
-                        + "DATE_FORMAT(s.create_date,'%Y-%m-%d %T') create_date,DATE_FORMAT(s.deal_date,'%Y-%m-%d %T') deal_date,s.content content,"
+                        + "DATE_FORMAT(s.create_date,'%Y-%m-%d %T') create_date,IFNULL(DATE_FORMAT(s.deal_date,'%Y-%m-%d %T'),'') deal_date,s.content content,"
                         + "CASE s.status WHEN 0 THEN '新需求' WHEN 1 THEN '待分配' WHEN 2 THEN '处理中' WHEN 9 THEN '已完成' WHEN 10 THEN '废单' ELSE '其他' END AS status,"
                         + "IFNULL(s.evaluate,'') evaluate,IFNULL(s.linkname,'') linkname,IFNULL(s.linkphone,'') linkphone,"
                         + "IFNULL(s.dealname,'') dealname FROM t_service_order s " + "WHERE 1=1 ");
