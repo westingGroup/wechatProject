@@ -21,6 +21,11 @@ function initNewDemanderList(currPage, pageSize) {
 	$("#newDemanderRejectBtn").click(function() {
 		approvalNewDemander(10);
 	});
+	
+	//内部员工
+	$("#insideEngineerImg").click(function(){
+		$("#insideProvider").modal("show");
+	});
 
 	clearNewDemander();
 }

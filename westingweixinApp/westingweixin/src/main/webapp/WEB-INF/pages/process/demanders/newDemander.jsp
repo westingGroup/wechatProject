@@ -51,7 +51,10 @@
 				<td style="width: 30%;"><textarea rows="3" cols="40"
 						class="required" id="newDemanderRemark" label="备注"></textarea></td>
 				<td style="width: 30%;"><select class="select required"
-					id="newDemanderEngineer" label="工程师"><option value="">工程师</select></td>
+					id="newDemanderEngineer" label="工程师"><option value="">工程师</select><img
+					class="btnImg" style="margin-left: 5px; cursor: pointer;"
+					id="insideEngineerImg"
+					src="<%=request.getContextPath()%>/assets/img/magnifier.png"></td>
 				<td style="width: 20%;"><button class="btn approvalBtn"
 						id="newDemanderApprovalBtn">
 						<span class="btnText">转处理中</span> <img class="btnImg"
@@ -66,4 +69,5 @@
 			</tr>
 		</table>
 	</div>
+	<jsp:include page="insideProvider.jsp"></jsp:include>
 </div>

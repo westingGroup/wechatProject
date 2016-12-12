@@ -26,9 +26,15 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript"
-	src="<%=request.getContextPath()%>/assets/js/common/common.js"></script>
+	src="<%=request.getContextPath()%>/assets/media/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/media/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/media/js/bootstrap-datetimepicker.zh-CN.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/jqPagination/js/jquery.jqpagination.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/js/common/common.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/process/common.js"></script>
 <script type="text/javascript"
