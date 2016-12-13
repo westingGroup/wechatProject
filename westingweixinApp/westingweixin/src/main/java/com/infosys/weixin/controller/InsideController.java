@@ -26,34 +26,32 @@ public class InsideController {
 		return "inside/list";
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String add(Model model) {
-		model.addAttribute("inside", new InsideProvider());
-		return "inside/add";
-	}
+    @RequestMapping(value = "/addOrUpdate", method = RequestMethod.GET)
+    public String add(int id, Model model) {
+        InsideProvider u = null;
+        if (id > 0) {
+            u = insideProviderService.load(id);
+        } else {
+            u = new InsideProvider();
+        }
+        model.addAttribute("inside", u);
+        return "inside/add";
+    }
 
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(InsideProvider inside) {
-		insideProviderService.add(inside);
-		return "redirect:/inside/list";
-	}
+    @RequestMapping(value = "/addOrUpdate", method = RequestMethod.POST)
+    public String add(int id, InsideProvider inside) {
+        if (id > 0) {
+            InsideProvider tu = insideProviderService.load(id);
+            tu.setUsername(inside.getUsername());
+            tu.setPhone(inside.getPhone());
+            tu.setPassword(inside.getPassword());
+            insideProviderService.update(tu);
+        } else {
+            insideProviderService.add(inside);
+        }
+        return "redirect:/inside/list";
+    }
 
-	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-	public String update(@PathVariable int id, Model model) {
-		InsideProvider u = insideProviderService.load(id);
-		model.addAttribute("inside", u);
-		return "inside/update";
-	}
-
-	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String update(@PathVariable int id, InsideProvider inside) {
-		InsideProvider tu = insideProviderService.load(id);
-		tu.setUsername(inside.getUsername());
-		tu.setPhone(inside.getPhone());
-		tu.setPassword(inside.getPassword());
-		insideProviderService.update(tu);
-		return "redirect:/inside/list";
-	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET, produces = "application/text; charset=utf-8")
 	public @ResponseBody String delete(@PathVariable int id) {
