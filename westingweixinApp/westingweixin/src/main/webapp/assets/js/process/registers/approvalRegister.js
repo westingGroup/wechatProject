@@ -13,7 +13,8 @@ function initRegisters() {
 	initProviderCustomer();// 初始化服务提供商列表
 	initInsideCustomer();// 初始化内部提供商列表
 	initDemanderCustomerUpdate();// 初始化服务需求方列表中的更新页面
-	initProviderCustomerUpdate();//初始化服务提供商列表中的更新页面
+	initProviderCustomerUpdate();// 初始化服务提供商列表中的更新页面
+	initInsideCustomerUpdate();// 初始化内部提供商列表中的更新页面
 	$(".search").val("");
 }
 

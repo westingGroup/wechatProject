@@ -176,7 +176,7 @@ public class DemanderController {
 		return JsonUtil.getInstance().obj2json(u);
 	}
 
-	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST, produces = "application/text; charset=utf-8")
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
 	public @ResponseBody String update(@PathVariable int id, Demander demander,
 			@RequestParam(value = "birth", required = false) String birth) {
 		Demander tu = demanderService.load(id);

@@ -51,6 +51,7 @@
 		</div>
 	</div>
 	<div class="approval_info" style="text-align: right;">
-		<button class="btn ">新增</button>
+		<button class="btn" id="insideCustomerAddBtn">新增</button>
 	</div>
+	<jsp:include page="insideCustomerUpdate.jsp"></jsp:include>
 </div>

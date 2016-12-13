@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.infosys.basic.entity.InsideProvider;
 import com.infosys.basic.service.IInsideProviderService;
 import com.infosys.basic.util.Constants;
+import com.infosys.basic.util.JsonUtil;
 
 @RequestMapping("/inside")
 @Controller
@@ -26,32 +27,30 @@ public class InsideController {
 		return "inside/list";
 	}
 
-    @RequestMapping(value = "/addOrUpdate", method = RequestMethod.GET)
-    public String add(int id, Model model) {
-        InsideProvider u = null;
-        if (id > 0) {
-            u = insideProviderService.load(id);
-        } else {
-            u = new InsideProvider();
-        }
-        model.addAttribute("inside", u);
-        return "inside/add";
-    }
+	@RequestMapping(value = "/addOrUpdate", method = RequestMethod.GET)
+	public @ResponseBody String add(int id, Model model) {
+		InsideProvider u = null;
+		if (id > 0) {
+			u = insideProviderService.get(id);
+		} else {
+			u = new InsideProvider();
+		}
+		return JsonUtil.getInstance().obj2json(u);
+	}
 
-    @RequestMapping(value = "/addOrUpdate", method = RequestMethod.POST)
-    public String add(int id, InsideProvider inside) {
-        if (id > 0) {
-            InsideProvider tu = insideProviderService.load(id);
-            tu.setUsername(inside.getUsername());
-            tu.setPhone(inside.getPhone());
-            tu.setPassword(inside.getPassword());
-            insideProviderService.update(tu);
-        } else {
-            insideProviderService.add(inside);
-        }
-        return "redirect:/inside/list";
-    }
-
+	@RequestMapping(value = "/addOrUpdate", method = RequestMethod.POST)
+	public String add(int id, InsideProvider inside) {
+		if (id > 0) {
+			InsideProvider tu = insideProviderService.load(id);
+			tu.setUsername(inside.getUsername());
+			tu.setPhone(inside.getPhone());
+			tu.setPassword(inside.getPassword());
+			insideProviderService.update(tu);
+		} else {
+			insideProviderService.add(inside);
+		}
+		return "redirect:/inside/list";
+	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET, produces = "application/text; charset=utf-8")
 	public @ResponseBody String delete(@PathVariable int id) {

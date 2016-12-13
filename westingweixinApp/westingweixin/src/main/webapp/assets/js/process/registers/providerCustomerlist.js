@@ -81,7 +81,8 @@ function appendProviderCustomer(registers, firstRegisterIndex) {
 
 	// 更新操作
 	$(".providerCustomerUpdateImg").click(function() {
-
+		initProviderCustomerUpdateRecord($(this).attr("registerId"));
+		$("#providerCustomerUpdate").modal("show");
 	});
 
 	// 删除操作

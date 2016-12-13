@@ -4,8 +4,12 @@
 function initInsideCustomer() {
 	// 点击查询按钮，执行查询操作
 	$("#insideCustomerBtn").click(function() {
-		alert("执行查询操作");
 		initInsideCustomerList(1);
+	});
+	// 新增页面
+	$("#insideCustomerAddBtn").click(function() {
+		initInsideCustomerUpdateRecord(0);
+		$("#insideCustomerUpdate").modal("show");
 	});
 	initInsideCustomerList(1);
 }
@@ -79,7 +83,8 @@ function appendInsideCustomer(registers, firstRegisterIndex) {
 
 	// 修改操作
 	$(".insideCustomerUpdateImg").click(function() {
-
+		initInsideCustomerUpdateRecord($(this).attr("registerId"));
+		$("#insideCustomerUpdate").modal("show");
 	});
 
 	// 删除操作

@@ -226,23 +226,23 @@ public class ProviderController {
 	}
 
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-	public String update(@PathVariable int id, Model model) {
-		Provider u = providerService.load(id);
-		model.addAttribute("provider", u);
-		return "provider/update";
+	public @ResponseBody String update(@PathVariable int id, Model model) {
+		Provider u = providerService.get(id);
+		return JsonUtil.getInstance().obj2json(u);
 	}
 
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String update(@PathVariable int id, Provider provider) {
+	public @ResponseBody String update(@PathVariable int id, Provider provider,
+			@RequestParam(value = "birth", required = false) String birth) {
 		Provider tu = providerService.load(id);
-		tu.setBirthDate(provider.getBirthDate());
+		tu.setBirthDate(DateUtil.parseDate(birth, "yyyy-MM-dd"));
 		tu.setBusiness(provider.getBusiness());
 		tu.setCompany(provider.getCompany());
 		tu.setLinkname(provider.getLinkname());
 		tu.setLinkphone(provider.getLinkphone());
 		tu.setQualification(provider.getQualification());
 		providerService.update(tu);
-		return "redirect:/provider/list";
+		return "更新成功";
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET, produces = "application/text; charset=utf-8")
