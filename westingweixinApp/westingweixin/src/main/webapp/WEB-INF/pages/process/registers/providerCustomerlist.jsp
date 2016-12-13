@@ -52,4 +52,5 @@
 				id="providerCustomerTotalRecords"></span>
 		</div>
 	</div>
+	<jsp:include page="providerCustomerUpdate.jsp"></jsp:include>
 </div>
