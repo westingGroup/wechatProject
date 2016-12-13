@@ -1673,7 +1673,7 @@
 }(window.jQuery);
 
 /*-----------------------*/
-function initDatePickerForDay() {
+function initDatePickerForDay(date) {
 	$(".form_datetime_day").datetimepicker({
 		language : 'zh-CN',
 		format : "yyyy-mm-dd",
@@ -1681,7 +1681,7 @@ function initDatePickerForDay() {
 		todayBtn : true,
 		minView : "2",
 		pickerPosition : "bottom-left",
-		startDate : new Date()
+		startDate : date
 	});
 }
 function initDatePickerForHour() {

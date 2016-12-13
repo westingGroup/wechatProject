@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.infosys.basic.entity.InsideProvider;
 import com.infosys.basic.service.IInsideProviderService;
 import com.infosys.basic.util.Constants;
-import com.infosys.weixin.kit.SecurityKit;
 
 @RequestMapping("/inside")
 @Controller
@@ -51,7 +50,7 @@ public class InsideController {
 		InsideProvider tu = insideProviderService.load(id);
 		tu.setUsername(inside.getUsername());
 		tu.setPhone(inside.getPhone());
-		tu.setPassword(SecurityKit.md5(inside.getPassword()));
+		tu.setPassword(inside.getPassword());
 		insideProviderService.update(tu);
 		return "redirect:/inside/list";
 	}
@@ -96,7 +95,7 @@ public class InsideController {
 	public String forgetPassword(HttpSession session, String password) {
 		InsideProvider u = (InsideProvider) session
 				.getAttribute(Constants.PC_SESSION_USER);
-		u.setPassword(SecurityKit.md5(password));
+		u.setPassword(password);
 		insideProviderService.update(u);
 		return "redirect:/inside/list";
 

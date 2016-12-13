@@ -50,7 +50,7 @@
 		<c:forEach items="${orders.records}" var="order" varStatus="status">
 		renderList("${order.id}");
 		</c:forEach>
-		initDatePickerForDay();
+		initDatePickerForDay(new Date());
 		//定义滑动操作
 		isTouchDevice("mobileApply");
 	});
