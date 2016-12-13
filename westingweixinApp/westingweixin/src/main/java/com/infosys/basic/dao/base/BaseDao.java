@@ -114,6 +114,10 @@ public class BaseDao<T> implements IBaseDao<T> {
 		return (T)getSession().load(getClz(), id);
 	}
 	
+	public T get(int id){
+	    return (T) getSession().get(getClz(), id);
+	}
+	
 	@SuppressWarnings("rawtypes")
 	public Object loadEntity(int id,Class clz) {
 		return (Object)getSession().load(clz, id);

@@ -11,7 +11,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
 		http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
 		">
-	<import resource="jobs.xml"/>
+<!-- 	<import resource="jobs.xml"/> -->
 	<mvc:annotation-driven>
 		<!-- 消息转换器 -->
 		<mvc:message-converters register-defaults="true">
@@ -84,7 +84,7 @@
 	<mvc:resources mapping="/assets/**" location="/assets/" />
 	<mvc:resources mapping="/portrait/**" location="/portrait/" />
 	<mvc:resources mapping="/topicPicture/**" location="/topicPicture/" />
-	<mvc:resources mapping="/wikiPic/**" location="/wikiPic/" />
+	<mvc:resources mapping="/picword/**" location="/picword/" />
 	<mvc:resources mapping="/ueditor/**" location="/ueditor/" />
 	<mvc:resources mapping="/easyui_themes/**" location="/easyui_themes/" />
 	<mvc:resources mapping="/bootstrap-datetimepicker/**"
