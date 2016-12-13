@@ -85,12 +85,20 @@ function appendInsideCustomer(registers, firstRegisterIndex) {
 	// 删除操作
 	$(".insideCustomerDeleteImg").click(
 			function() {
-				$.get(
-						basePath + "/inside/delete/"
-								+ $(this).attr("registerId"), {}, function(
-								data, status) {
-							showTipsSucc(data);
-							insideCustomerPagination.updateSelfInput();
-						}, "text");
+				var registerId = $(this).attr("registerId");
+				$.confirm({
+					title : '确认',
+					content : '确定要删除吗?',
+					confirm : function() {
+						$.get(basePath + "/inside/delete/" + registerId, {},
+								function(data, status) {
+									showTipsSucc(data);
+									insideCustomerPagination.updateSelfInput();
+								}, "text");
+					},
+					cancel : function() {
+					}
+				});
+
 			});
 }
