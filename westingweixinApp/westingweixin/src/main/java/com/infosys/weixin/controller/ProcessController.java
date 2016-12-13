@@ -105,7 +105,7 @@ public class ProcessController {
 
     // pc处理注册的需求方和提供商
     // dealType 对应 11 批准10拒绝
-    @RequestMapping(value = "/dealRegister", method = RequestMethod.POST, produces = "application/text; charset=utf-8")
+    @RequestMapping(value = "/dealRegister", method = RequestMethod.POST)
     public @ResponseBody String dealRegister(String type, String demanderIds, String remark, int dealType,
             HttpSession session) {
         String rtnStr = "操作失败";
@@ -232,7 +232,7 @@ public class ProcessController {
     }
 
     // InsideOrOutSide inside or outside
-    @RequestMapping(value = "/dealDemander", method = RequestMethod.POST, produces = "application/text; charset=utf-8")
+    @RequestMapping(value = "/dealDemander", method = RequestMethod.POST)
     public @ResponseBody String dealDemander(String type, String demanderIds, String remark, int dealType,
             String InsideOrOutSide, int dealBy, String dealName, HttpSession session) {
         String rtnStr = "操作失败";

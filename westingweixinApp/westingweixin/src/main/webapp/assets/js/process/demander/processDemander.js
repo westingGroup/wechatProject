@@ -144,7 +144,7 @@ function approvalProcessDemander(dealType) {
 		finishedDemanderPagination.updateSelfInput();
 		wasteDemanderPagination.updateSelfInput();
 		clearProcessDemander();
-	}, "text");
+	});
 }
 
 /**

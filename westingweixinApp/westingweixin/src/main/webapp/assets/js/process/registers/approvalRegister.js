@@ -52,5 +52,5 @@ function approvalDemanderApply(type, dealType, demanderIds, remark,
 			providerCustomerPagination.updateSelfInput();
 			clearProviderApply();//清除申请的参数
 		}
-	}, "text");
+	});
 }

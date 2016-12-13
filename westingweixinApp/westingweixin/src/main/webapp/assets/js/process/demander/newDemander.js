@@ -149,6 +149,7 @@ function approvalNewDemander(dealType) {
 		dealName = "";
 		insideOrOutSide = "";
 	}
+	
 	$.post(basePath + "/process/dealDemander", {
 		type : $("#newDemanderType").val(),// 新需求
 		demanderIds : selectNewDemanderId,// 选择的需求id
@@ -163,7 +164,7 @@ function approvalNewDemander(dealType) {
 		processDemanderPagination.updateSelfInput();
 		wasteDemanderPagination.updateSelfInput();
 		clearNewDemander();
-	}, "text");
+	});
 }
 
 /**
