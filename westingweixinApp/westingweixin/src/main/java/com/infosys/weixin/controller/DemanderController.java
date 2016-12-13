@@ -176,16 +176,17 @@ public class DemanderController {
 		return JsonUtil.getInstance().obj2json(u);
 	}
 
-	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String update(@PathVariable int id, Demander demander) {
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST, produces = "application/text; charset=utf-8")
+	public @ResponseBody String update(@PathVariable int id, Demander demander,
+			@RequestParam(value = "birth", required = false) String birth) {
 		Demander tu = demanderService.load(id);
-		tu.setBirthDate(demander.getBirthDate());
+		tu.setBirthDate(DateUtil.parseDate(birth, "yyyy-MM-dd"));
 		tu.setBusiness(demander.getBusiness());
 		tu.setCompany(demander.getCompany());
 		tu.setLinkname(demander.getLinkname());
 		tu.setLinkphone(demander.getLinkphone());
 		demanderService.update(tu);
-		return "redirect:/demander/list";
+		return "更新成功";
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET, produces = "application/text; charset=utf-8")

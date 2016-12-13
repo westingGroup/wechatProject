@@ -18,41 +18,42 @@
 			<div class="container commonStyle contact">
 				<hr class="commonHr" />
 				<div class="row contactPerson">
-					<div class="col-md-1 label">
+					<div class="col-md-2 label">
 						<img alt="姓名"
 							src="<%=request.getContextPath()%>/assets/img/contactPerson.png"
 							width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;姓名：
 					</div>
-					<div class="col-md-11">
-						<input type="text" id="linkname" class="text required maxlength"
-							label="姓名" maxlength="255" />
+					<div class="col-md-10">
+						<input type="text" id="demanderCustomerUpdateLN"
+							class="text required maxlength" label="姓名" maxlength="255" />
 					</div>
 				</div>
 				<hr class="commonHr" />
 				<div class="row contactPhone">
-					<div class="col-md-1 label">
+					<div class="col-md-2 label">
 						<img alt="电话"
 							src="<%=request.getContextPath()%>/assets/img/contactPhone.png"
 							width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;电话：
 					</div>
-					<div class="col-md-11">
-						<input type="text" id="linkphone"
+					<div class="col-md-10">
+						<input type="text" id="demanderCustomerUpdateLP"
 							class="text required phone maxlength" label="电话" maxlength="13" />
 					</div>
 				</div>
 				<hr class="commonHr" />
 				<div class="row contactBirthday">
-					<div class="col-md-1 label">
+					<div class="col-md-2 label">
 						<img alt="出生年月"
 							src="<%=request.getContextPath()%>/assets/img/calendar.png"
 							width="16px" height="16px">&nbsp;&nbsp;出生年月：
 					</div>
 
-					<div class="col-md-11 input-append date form_datetime_day"
+					<div class="col-md-10 input-append date form_datetime_day"
 						style="padding: 0px;">
 						<div class="row">
 							<div class="col-md-10" style="padding: 0px;">
-								<input type="text" class="text" id="birth" readonly="readonly" />
+								<input type="text" class="text" id="demanderCustomerUpdateBirth"
+									readonly="readonly" />
 							</div>
 							<div class="col-md-2" style="padding: 0px; text-align: right;">
 								<span class="add-on"><i class="icon-remove"></i></span> <span
@@ -64,12 +65,12 @@
 			</div>
 			<div class="container commonStyle company">
 				<div class="row companyBusiness">
-					<div class="col-md-1 label">
+					<div class="col-md-2 label">
 						&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;公司名称：
 					</div>
-					<div class="col-md-11">
-						<input type="text" id="company" class="text required maxlength"
-							label="公司名称" maxlength="255" />
+					<div class="col-md-10">
+						<input type="text" id="demanderCustomerUpdateCompany"
+							class="text required maxlength" label="公司名称" maxlength="255" />
 					</div>
 				</div>
 				<hr class="commonHr" />
@@ -78,7 +79,7 @@
 						&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;行业和相关业务：
 					</div>
 					<div class="col-md-10">
-						<textarea rows="3" id="business"
+						<textarea rows="3" id="demanderCustomerUpdateBusiness"
 							class="textarea required maxlength" label="行业和相关业务"
 							maxlength="255"></textarea>
 					</div>
@@ -88,6 +89,7 @@
 	</div>
 
 	<div class="modal-footer">
+		<input type="hidden" id="demanderCustomerUpdateId" />
 		<div style="text-align: left; color: red;"
 			id="demanderCustomerUpdateTipsInfo"></div>
 		<button type="button" class="btn btn-main"
