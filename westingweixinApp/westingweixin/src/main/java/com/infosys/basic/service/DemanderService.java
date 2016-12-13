@@ -54,4 +54,9 @@ public class DemanderService implements IDemanderService {
         return demanderDao.listDemanderByKeyword(demanderModel);
     }
 
+    @Override
+    public Demander get(int id) {
+        return demanderDao.get(id);
+    }
+
 }

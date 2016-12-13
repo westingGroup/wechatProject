@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.infosys.basic.entity.Words;
 import com.infosys.basic.service.IWordsService;
 import com.infosys.basic.util.Constants;
-import com.infosys.basic.util.JsonUtil;
 
 @RequestMapping("/picword")
 @Controller
@@ -54,14 +53,14 @@ public class PicWordController {
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String update(@PathVariable int id, Model model) {
-        Words u = wordsService.get(id);
+        Words u = wordsService.load(id);
         model.addAttribute("words", u);
         return "picword/update";
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     public String update(@PathVariable int id, Words words) {
-        Words tu = wordsService.get(id);
+        Words tu = wordsService.load(id);
         tu.setLastUpdateTime(new Date());
         tu.setBrief(words.getBrief());
         tu.setHtmlContents(words.getHtmlContents());
@@ -72,15 +71,15 @@ public class PicWordController {
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable int id) {
-        Words tu = wordsService.get(id);
+        Words tu = wordsService.load(id);
         tu.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_DELETE);
-        wordsService.delete(id);
+        wordsService.update(tu);
         return "redirect:/picword/list";
     }
     
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     public String detail(@PathVariable int id, Words words,Model model) {
-        Words tu = wordsService.get(id);
+        Words tu = wordsService.load(id);
         model.addAttribute("words", tu);
         return "picword/detail";
     }

@@ -55,5 +55,10 @@ public class ProviderService implements IProviderService {
         return providerDao.listProviderByKeyword(demanderModel);
     }
 
+    @Override
+    public Provider get(int id) {
+        return providerDao.get(id);
+    }
+
 
 }

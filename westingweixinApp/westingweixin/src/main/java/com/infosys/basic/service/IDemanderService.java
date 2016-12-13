@@ -12,6 +12,7 @@ public interface IDemanderService {
     public void update(Demander demander);
     public void delete(int id);
     public Demander load(int id);
+    public Demander get(int id);
     public Demander loadByOpenid(String openid);
     public List<Demander> list();
     public PagerInfo<DemanderDto> listDemanderByKeyword(DemanderModel demanderModel);

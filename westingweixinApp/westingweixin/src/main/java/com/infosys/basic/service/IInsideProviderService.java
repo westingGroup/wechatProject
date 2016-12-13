@@ -12,6 +12,7 @@ public interface IInsideProviderService {
     public void update(InsideProvider insideProvider);
     public void delete(int id);
     public InsideProvider load(int id);
+    public InsideProvider get(int id);
     public InsideProvider loadByUsername(String username);
     public InsideProvider login(String username,String password);
     public List<InsideProvider> list();

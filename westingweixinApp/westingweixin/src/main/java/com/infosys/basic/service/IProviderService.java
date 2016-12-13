@@ -12,6 +12,7 @@ public interface IProviderService {
     public void update(Provider provider);
     public void delete(int id);
     public Provider load(int id);
+    public Provider get(int id);
     public Provider loadByOpenid(String openid);
     public List<Provider> list();
     public PagerInfo<DemanderDto> listProviderByKeyword(DemanderModel demanderModel);

@@ -73,4 +73,9 @@ public class InsideProviderService implements IInsideProviderService {
         return insideProviderDao.listInsideProviderByKeyword(demanderModel);
     }
 
+    @Override
+    public InsideProvider get(int id) {
+        return insideProviderDao.get(id);
+    }
+
 }
