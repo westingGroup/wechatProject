@@ -1680,7 +1680,8 @@ function initDatePickerForDay() {
 		autoclose : true,
 		todayBtn : true,
 		minView : "2",
-		pickerPosition : "bottom-left"
+		pickerPosition : "bottom-left",
+		startDate : new Date()
 	});
 }
 function initDatePickerForHour() {
