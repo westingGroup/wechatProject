@@ -60,9 +60,13 @@ function appendProviderCustomer(registers, firstRegisterIndex) {
 		register += "<td>" + registers[i].company + "</td>";
 		register += "<td><img alt='修改' src='"
 				+ basePath
-				+ "/assets/img/edit.png' width='16px' height='16px'>&nbsp;&nbsp;<img alt='删除' src='"
+				+ "/assets/img/edit.png' width='16px' height='16px' registerId="
+				+ registers[i].id
+				+ " class='imgUpdate providerCustomerUpdateImg'>&nbsp;&nbsp;<img alt='删除' src='"
 				+ basePath
-				+ "/assets/img/删除.png' width='16px' height='16px' /></td>";
+				+ "/assets/img/delete.png' width='16px' height='16px' registerId="
+				+ registers[i].id
+				+ " class='imgDelete providerCustomerDeleteImg' /></td>";
 		register += "</tr>";
 		$("#providerCustomerListBody").append(register);
 	}
@@ -74,4 +78,20 @@ function appendProviderCustomer(registers, firstRegisterIndex) {
 		$("#providerCustomerListBody").append(noTr);
 		$("#providerCustomerPager").hide();
 	}
+
+	// 更新操作
+	$(".providerCustomerUpdateImg").click(function() {
+
+	});
+
+	// 删除操作
+	$(".providerCustomerDeleteImg").click(
+			function() {
+				$.get(basePath + "/provider/delete/"
+						+ $(this).attr("registerId"), {},
+						function(data, status) {
+							showTipsSucc(data);
+							providerCustomerPagination.updateSelfInput();
+						}, "text");
+			});
 }

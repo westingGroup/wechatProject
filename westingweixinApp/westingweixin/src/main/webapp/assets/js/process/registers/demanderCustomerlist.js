@@ -60,9 +60,13 @@ function appendDemanderCustomer(registers, firstRegisterIndex) {
 		register += "<td>" + registers[i].company + "</td>";
 		register += "<td><img alt='修改' src='"
 				+ basePath
-				+ "/assets/img/edit.png' width='16px' height='16px'>&nbsp;&nbsp;<img alt='删除' src='"
+				+ "/assets/img/edit.png' width='16px' height='16px' registerId="
+				+ registers[i].id
+				+ " class='imgUpdate demanderCustomerUpdateImg'>&nbsp;&nbsp;<img alt='删除' src='"
 				+ basePath
-				+ "/assets/img/删除.png' width='16px' height='16px' /></td>";
+				+ "/assets/img/delete.png' width='16px' height='16px' registerId="
+				+ registers[i].id
+				+ " class='imgDelete demanderCustomerDeleteImg' /></td>";
 		register += "</tr>";
 		$("#demanderCustomerListBody").append(register);
 	}
@@ -74,4 +78,20 @@ function appendDemanderCustomer(registers, firstRegisterIndex) {
 		$("#demanderCustomerListBody").append(noTr);
 		$("#demanderCustomerPager").hide();
 	}
+
+	// 更新操作
+	$(".demanderCustomerUpdateImg").click(function() {
+		alert("更新操作=================================");
+	});
+
+	// 删除操作
+	$(".demanderCustomerDeleteImg").click(
+			function() {
+				$.get(basePath + "/demander/delete/"
+						+ $(this).attr("registerId"), {},
+						function(data, status) {
+							showTipsSucc(data);
+							demanderCustomerPagination.updateSelfInput();
+						}, "text");
+			});
 }

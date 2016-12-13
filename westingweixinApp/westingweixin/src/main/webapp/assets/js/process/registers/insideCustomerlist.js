@@ -58,9 +58,13 @@ function appendInsideCustomer(registers, firstRegisterIndex) {
 		register += "<td>" + registers[i].phone + "</td>";
 		register += "<td><img alt='修改' src='"
 				+ basePath
-				+ "/assets/img/edit.png' width='16px' height='16px'>&nbsp;&nbsp;<img alt='删除' src='"
+				+ "/assets/img/edit.png' width='16px' height='16px' registerId="
+				+ registers[i].id
+				+ " class='imgUpdate insideCustomerUpdateImg'>&nbsp;&nbsp;<img alt='删除' src='"
 				+ basePath
-				+ "/assets/img/删除.png' width='16px' height='16px' /></td>";
+				+ "/assets/img/delete.png' width='16px' height='16px' registerId="
+				+ registers[i].id
+				+ " class='imgDelete insideCustomerDeleteImg' /></td>";
 		register += "</tr>";
 		$("#insideCustomerListBody").append(register);
 	}
@@ -72,4 +76,21 @@ function appendInsideCustomer(registers, firstRegisterIndex) {
 		$("#insideCustomerListBody").append(noTr);
 		$("#insideCustomerPager").hide();
 	}
+
+	// 修改操作
+	$(".insideCustomerUpdateImg").click(function() {
+
+	});
+
+	// 删除操作
+	$(".insideCustomerDeleteImg").click(
+			function() {
+				$.get(
+						basePath + "/inside/delete/"
+								+ $(this).attr("registerId"), {}, function(
+								data, status) {
+							showTipsSucc(data);
+							insideCustomerPagination.updateSelfInput();
+						}, "text");
+			});
 }
