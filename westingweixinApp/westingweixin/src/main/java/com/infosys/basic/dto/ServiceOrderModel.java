@@ -20,6 +20,16 @@ public class ServiceOrderModel extends SearchModel<ServiceOrderDto> {
 
     private String dealBy;
 
+    private String serviceOrderId;
+
+    public String getServiceOrderId() {
+        return serviceOrderId;
+    }
+
+    public void setServiceOrderId(String serviceOrderId) {
+        this.serviceOrderId = serviceOrderId;
+    }
+
     public String getStartTime() {
         return startTime;
     }

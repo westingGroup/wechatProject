@@ -259,11 +259,20 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
         sb.append("select count(*) as total from t_service_order s where 1=1");
         if (StringUtils.isNotBlank(demanderSearchModal.getStatus())) {
             if (Integer.parseInt(demanderSearchModal.getStatus()) == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_APPLY) {
-                sb.append(" and s.status=").append(demanderSearchModal.getStatus()).append(" or").append(" s.status=")
-                        .append(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_NEW);
+                sb.append(" and (s.status=").append(demanderSearchModal.getStatus()).append(" or").append(" s.status=")
+                        .append(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_NEW).append(")");
             } else {
                 sb.append(" and s.status=").append(demanderSearchModal.getStatus());
             }
+        }
+        if (StringUtils.isNotBlank(demanderSearchModal.getServiceOrderId())) {
+            sb.append(" and service_order_id like '%").append(demanderSearchModal.getServiceOrderId()).append("%'");
+        }
+        if (StringUtils.isNotBlank(demanderSearchModal.getLinkname())) {
+            sb.append(" and linkname like '%").append(demanderSearchModal.getLinkname()).append("%'");
+        }
+        if (StringUtils.isNotBlank(demanderSearchModal.getLinkphone())) {
+            sb.append(" and linkphone like '%").append(demanderSearchModal.getLinkphone()).append("%'");
         }
         String sql = sb.toString();
         List<Map<String, Object>> userListInDB = this.listBySql(sql, null);
@@ -287,12 +296,22 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
 
         if (StringUtils.isNotBlank(demanderSearchModal.getStatus())) {
             if (Integer.parseInt(demanderSearchModal.getStatus()) == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_APPLY) {
-                sb.append(" and s.status=").append(demanderSearchModal.getStatus()).append(" or").append(" s.status=")
-                        .append(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_NEW);
+                sb.append(" and (s.status=").append(demanderSearchModal.getStatus()).append(" or").append(" s.status=")
+                        .append(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_NEW).append(")");
             } else {
                 sb.append(" and s.status=").append(demanderSearchModal.getStatus());
             }
         }
+        if (StringUtils.isNotBlank(demanderSearchModal.getServiceOrderId())) {
+            sb.append(" and service_order_id like '%").append(demanderSearchModal.getServiceOrderId()).append("%'");
+        }
+        if (StringUtils.isNotBlank(demanderSearchModal.getLinkname())) {
+            sb.append(" and linkname like '%").append(demanderSearchModal.getLinkname()).append("%'");
+        }
+        if (StringUtils.isNotBlank(demanderSearchModal.getLinkphone())) {
+            sb.append(" and linkphone like '%").append(demanderSearchModal.getLinkphone()).append("%'");
+        }
+
         sb.append(" order by id desc limit ").append((dtoPager.getCurrentPage() - 1) * dtoPager.getPageSize())
                 .append(",").append(dtoPager.getPageSize());
         String sql = sb.toString();

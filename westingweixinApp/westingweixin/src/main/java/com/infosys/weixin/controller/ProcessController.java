@@ -88,6 +88,8 @@ public class ProcessController {
         } else if (type.equals("provider")) {
             userResult = providerService.listProviderByKeyword(demanderSearchModal);
         } else if (type.equals("inside")) {
+            demanderSearchModal.setUsername(StringUtils.isBlank(linkname) ? "" : linkname.trim());
+            demanderSearchModal.setPhone(StringUtils.isBlank(linkphone) ? "" : linkphone.trim());
             userResult = insideProviderService.listInsideProviderByKeyword(demanderSearchModal);
         }
         userResult.setTotalPage(userResult.getTotalPages());
@@ -155,7 +157,7 @@ public class ProcessController {
     // type 1新需求 2处理中 9完成 10废单
     @RequestMapping(value = "/listOrdersByPage", method = RequestMethod.POST)
     public @ResponseBody String listByPageForDemander(String currentPage, String pageSize, String linkname,
-            String linkphone, String type, HttpSession session) {
+            String linkphone, String serviceOrderId,String type, HttpSession session) {
         JsonUtil jsonUtil = JsonUtil.getInstance();
         ServiceOrderModel demanderSearchModal = new ServiceOrderModel();
         PagerInfo<ServiceOrderDto> demanderPage = new PagerInfo<ServiceOrderDto>();
@@ -173,6 +175,7 @@ public class ProcessController {
 
         demanderSearchModal.setLinkname(StringUtils.isBlank(linkname) ? "" : linkname.trim());
         demanderSearchModal.setLinkphone(StringUtils.isBlank(linkphone) ? "" : linkphone.trim());
+        demanderSearchModal.setServiceOrderId(StringUtils.isBlank(serviceOrderId) ? "" : serviceOrderId.trim());
         demanderSearchModal.setStatus(type.trim());
         demanderSearchModal.setPager(demanderPage);
         PagerInfo<ServiceOrderDto> userResult = serviceOrderService.listProcessServiceOrders(demanderSearchModal);
