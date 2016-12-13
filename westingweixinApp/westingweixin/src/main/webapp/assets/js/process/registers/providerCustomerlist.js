@@ -87,11 +87,20 @@ function appendProviderCustomer(registers, firstRegisterIndex) {
 	// 删除操作
 	$(".providerCustomerDeleteImg").click(
 			function() {
-				$.get(basePath + "/provider/delete/"
-						+ $(this).attr("registerId"), {},
-						function(data, status) {
-							showTipsSucc(data);
-							providerCustomerPagination.updateSelfInput();
-						}, "text");
+				var registerId = $(this).attr("registerId");
+				$.confirm({
+					title : '确认',
+					content : '确定要删除吗?',
+					confirm : function() {
+						$.get(basePath + "/provider/delete/" + registerId, {},
+								function(data, status) {
+									showTipsSucc(data);
+									providerCustomerPagination
+											.updateSelfInput();
+								}, "text");
+					},
+					cancel : function() {
+					}
+				});
 			});
 }

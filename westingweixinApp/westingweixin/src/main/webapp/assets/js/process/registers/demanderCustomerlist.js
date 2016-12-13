@@ -87,11 +87,20 @@ function appendDemanderCustomer(registers, firstRegisterIndex) {
 	// 删除操作
 	$(".demanderCustomerDeleteImg").click(
 			function() {
-				$.get(basePath + "/demander/delete/"
-						+ $(this).attr("registerId"), {},
-						function(data, status) {
-							showTipsSucc(data);
-							demanderCustomerPagination.updateSelfInput();
-						}, "text");
+				var registerId = $(this).attr("registerId");
+				$.confirm({
+					title : '确认',
+					content : '确定要删除吗?',
+					confirm : function() {
+						$.get(basePath + "/demander/delete/" + registerId, {},
+								function(data, status) {
+									showTipsSucc(data);
+									demanderCustomerPagination
+											.updateSelfInput();
+								}, "text");
+					},
+					cancel : function() {
+					}
+				});
 			});
 }
