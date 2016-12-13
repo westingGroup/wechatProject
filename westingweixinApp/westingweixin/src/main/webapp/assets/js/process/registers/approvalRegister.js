@@ -12,6 +12,7 @@ function initRegisters() {
 	initDemanderCustomer();
 	initProviderCustomer();
 	initInsideCustomer();
+	initDemanderCustomerUpdate();
 	$(".search").val("");
 }
 

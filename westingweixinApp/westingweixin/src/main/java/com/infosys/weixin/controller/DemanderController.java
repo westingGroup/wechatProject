@@ -171,10 +171,10 @@ public class DemanderController {
 	}
 
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-	public String update(@PathVariable int id, Model model) {
+	public @ResponseBody String update(@PathVariable int id, Model model) {
 		Demander u = demanderService.load(id);
-		model.addAttribute("demander", u);
-		return "demander/update";
+//		return JsonUtil.getInstance().obj2json(u);
+		return null;
 	}
 
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)

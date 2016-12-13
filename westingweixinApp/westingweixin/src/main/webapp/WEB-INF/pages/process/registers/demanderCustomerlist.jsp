@@ -52,4 +52,5 @@
 				id="demanderCustomerTotalRecords"></span>
 		</div>
 	</div>
+	<jsp:include page="demanderCustomerUpdate.jsp"></jsp:include>
 </div>

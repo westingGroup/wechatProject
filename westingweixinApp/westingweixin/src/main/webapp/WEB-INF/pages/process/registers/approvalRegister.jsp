@@ -25,6 +25,8 @@
 	href="<%=request.getContextPath()%>/assets/confirm/css/jquery-confirm.css" />
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/jqPagination/css/jqpagination.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/assets/css/common/common_service.css" />
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript"

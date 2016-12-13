@@ -81,7 +81,8 @@ function appendDemanderCustomer(registers, firstRegisterIndex) {
 
 	// 更新操作
 	$(".demanderCustomerUpdateImg").click(function() {
-		alert("更新操作=================================");
+		initDemanderCustomerUpdateRecord($(this).attr("registerId"));
+		$("#demanderCustomerUpdate").modal("show");
 	});
 
 	// 删除操作

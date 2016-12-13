@@ -125,7 +125,7 @@
 							&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;公司名称：
 						</div>
 						<div class="col-md-11 col-xs-8">
-							<sf:input path="business" cssClass="text required maxlength"
+							<sf:input path="company" cssClass="text required maxlength"
 								label="公司名称" maxlength="255" />
 						</div>
 					</div>
@@ -135,7 +135,7 @@
 							&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;行业和相关业务：
 						</div>
 						<div class="col-md-11 col-xs-7">
-							<sf:textarea path="company"
+							<sf:textarea path="business"
 								cssClass="textarea required maxlength" rows="3" label="行业和相关业务"
 								maxlength="255" />
 						</div>
