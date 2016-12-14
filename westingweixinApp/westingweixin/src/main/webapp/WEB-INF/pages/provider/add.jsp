@@ -75,80 +75,83 @@
 		</div>
 		<jsp:include page="../showTips.jsp"></jsp:include>
 		<div class="content">
-			<div class="waitingTaskTitle">待接的任务</div>
-			<input type="hidden" name="providerId" value="${provider.id}"
-				id="providerId" /> <input type="hidden" name="providerName"
-				value="${provider.linkname}" id="providerName" /> <input
-				type="hidden" name="applyBy" value="${provider.id}" id="applyBy" />
-			<input type="hidden" name="id" id="id" value="0" />
-			<c:forEach items="${orders.records}" var="order" varStatus="status">
-				<div class="container waitingTaskCommonStyle" id="order${order.id}"
-					orderId="${order.id}">
-					<c:if test="${status.index!=0}">
-						<hr class="viewHr" />
-					</c:if>
-					<div class="row serialNumber hidden${order.id}">
-						<div class="col-md-1 col-xs-4 label">流水号：</div>
-						<div class="col-md-10 col-xs-6 viewContent">${order.serviceOrderId}</div>
-						<div class="col-md-1 col-xs-2">
-							<img alt="折叠" class="hidden"
-								src="<%=request.getContextPath()%>/assets/img/zhedie.png"
-								id="zhedie${order.id}">
+			<div class="providerOrders">
+				<div class="waitingTaskTitle">待接的任务</div>
+				<input type="hidden" name="providerId" value="${provider.id}"
+					id="providerId" /> <input type="hidden" name="providerName"
+					value="${provider.linkname}" id="providerName" /> <input
+					type="hidden" name="applyBy" value="${provider.id}" id="applyBy" />
+				<input type="hidden" name="id" id="id" value="0" />
+				<c:forEach items="${orders.records}" var="order" varStatus="status">
+					<div class="container waitingTaskCommonStyle" id="order${order.id}"
+						orderId="${order.id}">
+						<c:if test="${status.index!=0}">
+							<hr class="viewHr" />
+						</c:if>
+						<div class="row serialNumber hidden${order.id}">
+							<div class="col-md-1 col-xs-4 label">流水号：</div>
+							<div class="col-md-10 col-xs-6 viewContent">${order.serviceOrderId}</div>
+							<div class="col-md-1 col-xs-2">
+								<img alt="折叠" class="hidden"
+									src="<%=request.getContextPath()%>/assets/img/zhedie.png"
+									id="zhedie${order.id}">
+							</div>
+						</div>
+						<div class="row category hidden${order.id}">
+							<div class="col-md-1 col-xs-4 label">类别：</div>
+							<div class="col-md-11 col-xs-8 viewContent">${order.category }</div>
+						</div>
+						<div class="row serviceType hidden${order.id}">
+							<div class="col-md-1 col-xs-4 label">服务类型：</div>
+							<div class="col-md-11 col-xs-8 viewContent">${order.serviceType }</div>
+						</div>
+						<div class="row submitTime">
+							<div class="col-md-1 col-xs-4 label">任务申请时间：</div>
+							<div class="col-md-10 col-xs-6 viewContent">${order.createDate }</div>
+							<div class="col-md-1 col-xs-2">
+								<img alt="展开" class="show"
+									src="<%=request.getContextPath()%>/assets/img/zhankai.png"
+									id="zhankai${order.id}">
+							</div>
+						</div>
+						<div class="row serviceDemandWaiting hidden${order.id}">
+							<div class="col-md-1 col-xs-4 label">服务需求：</div>
+							<div class="col-md-11 col-xs-8 viewContent">${order.content }</div>
 						</div>
 					</div>
-					<div class="row category hidden${order.id}">
-						<div class="col-md-1 col-xs-4 label">类别：</div>
-						<div class="col-md-11 col-xs-8 viewContent">${order.category }</div>
-					</div>
-					<div class="row serviceType hidden${order.id}">
-						<div class="col-md-1 col-xs-4 label">服务类型：</div>
-						<div class="col-md-11 col-xs-8 viewContent">${order.serviceType }</div>
-					</div>
-					<div class="row submitTime">
-						<div class="col-md-1 col-xs-4 label">任务申请时间：</div>
-						<div class="col-md-10 col-xs-6 viewContent">${order.createDate }</div>
-						<div class="col-md-1 col-xs-2">
-							<img alt="展开" class="show"
-								src="<%=request.getContextPath()%>/assets/img/zhankai.png"
-								id="zhankai${order.id}">
-						</div>
-					</div>
-					<div class="row serviceDemandWaiting hidden${order.id}">
-						<div class="col-md-1 col-xs-4 label">服务需求：</div>
-						<div class="col-md-11 col-xs-8 viewContent">${order.content }</div>
-					</div>
-				</div>
-			</c:forEach>
-		</div>
-		<div class="container priceAndFinishTime">
-			<div class="row">
-				<div class="col-md-1 col-xs-2 label">
-					<font color="red">*</font>&nbsp;联系人：
-				</div>
-				<div class="col-md-4 col-xs-2" style="padding-left: 7px;">
-					<input type="text" class="text required maxlength" label="联系人"
-						maxlength="255" id="linkname" />
-				</div>
-				<div class="col-md-2 col-xs-3 label">
-					<font color="red">*</font>&nbsp;联系电话：
-				</div>
-				<div class="col-md-4 col-xs-5" style="padding-left: 7px;">
-					<input type="text" class="text required phone maxlength"
-						style="width: 110px;" label="联系电话" maxlength="13" id="linkphone" />
-				</div>
+				</c:forEach>
 			</div>
-			<div class="row">
-				<div class="col-md-1 col-xs-2 label">价格：</div>
-				<div class="col-md-4 col-xs-2" style="padding-left: 7px;">
-					<input type="text" class="text num" id="price" label="价格"/>
+			<div class="container priceAndFinishTime">
+				<div class="row">
+					<div class="col-md-1 col-xs-2 label">
+						<font color="red">*</font>&nbsp;联系人：
+					</div>
+					<div class="col-md-4 col-xs-2" style="padding-left: 7px;">
+						<input type="text" class="text required maxlength" label="联系人"
+							maxlength="255" id="linkname" />
+					</div>
+					<div class="col-md-2 col-xs-3 label">
+						<font color="red">*</font>&nbsp;联系电话：
+					</div>
+					<div class="col-md-4 col-xs-5" style="padding-left: 7px;">
+						<input type="text" class="text required phone maxlength"
+							style="width: 110px;" label="联系电话" maxlength="13" id="linkphone" />
+					</div>
 				</div>
-				<div class="col-md-2 col-xs-3 label">预计完成时间：</div>
-				<div class="col-md-4 col-xs-5 input-append date form_datetime_day"
-					style="padding-left: 7px;">
-					<input type="text" class="text" style="width: 75px;"
-						id="completeDate" /><span class="add-on" style="padding: 4px 0px;"><i
-						class="icon-remove"></i></span> <span class="add-on"
-						style="padding: 4px 0px;"><i class="icon-calendar"></i></span>
+				<div class="row">
+					<div class="col-md-1 col-xs-2 label">价格：</div>
+					<div class="col-md-4 col-xs-2" style="padding-left: 7px;">
+						<input type="text" class="text num" id="price" label="价格" />
+					</div>
+					<div class="col-md-2 col-xs-3 label">预计完成时间：</div>
+					<div class="col-md-4 col-xs-5 input-append date form_datetime_day"
+						style="padding-left: 7px;">
+						<input type="text" class="text" style="width: 75px;"
+							id="completeDate" /><span class="add-on"
+							style="padding: 4px 0px;"><i class="icon-remove"></i></span> <span
+							class="add-on" style="padding: 4px 0px;"><i
+							class="icon-calendar"></i></span>
+					</div>
 				</div>
 			</div>
 		</div>

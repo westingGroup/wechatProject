@@ -36,6 +36,7 @@
 	color: black;
 	text-align: left;
 	font-size: 12px;
+	padding-bottom: 58px;
 }
 
 .subject .content .container {
@@ -223,7 +224,7 @@
 	height: 100px;
 }
 
-.subject .priceAndFinishTime .row{
+.subject .priceAndFinishTime .row {
 	margin-top: 20px;
 	margin-bottom: 10px;
 }
@@ -233,7 +234,7 @@
 	text-align: right;
 }
 
-.subject .priceAndFinishTime .text{
+.subject .priceAndFinishTime .text {
 	width: 50px;
 }
 
@@ -248,6 +249,9 @@
 
 .subject .footer {
 	width: 100%;
+	height:58px;
+	position:absolute;
+	bottom:0px;
 }
 
 .subject .footer .btn {

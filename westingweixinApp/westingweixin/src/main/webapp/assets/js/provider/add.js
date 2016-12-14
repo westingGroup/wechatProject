@@ -119,7 +119,7 @@ function appendRecord(recordContent) {
 	record += "</div>";
 	record += "</div>";
 
-	$(".content").append(record);
+	$(".providerOrders").append(record);
 	renderList(recordContent.id);
 }
 
