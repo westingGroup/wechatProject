@@ -47,9 +47,12 @@
 				newPwd : $("#newPwd").val(),
 				confirmPwd : $("#confirmPwd").val()
 			}, function(data, status) {// 更新信息
-				if (data == "修改成功")
-					showTipsSuccess(data);
-				else
+				if (data == "修改成功") {
+					showTipsSucc(data);
+					$("#oldPwd").val("");
+					$("#newPwd").val("");
+					$("#confirmPwd").val("");
+				} else
 					showTipsError(data)
 			});
 		});
@@ -68,15 +71,18 @@
 		</tr>
 		<tr>
 			<td>旧密码</td>
-			<td><input type="password" class="text required" id="oldPwd" label="旧密码"/></td>
+			<td><input type="password" class="text required" id="oldPwd"
+				label="旧密码" /></td>
 		</tr>
 		<tr>
 			<td>新密码</td>
-			<td><input type="password" class="text required" id="newPwd" label="新密码"/></td>
+			<td><input type="password" class="text required" id="newPwd"
+				label="新密码" /></td>
 		</tr>
 		<tr>
 			<td>确认新密码</td>
-			<td><input type="password" class="text required" id="confirmPwd" label="确认新密码"/></td>
+			<td><input type="password" class="text required" id="confirmPwd"
+				label="确认新密码" /></td>
 		</tr>
 		<tr>
 			<td colspan="2"><input type="submit" class="btn" value="修改密码"
