@@ -252,6 +252,8 @@
 	height:58px;
 	position:absolute;
 	bottom:0px;
+	padding-left: 0px;
+	padding-right: 0px;
 }
 
 .subject .footer .btn {
