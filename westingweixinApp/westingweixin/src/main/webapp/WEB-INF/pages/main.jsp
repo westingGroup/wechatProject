@@ -20,7 +20,6 @@
 	var basePath = "<%=request.getContextPath()%>";
 	$(function() {
 		var userName = '${sessionScope.insiderProvider.username}';
-		var pswd = '${sessionScope.insiderProvider.password}';
 		addMenu();
 		$('#usernamediv').html(userName);
 	});
@@ -31,7 +30,7 @@
 		<div class="page_top">
 			<div class="logo">
 				<img alt="" src="<%=request.getContextPath()%>/assets/img/west.png"
-					height="60" width="40">
+					height="48" width="80">
 			</div>
 
 			<table id="menuTable" class="menuTable">
@@ -46,21 +45,26 @@
 						<div id='usernamediv'
 							style="width: 60px; height: 30px; line-height: 30px; display: table; vertical-align: middle; text-align: left;">赵子龙</div>
 					</td>
-					<td width=60px><div style='cursor: pointer; width: 30px;'
-							onclick='quit();'>退出</div></td>
+					<td width=60px style="padding-top: 10px;"><img title="修改密码"
+						alt="修改密码" style="cursor: pointer;"
+						src="<%=request.getContextPath()%>/assets/img/updatePwd.png"
+						onclick="updatePwd();">&nbsp;&nbsp;<img title="登出" alt="登出"
+						style='cursor: pointer;' onclick='quit();'
+						src="<%=request.getContextPath()%>/assets/img/logout.png"
+						width="20px" height="20px"></td>
 				</tr>
 			</table>
 
 		</div>
 		<div class="page_content">
 			<div class="page_left">
-				<!-- <div class="menuLeft" id="menuLeft"></div> -->
 				<div id="firstpane" class="menu_list"></div>
 			</div>
 			<div class="page_right" style="font-size: 0;">
 				<iframe frameborder="0" height=100% width=100%
 					style="display: inline-block; margin-right: -3px;"
-					src="<%=request.getContextPath()%>/process/index.do" id="iframeMain"></iframe>
+					src="<%=request.getContextPath()%>/process/index.do"
+					id="iframeMain"></iframe>
 			</div>
 		</div>
 	</div>

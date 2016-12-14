@@ -86,13 +86,16 @@ public class InsideController {
 
     }
 
-    @RequestMapping(value = "/forgetPwd", method = RequestMethod.POST)
-    public String forgetPassword(HttpSession session, String password) {
-        InsideProvider u = (InsideProvider) session.getAttribute(Constants.PC_SESSION_USER);
-        u.setPassword(password);
-        insideProviderService.update(u);
-        return "redirect:/inside/list";
-    }
+	@RequestMapping(value = "/forgetPwd", method = RequestMethod.POST)
+	public @ResponseBody String forgetPassword(HttpSession session,
+			String oldPwd, String newPwd) {
+		InsideProvider u = (InsideProvider) session
+				.getAttribute(Constants.PC_SESSION_USER);
+		if (!SecurityKit.md5(oldPwd).equals(u.getPassword()))
+			return "旧密码不正确";
+		u.setPassword(SecurityKit.md5(newPwd));
+		return "修改成功";
+	}
 
     @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
     public @ResponseBody String resetPassword(int id) {
