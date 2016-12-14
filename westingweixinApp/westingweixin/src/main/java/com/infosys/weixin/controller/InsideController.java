@@ -72,13 +72,18 @@ public class InsideController {
 		return "redirect:/inside/login";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(String username, String password, HttpSession session)
-			throws BusinessException {
-		InsideProvider u = insideProviderService.login(username, password);
-		session.setAttribute(Constants.PC_SESSION_USER, u);// 登录成功
-		return "main";
-	}
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public @ResponseBody String login(String username, String password, HttpSession session) {
+        InsideProvider u = null;
+        try {
+            u = insideProviderService.login(username, password);
+            session.setAttribute(Constants.PC_SESSION_USER, u);// 登录成功
+            return "登录成功";
+        } catch (BusinessException e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+    }
 
 	@RequestMapping(value = "/forgetPwd", method = RequestMethod.GET)
 	public String forgetPassword(HttpSession session, Model model) {

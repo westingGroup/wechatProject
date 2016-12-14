@@ -12,20 +12,41 @@
 	href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/css/common/signin.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/assets/confirm/css/jquery-confirm.css" />
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/confirm/js/jquery-confirm.js"></script>
+	<script type="text/javascript">
+	var basePath = "<%=request.getContextPath()%>";
+	$(function(){
+		$("#btn").click(function(){
+			$.post(basePath+"/inside/login", {username:$("#username").val(),password:$("#password").val()},
+				function(data, status) {
+					if(data=="登录成功"){
+						window.location = basePath+"/inside/login";
+					}else{
+						$.alert(data, '错误信息');
+					}
+				});
+		});
+	});
+	</script>
 </head>
 <body>
 	 <div class="container">
 
       <form class="form-signin" role="form" method="post">
         <h2 class="form-signin-heading">后台管理登录</h2>
-        <input type="text" name="username" class="form-control"  placeholder="Username" required autofocus>
-        <input type="password" name="password" class="form-control" placeholder="Password" required>
+        <input type="text" id="username" name="username" class="form-control"  placeholder="Username" required autofocus>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        <button class="btn btn-lg btn-primary btn-block" id="btn" type="button">登录</button>
       </form>
 
     </div> <!-- /container -->
