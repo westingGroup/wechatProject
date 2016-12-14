@@ -49,7 +49,10 @@
 	var basePath = "<%=request.getContextPath()%>";
 	$(function() {
 		initRegisters();
-		switchTab('dispatchRegisterApply');
+		if ("${type}" != null && "${type}" != "")
+			switchTab("${type}");
+		else
+			switchTab('dispatchRegisterApply');
 	});
 </script>
 </head>

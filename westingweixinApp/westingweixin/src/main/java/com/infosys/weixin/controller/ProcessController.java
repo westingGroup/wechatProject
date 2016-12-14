@@ -84,8 +84,9 @@ public class ProcessController {
 
 	// 首页
 	@RequestMapping(value = "/registers")
-	public ModelAndView approvalRegister() {
+	public ModelAndView approvalRegister(String type) {
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("type", type);
 		modelAndView.setViewName("process/registers/approvalRegister");
 		return modelAndView;
 	}
@@ -191,8 +192,9 @@ public class ProcessController {
 
 	// 首页
 	@RequestMapping(value = "/demanders")
-	public ModelAndView approvalDemander() {
+	public ModelAndView approvalDemander(String type) {
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("type", type);
 		modelAndView.setViewName("process/demanders/approvalDemander");
 		return modelAndView;
 	}

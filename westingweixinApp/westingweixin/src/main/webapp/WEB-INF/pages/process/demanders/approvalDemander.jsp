@@ -42,8 +42,11 @@
 <script type="text/javascript">
 	var basePath = "<%=request.getContextPath()%>";
 	$(function() {
-		switchTab('newDemander');
 		initDemander();
+		if ("${type}" != null && "${type}" != "")
+			switchTab("${type}");
+		else
+			switchTab('newDemander');
 	});
 </script>
 </head>
