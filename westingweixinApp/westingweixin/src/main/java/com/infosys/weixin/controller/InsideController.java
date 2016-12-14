@@ -14,6 +14,7 @@ import com.infosys.basic.entity.InsideProvider;
 import com.infosys.basic.service.IInsideProviderService;
 import com.infosys.basic.util.Constants;
 import com.infosys.basic.util.JsonUtil;
+import com.infosys.weixin.kit.SecurityKit;
 
 @RequestMapping("/inside")
 @Controller
@@ -95,7 +96,14 @@ public class InsideController {
 		u.setPassword(password);
 		insideProviderService.update(u);
 		return "redirect:/inside/list";
+	}
 
+	@RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
+	public @ResponseBody String resetPassword(int id) {
+		InsideProvider u = insideProviderService.load(id);
+		u.setPassword(SecurityKit.md5("123"));
+		insideProviderService.update(u);
+		return "重置成功";
 	}
 
 }

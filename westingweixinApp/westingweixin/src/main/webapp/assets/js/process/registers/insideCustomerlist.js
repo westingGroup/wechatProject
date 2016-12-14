@@ -64,7 +64,11 @@ function appendInsideCustomer(registers, firstRegisterIndex) {
 				+ basePath
 				+ "/assets/img/edit.png' width='16px' height='16px' registerId="
 				+ registers[i].id
-				+ " class='imgUpdate insideCustomerUpdateImg'>&nbsp;&nbsp;<img alt='删除' src='"
+				+ " class='imgUpdate insideCustomerUpdateImg'>&nbsp;&nbsp;<img alt='重置密码' src='"
+				+ basePath
+				+ "/assets/img/reset_pass.png' width='16px' height='16px' registerId="
+				+ registers[i].id
+				+ " class='imgResetPass insideCustomerResetImg'/>&nbsp;&nbsp;<img alt='删除' src='"
 				+ basePath
 				+ "/assets/img/delete.png' width='16px' height='16px' registerId="
 				+ registers[i].id
@@ -85,6 +89,24 @@ function appendInsideCustomer(registers, firstRegisterIndex) {
 	$(".insideCustomerUpdateImg").click(function() {
 		initInsideCustomerUpdateRecord($(this).attr("registerId"));
 		$("#insideCustomerUpdate").modal("show");
+	});
+
+	// 重置密码
+	$(".insideCustomerResetImg").click(function() {
+		var registerId = $(this).attr("registerId");
+		$.confirm({
+			title : '确认',
+			content : '确定要重置密码吗?',
+			confirm : function() {
+				$.post(basePath + "/inside/resetPassword", {
+					id : registerId
+				}, function(data, status) {
+					showTipsSucc(data);
+				});
+			},
+			cancel : function() {
+			}
+		});
 	});
 
 	// 删除操作

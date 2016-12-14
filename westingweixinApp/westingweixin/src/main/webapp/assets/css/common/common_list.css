@@ -70,7 +70,7 @@
 	background-color: 1px solid rgb(0, 89, 143);
 }
 
-.searchTable>tbody>tr>td{
+.searchTable>tbody>tr>td {
 	border: none;
 }
 
@@ -144,7 +144,7 @@
 	appearance: none;
 }
 
-.imgDelete,.imgUpdate{
+.imgDelete, .imgResetPass, .imgUpdate {
 	cursor: pointer;
 }
 
