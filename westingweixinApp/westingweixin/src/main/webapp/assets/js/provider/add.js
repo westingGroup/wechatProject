@@ -12,9 +12,17 @@ function renderList(orderId) {
 		$("#id").val(0);
 		foldInit(orderId);
 	});
+
+	// 价格判断不能输入中文
+	$("#price").keyup(function(event) {
+		// 如果不为tab键并且不为backspace键时校验是否输入了除去数字的其他值
+		if (event.which != 9 && event.which != 8)
+			if (!validateComponent("price", "text"))
+				return false;
+	});
 	// 将除去提交时间之外的所有信息隐藏
 	$(".hidden" + orderId).addClass("hidden");
-	$("#order"+orderId).css("backgroundColor", "white");
+	$("#order" + orderId).css("backgroundColor", "white");
 }
 
 /**
@@ -55,7 +63,8 @@ function foldInit(orderId) {
 function mobileApply() {
 	if (isCanDown == 1)// 如果可以向下翻页
 		$.post(basePath + "/provider/mobileApply", {
-			currentPage : parseInt(currPage) + 1,applyBy:$("#applyBy").val()
+			currentPage : parseInt(currPage) + 1,
+			applyBy : $("#applyBy").val()
 		}, function(data, status) {
 			var records = data.records;
 			currPage = data.currentPage;

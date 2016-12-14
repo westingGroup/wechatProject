@@ -140,7 +140,7 @@
 			<div class="row">
 				<div class="col-md-1 col-xs-2 label">价格：</div>
 				<div class="col-md-4 col-xs-2" style="padding-left: 7px;">
-					<input type="text" class="text" id="price" />
+					<input type="text" class="text num" id="price" label="价格"/>
 				</div>
 				<div class="col-md-2 col-xs-3 label">预计完成时间：</div>
 				<div class="col-md-4 col-xs-5 input-append date form_datetime_day"

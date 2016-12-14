@@ -122,6 +122,12 @@ function validateComponent(id, type) {
 		if (!flag)
 			return flag;
 	}
+	
+	if($("#"+id).hasClass("num")){
+		flag = validateNum(id);
+		if(!flag)
+			return flag;
+	}
 	return flag;
 }
 
@@ -171,6 +177,21 @@ function validateMaxLength(id) {
 				$("#" + id).val().substr(0, $("#" + id).attr("maxlength") - 1));
 		return false;
 	}
+	return true;
+}
+
+/**
+ * 校验输入数字
+ */
+function validateNum(id){
+	var digit = /^-?\d+(\.\d+)?$/;
+	if (!digit.test($("#" + id).val())) {
+		$("#"+id).val($("#"+id).val().substr(0,$("#"+id).val().length-1));
+		showTipsError($("#" + id).attr("label") + "只能输入数字");
+		validateFail(id);
+		return false;
+	}
+	validateSuccess(id);
 	return true;
 }
 
