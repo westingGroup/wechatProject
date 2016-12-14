@@ -69,12 +69,12 @@ public class ProcessController {
 		// 新需求
 		ServiceOrderModel serviceOrderModel = new ServiceOrderModel();
 		serviceOrderModel.setStatus(String
-				.valueOf(Constants.T_SERVICE_ORDER_STATUS_NEW));
+				.valueOf(Constants.T_SERVICE_ORDER_STATUS_APPLY));
 		processCount.setNewDemanderCount(serviceOrderService
 				.getOrdersTotalByConditionsForProcess(serviceOrderModel));
 		// 处理中需求
 		serviceOrderModel.setStatus(String
-				.valueOf(Constants.T_SERVICE_ORDER_STATUS_APPLY));
+				.valueOf(Constants.T_SERVICE_ORDER_STATUS_ALLOCATED_DEALING));
 		processCount.setProcessDemanderCount(serviceOrderService
 				.getOrdersTotalByConditionsForProcess(serviceOrderModel));
 		modelAndView.addObject("processCount", processCount);
