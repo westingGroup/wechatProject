@@ -28,7 +28,7 @@ public class ProviderDao extends BaseDao<Provider> implements IProviderDao {
     }
 
     
-    private long getDemanderTotalByConditions(DemanderModel demanderModel) {
+    public long getDemanderTotalByConditions(DemanderModel demanderModel) {
         StringBuffer sb = new StringBuffer();
         long num = 0L;
         sb.append("select count(*) as total from t_provider c where 1=1 ");

@@ -85,4 +85,10 @@ public class ServiceOrderService implements IServiceOrderService {
         return serviceOrderDao.listProcessServiceOrders(demanderSearchModal);
     }
 
+	@Override
+	public long getOrdersTotalByConditionsForProcess(
+			ServiceOrderModel demanderSearchModal) {
+		return serviceOrderDao.getOrdersTotalByConditionsForProcess(demanderSearchModal);
+	}
+
 }

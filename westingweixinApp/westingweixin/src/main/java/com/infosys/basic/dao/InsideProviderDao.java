@@ -27,7 +27,7 @@ public class InsideProviderDao extends BaseDao<InsideProvider> implements IInsid
         return super.list("from InsideProvider");
     }
 
-    private long getDemanderTotalByConditions(DemanderModel demanderModel) {
+    public long getDemanderTotalByConditions(DemanderModel demanderModel) {
         StringBuffer sb = new StringBuffer();
         long num = 0L;
         sb.append("select count(*) as total from t_insideprovider c where 1=1 ");

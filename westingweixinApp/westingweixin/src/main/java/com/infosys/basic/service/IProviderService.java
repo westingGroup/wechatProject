@@ -16,4 +16,5 @@ public interface IProviderService {
     public Provider loadByOpenid(String openid);
     public List<Provider> list();
     public PagerInfo<DemanderDto> listProviderByKeyword(DemanderModel demanderModel);
+    public long getDemanderTotalByConditions(DemanderModel demanderModel);
 }

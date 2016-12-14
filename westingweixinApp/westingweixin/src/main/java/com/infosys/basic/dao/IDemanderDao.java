@@ -15,4 +15,6 @@ public interface IDemanderDao extends IBaseDao<Demander>{
     List<Demander> list();
     
     public PagerInfo<DemanderDto> listDemanderByKeyword(DemanderModel demanderModel);
+    
+    public long getDemanderTotalByConditions(DemanderModel demanderModel);
 }

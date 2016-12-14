@@ -17,4 +17,5 @@ public interface IInsideProviderService {
     public InsideProvider login(String username,String password);
     public List<InsideProvider> list();
     public PagerInfo<DemanderDto> listInsideProviderByKeyword(DemanderModel demanderModel);
+    public long getDemanderTotalByConditions(DemanderModel demanderModel);
 }

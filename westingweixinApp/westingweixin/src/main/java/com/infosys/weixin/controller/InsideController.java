@@ -22,12 +22,6 @@ public class InsideController {
 	@Inject
 	private IInsideProviderService insideProviderService;
 
-	@RequestMapping("/list")
-	public String list(Model model) {
-		model.addAttribute("insides", insideProviderService.list());
-		return "inside/list";
-	}
-
 	@RequestMapping(value = "/addOrUpdate", method = RequestMethod.GET)
 	public @ResponseBody String add(int id, Model model) {
 		InsideProvider u = null;
@@ -77,7 +71,7 @@ public class InsideController {
 	public String login(String username, String password, HttpSession session) {
 		InsideProvider u = insideProviderService.login(username, password);
 		session.setAttribute(Constants.PC_SESSION_USER, u);// 登录成功
-		return "redirect:/inside/list";
+		return "main";
 	}
 
 	@RequestMapping(value = "/forgetPwd", method = RequestMethod.GET)

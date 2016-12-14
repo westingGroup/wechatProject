@@ -27,7 +27,7 @@ public class DemanderDao extends BaseDao<Demander> implements IDemanderDao {
         return super.list("from Demander");
     }
 
-    private long getDemanderTotalByConditions(DemanderModel demanderModel) {
+    public long getDemanderTotalByConditions(DemanderModel demanderModel) {
         StringBuffer sb = new StringBuffer();
         long num = 0L;
         sb.append("select count(*) as total from t_demander c where 1=1 ");

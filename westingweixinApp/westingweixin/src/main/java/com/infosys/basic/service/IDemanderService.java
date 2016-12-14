@@ -16,4 +16,5 @@ public interface IDemanderService {
     public Demander loadByOpenid(String openid);
     public List<Demander> list();
     public PagerInfo<DemanderDto> listDemanderByKeyword(DemanderModel demanderModel);
+    public long getDemanderTotalByConditions(DemanderModel demanderModel);
 }

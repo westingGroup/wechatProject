@@ -60,5 +60,10 @@ public class ProviderService implements IProviderService {
         return providerDao.get(id);
     }
 
+	@Override
+	public long getDemanderTotalByConditions(DemanderModel demanderModel) {
+		return providerDao.getDemanderTotalByConditions(demanderModel);
+	}
+
 
 }

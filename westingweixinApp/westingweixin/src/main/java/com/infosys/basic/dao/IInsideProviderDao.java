@@ -12,4 +12,5 @@ public interface IInsideProviderDao extends IBaseDao<InsideProvider>{
     public InsideProvider loadByUsername(String username);
     public List<InsideProvider> list();
     public PagerInfo<DemanderDto> listInsideProviderByKeyword(DemanderModel demanderModel);
+    public long getDemanderTotalByConditions(DemanderModel demanderModel);
 }

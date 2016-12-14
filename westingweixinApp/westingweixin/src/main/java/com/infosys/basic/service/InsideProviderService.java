@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -77,6 +76,11 @@ public class InsideProviderService implements IInsideProviderService {
 	@Override
 	public InsideProvider get(int id) {
 		return insideProviderDao.get(id);
+	}
+
+	@Override
+	public long getDemanderTotalByConditions(DemanderModel demanderModel) {
+		return insideProviderDao.getDemanderTotalByConditions(demanderModel);
 	}
 
 }

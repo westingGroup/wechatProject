@@ -59,4 +59,9 @@ public class DemanderService implements IDemanderService {
         return demanderDao.get(id);
     }
 
+	@Override
+	public long getDemanderTotalByConditions(DemanderModel demanderModel) {
+		return demanderDao.getDemanderTotalByConditions(demanderModel);
+	}
+
 }

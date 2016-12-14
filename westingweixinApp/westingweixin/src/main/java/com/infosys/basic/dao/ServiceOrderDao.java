@@ -253,7 +253,7 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
         return dtoPager;
     }
 
-    private long getOrdersTotalByConditionsForProcess(ServiceOrderModel demanderSearchModal) {
+    public long getOrdersTotalByConditionsForProcess(ServiceOrderModel demanderSearchModal) {
         StringBuffer sb = new StringBuffer();
         long num = 0L;
         sb.append("select count(*) as total from t_service_order s where 1=1");

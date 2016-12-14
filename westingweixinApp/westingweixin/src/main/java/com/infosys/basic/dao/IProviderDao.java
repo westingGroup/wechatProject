@@ -15,4 +15,6 @@ public interface IProviderDao extends IBaseDao<Provider>{
     List<Provider> list();
 
     PagerInfo<DemanderDto> listProviderByKeyword(DemanderModel demanderModel);
+    
+    public long getDemanderTotalByConditions(DemanderModel demanderModel);
 }

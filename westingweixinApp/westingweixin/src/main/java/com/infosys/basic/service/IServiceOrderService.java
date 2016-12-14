@@ -22,4 +22,5 @@ public interface IServiceOrderService {
     public PagerInfo<ServiceOrderDto> listServiceOrderByKeywordForMobileApply(ServiceOrderModel serviceOrderModel);
     public PagerInfo<ServiceOrderDto> listServiceOrderByKeywordForMyMobileApplys(ServiceOrderModel serviceOrderModel);
     public PagerInfo<ServiceOrderDto> listProcessServiceOrders(ServiceOrderModel demanderSearchModal);
+    public long getOrdersTotalByConditionsForProcess(ServiceOrderModel demanderSearchModal);
 }
