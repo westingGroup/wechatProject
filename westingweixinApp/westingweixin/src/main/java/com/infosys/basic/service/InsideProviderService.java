@@ -13,6 +13,7 @@ import com.infosys.basic.dto.DemanderModel;
 import com.infosys.basic.dto.PagerInfo;
 import com.infosys.basic.entity.InsideProvider;
 import com.infosys.weixin.kit.SecurityKit;
+import com.infosys.weixin.web.exception.BusinessException;
 
 @Service("insideProviderService")
 @Transactional
@@ -21,10 +22,10 @@ public class InsideProviderService implements IInsideProviderService {
 	private IInsideProviderDao insideProviderDao;
 
 	@Override
-	public void add(InsideProvider insideProvider) {
+	public void add(InsideProvider insideProvider) throws BusinessException {
 		InsideProvider u = this.loadByUsername(insideProvider.getUsername());
 		if (u != null)
-			throw new RuntimeException("用户名已经存在");
+			throw new BusinessException("用户名已经存在");
 		insideProvider.setStatus(1);
 		insideProvider.setPassword(SecurityKit.md5("123"));
 		insideProviderDao.add(insideProvider);
@@ -51,14 +52,14 @@ public class InsideProviderService implements IInsideProviderService {
 	}
 
 	@Override
-	public InsideProvider login(String username, String password) {
+	public InsideProvider login(String username, String password) throws BusinessException {
 		InsideProvider u = this.loadByUsername(username);
 		if (u == null)
-			throw new RuntimeException("用户名不存在!");
+			throw new BusinessException("用户名不存在!");
 		if (!SecurityKit.md5(password).equals(u.getPassword()))
-			throw new RuntimeException("用户密码不正确！");
+			throw new BusinessException("用户密码不正确！");
 		if (u.getStatus() == 0)
-			throw new RuntimeException("用户已经停用!");
+			throw new BusinessException("用户已经停用!");
 		return u;
 	}
 

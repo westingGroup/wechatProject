@@ -102,5 +102,5 @@ function turnToPage(src,leftMenuId){
 	$("#iframeMain").attr("src",basePath+"/"+src);
 }
 function quit(){
-	location.href = basePath + "/login/logout.htm";
+	location.href = basePath + "/inside/logout";
 }
