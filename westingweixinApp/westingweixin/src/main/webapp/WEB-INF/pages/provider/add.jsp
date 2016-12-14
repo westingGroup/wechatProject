@@ -76,9 +76,10 @@
 		<jsp:include page="../showTips.jsp"></jsp:include>
 		<div class="content">
 			<div class="waitingTaskTitle">待接的任务</div>
-			<input type="hidden" name="providerId" value="${provider.id}" id="providerId" /> 
-			<input type="hidden" name="providerName" value="${provider.linkname}" id="providerName" /> 
-			<input type="hidden" name="applyBy" value="${provider.id}" id="applyBy"/> 
+			<input type="hidden" name="providerId" value="${provider.id}"
+				id="providerId" /> <input type="hidden" name="providerName"
+				value="${provider.linkname}" id="providerName" /> <input
+				type="hidden" name="applyBy" value="${provider.id}" id="applyBy" />
 			<input type="hidden" name="id" id="id" value="0" />
 			<c:forEach items="${orders.records}" var="order" varStatus="status">
 				<div class="container waitingTaskCommonStyle" id="order${order.id}"
@@ -139,20 +140,21 @@
 			<div class="row">
 				<div class="col-md-1 col-xs-2 label">价格：</div>
 				<div class="col-md-4 col-xs-2" style="padding-left: 7px;">
-					<input type="text" class="text" id="price"/>
+					<input type="text" class="text" id="price" />
 				</div>
 				<div class="col-md-2 col-xs-3 label">预计完成时间：</div>
 				<div class="col-md-4 col-xs-5 input-append date form_datetime_day"
 					style="padding-left: 7px;">
-					<input type="text" class="text" style="width: 75px;" id="completeDate"/><span
-						class="add-on" style="padding: 4px 0px;"><i
+					<input type="text" class="text" style="width: 75px;"
+						id="completeDate" /><span class="add-on" style="padding: 4px 0px;"><i
 						class="icon-remove"></i></span> <span class="add-on"
 						style="padding: 4px 0px;"><i class="icon-calendar"></i></span>
 				</div>
 			</div>
 		</div>
 		<div class="footer">
-			<button class="btn" type="button" onclick="applyServiceOrder()" id="button">任务申领</button>
+			<button class="btn" type="button" onclick="applyServiceOrder()"
+				id="button">任务申领</button>
 		</div>
 	</div>
 </body>
