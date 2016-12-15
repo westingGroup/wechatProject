@@ -220,11 +220,11 @@ public class ProviderController {
 		provider.setBirthDate(DateUtil.parseDate(birth, "yyyy-MM-dd"));
 		providerService.add(provider);
 		if (fromPath.equals("1")) {
-			return "forward:/provider/add";
+			return "redirect:/provider/add";
 		} else if (fromPath.equals("2")) {
-			return "forward:/provider/list";
+			return "redirect:/provider/list";
 		}
-		return "forward:/provider/add";
+		return "redirect:/provider/add";
 	}
 
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
