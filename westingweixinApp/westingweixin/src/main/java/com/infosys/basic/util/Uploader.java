@@ -31,6 +31,7 @@ import sun.misc.BASE64Decoder;
  * UEditor文件上传辅助类
  *
  */
+@SuppressWarnings("restriction")
 public class Uploader {
 	// 输出文件地址
 	private String url = "";
@@ -142,7 +143,7 @@ public class Uploader {
 	 * 接受并保存以base64格式上传的文件
 	 * @param fieldName
 	 */
-	public void uploadBase64(String fieldName){
+    public void uploadBase64(String fieldName){
 		String savePath = this.getFolder(this.savePath);
 		String base64Data = this.request.getParameter(fieldName);
 		this.fileName = this.getName("test.png");
