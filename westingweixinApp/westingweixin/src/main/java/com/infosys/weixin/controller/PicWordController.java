@@ -69,18 +69,24 @@ public class PicWordController {
         return "redirect:/picword/list";
     }
 
+    @RequestMapping(value = "/publicDetail/{id}", method = RequestMethod.POST)
+    public @ResponseBody String publicDetail(@PathVariable int id) {
+        wordsService.deleteOther(id);
+        return "发布成功";
+    }
+
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable int id) {
+        wordsService.delete(id);
+        return "redirect:/picword/list";
+    }
+
+    @RequestMapping(value = "/disable/{id}", method = RequestMethod.GET)
+    public String disable(@PathVariable int id) {
         Words tu = wordsService.load(id);
         tu.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_DELETE);
         wordsService.update(tu);
         return "redirect:/picword/list";
     }
-    
-    @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
-    public String detail(@PathVariable int id, Words words,Model model) {
-        Words tu = wordsService.load(id);
-        model.addAttribute("words", tu);
-        return "picword/detail";
-    }
+
 }

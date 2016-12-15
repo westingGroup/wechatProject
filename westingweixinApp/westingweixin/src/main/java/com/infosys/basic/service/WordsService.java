@@ -40,10 +40,23 @@ public class WordsService implements IWordsService {
     public Words get(int id) {
         return wordsDao.get(id);
     }
-    
+
     @Override
     public List<Words> listByCondition(String condition) {
         return wordsDao.listByCondition(condition);
+    }
+
+    @Override
+    public Words konw() {
+        return wordsDao.konw();
+    }
+
+    @Override
+    public void deleteOther(int id) {
+        Words tu = load(id);
+        tu.setStatus(1);
+        update(tu);
+        wordsDao.deleteOther(id);
     }
 
 }

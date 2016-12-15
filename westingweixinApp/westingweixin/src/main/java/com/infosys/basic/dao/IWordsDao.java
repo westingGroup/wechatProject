@@ -5,9 +5,12 @@ import java.util.List;
 import com.infosys.basic.dao.base.IBaseDao;
 import com.infosys.basic.entity.Words;
 
-public interface IWordsDao  extends IBaseDao<Words> {
+public interface IWordsDao extends IBaseDao<Words> {
 
     List<Words> listByCondition(String condition);
 
+    Words konw();
+
+    void deleteOther(int id);
 
 }

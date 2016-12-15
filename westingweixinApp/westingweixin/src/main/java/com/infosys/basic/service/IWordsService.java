@@ -11,4 +11,6 @@ public interface IWordsService {
     public Words load(int id);
     public Words get(int id);
     public List<Words> listByCondition(String condition);
+    public Words konw();
+    public void deleteOther(int id);
 }

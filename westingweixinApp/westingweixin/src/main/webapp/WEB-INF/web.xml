@@ -65,7 +65,7 @@
 		<servlet-class>com.infosys.weixin.web.servlet.InitServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-   <!--  <filter>
+	<!-- <filter>
 		<filter-name>WeixinAuthFilter</filter-name>
 		<filter-class>com.infosys.weixin.web.filter.WeixinAuthFilter</filter-class>
 	</filter>
@@ -92,5 +92,18 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+	
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/500.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/500.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.jsp</location>
+	</error-page>  
 </web-app>
 

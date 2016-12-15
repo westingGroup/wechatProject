@@ -24,12 +24,12 @@ public class Words implements Serializable {
 
     private String brief;
 
-    @Column(name = "HTML_CONTENTS")
+    @Column(name = "html_contents")
     @Lob
     private String htmlContents; // 内容
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "LAST_UPDATE_TIME")
+    @Column(name = "last_update_time")
     private Date lastUpdateTime; // 最后更新时间
 
     private int status;
