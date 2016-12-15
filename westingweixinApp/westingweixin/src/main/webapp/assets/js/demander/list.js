@@ -75,11 +75,11 @@ function appendRecord(recordContent) {
 	record += "<hr class='commonHr hidden" + recordContent.id + "'>";
 	record += "<div class='row serviceEvaluate hidden" + recordContent.id
 			+ "'>";
-	record += "<div class='col-md-1 col-xs-5'>";
+	record += "<div class='col-md-2 col-xs-5'>";
 	record += "<div class='raty' id='raty" + recordContent.id
 			+ "' style='margin-right: 0px;'></div>";
 	record += "</div>";
-	record += "<div class='col-md-11 col-xs-7' style='text-align: left;'>";
+	record += "<div class='col-md-10 col-xs-7' style='text-align: left;'>";
 	record += "<button class='btn' id='but" + recordContent.id
 			+ "'>服务评价</button>";
 	record += "<input type='hidden' id='id" + recordContent.id + "' value="
@@ -90,5 +90,5 @@ function appendRecord(recordContent) {
 	record += "</div>";
 
 	$(".content").append(record);
-	renderingList(recordContent.id, recordContent.evaluate, "demander");
+	renderingList(recordContent.id, recordContent.evaluate, "demander", recordContent.status);
 }

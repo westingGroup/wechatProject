@@ -43,10 +43,10 @@
 	var totalPage = "${orders.totalPage}";
 	var isCanDown = "${orders.isCanDown}";
 	$(function() {
-		$.fn.raty.defaults.path = basePath + "/assets/raty/lib/img";
+		$.fn.raty.defaults.path = basePath + "/assets/raty/demo/img";
 		<c:forEach items="${orders.records}" var="order" varStatus="status">
 		//渲染列表
-		renderingList("${order.id}", "${order.evaluate}", "provider");
+		renderingList("${order.id}", "${order.evaluate}", "provider", "${order.status}");
 		</c:forEach>
 		//定义滑动操作
 		isTouchDevice("pageMyMobileApplys");

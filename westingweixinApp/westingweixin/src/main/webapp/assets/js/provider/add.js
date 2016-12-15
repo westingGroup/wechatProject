@@ -207,3 +207,14 @@ function disableApply() {
 	$("#completeDate").attr("disabled", true);
 	$("#button").attr("disabled", true);
 }
+
+/**
+ * 清空apply
+ */
+function clearApply(){
+	$("#linkname").val("");
+	$("#linkphone").val("");
+	$("#price").val("");
+	$("#completeDate").val("");
+	enableApply();
+}

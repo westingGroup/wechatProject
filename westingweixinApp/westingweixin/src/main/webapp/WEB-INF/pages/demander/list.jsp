@@ -43,10 +43,10 @@
 	var totalPage = "${orders.totalPage}";
 	var isCanDown = "${orders.isCanDown}";
 	$(function() {
-		$.fn.raty.defaults.path = basePath + "/assets/raty/lib/img";
+		$.fn.raty.defaults.path = basePath + "/assets/raty/demo/img";
 		<c:forEach items="${orders.records}" var="order" varStatus="status">
 		//渲染列表
-		renderingList("${order.id}", "${order.evaluate}", "demander");
+		renderingList("${order.id}", "${order.evaluate}", "demander", "${order.status}");
 		</c:forEach>
 		//定义滑动操作
 		isTouchDevice("pageMyDemanders");
@@ -120,10 +120,10 @@
 					</div>
 					<hr class="commonHr hidden${order.id}">
 					<div class="row serviceEvaluate hidden${order.id}">
-						<div class="col-md-1 col-xs-5">
+						<div class="col-md-2 col-xs-5">
 							<div class="raty" id="raty${order.id}" style="margin-right: 0px;"></div>
 						</div>
-						<div class="col-md-11 col-xs-7" style="text-align: left;">
+						<div class="col-md-10 col-xs-7" style="text-align: left;">
 							<button class="btn" id="but${order.id}">服务评价</button>
 							<input type="hidden" id="id${order.id}" value="${order.id}" /> <input
 								type="hidden" id="evaluate${order.id}" value="${order.evaluate}" />

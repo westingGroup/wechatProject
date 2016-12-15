@@ -53,6 +53,7 @@
 		initDatePickerForDay(new Date());
 		//定义滑动操作
 		isTouchDevice("mobileApply");
+		clearApply();//清空页面信息
 	});
 </script>
 </head>

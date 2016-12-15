@@ -68,5 +68,5 @@ function appendRecord(recordContent){
 	record += "</div>";
 	
 	$(".content").append(record);
-	renderingList(recordContent.id, recordContent.evaluate, "provider");
+	renderingList(recordContent.id, recordContent.evaluate, "provider", recordContent.status);
 }
