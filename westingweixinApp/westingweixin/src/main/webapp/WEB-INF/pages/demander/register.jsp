@@ -12,7 +12,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <title>服务需求方注册</title>
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.css">
+	href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/media/css/DT_bootstrap.css" />
 <link rel="stylesheet" type="text/css"

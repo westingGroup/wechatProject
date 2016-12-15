@@ -144,7 +144,8 @@
 	appearance: none;
 }
 
-.imgDelete, .imgResetPass, .imgUpdate {
+.imgDelete, .imgResetPass, .imgUpdate, .imgDisabled, .imgDetail,
+	.imgPublish {
 	cursor: pointer;
 }
 

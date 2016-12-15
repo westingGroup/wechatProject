@@ -32,7 +32,7 @@ var arryData = [ {
 	"id" : 12,
 	"type" : 0,
 	"text" : "了解弘弘",
-	"pic" : "demander.png",
+	"pic" : "know.png",
 	"active" : 0
 }, {
 	"menuId" : 12,

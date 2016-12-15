@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.infosys.basic.dto.PagerInfo;
 import com.infosys.basic.dto.ServiceOrderDto;
@@ -218,11 +220,11 @@ public class ProviderController {
 		provider.setBirthDate(DateUtil.parseDate(birth, "yyyy-MM-dd"));
 		providerService.add(provider);
 		if (fromPath.equals("1")) {
-			return "redirect:/provider/add";
+			return "forward:/provider/add";
 		} else if (fromPath.equals("2")) {
-			return "redirect:/provider/list";
+			return "forward:/provider/list";
 		}
-		return "redirect:/provider/add";
+		return "forward:/provider/add";
 	}
 
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
