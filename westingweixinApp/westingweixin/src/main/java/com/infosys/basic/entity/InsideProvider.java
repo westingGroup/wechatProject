@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
 
 //内部提供商
 @Entity
-@Table(name = "t_insideProvider")
+@Table(name = "t_insideprovider")
 public class InsideProvider implements Serializable {
     /**
      * serialVersionUID:

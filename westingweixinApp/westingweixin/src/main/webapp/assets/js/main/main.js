@@ -22,9 +22,23 @@ var arryData = [ {
 	"active" : 0
 }, {
 	"menuId" : 11,
-	"id" : 112,
+	"id" : 111,
 	"text" : "需求信息",
 	"src" : "/process/demanders",
+	"active" : 0
+}, 
+{
+	"menuId" : 12,
+	"id" : 12,
+	"type" : 0,
+	"text" : "了解弘弘",
+	"pic" : "demander.png",
+	"active" : 0
+}, {
+	"menuId" : 12,
+	"id" : 121,
+	"text" : "了解弘弘",
+	"src" : "/picword/list",
 	"active" : 0
 }, ];
 /** 初始化菜单 */
