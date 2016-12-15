@@ -10,6 +10,7 @@
 	content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no">
 <title>服务申领</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.css">
