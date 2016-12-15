@@ -1,12 +1,18 @@
+var flag = true;
 /**
  * 向下滑动时
  */
 function pageMyDemanders() {
-	if (isCanDown == 1)// 如果可以向下翻页
+	// 如果已经在查询中，则返回
+	if (!flag)
+		return;
+	if (isCanDown == 1) {// 如果可以向下翻页
+		flag = false;
 		$.post(basePath + "/demander/mydemanders", {
 			currentPage : parseInt(currPage) + 1,
 			createBy : $("#createBy").val()
 		}, function(data, status) {
+			flag = true;
 			var records = data.records;
 			currPage = data.currentPage;
 			totalPage = data.totalPage;
@@ -15,6 +21,7 @@ function pageMyDemanders() {
 				appendRecord(data.records[i]);
 			}
 		}, "json");
+	}
 }
 
 /**
@@ -90,5 +97,6 @@ function appendRecord(recordContent) {
 	record += "</div>";
 
 	$(".content").append(record);
-	renderingList(recordContent.id, recordContent.evaluate, "demander", recordContent.status);
+	renderingList(recordContent.id, recordContent.evaluate, "demander",
+			recordContent.status);
 }

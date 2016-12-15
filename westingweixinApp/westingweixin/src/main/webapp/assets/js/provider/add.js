@@ -57,15 +57,22 @@ function foldInit(orderId) {
 	$("#order" + orderId).css("backgroundColor", "white");
 }
 
+// 检测是否已经取到了数据，如果已经取到了数据，flag设置为true；如果没有取到数据，则设置为false
+var flag = true;
 /**
  * 获取分页信息
  */
 function mobileApply() {
-	if (isCanDown == 1)// 如果可以向下翻页
+	// 防止多次联系查询
+	if (!flag)
+		return;
+	if (isCanDown == 1) {// 如果可以向下翻页
+		flag = false;
 		$.post(basePath + "/provider/mobileApply", {
 			currentPage : parseInt(currPage) + 1,
 			applyBy : $("#applyBy").val()
 		}, function(data, status) {
+			flag = true;
 			var records = data.records;
 			currPage = data.currentPage;
 			totalPage = data.totalPage;
@@ -74,6 +81,7 @@ function mobileApply() {
 				appendRecord(records[i]);
 			}
 		}, "json");
+	}
 }
 
 /**
@@ -211,7 +219,7 @@ function disableApply() {
 /**
  * 清空apply
  */
-function clearApply(){
+function clearApply() {
 	$("#linkname").val("");
 	$("#linkphone").val("");
 	$("#price").val("");
