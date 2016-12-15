@@ -65,7 +65,7 @@
 		<servlet-class>com.infosys.weixin.web.servlet.InitServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	<!-- <filter>
+	<filter>
 		<filter-name>WeixinAuthFilter</filter-name>
 		<filter-class>com.infosys.weixin.web.filter.WeixinAuthFilter</filter-class>
 	</filter>
@@ -73,7 +73,7 @@
 	<filter-mapping>
 		<filter-name>WeixinAuthFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping> -->
+	</filter-mapping>
 	<filter> 
 		<filter-name>AuthFilter</filter-name>
 		<filter-class>com.infosys.weixin.web.filter.AuthFilter</filter-class>
