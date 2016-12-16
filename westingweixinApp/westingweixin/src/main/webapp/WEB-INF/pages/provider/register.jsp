@@ -12,13 +12,13 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <title>服务提供商注册</title>
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.css">
-<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/media/css/DT_bootstrap.css" />
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/media/css/style-metro.css" />
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/style.css" />
+	href="<%=request.getContextPath()%>/assets/media/css/style.css" /> -->
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/media/css/datetimepicker.css" />
 <link rel="stylesheet" type="text/css"

@@ -13,12 +13,12 @@
 <title>服务需求方注册</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
+<!-- <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/media/css/DT_bootstrap.css" />
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/media/css/style-metro.css" />
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/style.css" />
+	href="<%=request.getContextPath()%>/assets/media/css/style.css" /> -->
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/media/css/datetimepicker.css" />
 <link rel="stylesheet" type="text/css"
