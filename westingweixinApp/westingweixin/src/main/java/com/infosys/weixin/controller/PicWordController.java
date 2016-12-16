@@ -64,7 +64,6 @@ public class PicWordController {
         tu.setLastUpdateTime(new Date());
         tu.setBrief(words.getBrief());
         tu.setHtmlContents(words.getHtmlContents());
-        tu.setStatus(words.getStatus());
         wordsService.update(tu);
         return "redirect:/picword/list";
     }
