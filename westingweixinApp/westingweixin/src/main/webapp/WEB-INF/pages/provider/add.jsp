@@ -48,9 +48,17 @@
 	var isCanDown = "${orders.isCanDown}";
 	var basePath = "<%=request.getContextPath()%>";
 	$(function() {
-		<c:forEach items="${orders.records}" var="order" varStatus="status">
-		renderList("${order.id}");
-		</c:forEach>
+		if ("${orders.records.size()}" != 0) {
+			<c:forEach items="${orders.records}" var="order" varStatus="status">
+			renderList("${order.id}");
+			</c:forEach>
+			$("#noData").css("display", "none");
+			$(".priceAndFinishTime").css("display", "block");
+		} else {
+			$("#noData").css("display", "block");
+			$(".priceAndFinishTime").css("display", "none");
+		}
+
 		initDatePickerForDay(new Date());
 		//定义滑动操作
 		isTouchDevice("mobileApply");
@@ -155,6 +163,9 @@
 							class="icon-calendar"></i></span>
 					</div>
 				</div>
+			</div>
+			<div id="noData" style="text-align: center;">
+				<font color="grey">没有数据记录</font>
 			</div>
 		</div>
 		<div class="footer">
