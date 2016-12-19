@@ -168,7 +168,7 @@ function applyServiceOrder() {
 		$("#order" + $("#id").val()).attr("completeDate",
 				$("#completeDate").val());
 		disableApply();
-	}, "text");
+	});
 }
 
 /**
