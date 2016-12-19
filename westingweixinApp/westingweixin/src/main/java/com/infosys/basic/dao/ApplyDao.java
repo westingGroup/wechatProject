@@ -12,7 +12,7 @@ public class ApplyDao extends BaseDao<Apply> implements IApplyDao {
 
 	@Override
 	public List<Apply> listBySId(String sId) {
-		return this.list("from Apply where sId = ?", Integer.parseInt(sId));
+		return this.list("from Apply where sId = ? ", Integer.parseInt(sId));
 	}
 
 }

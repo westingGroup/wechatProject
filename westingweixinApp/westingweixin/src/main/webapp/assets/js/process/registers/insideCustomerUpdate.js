@@ -32,7 +32,7 @@ function initInsideCustomerUpdate() {
  * 初始化内部提供商记录信息
  */
 function initInsideCustomerUpdateRecord(registerId) {
-	$.get(basePath + "/inside/addOrUpdate", {
+	$.post(basePath + "/inside/addOrUpdate", {
 		id : registerId
 	}, function(data, status) {
 		$("#icuId").val(registerId);

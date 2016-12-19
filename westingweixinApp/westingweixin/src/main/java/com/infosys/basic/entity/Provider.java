@@ -28,7 +28,9 @@ public class Provider implements Serializable {
      */
 
     private int id;
+
     private String openid;
+
     private String linkname;
 
     private String linkphone;
@@ -44,9 +46,11 @@ public class Provider implements Serializable {
     private String qualification;
 
     private int status;
-    
+
     private String remark;
-    
+
+    private int type;//默认外部 0 ，内部1 
+
     @Id
     @GeneratedValue
     public int getId() {
@@ -109,9 +113,18 @@ public class Provider implements Serializable {
         return status;
     }
 
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
     public void setStatus(int status) {
         this.status = status;
     }
+
     public String getRemark() {
         return remark;
     }

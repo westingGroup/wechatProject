@@ -8,7 +8,7 @@ var arryData = [ {
 }, {
 	"menuId" : 10,
 	"id" : 101,
-	"text" : "注册信息",
+	"text" : "注册信息管理",
 	"src" : "/process/registers",
 	"active" : 0
 },
@@ -23,7 +23,7 @@ var arryData = [ {
 }, {
 	"menuId" : 11,
 	"id" : 111,
-	"text" : "需求信息",
+	"text" : "需求信息管理",
 	"src" : "/process/demanders",
 	"active" : 0
 }, 

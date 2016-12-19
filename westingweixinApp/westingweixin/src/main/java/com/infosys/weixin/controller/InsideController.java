@@ -35,7 +35,7 @@ public class InsideController {
 	}
 
 	@RequestMapping(value = "/addOrUpdate", method = RequestMethod.POST)
-	public String add(int id, InsideProvider inside) throws BusinessException {
+	public @ResponseBody String add(int id, InsideProvider inside) throws BusinessException {
 		if (id > 0) {
 			InsideProvider tu = insideProviderService.load(id);
 			tu.setUsername(inside.getUsername());
@@ -45,7 +45,7 @@ public class InsideController {
 		} else {
 			insideProviderService.add(inside);
 		}
-		return "redirect:/inside/list";
+		return "添加成功";
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET, produces = "application/text; charset=utf-8")

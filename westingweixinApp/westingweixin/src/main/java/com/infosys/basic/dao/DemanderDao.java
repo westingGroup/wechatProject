@@ -32,7 +32,12 @@ public class DemanderDao extends BaseDao<Demander> implements IDemanderDao {
         long num = 0L;
         sb.append("select count(*) as total from t_demander c where 1=1 ");
         if (StringUtils.isNotBlank(demanderModel.getStatus())) {
-            sb.append(" and status = ").append(demanderModel.getStatus());
+            if (demanderModel.getStatus().equals(com.infosys.basic.util.Constants.T_USER_STATUS_PASS_STR)) {
+                sb.append(" and (status = ").append(demanderModel.getStatus()).append(" or status =")
+                        .append(com.infosys.basic.util.Constants.T_USER_STATUS_DELETE).append(")");
+            } else {
+                sb.append(" and status = ").append(demanderModel.getStatus());
+            }
         }
         if (StringUtils.isNotBlank(demanderModel.getLinkname())) {
             sb.append(" and linkname like '%").append(demanderModel.getLinkname()).append("%'");
@@ -59,7 +64,12 @@ public class DemanderDao extends BaseDao<Demander> implements IDemanderDao {
                 + "IFNULL(remark,'') remark,"
                 + "CASE status WHEN 0 THEN '停用' WHEN 1 THEN '注册' WHEN 11 THEN '通过' WHEN 10 THEN '拒绝' ELSE '其他' END AS status FROM t_demander WHERE 1=1 ");
         if (StringUtils.isNotBlank(demanderModel.getStatus())) {
-            sb.append(" and status = ").append(demanderModel.getStatus());
+            if (demanderModel.getStatus().equals(com.infosys.basic.util.Constants.T_USER_STATUS_PASS_STR)) {
+                sb.append(" and (status = ").append(demanderModel.getStatus()).append(" or status =")
+                        .append(com.infosys.basic.util.Constants.T_USER_STATUS_DELETE).append(")");
+            } else {
+                sb.append(" and status = ").append(demanderModel.getStatus());
+            }
         }
         if (StringUtils.isNotBlank(demanderModel.getLinkname())) {
             sb.append(" and linkname like '%").append(demanderModel.getLinkname()).append("%'");

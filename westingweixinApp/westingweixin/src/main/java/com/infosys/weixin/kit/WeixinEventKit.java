@@ -171,14 +171,17 @@ public class WeixinEventKit {
 	            }
 			}
 		}
-		if(u.getBind()==0) {
+		
+		return WeixinMessageKit.map2xml(MessageCreateKit.createTextMsg(msgMap, "你好，欢迎关注弘弘供应链！"));
+		
+		/*if(u.getBind()==0) {
 			String bindUrl = WeixinContext.getInstance().getBaseUrl();
 			bindUrl += bindUrl+"/user/bindExistUser";
-			return WeixinMessageKit.map2xml(MessageCreateKit.createTextMsg(msgMap, "<a href=\""+bindUrl+"\">请点击绑定用户获得更好的体验</a>"));
+			return WeixinMessageKit.map2xml(MessageCreateKit.createTextMsg(msgMap, "你好，欢迎关注弘弘供应链！"));
 		} else {
 			String bindUrl = WeixinContext.getInstance().getBaseUrl();
 			return WeixinMessageKit.map2xml(MessageCreateKit.createTextMsg(msgMap, "<a href=\""+bindUrl+"\">欢迎你再次使用我们的微信平台，点击打开我们的页面</a>"));
-		}
+		}*/
 	}
 
 	private static String handlerClickEvent(Map<String, String> msgMap) throws IOException {

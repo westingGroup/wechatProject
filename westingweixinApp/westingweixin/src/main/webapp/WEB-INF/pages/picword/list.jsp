@@ -36,7 +36,7 @@
 						href="<%=request.getContextPath()%>/data/detail/${word.id }"
 						target="_blank">详情</a>&nbsp;<a href="#" id="pubBtn${word.id }">发布</a>]
 					</td>
-					<td>${word.status }</td>
+					<td><c:if test="${word.status==1}">使用</c:if><c:if test="${word.status!=1}">未使用</c:if></td>
 					<td>${word.lastUpdateTime }</td>
 				</tr>
 			</c:forEach>

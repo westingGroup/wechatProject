@@ -65,5 +65,10 @@ public class ProviderService implements IProviderService {
 		return providerDao.getDemanderTotalByConditions(demanderModel);
 	}
 
+    @Override
+    public PagerInfo<DemanderDto> listProviderByType(DemanderModel demanderSearchModal) {
+        return providerDao.listProviderByType(demanderSearchModal);
+    }
+
 
 }

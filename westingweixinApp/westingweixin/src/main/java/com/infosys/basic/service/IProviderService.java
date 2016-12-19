@@ -17,4 +17,5 @@ public interface IProviderService {
     public List<Provider> list();
     public PagerInfo<DemanderDto> listProviderByKeyword(DemanderModel demanderModel);
     public long getDemanderTotalByConditions(DemanderModel demanderModel);
+    public PagerInfo<DemanderDto> listProviderByType(DemanderModel demanderSearchModal);
 }

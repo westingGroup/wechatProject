@@ -158,7 +158,8 @@ function applyServiceOrder() {
 		price : price,
 		completeDateStr : $("#completeDate").val(),
 		providerId : $("#providerId").val(),
-		providerName : $("#providerName").val()
+		providerName : $("#providerName").val(),
+		providerType : $("#providerType").val()
 	}, function(data, status) {
 		showTipsSucc(data);
 		$("#order" + $("#id").val()).attr("linkname", $("#linkname").val());

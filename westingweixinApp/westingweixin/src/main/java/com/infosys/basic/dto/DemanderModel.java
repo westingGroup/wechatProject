@@ -22,8 +22,18 @@ public class DemanderModel extends SearchModel<DemanderDto> {
 
     private String password;
 
+    private String type;
+
     public String getStartTime() {
         return startTime;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setStartTime(String startTime) {

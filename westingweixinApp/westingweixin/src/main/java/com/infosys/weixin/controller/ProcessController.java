@@ -263,11 +263,12 @@ public class ProcessController {
 				: linkname.trim());
 		demanderSearchModal.setPhone(StringUtils.isBlank(linkphone) ? ""
 				: linkphone.trim());
+		demanderSearchModal.setType(com.infosys.basic.util.Constants.T_SERVICE_ORDER_TYPE_INSIDE);
 		demanderSearchModal
-				.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_NORMAL_STR);
+				.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_PASS_STR);
 		demanderSearchModal.setPager(demanderPage);
-		PagerInfo<DemanderDto> userResult = insideProviderService
-				.listInsideProviderByKeyword(demanderSearchModal);
+		PagerInfo<DemanderDto> userResult = providerService
+				.listProviderByType(demanderSearchModal);
 		userResult.setTotalPage(userResult.getTotalPages());
 		if (userResult.getCurrentPage() > 1L) { // 如果大于1表示可以点击上一页
 			userResult.setIsCanUp(1);
@@ -329,6 +330,13 @@ public class ProcessController {
 						} else if (dealType == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_CANCEL) {
 							serviceOrder
 									.setStatus(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_CANCEL);
+						} else if (dealType == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_NEW) {
+						    List<Apply> apList = applyService.listBySId(id);
+                            if (apList != null && apList.size() > 0) {
+                                serviceOrder.setStatus(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_APPLY);
+                            } else {
+                                serviceOrder.setStatus(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_NEW);
+                            }
 						}
 					}
 					serviceOrderService.update(serviceOrder);

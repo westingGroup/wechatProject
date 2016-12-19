@@ -8,13 +8,17 @@ import com.infosys.basic.dto.DemanderModel;
 import com.infosys.basic.dto.PagerInfo;
 import com.infosys.basic.entity.Provider;
 
-public interface IProviderDao extends IBaseDao<Provider>{
+public interface IProviderDao extends IBaseDao<Provider> {
 
     Provider loadByOpenid(String openid);
 
     List<Provider> list();
 
     PagerInfo<DemanderDto> listProviderByKeyword(DemanderModel demanderModel);
-    
+
     public long getDemanderTotalByConditions(DemanderModel demanderModel);
+
+    public long getlistTotalProviderByType(DemanderModel demanderModel);
+
+    PagerInfo<DemanderDto> listProviderByType(DemanderModel demanderModel);
 }

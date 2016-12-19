@@ -87,6 +87,8 @@
 		<div class="content">
 			<div class="providerOrders">
 				<div class="waitingTaskTitle">待接的任务</div>
+				<input type="hidden" name="providerType" value="${provider.type}"
+					id="providerType" />
 				<input type="hidden" name="providerId" value="${provider.id}"
 					id="providerId" /> <input type="hidden" name="providerName"
 					value="${provider.linkname}" id="providerName" /> <input

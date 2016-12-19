@@ -117,7 +117,7 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
         if (StringUtils.isNotBlank(serviceOrderModel.getLinkphone())) {
             sb.append(" and linkphone like '%").append(serviceOrderModel.getLinkphone()).append("%'");
         }
-        sb.append(" order by create_date asc limit ").append((dtoPager.getCurrentPage() - 1) * dtoPager.getPageSize())
+        sb.append(" order by create_date desc limit ").append((dtoPager.getCurrentPage() - 1) * dtoPager.getPageSize())
                 .append(",").append(dtoPager.getPageSize());
         String sql = sb.toString();
         List<Map<String, Object>> userListInDB = this.listBySql(sql, null);
@@ -171,7 +171,7 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
             sb.append(" and s.status =0 OR (s.status=1 AND s.id NOT IN (SELECT s_id FROM t_apply a WHERE a.apply_by =")
                     .append(serviceOrderModel.getApplyBy()).append("))");
         }
-        sb.append(" order by id asc limit ").append((dtoPager.getCurrentPage() - 1) * dtoPager.getPageSize())
+        sb.append(" order by create_date desc limit ").append((dtoPager.getCurrentPage() - 1) * dtoPager.getPageSize())
                 .append(",").append(dtoPager.getPageSize());
         String sql = sb.toString();
         List<Map<String, Object>> userListInDB = this.listBySql(sql, null);
@@ -229,7 +229,7 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
                     .append(" AND(s.STATUS=2 OR s.STATUS=9)) OR (s.status=1 AND s.id IN (SELECT a.s_id FROM t_apply a WHERE a.apply_by =")
                     .append(serviceOrderModel.getDealBy()).append("))");
         }
-        sb.append(" order by id desc limit ").append((dtoPager.getCurrentPage() - 1) * dtoPager.getPageSize())
+        sb.append(" order by create_date desc limit ").append((dtoPager.getCurrentPage() - 1) * dtoPager.getPageSize())
                 .append(",").append(dtoPager.getPageSize());
         String sql = sb.toString();
         List<Map<String, Object>> userListInDB = this.listBySql(sql, null);
@@ -312,7 +312,7 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
             sb.append(" and linkphone like '%").append(demanderSearchModal.getLinkphone()).append("%'");
         }
 
-        sb.append(" order by id desc limit ").append((dtoPager.getCurrentPage() - 1) * dtoPager.getPageSize())
+        sb.append(" order by id asc limit ").append((dtoPager.getCurrentPage() - 1) * dtoPager.getPageSize())
                 .append(",").append(dtoPager.getPageSize());
         String sql = sb.toString();
         List<Map<String, Object>> userListInDB = this.listBySql(sql, null);

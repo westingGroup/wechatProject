@@ -94,6 +94,23 @@
 						</div>
 					</div>
 					<hr class="commonHr" />
+					<div class="row contactPhone">
+						<div class="col-md-1 col-xs-4 label">
+							<img alt="电话"
+								src="<%=request.getContextPath()%>/assets/img/contactPhone.png"
+								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;类型：
+						</div>
+						<div class="col-md-11 col-xs-8">
+							<select name="providerType">
+								<option value ="0" selected>外部</option>
+							  	<option value ="1">内部</option>
+							</select>
+						</div>
+					</div>
+					
+				
+
+					<hr class="commonHr" />
 					<div class="row contactBirthday">
 						<div class="col-md-1 col-xs-4 label">
 							<img alt="出生年月"
