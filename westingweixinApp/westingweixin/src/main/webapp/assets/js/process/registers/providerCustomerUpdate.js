@@ -16,7 +16,8 @@ function initProviderCustomerUpdate() {
 			birth : $("#pcuBirth").val(),
 			business : $("#pcuBusiness").val(),
 			qualification : $("#pcuQualification").val(),
-			company : $("#pcuCompany").val()
+			company : $("#pcuCompany").val(),
+			providerType: $("#providerType").val()
 		}, function(data, status) {
 			$("#pcuTipsInfo").html(data);
 			providerCustomerPagination.updateSelfInput();// 更新父页面
@@ -31,6 +32,7 @@ function initProviderCustomerUpdate() {
 	});
 }
 
+
 /**
  * 初始化要更新的服务提供商记录信息
  */
@@ -40,10 +42,14 @@ function initProviderCustomerUpdateRecord(registerId) {
 		$("#pcuId").val(registerId);
 		$("#pcuLinkName").val(data.linkname);
 		$("#pcuLinkPhone").val(data.linkphone);
-		$("#pcuBirth").val(data.business);
-		$("#pcuBusiness").val(data.company);
+		if(data.birthDate==null||data.birthDate==""){
+		}else{
+			$("#pcuBirth").val(FormatDate(data.birthDate));
+		}
+		$("#pcuBusiness").val(data.business);
 		$("#pcuQualification").val(data.qualification);
 		$("#pcuCompany").val(data.company);
+		$("#providerType").val(data.type);
 	}, "json");
 }
 
@@ -58,5 +64,6 @@ function clearProviderCustomerUpdate() {
 	$("#pcuQualification").val("");
 	$("#pcuCompany").val("");
 	$("#pcuId").val("");
+	$("#providerType").val("");
 	$("#pcuTipsInfo").html("");
 }

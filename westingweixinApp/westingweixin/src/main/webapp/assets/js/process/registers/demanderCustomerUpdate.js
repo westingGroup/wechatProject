@@ -45,7 +45,10 @@ function initDemanderCustomerUpdateRecord(registerId) {
 		$("#dcuId").val(registerId);
 		$("#dcuLinkname").val(data.linkname);
 		$("#dcuLinkphone").val(data.linkphone);
-		$("#dcuBirth").val(data.birthDate);
+		if(data.birthDate==null||data.birthDate==""){
+		}else{
+			$("#dcuBirth").val(FormatDate(data.birthDate));
+		}
 		$("#dcuCompany").val(data.company);
 		$("#dcuBusiness").val(data.business);
 	}, "json");

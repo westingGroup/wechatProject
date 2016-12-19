@@ -49,7 +49,7 @@
 						style="padding: 0px;">
 						<div class="row">
 							<div class="col-md-10" style="padding: 0px;">
-								<input type="text" class="text" name="pcuBirth"
+								<input type="text" class="text" name="pcuBirth" id="pcuBirth"
 									readonly="readonly" />
 							</div>
 							<div class="col-md-2" style="padding: 0px; text-align: right;">
@@ -88,6 +88,18 @@
 					<div class="col-md-11">
 						<input id="pcuCompany" class="text maxlength" label="公司名称"
 							maxlength="255" />
+					</div>
+				</div>
+				<hr class="commonHr" />
+				<div class="row companyName">
+					<div class="col-md-1 label">
+						<span style="margin-left: 26px;">类型：</span>
+					</div>
+					<div class="col-md-11">
+						<select name="providerType" id="providerType">
+							<option value ="0" selected>外部</option>
+						  	<option value ="1">内部</option>
+						</select>
 					</div>
 				</div>
 			</div>

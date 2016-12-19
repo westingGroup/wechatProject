@@ -263,7 +263,8 @@ public class ProviderController {
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     public @ResponseBody String update(@PathVariable int id, Provider provider,
-            @RequestParam(value = "birth", required = false) String birth) {
+            @RequestParam(value = "birth", required = false) String birth,
+            @RequestParam(value = "providerType", required = true) String providerType) {
         Provider tu = providerService.load(id);
         tu.setBirthDate(DateUtil.parseDate(birth, "yyyy-MM-dd"));
         tu.setBusiness(provider.getBusiness());
@@ -271,7 +272,7 @@ public class ProviderController {
         tu.setLinkname(provider.getLinkname());
         tu.setLinkphone(provider.getLinkphone());
         tu.setQualification(provider.getQualification());
-        tu.setType(provider.getType());
+        tu.setType(Integer.parseInt(providerType));
         providerService.update(tu);
         return "更新成功";
     }
@@ -282,6 +283,14 @@ public class ProviderController {
         tu.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_DELETE);
         providerService.update(tu);
         return "删除成功";
+    }
+
+    @RequestMapping(value = "/enable/{id}", method = RequestMethod.POST)
+    public @ResponseBody String enable(@PathVariable int id) {
+        Provider tu = providerService.load(id);
+        tu.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_PASS);
+        providerService.update(tu);
+        return "启用成功";
     }
 
 }

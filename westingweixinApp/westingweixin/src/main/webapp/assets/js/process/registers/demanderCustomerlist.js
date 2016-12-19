@@ -58,6 +58,7 @@ function appendDemanderCustomer(registers, firstRegisterIndex) {
 		register += "<td>" + registers[i].linkphone + "</td>";
 		register += "<td>" + registers[i].business + "</td>";
 		register += "<td>" + registers[i].company + "</td>";
+		register += "<td>" + registers[i].status + "</td>";
 		register += "<td><img alt='修改' src='"
 				+ basePath
 				+ "/assets/img/edit.png' width='16px' height='16px' registerId="
@@ -66,7 +67,11 @@ function appendDemanderCustomer(registers, firstRegisterIndex) {
 				+ basePath
 				+ "/assets/img/delete.png' width='16px' height='16px' registerId="
 				+ registers[i].id
-				+ " class='imgDelete demanderCustomerDeleteImg' /></td>";
+				+ " class='imgDelete demanderCustomerDeleteImg' />&nbsp;&nbsp;<img alt='启用' src='"
+				+ basePath
+				+ "/assets/img/enable.png' width='16px' height='16px' registerId="
+				+ registers[i].id
+				+ " class='imgDelete demanderCustomerEnableImg' /></td>";
 		register += "</tr>";
 		$("#demanderCustomerListBody").append(register);
 	}
@@ -104,4 +109,25 @@ function appendDemanderCustomer(registers, firstRegisterIndex) {
 					}
 				});
 			});
+	
+	// 启用操作
+	$(".demanderCustomerEnableImg").click(
+			function() {
+				var registerId = $(this).attr("registerId");
+				$.confirm({
+					title : '确认',
+					content : '确定要启用吗?',
+					confirm : function() {
+						$.post(basePath + "/demander/enable/" + registerId, {},
+								function(data, status) {
+									showTipsSucc(data);
+									demanderCustomerPagination
+											.updateSelfInput();
+								});
+					},
+					cancel : function() {
+					}
+				});
+			});
+	
 }

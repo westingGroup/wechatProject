@@ -24,6 +24,8 @@
 				<th>联系方式</th>
 				<th>相关业务</th>
 				<th>公司名称</th>
+				<th>状态</th>
+				<th>类型</th>
 				<th>操作</th>
 			</tr>
 		</thead>

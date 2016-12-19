@@ -215,5 +215,13 @@ public class DemanderController {
         demanderService.update(tu);
         return "删除成功";
     }
+    
+    @RequestMapping(value = "/enable/{id}", method = RequestMethod.POST)
+    public @ResponseBody String enable(@PathVariable int id) {
+        Demander tu = demanderService.load(id);
+        tu.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_PASS);
+        demanderService.update(tu);
+        return "启用成功";
+    }
 
 }

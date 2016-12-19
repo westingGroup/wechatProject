@@ -209,3 +209,7 @@ function validateFail(id) {
 	$("#" + id).removeClass("noRequireStyle").addClass("requireStyle");// 设置红色边框
 	$("#" + id).focus();// 聚焦
 }
+function FormatDate (strTime) {
+    var date = new Date(strTime);
+    return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+}
