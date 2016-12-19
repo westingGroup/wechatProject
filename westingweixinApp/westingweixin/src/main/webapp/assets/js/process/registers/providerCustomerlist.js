@@ -79,7 +79,7 @@ function appendProviderCustomer(registers, firstRegisterIndex) {
 	$("#providerCustomerPager").show();
 	if (registers.length == 0) {
 		var noTr = $("<tr></tr>");
-		var td = "<td colspan='6' style='text-align:center;'>暂无符合条件的记录</td>";
+		var td = "<td colspan='8' style='text-align:center;'>暂无符合条件的记录</td>";
 		noTr.html(td);
 		$("#providerCustomerListBody").append(noTr);
 		$("#providerCustomerPager").hide();

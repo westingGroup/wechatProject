@@ -38,7 +38,7 @@ function initInsideCustomerUpdateRecord(registerId) {
 		$("#icuId").val(registerId);
 		$("#icuLinkname").val(data.username);
 		$("#icuLinkphone").val(data.phone);
-	}, "json");
+	});
 }
 
 /**

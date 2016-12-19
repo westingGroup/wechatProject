@@ -25,7 +25,10 @@ function initFinishedDemanderList(currPage) {
 					type : $("#finishedDemanderType").val(),
 					serviceOrderId : $("#finishedDemanderSOI").val(),// 流水号
 					linkname : $("#finishedDemanderLN").val(),// 联系人
-					linkphone : $("#finishedDemanderLP").val()
+					linkphone : $("#finishedDemanderLP").val(),
+					category : $("#finishedDemanderCG").val(),
+					serviceType : $("#finishedDemanderST").val(),
+					evaluate : $("#finishedDemanderEV").val()
 				// 联系方式
 				}
 			});
@@ -64,13 +67,14 @@ function appendFinishedDemander(registers, firstRegisterIndex) {
 		register += "<td>" + registers[i].linkname + "</td>";
 		register += "<td>" + registers[i].linkphone + "</td>";
 		register += "<td>" + registers[i].dealname + "</td>";
+		register += "<td>" + registers[i].evaluate + "</td>";
 		register += "</tr>";
 		$("#finishedDemanderBody").append(register);
 	}
 	$("#finishedDemanderPager").show();
 	if (registers.length == 0) {
 		var noTr = $("<tr></tr>");
-		var td = "<td colspan='9' style='text-align:center;'>暂无符合条件的记录</td>";
+		var td = "<td colspan='10' style='text-align:center;'>暂无符合条件的记录</td>";
 		noTr.html(td);
 		$("#finishedDemanderBody").append(noTr);
 		$("#finishedDemanderPager").hide();

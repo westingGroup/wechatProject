@@ -78,7 +78,7 @@ function appendDemanderCustomer(registers, firstRegisterIndex) {
 	$("#demanderCustomerPager").show();
 	if (registers.length == 0) {
 		var noTr = $("<tr></tr>");
-		var td = "<td colspan='6' style='text-align:center;'>暂无符合条件的记录</td>";
+		var td = "<td colspan='7' style='text-align:center;'>暂无符合条件的记录</td>";
 		noTr.html(td);
 		$("#demanderCustomerListBody").append(noTr);
 		$("#demanderCustomerPager").hide();

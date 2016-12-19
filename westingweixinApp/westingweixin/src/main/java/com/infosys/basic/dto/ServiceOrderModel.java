@@ -22,6 +22,36 @@ public class ServiceOrderModel extends SearchModel<ServiceOrderDto> {
 
     private String serviceOrderId;
 
+    private String category;
+
+    private String serviceType;
+
+    private String evaluate;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
+
+    public String getEvaluate() {
+        return evaluate;
+    }
+
+    public void setEvaluate(String evaluate) {
+        this.evaluate = evaluate;
+    }
+
     public String getServiceOrderId() {
         return serviceOrderId;
     }

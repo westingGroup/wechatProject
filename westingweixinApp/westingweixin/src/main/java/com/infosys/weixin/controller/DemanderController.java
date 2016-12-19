@@ -185,6 +185,7 @@ public class DemanderController {
             return "您已经评价过";
         }
         tu.setEvaluate(evaluate);
+        tu.setStatus(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_DEALING_EVALUATE);
         serviceOrderService.update(tu);
         return "评价成功";
     }

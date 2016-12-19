@@ -261,6 +261,9 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
             if (Integer.parseInt(demanderSearchModal.getStatus()) == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_APPLY) {
                 sb.append(" and (s.status=").append(demanderSearchModal.getStatus()).append(" or").append(" s.status=")
                         .append(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_NEW).append(")");
+            } else if (Integer.parseInt(demanderSearchModal.getStatus()) == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_DEALING_DONE) {
+                sb.append(" and (s.status=").append(demanderSearchModal.getStatus()).append(" or").append(" s.status=")
+                        .append(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_DEALING_EVALUATE).append(")");
             } else {
                 sb.append(" and s.status=").append(demanderSearchModal.getStatus());
             }
@@ -273,6 +276,15 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
         }
         if (StringUtils.isNotBlank(demanderSearchModal.getLinkphone())) {
             sb.append(" and linkphone like '%").append(demanderSearchModal.getLinkphone()).append("%'");
+        }
+        if (StringUtils.isNotBlank(demanderSearchModal.getCategory())) {
+            sb.append(" and category like '%").append(demanderSearchModal.getCategory()).append("%'");
+        }
+        if (StringUtils.isNotBlank(demanderSearchModal.getServiceType())) {
+            sb.append(" and service_type like '%").append(demanderSearchModal.getServiceType()).append("%'");
+        }
+        if (StringUtils.isNotBlank(demanderSearchModal.getEvaluate())) {
+            sb.append(" and evaluate like '%").append(demanderSearchModal.getEvaluate()).append("%'");
         }
         String sql = sb.toString();
         List<Map<String, Object>> userListInDB = this.listBySql(sql, null);
@@ -298,6 +310,9 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
             if (Integer.parseInt(demanderSearchModal.getStatus()) == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_APPLY) {
                 sb.append(" and (s.status=").append(demanderSearchModal.getStatus()).append(" or").append(" s.status=")
                         .append(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_NEW).append(")");
+            } else if (Integer.parseInt(demanderSearchModal.getStatus()) == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_DEALING_DONE) {
+                sb.append(" and (s.status=").append(demanderSearchModal.getStatus()).append(" or").append(" s.status=")
+                        .append(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_DEALING_EVALUATE).append(")");
             } else {
                 sb.append(" and s.status=").append(demanderSearchModal.getStatus());
             }
@@ -310,6 +325,15 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
         }
         if (StringUtils.isNotBlank(demanderSearchModal.getLinkphone())) {
             sb.append(" and linkphone like '%").append(demanderSearchModal.getLinkphone()).append("%'");
+        }
+        if (StringUtils.isNotBlank(demanderSearchModal.getCategory())) {
+            sb.append(" and category like '%").append(demanderSearchModal.getCategory()).append("%'");
+        }
+        if (StringUtils.isNotBlank(demanderSearchModal.getServiceType())) {
+            sb.append(" and service_type like '%").append(demanderSearchModal.getServiceType()).append("%'");
+        }
+        if (StringUtils.isNotBlank(demanderSearchModal.getEvaluate())) {
+            sb.append(" and evaluate like '%").append(demanderSearchModal.getEvaluate()).append("%'");
         }
 
         sb.append(" order by id asc limit ").append((dtoPager.getCurrentPage() - 1) * dtoPager.getPageSize())

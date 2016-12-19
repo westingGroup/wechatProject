@@ -12,6 +12,10 @@
 				<td><input type="text" id="wasteDemanderLN" class="search" /></td>
 				<td>联系方式:</td>
 				<td><input type="text" id="wasteDemanderLP" class="search" /></td>
+				<td>类别:</td>
+				<td><input type="text" id="wasteDemanderCG" class="search" /></td>
+				<td>类型:</td>
+				<td><input type="text" id="wasteDemanderST" class="search" /></td>
 				<td style="text-align: right;">
 					<button type="button" id="wasteDemanderBtn" class="btn btn-main">查询</button>
 				</td>

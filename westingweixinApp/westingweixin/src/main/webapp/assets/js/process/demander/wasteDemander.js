@@ -24,7 +24,9 @@ function initWasteDemanderList(currPage, pageSize) {
 			type : $("#wasteDemanderType").val(),
 			serviceOrderId : $("#wasteDemanderSOI").val(),// 流水号
 			linkname : $("#wasteDemanderLN").val(),// 联系人
-			linkphone : $("#wasteDemanderLP").val()
+			linkphone : $("#wasteDemanderLP").val(),
+			category : $("#wasteDemanderCG").val(),
+			serviceType : $("#wasteDemanderST").val()
 		// 联系方式
 		}
 	});

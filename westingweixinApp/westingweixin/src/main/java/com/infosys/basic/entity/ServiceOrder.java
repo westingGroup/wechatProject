@@ -130,8 +130,8 @@ public class ServiceOrder implements Serializable {
 
     private String remark3;
 
-    @Column(name = "deal_by_inside", columnDefinition = "INT default 0")
-    private int dealByInside;
+    @Column(name = "type", columnDefinition = "INT default 0")
+    private int type;
 
     public ServiceOrder() {
     }
@@ -304,12 +304,12 @@ public class ServiceOrder implements Serializable {
         this.remark3 = remark3;
     }
 
-    public int getDealByInside() {
-        return dealByInside;
+    public int getType() {
+        return type;
     }
 
-    public void setDealByInside(int dealByInside) {
-        this.dealByInside = dealByInside;
+    public void setType(int type) {
+        this.type = type;
     }
 
 }

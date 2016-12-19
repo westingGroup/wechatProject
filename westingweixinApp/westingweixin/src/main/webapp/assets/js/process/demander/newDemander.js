@@ -43,7 +43,9 @@ function initNewDemanderList(currPage) {
 			type : $("#newDemanderType").val(),
 			serviceOrderId : $("#newDemanderSOI").val(),// 流水号
 			linkname : $("#newDemanderLN").val(),// 联系人
-			linkphone : $("#newDemanderLP").val()
+			linkphone : $("#newDemanderLP").val(),
+			category : $("#newDemanderCG").val(),
+			serviceType : $("#newDemanderST").val()
 		// 联系方式
 		}
 	});

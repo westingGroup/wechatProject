@@ -68,7 +68,7 @@
 				id="dispatchCustomerTab">服务需求方列表</a> <a
 				href="javascript:switchTab('ordersCustomer')" id="ordersCustomerTab">服务提供商列表</a>
 			<a href="javascript:switchTab('insideCustomer')"
-				id="insideCustomerTab">内部提供商列表</a>
+				id="insideCustomerTab">管理人员</a>
 		</div>
 		<div class="tab_search" id="dispatchRegisterApply">
 			<jsp:include page="demanderRegisterApplylist.jsp"></jsp:include>

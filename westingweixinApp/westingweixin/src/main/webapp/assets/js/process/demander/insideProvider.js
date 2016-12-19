@@ -75,10 +75,10 @@ function appendInsideProvider(records, firstRegisterIndex) {
 	for (var i = 0; i < records.length; i++) {
 		var record = "<tr>";
 		record += "<td style='text-align:center;'><input type = 'radio' name='insideProviderId' value="
-				+ records[i].id + " username=" + records[i].username + "></td>";
-		record += "<td style='text-align:center;'>" + records[i].username
+				+ records[i].id + " username=" + records[i].linkname + "></td>";
+		record += "<td style='text-align:center;'>" + records[i].linkname
 				+ "</td>";
-		record += "<td style='text-align:center;'>" + records[i].phone
+		record += "<td style='text-align:center;'>" + records[i].linkphone
 				+ "</td>";
 		record += "</tr>";
 		$("#insideProviderBody").append(record);

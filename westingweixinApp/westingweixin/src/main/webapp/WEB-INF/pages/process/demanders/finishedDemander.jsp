@@ -12,6 +12,12 @@
 				<td><input type="text" id="finishedDemanderLN" class="search" /></td>
 				<td>联系方式:</td>
 				<td><input type="text" id="finishedDemanderLP" class="search" /></td>
+				<td>类别:</td>
+				<td><input type="text" id="finishedDemanderCG" class="search" /></td>
+				<td>类型:</td>
+				<td><input type="text" id="finishedDemanderST" class="search" /></td>
+				<td>评分:</td>
+				<td><input type="text" id="finishedDemanderEV" class="search" /></td>
 				<td style="text-align: right;">
 					<button type="button" id="finishedDemanderBtn" class="btn btn-main">查询</button>
 				</td>
@@ -30,6 +36,7 @@
 				<th>联系人</th>
 				<th>联系方式</th>
 				<th>处理人</th>
+				<th>评分</th>
 			</tr>
 		</thead>
 		<tbody id="finishedDemanderBody">

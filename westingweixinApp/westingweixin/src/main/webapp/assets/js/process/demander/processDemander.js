@@ -6,6 +6,11 @@ function initProcessDemander() {
 		initProcessDemanderList(1);
 	});
 
+	// 转带分配
+	$("#processDemanderReturnBtn").click(function() {
+		approvalProcessDemander(0);
+	});
+	
 	// 审批通过
 	$("#processDemanderApprovalBtn").click(function() {
 		approvalProcessDemander(9);
@@ -40,7 +45,9 @@ function initProcessDemanderList(currPage) {
 			type : $("#processDemanderType").val(),
 			serviceOrderId : $("#processDemanderSOI").val(),// 流水号
 			linkname : $("#processDemanderLN").val(),// 联系人
-			linkphone : $("#processDemanderLP").val()
+			linkphone : $("#processDemanderLP").val(),
+			category : $("#processDemanderCG").val(),
+			serviceType : $("#processDemanderST").val()
 		// 联系方式
 		}
 	});

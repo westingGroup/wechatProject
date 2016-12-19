@@ -18,7 +18,6 @@ import com.infosys.weixin.model.WUser;
 import com.infosys.weixin.service.IWGroupService;
 import com.infosys.weixin.service.IWUserService;
 import com.infosys.weixin.web.servlet.BeanFactoryContext;
-import com.infosys.weixin.web.servlet.WeixinContext;
 
 public class WeixinEventKit {
 
@@ -151,7 +150,8 @@ public class WeixinEventKit {
 	}
 
 	private static String handlerSubscribeEvent(Map<String, String> msgMap) throws IOException {
-		User u = handlerUserInfo(msgMap);
+		@SuppressWarnings("unused")
+        User u = handlerUserInfo(msgMap);
 		String snum = getSence(msgMap, true);
 		String openid = msgMap.get("FromUserName");
 		if(snum!=null) {
