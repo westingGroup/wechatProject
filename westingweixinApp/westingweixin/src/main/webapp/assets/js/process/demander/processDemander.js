@@ -10,7 +10,7 @@ function initProcessDemander() {
 	$("#processDemanderReturnBtn").click(function() {
 		approvalProcessDemander(0);
 	});
-	
+
 	// 审批通过
 	$("#processDemanderApprovalBtn").click(function() {
 		approvalProcessDemander(9);
@@ -147,6 +147,7 @@ function approvalProcessDemander(dealType) {
 		dealBy : 0,// 工程师
 	}, function(data, status) {// 更新信息
 		showTipsSucc(data);
+		newDemanderPagination.updateSelfInput();
 		processDemanderPagination.updateSelfInput();
 		finishedDemanderPagination.updateSelfInput();
 		wasteDemanderPagination.updateSelfInput();

@@ -57,7 +57,7 @@
 		<table class="table">
 			<tr>
 				<td style="width: 60%;"><textarea rows="3" cols="40"
-						id="demanderRemark"></textarea></td>
+						id="demanderRemark" placeholder="备注"></textarea></td>
 				<td style="width: 20%;"><button class="btn approvalBtn"
 						id="demanderApplyApprovalBtn">
 						<span class="btnText">批准</span> <img class="btnImg"

@@ -158,3 +158,35 @@
 	background: rgb(71, 186, 235);
 	color: white;
 }
+
+#demanderCustomerUpdate .modal-header, #providerCustomerUpdate .modal-header,
+	#insideCustomerUpdate .modal-header {
+	padding: 10px;
+}
+
+#demanderCustomerUpdate .modal-body, #providerCustomerUpdate .modal-body,
+	#insideCustomerUpdate .modal-body {
+	min-height: 75%;
+}
+
+#demanderCustomerUpdate .modal-body .content, #providerCustomerUpdate .modal-body .content,
+	#insideCustomerUpdate .modal-body .content {
+	padding-bottom: 20px;
+}
+
+#demanderCustomerUpdate .modal-body .content .row,
+	#providerCustomerUpdate .modal-body .content .row,
+	#insideCustomerUpdate .modal-body .content .row {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+#demanderCustomerUpdate .modal-body .company, #providerCustomerUpdate .modal-body .company
+	{
+	margin-top: 30px;
+}
+
+#demanderCustomerUpdate .modal-footer, #providerCustomerUpdate .modal-footer,
+	#insideCustomerUpdate .modal-footer {
+	padding: 10px;
+}

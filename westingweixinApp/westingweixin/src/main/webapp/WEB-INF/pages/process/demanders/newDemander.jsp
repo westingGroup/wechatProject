@@ -12,11 +12,13 @@
 				<td><input type="text" id="newDemanderLN" class="search"/></td>
 				<td>联系方式:</td>
 				<td><input type="text" id="newDemanderLP" class="search"/></td>
+			</tr>
+			<tr>
 				<td>类别:</td>
 				<td><input type="text" id="newDemanderCG" class="search" /></td>
 				<td>类型:</td>
 				<td><input type="text" id="newDemanderST" class="search" /></td>
-				<td style="text-align: right;">
+				<td colspan="2" style="text-align: center;">
 					<button type="button" id="newDemanderBtn" class="btn btn-main">查询</button>
 				</td>
 			</tr>
@@ -67,7 +69,7 @@
 		<table class="table">
 			<tr>
 				<td style="width: 30%;"><textarea rows="3" cols="40"
-						class="required" id="newDemanderRemark" label="备注"></textarea></td>
+						class="required" id="newDemanderRemark" label="备注" placeholder="备注"></textarea></td>
 				<td style="width: 30%;"><select class="select required"
 					id="newDemanderEngineer" label="工程师"><option value="">工程师</select><img
 					class="btnImg" style="margin-left: 5px; cursor: pointer;"

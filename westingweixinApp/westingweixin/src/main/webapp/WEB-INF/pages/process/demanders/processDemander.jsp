@@ -12,11 +12,13 @@
 				<td><input type="text" id="processDemanderLN" class="search" /></td>
 				<td>联系方式:</td>
 				<td><input type="text" id="processDemanderLP" class="search" /></td>
+			</tr>
+			<tr>
 				<td>类别:</td>
 				<td><input type="text" id="processDemanderCG" class="search" /></td>
 				<td>类型:</td>
 				<td><input type="text" id="processDemanderST" class="search" /></td>
-				<td style="text-align: right;">
+				<td colspan="2" style="text-align: center;">
 					<button type="button" id="processDemanderBtn" class="btn btn-main">查询</button>
 				</td>
 			</tr>
@@ -68,7 +70,8 @@
 		<table class="table">
 			<tr>
 				<td style="width: 60%;"><textarea rows="3" cols="40"
-						class="required" label="备注" id="processDemanderRemark"></textarea></td>
+						class="required" label="备注" id="processDemanderRemark"
+						placeholder="备注"></textarea></td>
 				<td style="width: 10%;"><button class="btn approvalBtn"
 						id="processDemanderReturnBtn">
 						<span class="btnText">转待分配</span> <img class="btnImg"

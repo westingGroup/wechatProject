@@ -6,7 +6,7 @@
 	src="<%=request.getContextPath()%>/assets/js/process/registers/providerCustomerUpdate.js"></script>
 <div id="providerCustomerUpdate" class="modal  fade" tabindex="-1"
 	data-focus-on="input:first" aria-hidden="true"
-	style="display: none; background-color: #fff; max-width: 80%; max-height: 400px; margin: auto; overflow: scroll;">
+	style="display: none; background-color: #fff; max-width: 80%; max-height: 470px; margin: auto; overflow: scroll;">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"
 			aria-hidden="true" onclick="clearProviderCustomerUpdate()"></button>
@@ -16,38 +16,38 @@
 		<div class="content">
 			<div class="container commonStyle contact">
 				<div class="row contactPerson">
-					<div class="col-md-1 label">
+					<div class="col-md-2 label">
 						<img alt="姓名"
 							src="<%=request.getContextPath()%>/assets/img/contactPerson.png"
 							width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;姓名：
 					</div>
-					<div class="col-md-11">
+					<div class="col-md-10">
 						<input id="pcuLinkName" class="text required maxlength" label="姓名"
 							maxlength="255" />
 					</div>
 				</div>
 				<hr class="commonHr" />
 				<div class="row contactPhone">
-					<div class="col-md-1 label">
+					<div class="col-md-2 label">
 						<img alt="电话"
 							src="<%=request.getContextPath()%>/assets/img/contactPhone.png"
 							width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;电话：
 					</div>
-					<div class="col-md-11">
+					<div class="col-md-10">
 						<input id="pcuLinkPhone" class="text required phone maxlength"
 							label="电话" maxlength="13" />
 					</div>
 				</div>
 				<hr class="commonHr" />
 				<div class="row contactBirthday">
-					<div class="col-md-1 label">
+					<div class="col-md-2 label">
 						<img alt="出生年月"
 							src="<%=request.getContextPath()%>/assets/img/calendar.png"
 							width="16px" height="16px">&nbsp;&nbsp;出生年月：
 					</div>
-					<div class="col-md-11 input-append date form_datetime_day"
+					<div class="col-md-10 input-append date form_datetime_day"
 						style="padding: 0px;">
-						<div class="row">
+						<div class="row" style="padding-top: 0px;">
 							<div class="col-md-10" style="padding: 0px;">
 								<input type="text" class="text" name="pcuBirth" id="pcuBirth"
 									readonly="readonly" />
@@ -62,41 +62,41 @@
 			</div>
 			<div class="container commonStyle company">
 				<div class="row companyBusiness">
-					<div class="col-md-1 label">
+					<div class="col-md-2 label">
 						&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;擅长业务：
 					</div>
-					<div class="col-md-11">
+					<div class="col-md-10">
 						<input id="pcuBusiness" class="text required maxlength"
 							label="擅长业务" maxlength="255" />
 					</div>
 				</div>
 				<hr class="commonHr" />
 				<div class="row companyQualifition">
-					<div class="col-md-1 label">
+					<div class="col-md-2 label">
 						<span style="margin-left: 26px;"></span>职称/资质：
 					</div>
-					<div class="col-md-11">
+					<div class="col-md-10">
 						<input id="pcuQualification" class="text maxlength" label="职称/资质"
 							maxlength="255" />
 					</div>
 				</div>
 				<hr class="commonHr" />
 				<div class="row companyName">
-					<div class="col-md-1 label">
+					<div class="col-md-2 label">
 						<span style="margin-left: 26px;">公司名称：</span>
 					</div>
-					<div class="col-md-11">
+					<div class="col-md-10">
 						<input id="pcuCompany" class="text maxlength" label="公司名称"
 							maxlength="255" />
 					</div>
 				</div>
 				<hr class="commonHr" />
 				<div class="row companyName">
-					<div class="col-md-1 label">
+					<div class="col-md-2 label">
 						<span style="margin-left: 26px;">类型：</span>
 					</div>
-					<div class="col-md-11">
-						<select name="providerType" id="providerType">
+					<div class="col-md-10">
+						<select name="providerType" id="providerType" class="select">
 							<option value ="0" selected>外部</option>
 						  	<option value ="1">内部</option>
 						</select>

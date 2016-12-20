@@ -12,13 +12,18 @@
 				<td><input type="text" id="finishedDemanderLN" class="search" /></td>
 				<td>联系方式:</td>
 				<td><input type="text" id="finishedDemanderLP" class="search" /></td>
+			</tr>
+			<tr>
 				<td>类别:</td>
 				<td><input type="text" id="finishedDemanderCG" class="search" /></td>
 				<td>类型:</td>
 				<td><input type="text" id="finishedDemanderST" class="search" /></td>
 				<td>评分:</td>
 				<td><input type="text" id="finishedDemanderEV" class="search" /></td>
-				<td style="text-align: right;">
+			</tr>
+			<tr>
+				<td colspan="4"></td>
+				<td colspan="2" style="text-align: center;">
 					<button type="button" id="finishedDemanderBtn" class="btn btn-main">查询</button>
 				</td>
 			</tr>

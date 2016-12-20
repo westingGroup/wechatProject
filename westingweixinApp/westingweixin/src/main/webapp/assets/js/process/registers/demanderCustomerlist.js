@@ -63,15 +63,15 @@ function appendDemanderCustomer(registers, firstRegisterIndex) {
 				+ basePath
 				+ "/assets/img/edit.png' width='16px' height='16px' registerId="
 				+ registers[i].id
-				+ " class='imgUpdate demanderCustomerUpdateImg'>&nbsp;&nbsp;<img alt='删除' src='"
+				+ " class='imgUpdate demanderCustomerUpdateImg' title='修改'>&nbsp;&nbsp;<img alt='删除' src='"
 				+ basePath
 				+ "/assets/img/delete.png' width='16px' height='16px' registerId="
 				+ registers[i].id
-				+ " class='imgDelete demanderCustomerDeleteImg' />&nbsp;&nbsp;<img alt='启用' src='"
+				+ " class='imgDelete demanderCustomerDeleteImg' title='删除'>&nbsp;&nbsp;<img alt='启用' src='"
 				+ basePath
 				+ "/assets/img/enable.png' width='16px' height='16px' registerId="
 				+ registers[i].id
-				+ " class='imgDelete demanderCustomerEnableImg' /></td>";
+				+ " class='imgDelete demanderCustomerEnableImg' title='启用'></td>";
 		register += "</tr>";
 		$("#demanderCustomerListBody").append(register);
 	}

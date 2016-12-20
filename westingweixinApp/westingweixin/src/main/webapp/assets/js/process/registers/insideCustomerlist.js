@@ -64,15 +64,15 @@ function appendInsideCustomer(registers, firstRegisterIndex) {
 				+ basePath
 				+ "/assets/img/edit.png' width='16px' height='16px' registerId="
 				+ registers[i].id
-				+ " class='imgUpdate insideCustomerUpdateImg'>&nbsp;&nbsp;<img alt='重置密码' src='"
+				+ " class='imgUpdate insideCustomerUpdateImg' title='修改'>&nbsp;&nbsp;<img alt='重置密码' src='"
 				+ basePath
 				+ "/assets/img/reset_pass.png' width='16px' height='16px' registerId="
 				+ registers[i].id
-				+ " class='imgResetPass insideCustomerResetImg'/>&nbsp;&nbsp;<img alt='删除' src='"
+				+ " class='imgResetPass insideCustomerResetImg' title='重置密码'>&nbsp;&nbsp;<img alt='删除' src='"
 				+ basePath
 				+ "/assets/img/delete.png' width='16px' height='16px' registerId="
 				+ registers[i].id
-				+ " class='imgDelete insideCustomerDeleteImg' /></td>";
+				+ " class='imgDelete insideCustomerDeleteImg' title='删除'></td>";
 		register += "</tr>";
 		$("#insideCustomerListBody").append(register);
 	}

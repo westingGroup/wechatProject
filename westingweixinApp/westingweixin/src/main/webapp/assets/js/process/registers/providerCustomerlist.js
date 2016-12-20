@@ -64,15 +64,15 @@ function appendProviderCustomer(registers, firstRegisterIndex) {
 				+ basePath
 				+ "/assets/img/edit.png' width='16px' height='16px' registerId="
 				+ registers[i].id
-				+ " class='imgUpdate providerCustomerUpdateImg'>&nbsp;&nbsp;<img alt='删除' src='"
+				+ " class='imgUpdate providerCustomerUpdateImg' title='修改'>&nbsp;&nbsp;<img alt='删除' src='"
 				+ basePath
 				+ "/assets/img/delete.png' width='16px' height='16px' registerId="
 				+ registers[i].id
-				+ " class='imgDelete providerCustomerDeleteImg' />&nbsp;&nbsp;<img alt='启用' src='"
+				+ " class='imgDelete providerCustomerDeleteImg' title='删除'>&nbsp;&nbsp;<img alt='启用' src='"
 				+ basePath
 				+ "/assets/img/enable.png' width='16px' height='16px' registerId="
 				+ registers[i].id
-				+ " class='imgDelete providerCustomerEnableImg' /></td>";
+				+ " class='imgDelete providerCustomerEnableImg' title='启用'></td>";
 		register += "</tr>";
 		$("#providerCustomerListBody").append(register);
 	}
