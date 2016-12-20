@@ -47,7 +47,8 @@
 		$.fn.raty.defaults.path = basePath + "/assets/raty/demo/img";
 		<c:forEach items="${orders.records}" var="order" varStatus="status">
 		//渲染列表
-		renderingList("${order.id}", "${order.evaluate}", "demander", "${order.status}");
+		renderingList("${order.id}", "${order.evaluate}", "demander",
+				"${order.status}");
 		</c:forEach>
 		//定义滑动操作
 		isTouchDevice("pageMyDemanders");
@@ -55,8 +56,9 @@
 </script>
 </head>
 <body>
-	<div class="subject">
-		<div class="container head">
+	<jsp:include page="../showTips.jsp"></jsp:include>
+	<div class="subject" style="padding-top: 0px;">
+		<!-- <div class="container head">
 			<div class="row">
 				<div class="col-md-1 col-xs-3 back">
 					<a><img alt="返回"
@@ -70,11 +72,11 @@
 						width="25px" height="25px" />
 				</div>
 			</div>
-		</div>
-		<jsp:include page="../showTips.jsp"></jsp:include>
+		</div> -->
 		<div class="content">
 			<div class="viewTaskTitle">我的服务单</div>
-			<input type="hidden" name="createBy" value="${demanderId}" id="createBy"/> 
+			<input type="hidden" name="createBy" value="${demanderId}"
+				id="createBy" />
 			<c:forEach items="${orders.records}" var="order" varStatus="status">
 				<div class="container viewTaskCommonStyle" id="order${order.id}">
 					<c:if test="${status.index!=0}">

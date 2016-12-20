@@ -39,13 +39,22 @@
 	src="<%=request.getContextPath()%>/assets/js/common/common.js"></script>
 <script type="text/javascript">
 	$(function() {
-		initDatePickerForDay();
+		$(".form_datetime_day").datetimepicker({
+			language : 'zh-CN',
+			format : "yyyy-mm-dd",
+			autoclose : true,
+			todayBtn : true,
+			minView : "2",
+			pickerPosition : "bottom-left",
+			endDate:new Date()
+		});
 	});
 </script>
 </head>
 <body>
+	<jsp:include page="../showTips.jsp"></jsp:include>
 	<div class="subject">
-		<div class="container head">
+		<!-- <div class="container head">
 			<div class="row">
 				<div class="col-md-1 col-xs-3 back">
 					<a><img alt="返回"
@@ -59,8 +68,7 @@
 						width="25px" height="25px" />
 				</div>
 			</div>
-		</div>
-		<jsp:include page="../showTips.jsp"></jsp:include>
+		</div> -->
 		<sf:form modelAttribute="demander" id="adminForm" method="post"
 			action="/demander/register" onsubmit="return validate('adminForm')">
 			<input type="hidden" name="fromPath" id="fromPath"
@@ -103,17 +111,17 @@
 						</div>
 
 						<div
-							class="col-md-11 col-xs-8 input-append date form_datetime_day"
-							style="padding: 0px;">
-							<div class="row">
-								<div class="col-md-10 col-xs-7" style="padding: 0px;">
+							class="col-md-11 col-xs-8 input-append date form_datetime_day">
+							<div class="row" style="padding-top: 0px;margin: 0px;">
+								<div class="col-md-10 col-xs-8" style="padding: 0px;">
 									<input type="text" class="text" name="birth"
 										readonly="readonly" />
 								</div>
-								<div class="col-md-2 col-xs-5"
+								<div class="col-md-2 col-xs-4"
 									style="padding: 0px; text-align: right;">
-									<span class="add-on"><i class="icon-remove"></i></span> <span
-										class="add-on"><i class="icon-calendar"></i></span>
+									<span class="add-on" style="margin-right: 5px;"><i
+										class="icon-remove"></i></span> <span class="add-on"><i
+										class="icon-calendar"></i></span>
 								</div>
 							</div>
 						</div>
@@ -131,10 +139,10 @@
 					</div>
 					<hr class="commonHr" />
 					<div class="row companyName">
-						<div class="col-md-1 col-xs-5 label">
-							&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;行业和相关业务：
+						<div class="col-md-1 col-xs-4 label">
+							&nbsp;<font color="red" style="margin-left: 16px;">*</font>&nbsp;相关业务：
 						</div>
-						<div class="col-md-11 col-xs-7">
+						<div class="col-md-11 col-xs-8">
 							<sf:textarea path="business"
 								cssClass="textarea required maxlength" rows="3" label="行业和相关业务"
 								maxlength="255" />

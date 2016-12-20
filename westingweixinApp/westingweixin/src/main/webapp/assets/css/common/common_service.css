@@ -3,9 +3,10 @@
 	min-height: 100%;
 	background: rgb(245, 245, 245);
 	position: relative;
+	padding-top: 30px;
 }
 
-.subject .head {
+/* .subject .head {
 	width: 100%;
 	background: black;
 	color: white;
@@ -29,13 +30,11 @@
 	color: white;
 	text-decoration: none;
 	cursor: pointer;
-}
-
+} */
 .subject .content {
 	width: 100%;
 	color: black;
 	text-align: left;
-	font-size: 12px;
 	padding-bottom: 50px;
 }
 
@@ -54,21 +53,25 @@
 .subject .content .commonStyle .row {
 	margin-left: 10px;
 	margin-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .subject .content .commonHr {
 	color: rgb(245, 245, 245);
 	width: 100%;
+	margin: 0px;
 }
 
 .subject .content .label {
 	color: rgb(109, 110, 113);
-	font-size: 90%;
 	vertical-align: middle;
 	text-align: left;
 	padding-top: 5px;
 	padding-bottom: 5px;
+	padding-left: 0px;
 	font-weight: 300;
+	font-size: .75rem;
 }
 
 .subject .content .viewContent {
@@ -78,7 +81,11 @@
 	padding-right: 0px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	font-size: 90%;
+	font-size: .75rem;
+	line-height: 1;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 .subject .content .text {
@@ -100,7 +107,6 @@
 
 .subject .content .select {
 	width: 100%;
-	font-size: 12px;
 	border: none;
 	/*ï¿½Ü¹Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½Ïµï¿½selectÑ¡ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½*/
 	appearance: none;
@@ -110,7 +116,7 @@
 	background: url("../../img/select.png") no-repeat scroll right center
 		transparent;
 	background-size: 10px;
-	appearance: none
+	appearance: none;
 }
 
 .subject .content .requireStyle {
@@ -125,9 +131,9 @@
 	width: 90%;
 	margin-left: 5%;
 	margin-right: 5%;
-	margin-top: 10px;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	margin-bottom: 20px;
 	display: inline-table;
 	border: 2px solid rgb(192, 0, 0);
 }
@@ -143,7 +149,7 @@
 }
 
 /**Êµï¿½Ö¸ï¿½ï¿½ï¿½*/
-.subject .content .categoryStyle img:HOVER {
+/* .subject .content .categoryStyle img:HOVER{
 	transform: scale(1.3);
 	transition: all 1s ease 0s;
 	-webkit-transform: scale(1.3);
@@ -152,13 +158,20 @@
 	border-radius: 27px !important;
 	max-width: 54px;
 	max-height: 54px;
-}
-
+} */
 .subject .content .categoryStyle .currentimg {
-	width: 54px;
+	/* width: 54px;
 	height: 54px;
 	border: 4px solid rgb(203, 127, 4);
+	border-radius: 27px !important; */
+	transform: scale(1.3);
+	transition: all 1s ease 0s;
+	-webkit-transform: scale(1.3);
+	-webkit-transition: all 1s ease 0s;
+	border: 4px solid rgb(203, 127, 4);
 	border-radius: 27px !important;
+	max-width: 54px;
+	max-height: 54px;
 }
 
 .subject .content .waitingTaskTitle {
@@ -195,13 +208,12 @@
 	padding-bottom: 10px;
 	padding-left: 10px;
 	margin-bottom: 20px;
+	font-size: .75rem;
 }
 
 .subject .content .viewTaskCommonStyle {
 	width: 90%;
 	background: white;
-	padding-top: 10px;
-	padding-bottom: 10px;
 	margin: auto;
 }
 
@@ -211,13 +223,12 @@
 	margin: 0px;
 }
 
-.subject .content .contact, .subject .content .company, .subject .content .service,
+/* .subject .content .contact, .subject .content .company, .subject .content .service,
 	.subject .content .taskApply, .subject .content .applyTimeView {
 	margin-top: 40px;
-}
-
-.subject .content .company {
-	margin-top: 60px;
+} */
+.subject .content .company, .subject .content .service {
+	margin-top: 40px;
 }
 
 /*·þÎñÉêÁìÊ±¼ä*/
@@ -244,15 +255,14 @@
 	background: rgb(247, 156, 127);
 	border: none;
 	color: white;
-	font-size: 14px;
 	background: rgb(247, 156, 127);
 }
 
 .subject .footer {
 	width: 100%;
-	height:50px;
-	position:absolute;
-	bottom:0px;
+	height: 50px;
+	position: absolute;
+	bottom: 0px;
 	padding-left: 0px;
 	padding-right: 0px;
 }

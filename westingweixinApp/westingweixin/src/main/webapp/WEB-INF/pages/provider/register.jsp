@@ -38,14 +38,22 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/common/common.js"></script>
 <script type="text/javascript">
-	$(function() {
-		initDatePickerForDay();
+$(function() {
+	$(".form_datetime_day").datetimepicker({
+		language : 'zh-CN',
+		format : "yyyy-mm-dd",
+		autoclose : true,
+		todayBtn : true,
+		minView : "2",
+		pickerPosition : "bottom-left",
+		endDate:new Date()
 	});
+});
 </script>
 </head>
 <body>
 	<div class="subject">
-		<div class="container head">
+		<%-- <div class="container head">
 			<div class="row">
 				<div class="col-md-1 col-xs-3 back">
 					<a><img alt="返回"
@@ -59,7 +67,7 @@
 						width="25px" height="25px" />
 				</div>
 			</div>
-		</div>
+		</div> --%>
 		<jsp:include page="../showTips.jsp"></jsp:include>
 		<sf:form modelAttribute="provider" id="adminForm" method="post"
 			action="/provider/register" onsubmit="return validate('adminForm')">
@@ -69,6 +77,7 @@
 			<input type="hidden" name="openid" id="openid" value="${openid}"></input>
 			<div class="content">
 				<div class="container commonStyle contact">
+					<hr class="commonHr" />
 					<div class="row contactPerson">
 						<div class="col-md-1 col-xs-4 label">
 							<img alt="姓名"
@@ -101,14 +110,14 @@
 								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;类型：
 						</div>
 						<div class="col-md-11 col-xs-8">
-							<select name="providerType">
-								<option value ="0" selected>外部</option>
-							  	<option value ="1">内部</option>
+							<select name="providerType" class="select">
+								<option value="0" selected>外部</option>
+								<option value="1">内部</option>
 							</select>
 						</div>
 					</div>
-					
-				
+
+
 
 					<hr class="commonHr" />
 					<div class="row contactBirthday">
@@ -118,17 +127,17 @@
 								width="16px" height="16px">&nbsp;&nbsp;出生年月：
 						</div>
 						<div
-							class="col-md-11 col-xs-8 input-append date form_datetime_day"
-							style="padding: 0px;">
-							<div class="row">
+							class="col-md-11 col-xs-8 input-append date form_datetime_day">
+							<div class="row" style="padding-top: 0px;margin: 0px;">
 								<div class="col-md-10 col-xs-7" style="padding: 0px;">
 									<input type="text" class="text" name="birth"
-										readonly="readonly"/>
+										readonly="readonly" />
 								</div>
 								<div class="col-md-2 col-xs-5"
 									style="padding: 0px; text-align: right;">
-									<span class="add-on"><i class="icon-remove"></i></span> <span
-										class="add-on"><i class="icon-calendar"></i></span>
+									<span class="add-on" style="margin-right: 5px;"><i
+										class="icon-remove"></i></span> <span class="add-on"><i
+										class="icon-calendar"></i></span>
 								</div>
 							</div>
 						</div>
