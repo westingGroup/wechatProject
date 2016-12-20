@@ -14,12 +14,6 @@
 <title>服务申领</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
-<!-- <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/DT_bootstrap.css" />
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/style-metro.css" />
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/style.css" /> -->
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/media/css/datetimepicker.css" />
 <link rel="stylesheet" type="text/css"
@@ -53,10 +47,8 @@
 			renderList("${order.id}");
 			</c:forEach>
 			$("#noData").css("display", "none");
-			$(".priceAndFinishTime").css("display", "block");
 		} else {
 			$("#noData").css("display", "block");
-			$(".priceAndFinishTime").css("display", "none");
 		}
 
 		initDatePickerForDay(new Date());
@@ -67,33 +59,17 @@
 </script>
 </head>
 <body>
-	<div class="subject">
-		<div class="container head">
-			<div class="row">
-				<div class="col-md-1 col-xs-3 back">
-					<a><img alt="返回"
-						src="<%=request.getContextPath()%>/assets/img/back.png"
-						width="25px" height="25px">返回</a>
-				</div>
-				<div class="col-md-10 col-xs-6 title">接单服务</div>
-				<div class="col-md-1 col-xs-3 person">
-					<img alt="人员信息"
-						src="<%=request.getContextPath()%>/assets/img/person.png"
-						width="25px" height="25px" />
-				</div>
-			</div>
-		</div>
-		<jsp:include page="../showTips.jsp"></jsp:include>
+	<jsp:include page="../showTips.jsp"></jsp:include>
+	<div class="subject" style="padding-top: 0px;">
 		<div class="content">
+			<div class="waitingTaskTitle">待接的任务</div>
 			<div class="providerOrders">
-				<div class="waitingTaskTitle">待接的任务</div>
 				<input type="hidden" name="providerType" value="${provider.type}"
-					id="providerType" />
-				<input type="hidden" name="providerId" value="${provider.id}"
-					id="providerId" /> <input type="hidden" name="providerName"
-					value="${provider.linkname}" id="providerName" /> <input
-					type="hidden" name="applyBy" value="${provider.id}" id="applyBy" />
-				<input type="hidden" name="id" id="id" value="0" />
+					id="providerType" /> <input type="hidden" name="providerId"
+					value="${provider.id}" id="providerId" /> <input type="hidden"
+					name="providerName" value="${provider.linkname}" id="providerName" />
+				<input type="hidden" name="applyBy" value="${provider.id}"
+					id="applyBy" /> <input type="hidden" name="id" id="id" value="0" />
 				<c:forEach items="${orders.records}" var="order" varStatus="status">
 					<div class="container waitingTaskCommonStyle" id="order${order.id}"
 						orderId="${order.id}">
@@ -101,8 +77,8 @@
 							<hr class="viewHr" />
 						</c:if>
 						<div class="row serialNumber hidden${order.id}">
-							<div class="col-md-1 col-xs-4 label">流水号：</div>
-							<div class="col-md-10 col-xs-6 viewContent">${order.serviceOrderId}</div>
+							<div class="col-md-2 col-xs-4 label">流水号：</div>
+							<div class="col-md-9 col-xs-6 viewContent">${order.serviceOrderId}</div>
 							<div class="col-md-1 col-xs-2">
 								<img alt="折叠" class="hidden"
 									src="<%=request.getContextPath()%>/assets/img/zhedie.png"
@@ -110,16 +86,16 @@
 							</div>
 						</div>
 						<div class="row category hidden${order.id}">
-							<div class="col-md-1 col-xs-4 label">类别：</div>
-							<div class="col-md-11 col-xs-8 viewContent">${order.category }</div>
+							<div class="col-md-2 col-xs-4 label">类别：</div>
+							<div class="col-md-10 col-xs-8 viewContent">${order.category }</div>
 						</div>
 						<div class="row serviceType hidden${order.id}">
-							<div class="col-md-1 col-xs-4 label">服务类型：</div>
-							<div class="col-md-11 col-xs-8 viewContent">${order.serviceType }</div>
+							<div class="col-md-2 col-xs-4 label">服务类型：</div>
+							<div class="col-md-10 col-xs-8 viewContent">${order.serviceType }</div>
 						</div>
 						<div class="row submitTime">
-							<div class="col-md-1 col-xs-4 label">任务申请时间：</div>
-							<div class="col-md-10 col-xs-6 viewContent">${order.createDate }</div>
+							<div class="col-md-2 col-xs-4 label">任务申请时间：</div>
+							<div class="col-md-9 col-xs-6 viewContent">${order.createDate }</div>
 							<div class="col-md-1 col-xs-2">
 								<img alt="展开" class="show"
 									src="<%=request.getContextPath()%>/assets/img/zhankai.png"
@@ -127,44 +103,49 @@
 							</div>
 						</div>
 						<div class="row serviceDemandWaiting hidden${order.id}">
-							<div class="col-md-1 col-xs-4 label">服务需求：</div>
-							<div class="col-md-11 col-xs-8 viewContent">${order.content }</div>
+							<div class="col-md-2 col-xs-4 label">服务需求：</div>
+							<div class="col-md-10 col-xs-8 viewContent">${order.content }</div>
+						</div>
+						<div class="row hidden${order.id }">
+							<div class="col-md-6 col-xs-6" style="padding-left: 7px;">
+								<input type="text" class="text required maxlength" label="联系人"
+									maxlength="255" placeholder="*联系人" id="linkname${order.id }"
+									style="background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;" />
+							</div>
+							<div class="col-md-6 col-xs-6" style="padding-left: 7px;">
+								<input type="text" class="text required phone maxlength"
+									label="联系电话" maxlength="13" placeholder="*联系电话"
+									id="linkphone${order.id }"
+									style="background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;" />
+							</div>
+						</div>
+						<div class="row hidden${order.id }">
+							<div class="col-md-6 col-xs-6" style="padding-left: 7px;">
+								<input type="text" class="text num" label="价格" placeholder="价格"
+									id="price${order.id }"
+									style="background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;" />
+							</div>
+							<div
+								class="col-md-6 col-xs-6 input-append date form_datetime_day"
+								style="padding-left: 7px; padding-right: 0px;">
+								<div class="row"
+									style="padding-top: 0px; margin-left: 0px; padding-right: 0px;">
+									<div class="col-md-11 col-xs-8"
+										style="padding-left: 0px; padding-right: 0px;">
+										<input type="text" class="text" placeholder="预计完成时间"
+											id="completeDate${order.id }"
+											style="background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;" />
+									</div>
+									<div class="col-md-1 col-xs-4"
+										style="padding-left: 0px; padding-right: 0px;">
+										<span class="add-on"><i class="icon-remove"></i></span> <span
+											class="add-on"><i class="icon-calendar"></i></span>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</c:forEach>
-			</div>
-			<div class="container priceAndFinishTime">
-				<div class="row">
-					<div class="col-md-1 col-xs-2 label">
-						<font color="red">*</font>&nbsp;联系人：
-					</div>
-					<div class="col-md-4 col-xs-2" style="padding-left: 7px;">
-						<input type="text" class="text required maxlength" label="联系人"
-							maxlength="255" id="linkname" />
-					</div>
-					<div class="col-md-2 col-xs-3 label">
-						<font color="red">*</font>&nbsp;联系电话：
-					</div>
-					<div class="col-md-4 col-xs-5" style="padding-left: 7px;">
-						<input type="text" class="text required phone maxlength"
-							style="width: 110px;" label="联系电话" maxlength="13" id="linkphone" />
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-1 col-xs-2 label">价格：</div>
-					<div class="col-md-4 col-xs-2" style="padding-left: 7px;">
-						<input type="text" class="text num" id="price" label="价格" />
-					</div>
-					<div class="col-md-2 col-xs-3 label">预计完成时间：</div>
-					<div class="col-md-4 col-xs-5 input-append date form_datetime_day"
-						style="padding-left: 7px;">
-						<input type="text" class="text" style="width: 75px;"
-							id="completeDate" /><span class="add-on"
-							style="padding: 4px 0px;"><i class="icon-remove"></i></span> <span
-							class="add-on" style="padding: 4px 0px;"><i
-							class="icon-calendar"></i></span>
-					</div>
-				</div>
 			</div>
 			<div id="noData" style="text-align: center;">
 				<font color="grey">没有数据记录</font>

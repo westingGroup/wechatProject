@@ -13,12 +13,6 @@
 <title>我的服务-服务需求方</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
-<!-- <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/DT_bootstrap.css" />
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/style-metro.css" />
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/style.css" /> -->
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/css/common/common.css" />
 <link rel="stylesheet" type="text/css"
@@ -58,21 +52,6 @@
 <body>
 	<jsp:include page="../showTips.jsp"></jsp:include>
 	<div class="subject" style="padding-top: 0px;">
-		<!-- <div class="container head">
-			<div class="row">
-				<div class="col-md-1 col-xs-3 back">
-					<a><img alt="返回"
-						src="<%=request.getContextPath()%>/assets/img/back.png"
-						width="25px" height="25px">返回</a>
-				</div>
-				<div class="col-md-10 col-xs-6 title">一键服务-我的服务</div>
-				<div class="col-md-1 col-xs-3 person">
-					<img alt="人员信息"
-						src="<%=request.getContextPath()%>/assets/img/person.png"
-						width="25px" height="25px" />
-				</div>
-			</div>
-		</div> -->
 		<div class="content">
 			<div class="viewTaskTitle">我的服务单</div>
 			<input type="hidden" name="createBy" value="${demanderId}"
@@ -109,7 +88,7 @@
 					<hr class="commonHr hidden${order.id}" />
 					<div class="row submitTimeView">
 						<div class="col-md-1 col-xs-3 label">提交时间：</div>
-						<div class="col-md-10 col-xs-7 viewContent zhedie">${order.createDate }</div>
+						<div class="col-md-10 col-xs-7 viewContent zhedie">${order.createDate }${order.status}</div>
 						<div class="col-md-1 col-xs-2">
 							<img alt="展开" class="show"
 								src="<%=request.getContextPath()%>/assets/img/zhankai.png"
@@ -124,7 +103,7 @@
 					<hr class="commonHr hidden${order.id}">
 					<div class="row serviceEvaluate hidden${order.id}">
 						<div class="col-md-2 col-xs-6">
-							<div class="raty" id="raty${order.id}" style="margin-right: 0px;"></div>
+							<div class="raty viewContent" id="raty${order.id}" style="margin-right: 0px;"></div>
 						</div>
 						<div class="col-md-10 col-xs-6" style="text-align: left;">
 							<button class="btn" id="but${order.id}">服务评价</button>

@@ -6,36 +6,11 @@
 	padding-top: 30px;
 }
 
-/* .subject .head {
-	width: 100%;
-	background: black;
-	color: white;
-	text-align: center;
-	font-size: 14px;
-	font-weight: bold;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-
-.subject .head .back {
-	text-align: left;
-	font-size: 12px;
-}
-
-.subject .head .person {
-	text-align: right;
-}
-
-.subject .head a {
-	color: white;
-	text-decoration: none;
-	cursor: pointer;
-} */
 .subject .content {
 	width: 100%;
 	color: black;
 	text-align: left;
-	padding-bottom: 50px;
+	padding-bottom: 70px;
 }
 
 .subject .content .container {
@@ -187,8 +162,6 @@
 .subject .content .waitingTaskCommonStyle {
 	width: 90%;
 	background: rgb(247, 156, 127);
-	padding-top: 10px;
-	padding-bottom: 10px;
 	margin: auto;
 }
 
@@ -223,31 +196,8 @@
 	margin: 0px;
 }
 
-/* .subject .content .contact, .subject .content .company, .subject .content .service,
-	.subject .content .taskApply, .subject .content .applyTimeView {
-	margin-top: 40px;
-} */
 .subject .content .company, .subject .content .service {
 	margin-top: 40px;
-}
-
-/*服务申领时间*/
-.subject .priceAndFinishTime {
-	height: 100px;
-}
-
-.subject .priceAndFinishTime .row {
-	margin-top: 20px;
-	margin-bottom: 10px;
-}
-
-.subject .priceAndFinishTime .label {
-	color: rgb(109, 110, 113);
-	text-align: right;
-}
-
-.subject .priceAndFinishTime .text {
-	width: 50px;
 }
 
 .subject .btn {

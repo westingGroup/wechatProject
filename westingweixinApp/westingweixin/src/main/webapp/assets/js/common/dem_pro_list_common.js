@@ -24,7 +24,7 @@ function ratyInit(orderId, evaluate, type, status) {
 			starOn : 'star-on-big.png',
 			size : 24
 		});
-	else if (type == "demander" && (status == "已完成") && evaluate != null
+	else if (type == "demander" && (status == "其他") && evaluate != null
 			&& evaluate != "")// 如果为服务需求方，并且已经评价
 		$("#raty" + orderId).raty({
 			score : evaluate,
@@ -33,7 +33,7 @@ function ratyInit(orderId, evaluate, type, status) {
 			starOn : 'star-on-big.png',
 			size : 24
 		});
-	else if (type == "provider" && (status == "已完成") && evaluate != null
+	else if (type == "provider" && (status == "其他") && evaluate != null
 			&& evaluate != "")// 如果为服务提供商，并且已经评价
 		$("#raty" + orderId).raty({
 			number : evaluate,
@@ -58,16 +58,23 @@ function ratyBtnInit(orderId, evaluate, status) {
 		$("#but" + orderId).addClass("hidden");
 
 	// 服务评价
-	$("#but" + orderId).click(function() {
-		$.post(basePath + "/demander/evaluate/" + $("#id" + orderId).val(), {
-			evaluate : $("#evaluate" + orderId).val()
-		}, function(data, status) {
-			if (status == "success") {
-				showTipsSucc(data);
-				$("#but" + orderId).addClass("hidden");
-			}
-		});
-	});
+	$("#but" + orderId).click(
+			function() {
+				if ($("#evaluate" + orderId).val() == null
+						|| $("#evaluate" + orderId).val() == "") {
+					showTipsError("评分至少一颗星");
+					return false;
+				}
+				$.post(basePath + "/demander/evaluate/"
+						+ $("#id" + orderId).val(), {
+					evaluate : $("#evaluate" + orderId).val()
+				}, function(data, status) {
+					if (status == "success") {
+						showTipsSucc(data);
+						$("#but" + orderId).addClass("hidden");
+					}
+				});
+			});
 }
 
 /**

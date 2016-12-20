@@ -13,12 +13,6 @@
 <title>服务需求方注册</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
-<!-- <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/DT_bootstrap.css" />
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/style-metro.css" />
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/style.css" /> -->
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/css/common/common.css" />
 <link rel="stylesheet" type="text/css"
@@ -31,21 +25,6 @@
 <body>
 	<jsp:include page="../showTips.jsp"></jsp:include>
 	<div class="subject">
-		<!-- <div class="container head">
-			<div class="row">
-				<div class="col-md-1 col-xs-3 back">
-					<a><img alt="返回"
-						src="<%=request.getContextPath()%>/assets/img/back.png"
-						width="25px" height="25px">返回</a>
-				</div>
-				<div class="col-md-10 col-xs-6 title">派单服务</div>
-				<div class="col-md-1 col-xs-3 person">
-					<img alt="人员信息"
-						src="<%=request.getContextPath()%>/assets/img/person.png"
-						width="25px" height="25px" />
-				</div>
-			</div>
-		</div> -->
 		<sf:form modelAttribute="order" id="adminForm" method="post"
 			action="/demander/add" onsubmit="return validate('adminForm')">
 			<div class="content">

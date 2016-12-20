@@ -13,12 +13,6 @@
 <title>服务提供商注册</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
-<!-- <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/DT_bootstrap.css" />
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/style-metro.css" />
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/style.css" /> -->
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/media/css/datetimepicker.css" />
 <link rel="stylesheet" type="text/css"
@@ -39,36 +33,13 @@
 	src="<%=request.getContextPath()%>/assets/js/common/common.js"></script>
 <script type="text/javascript">
 $(function() {
-	$(".form_datetime_day").datetimepicker({
-		language : 'zh-CN',
-		format : "yyyy-mm-dd",
-		autoclose : true,
-		todayBtn : true,
-		minView : "2",
-		pickerPosition : "bottom-left",
-		endDate:new Date()
-	});
+	initDatePickerForDay(null, new Date());
 });
 </script>
 </head>
 <body>
+	<jsp:include page="../showTips.jsp"></jsp:include>
 	<div class="subject">
-		<%-- <div class="container head">
-			<div class="row">
-				<div class="col-md-1 col-xs-3 back">
-					<a><img alt="返回"
-						src="<%=request.getContextPath()%>/assets/img/back.png"
-						width="25px" height="25px">返回</a>
-				</div>
-				<div class="col-md-10 col-xs-6 title">服务提供商注册</div>
-				<div class="col-md-1 col-xs-3 person">
-					<img alt="人员信息"
-						src="<%=request.getContextPath()%>/assets/img/person.png"
-						width="25px" height="25px" />
-				</div>
-			</div>
-		</div> --%>
-		<jsp:include page="../showTips.jsp"></jsp:include>
 		<sf:form modelAttribute="provider" id="adminForm" method="post"
 			action="/provider/register" onsubmit="return validate('adminForm')">
 			<sf:hidden path="id" />
@@ -106,7 +77,7 @@ $(function() {
 					<div class="row contactPhone">
 						<div class="col-md-1 col-xs-4 label">
 							<img alt="电话"
-								src="<%=request.getContextPath()%>/assets/img/contactPhone.png"
+								src="<%=request.getContextPath()%>/assets/img/type.png"
 								width="16px" height="16px">&nbsp;<font color="red">*</font>&nbsp;类型：
 						</div>
 						<div class="col-md-11 col-xs-8">

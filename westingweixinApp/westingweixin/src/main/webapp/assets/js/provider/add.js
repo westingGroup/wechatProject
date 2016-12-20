@@ -23,6 +23,7 @@ function renderList(orderId) {
 	// 将除去提交时间之外的所有信息隐藏
 	$(".hidden" + orderId).addClass("hidden");
 	$("#order" + orderId).css("backgroundColor", "white");
+	$("#button").attr("disabled", false);
 }
 
 /**
@@ -44,7 +45,11 @@ function openInit(orderId) {
 	$("#zhankai" + orderId).removeClass("show").addClass("hidden");
 	$("#zhedie" + orderId).removeClass("hidden").addClass("show");
 	$("#order" + orderId).css("backgroundColor", "rgb(247, 156, 127)");
-	viewApply(orderId);
+	if ($("#linkname" + orderId).val() != null
+			&& $("#linkname" + orderId).val() != "")
+		$("#button").attr("disabled", true);
+	else
+		$("#button").attr("disabled", false);
 }
 
 /**
@@ -92,8 +97,8 @@ function appendRecord(recordContent) {
 			+ recordContent.id + "' orderId = " + recordContent.id + ">";
 	record += "<hr class='viewHr'/>";
 	record += "<div class='row serialNumber hidden" + recordContent.id + "'>";
-	record += "<div class='col-md-1 col-xs-4 label'>流水号：</div>";
-	record += "<div class='col-md-10 col-xs-6 viewContent'>"
+	record += "<div class='col-md-2 col-xs-4 label'>流水号：</div>";
+	record += "<div class='col-md-9 col-xs-6 viewContent'>"
 			+ recordContent.serviceOrderId + "</div>";
 	record += "<div class='col-md-1 col-xs-2'>";
 	record += "<img alt='折叠' class='hidden' src='" + basePath
@@ -101,18 +106,18 @@ function appendRecord(recordContent) {
 	record += "</div>";
 	record += "</div>";
 	record += "<div class='row category hidden" + recordContent.id + "'>";
-	record += "<div class='col-md-1 col-xs-4 label'>类别：</div>";
-	record += "<div class='col-md-11 col-xs-8 viewContent'>"
+	record += "<div class='col-md-2 col-xs-4 label'>类别：</div>";
+	record += "<div class='col-md-10 col-xs-8 viewContent'>"
 			+ recordContent.category + "</div>";
 	record += "</div>";
 	record += "<div class='row serviceType hidden" + recordContent.id + "'>";
-	record += "<div class='col-md-1 col-xs-4 label'>服务类型：</div>";
-	record += "<div class='col-md-11 col-xs-8 viewContent'>"
+	record += "<div class='col-md-2 col-xs-4 label'>服务类型：</div>";
+	record += "<div class='col-md-10 col-xs-8 viewContent'>"
 			+ recordContent.serviceType + "</div>";
 	record += "</div>";
 	record += "<div class='row submitTime'>";
-	record += "<div class='col-md-1 col-xs-4 label'>任务申请时间：</div>";
-	record += "<div class='col-md-10 col-xs-6 viewContent'>"
+	record += "<div class='col-md-2 col-xs-4 label'>任务申请时间：</div>";
+	record += "<div class='col-md-9 col-xs-6 viewContent'>"
 			+ recordContent.createDate + "</div>";
 	record += "<div class='col-md-1 col-xs-2'>";
 	record += "<img alt='展开' class='show' src='" + basePath
@@ -121,12 +126,35 @@ function appendRecord(recordContent) {
 	record += "</div>";
 	record += "<div class='row serviceDemandWaiting hidden" + recordContent.id
 			+ "'>";
-	record += "<div class='col-md-1 col-xs-4 label'>服务需求：</div>";
-	record += "<div class='col-md-11 col-xs-8 viewContent'>"
+	record += "<div class='col-md-2 col-xs-4 label'>服务需求：</div>";
+	record += "<div class='col-md-10 col-xs-8 viewContent'>"
 			+ recordContent.content + "</div>";
 	record += "</div>";
+	record += "<div class='row hidden"+recordContent.id+"'>";
+	record += "<div class='col-md-6 col-xs-6' style='padding-left: 7px;'>";
+	record += "<input type='text' class='text required maxlength' label='联系人' maxlength='255' placeholder='*联系人' id='linkname"+recordContent.id+"' style='background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;' />";
 	record += "</div>";
-
+	record += "<div class='col-md-6 col-xs-6' style='padding-left: 7px;'>";
+	record += "<input type='text' class='text required phone maxlength' label='联系电话' maxlength='13' placeholder='*联系电话' id='linkphone"+recordContent.id+"' style='background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;' />";
+	record += "</div>";
+	record += "</div>";
+	record += "<div class='row hidden"+recordContent.id+"'>";
+	record += "<div class='col-md-6 col-xs-6' style='padding-left: 7px;'>";
+	record += "<input type='text' class='text num' label='价格' placeholder='价格' id='price"+recordContent.id+"' style='background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;' />";
+	record += "</div>";
+	record += "<div class='col-md-6 col-xs-6 input-append date form_datetime_day' style='padding-left: 7px; padding-right: 0px;'>";
+	record += "<div class='row' style='padding-top: 0px; margin-left: 0px; padding-right: 0px;'>";
+	record += "<div class='col-md-11 col-xs-8' style='padding-left: 0px; padding-right: 0px;'>";
+	record += "<input type='text' class='text' placeholder='预计完成时间' id='completeDate"+recordContent.id+"' style='background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;' />";
+	record += "</div>";
+	record += "<div class='col-md-1 col-xs-4' style='padding-left: 0px; padding-right: 0px;'>";
+	record += "<span class='add-on'><i class='icon-remove'></i></span> <span class='add-on'><i class='icon-calendar'></i></span>";
+	record += "</div>";
+	record += "</div>";
+	record += "</div>";
+	record += "</div>";
+	record += "</div>";
+	
 	$(".providerOrders").append(record);
 	renderList(recordContent.id);
 }
@@ -135,95 +163,45 @@ function appendRecord(recordContent) {
  * 申领任务
  */
 function applyServiceOrder() {
+	var id = $("#id").val();
 	// 校验是否选择要申领的服务
-	if ($("#id").val() == 0) {
+	if (id == 0) {
 		showTipsError("请选择要申领的服务");
 		return false;
 	}
 	// 校验联系人信息
-	if (!validateComponent("linkname", "text"))
+	if (!validateComponent("linkname" + id, "text"))
 		return false;
 	// 校验联系电话信息
-	if (!validateComponent("linkphone", "text"))
+	if (!validateComponent("linkphone" + id, "text"))
 		return false;
 
 	var price = 0;
-	if ($("#price").val() == null || $("#price").val() == "")
+	if ($("#price" + id).val() == null || $("#price" + id).val() == "")
 		price = 0;
 	else
-		price = $("#price").val();
-	$.post(basePath + "/provider/add/" + $("#id").val(), {
-		linkname : $("#linkname").val(),
-		linkphone : $("#linkphone").val(),
+		price = $("#price" + id).val();
+	$.post(basePath + "/provider/add/" + id, {
+		linkname : $("#linkname" + id).val(),
+		linkphone : $("#linkphone" + id).val(),
 		price : price,
-		completeDateStr : $("#completeDate").val(),
+		completeDateStr : $("#completeDate" + id).val(),
 		providerId : $("#providerId").val(),
 		providerName : $("#providerName").val(),
 		providerType : $("#providerType").val()
 	}, function(data, status) {
 		showTipsSucc(data);
-		$("#order" + $("#id").val()).attr("linkname", $("#linkname").val());
-		$("#order" + $("#id").val()).attr("linkphone", $("#linkphone").val());
-		$("#order" + $("#id").val()).attr("price", $("#price").val());
-		$("#order" + $("#id").val()).attr("completeDate",
-				$("#completeDate").val());
-		disableApply();
+		disableApply(id);
 	});
-}
-
-/**
- * 查看申领信息
- * 
- * @param orderId
- */
-function viewApply(orderId) {
-	// 如果联系人不为空，代表已经申领了
-	if ($("#order" + orderId).attr("linkname") != null
-			&& $("#order" + orderId).attr("linkname") != "") {
-		$("#linkname").val($("#order" + orderId).attr("linkname"));
-		$("#linkphone").val($("#order" + orderId).attr("linkphone"));
-		$("#price").val($("#order" + orderId).attr("price"));
-		$("#completeDate").val($("#order" + orderId).attr("completeDate"));
-		disableApply();
-	} else {
-		$("#linkname").val("");
-		$("#linkphone").val("");
-		$("#price").val("");
-		$("#completeDate").val("");
-		enableApply();
-	}
-
-}
-
-/**
- * 使申领信息可以操作
- */
-function enableApply() {
-	$("#linkname").attr("readonly", false);
-	$("#linkphone").attr("readonly", false);
-	$("#price").attr("readonly", false);
-	$("#completeDate").attr("disabled", false);
-	$("#button").attr("disabled", false);
 }
 
 /**
  * 使申领信息不可以操作
  */
-function disableApply() {
-	$("#linkname").attr("readonly", true);
-	$("#linkphone").attr("readonly", true);
-	$("#price").attr("readonly", true);
-	$("#completeDate").attr("disabled", true);
+function disableApply(id) {
+	$("#linkname" + id).attr("readonly", true);
+	$("#linkphone" + id).attr("readonly", true);
+	$("#price" + id).attr("readonly", true);
+	$("#completeDate" + id).attr("disabled", true);
 	$("#button").attr("disabled", true);
-}
-
-/**
- * 清空apply
- */
-function clearApply() {
-	$("#linkname").val("");
-	$("#linkphone").val("");
-	$("#price").val("");
-	$("#completeDate").val("");
-	enableApply();
 }

@@ -202,7 +202,7 @@
 					keydown : $.proxy(this.keydown, this)
 				} ] ];
 			} else if (this.component && this.hasInput) { // component: input
-															// + button
+				// + button
 				this._events = [
 				// For components that are not readonly, allow keyboard nav
 				[ this.element.find('input'), {
@@ -1086,7 +1086,7 @@
 		keydown : function(e) {
 			if (this.picker.is(':not(:visible)')) {
 				if (e.keyCode == 27) // allow escape to hide and re-show
-										// picker
+					// picker
 					this.show();
 				return;
 			}
@@ -1557,7 +1557,7 @@
 					D : dates[language].daysShort[date.getUTCDay()],
 					w : date.getUTCDay(), // 0 -> 6
 					N : (date.getUTCDay() == 0 ? 7 : date.getUTCDay()), // 1 ->
-																		// 7
+					// 7
 					S : (date.getUTCDate() % 10 <= dates[language].suffix.length ? dates[language].suffix[date
 							.getUTCDate() % 10 - 1]
 							: ''),
@@ -1619,14 +1619,14 @@
 		},
 		headTemplate : '<thead>' + '<tr>'
 				+ '<th class="prev"><i class="icon-angle-left"/></th>' + // icon
-																			// modifed
-																			// by
-																			// keenthemes.
+				// modifed
+				// by
+				// keenthemes.
 				'<th colspan="5" class="switch"></th>'
 				+ '<th class="next"><i class="icon-angle-right"/></th>' + // icon
-																			// modifed
-																			// by
-																			// keenthemes.
+				// modifed
+				// by
+				// keenthemes.
 				'</tr>' + '</thead>',
 		contTemplate : '<tbody><tr><td colspan="7"></td></tr></tbody>',
 		footTemplate : '<tfoot><tr><th colspan="7" class="today"></th></tr></tfoot>'
@@ -1673,7 +1673,7 @@
 }(window.jQuery);
 
 /*-----------------------*/
-function initDatePickerForDay(date) {
+function initDatePickerForDay(startDate, endDate) {
 	$(".form_datetime_day").datetimepicker({
 		language : 'zh-CN',
 		format : "yyyy-mm-dd",
@@ -1681,7 +1681,8 @@ function initDatePickerForDay(date) {
 		todayBtn : true,
 		minView : "2",
 		pickerPosition : "bottom-left",
-		startDate : date
+		startDate : startDate,
+		endDate : endDate
 	});
 }
 function initDatePickerForHour() {
