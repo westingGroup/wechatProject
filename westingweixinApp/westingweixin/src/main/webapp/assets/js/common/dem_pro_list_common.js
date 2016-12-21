@@ -85,6 +85,7 @@ function openInit(orderId) {
 		$(".hidden" + orderId).removeClass("hidden").addClass("show");
 		$(this).removeClass("show").addClass("hidden");
 		$("#zhedie" + orderId).removeClass("hidden").addClass("show");
+		$("#status" + orderId).html("");
 	});
 }
 
@@ -96,5 +97,6 @@ function foldInit(orderId) {
 		$(".hidden" + orderId).removeClass("show").addClass("hidden");
 		$(this).removeClass("show").addClass("hidden");
 		$("#zhankai" + orderId).removeClass("hidden").addClass("show");
+		$("#status" + orderId).html($("#status"+orderId).attr("status"));
 	});
 }

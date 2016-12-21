@@ -45,8 +45,7 @@ function openInit(orderId) {
 	$("#zhankai" + orderId).removeClass("show").addClass("hidden");
 	$("#zhedie" + orderId).removeClass("hidden").addClass("show");
 	$("#order" + orderId).css("backgroundColor", "rgb(247, 156, 127)");
-	if ($("#linkname" + orderId).val() != null
-			&& $("#linkname" + orderId).val() != "")
+	if ($("#order" + orderId).attr("status") == "1")//已经申领成功
 		$("#button").attr("disabled", true);
 	else
 		$("#button").attr("disabled", false);
@@ -191,6 +190,7 @@ function applyServiceOrder() {
 		providerType : $("#providerType").val()
 	}, function(data, status) {
 		showTipsSucc(data);
+		$("#order"+id).attr("status","1");
 		disableApply(id);
 	});
 }

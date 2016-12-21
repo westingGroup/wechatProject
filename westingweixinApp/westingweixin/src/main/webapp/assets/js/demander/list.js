@@ -66,7 +66,9 @@ function appendRecord(recordContent) {
 	record += "<div class='row submitTimeView'>";
 	record += "<div class='col-md-1 col-xs-3 label'>提交时间：</div>";
 	record += "<div class='col-md-10 col-xs-7 viewContent zhedie'>"
-			+ recordContent.createDate + "</div>";
+			+ recordContent.createDate + "<span id='status" + recordContent.id
+			+ "' status='" + recordContent.status + "'>" + recordContent.status
+			+ "</span></div>";
 	record += "<div class='col-md-1 col-xs-2'>";
 	record += "<img alt='展开' class='show' src='" + basePath
 			+ "/assets/img/zhankai.png' id='zhankai" + recordContent.id + "'>";
@@ -84,7 +86,7 @@ function appendRecord(recordContent) {
 			+ "'>";
 	record += "<div class='col-md-2 col-xs-6'>";
 	record += "<div class='raty' id='raty" + recordContent.id
-			+ "' style='margin-right: 0px;'></div>";
+			+ "' style='margin-right: 0px;padding-left: 0px;'></div>";
 	record += "</div>";
 	record += "<div class='col-md-10 col-xs-6' style='text-align: left;'>";
 	record += "<button class='btn' id='but" + recordContent.id

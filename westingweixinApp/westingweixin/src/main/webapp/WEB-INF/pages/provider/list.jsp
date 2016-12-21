@@ -87,7 +87,9 @@
 					<hr class="commonHr hidden${order.id}" />
 					<div class="row submitTimeView">
 						<div class="col-md-1 col-xs-3 label">提交时间：</div>
-						<div class="col-md-10 col-xs-7 viewContent zhedie">${order.createDate }${order.status}</div>
+						<div class="col-md-10 col-xs-7 viewContent zhedie">${order.createDate }<span
+								id="status${order.id }" status='${order.status}'>${order.status}</span>
+						</div>
 						<div class="col-md-1 col-xs-2">
 							<img alt="展开" class="show"
 								src="<%=request.getContextPath()%>/assets/img/zhankai.png"
@@ -103,7 +105,8 @@
 					<div class="row serviceEvaluate hidden${order.id}">
 						<div class="col-md-1 col-xs-3 label">客户反馈：</div>
 						<div class="col-md-11 col-xs-9">
-							<div class="raty" id="raty${order.id}" style="margin-right: 0px;"></div>
+							<div class="raty viewContent" id="raty${order.id}"
+								style="margin-right: 0px;"></div>
 						</div>
 					</div>
 				</div>
