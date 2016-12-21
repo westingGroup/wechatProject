@@ -1,48 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<STYLE type=text/css>
+.font14 {
+	FONT-SIZE: 14px
+}
+.font12 {
+	FONT-SIZE: 12px
+}
+.font12 a {
+	FONT-SIZE: 12px;
+	color: #CC0000;
+	text-decoration: none;
+}
+</STYLE>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport"
-	content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <title>服务需求方审批</title>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
-<!-- <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/DT_bootstrap.css" />
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/style-metro.css" />
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/style.css" /> -->
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/datetimepicker.css" />
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/font-awesome.min.css" />
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/css/common/common.css" />
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/css/common/common_service.css" />
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/assets/js/jquery-1.8.2.min.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/assets/media/js/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/assets/media/js/bootstrap-datetimepicker.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/assets/media/js/bootstrap-datetimepicker.zh-CN.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/assets/js/common/common.js"></script>
-<script type="text/javascript">
-	
-</script>
-</head>
-<body>
-<c:if test="${demander.status==0 }">用户已经禁用</c:if>
-<c:if test="${demander.status==1 }">审批中，请等待</c:if>
-</body>
-</html>
+</HEAD>
+<BODY>
+	<TABLE height='400' cellSpacing='0' cellPadding='0' width='300' align='center'
+		background='<%=request.getContextPath()%>/assets/img/x.gif' border='0'>
+		<TBODY>
+			<TR>
+				<TD height='280'></TD>
+			</TR>
+			<TR>
+				<TD vAlign=top>
+					<DIV class='font14' align='center'>
+					<c:if test="${demander.status==0 }"><STRONG>用户已经<FONT color='#0099ff'>禁用</FONT>,请联系管理员</STRONG></c:if>
+					<c:if test="${demander.status==1 }"><STRONG>审批中，请等待</STRONG></c:if>
+					</DIV>
+				</TD>
+			</TR>
+		</TBODY>
+	</TABLE>
+</BODY>
+</HTML>
