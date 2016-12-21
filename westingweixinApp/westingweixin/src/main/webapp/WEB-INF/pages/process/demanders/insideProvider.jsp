@@ -4,7 +4,7 @@
 	src="<%=request.getContextPath()%>/assets/js/process/demander/insideProvider.js"></script>
 <div id="insideProvider" class="modal  fade" tabindex="-1"
 	data-focus-on="input:first" aria-hidden="true"
-	style="display: none; background-color: #fff; max-width: 80%; max-height: 400px; margin: auto; overflow: scroll;">
+	style="display: none; background-color: #fff; max-width: 80%; max-height: 450px; margin: auto; overflow: scroll;">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"
 			aria-hidden="true" onclick="clearInsideProvider()"></button>

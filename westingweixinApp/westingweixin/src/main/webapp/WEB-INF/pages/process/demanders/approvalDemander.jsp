@@ -38,8 +38,7 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/process/demander/approvalDemander.js"></script>
 <script type="text/javascript">
-	var basePath = "<%=request.getContextPath()%>
-	";
+	var basePath = "<%=request.getContextPath()%>";
 	$(function() {
 		initDemander();
 		if ("${type}" != null && "${type}" != "")

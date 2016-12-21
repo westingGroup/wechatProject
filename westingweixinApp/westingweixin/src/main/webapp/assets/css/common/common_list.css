@@ -166,18 +166,18 @@
 	color: white;
 }
 
-.backBtn{
-	background: rgb(0,255,0);
+.backBtn {
+	background: rgb(0, 255, 0);
 	color: white;
 }
 
 #demanderCustomerUpdate .modal-header, #providerCustomerUpdate .modal-header,
-	#insideCustomerUpdate .modal-header {
+	#insideCustomerUpdate .modal-header, #insideProvider .modal-header {
 	padding: 10px;
 }
 
-#demanderCustomerUpdate .modal-body, #providerCustomerUpdate .modal-body
-	{
+#demanderCustomerUpdate .modal-body, #providerCustomerUpdate .modal-body,
+	#insideProvider .modal-body {
 	min-height: 75%;
 }
 
@@ -186,13 +186,15 @@
 }
 
 #demanderCustomerUpdate .modal-body .content, #providerCustomerUpdate .modal-body .content,
-	#insideCustomerUpdate .modal-body .content {
+	#insideCustomerUpdate .modal-body .content, #insideProvider .modal-body .content
+	{
 	padding-bottom: 20px;
 }
 
 #demanderCustomerUpdate .modal-body .content .row,
 	#providerCustomerUpdate .modal-body .content .row,
-	#insideCustomerUpdate .modal-body .content .row {
+	#insideCustomerUpdate .modal-body .content .row, #insideProvider .modal-body .content .row
+	{
 	padding-top: 0px;
 	padding-bottom: 0px;
 }
@@ -203,6 +205,6 @@
 }
 
 #demanderCustomerUpdate .modal-footer, #providerCustomerUpdate .modal-footer,
-	#insideCustomerUpdate .modal-footer {
+	#insideCustomerUpdate .modal-footer, #insideProvider .modal-footer {
 	padding: 10px;
 }
