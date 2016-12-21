@@ -91,8 +91,8 @@
 	<div class="modal-footer">
 		<input type="hidden" id="dcuId" />
 		<div style="text-align: left; color: red;" id="dcuTipsInfo"></div>
-		<button type="button" class="btn btn-main" id="dcuConfirmBtn">确定</button>
-		<button type="button" class="btn btn-main" data-dismiss="modal"
+		<button type="button" class="btn button btn-main" id="dcuConfirmBtn">确定</button>
+		<button type="button" class="btn button btn-main" data-dismiss="modal"
 			aria-hidden="true" id="dcuCancelBtn">关闭</button>
 	</div>
 </div>

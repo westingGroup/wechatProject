@@ -19,7 +19,7 @@
 				<td>类型:</td>
 				<td><input type="text" id="processDemanderST" class="search" /></td>
 				<td colspan="2" style="text-align: center;">
-					<button type="button" id="processDemanderBtn" class="btn btn-main">查询</button>
+					<button type="button" id="processDemanderBtn" class="btn button btn-main">查询</button>
 				</td>
 			</tr>
 		</tbody>
@@ -77,12 +77,12 @@
 						<span class="btnText">转待分配</span> <img class="btnImg"
 							src="<%=request.getContextPath()%>/assets/img/right_arrow.png">
 					</button></td>
-				<td style="width: 10%;"><button class="btn approvalBtn"
+				<td style="width: 10%;"><button class="btn button approvalBtn"
 						id="processDemanderApprovalBtn">
 						<span class="btnText">转完成</span> <img class="btnImg"
 							src="<%=request.getContextPath()%>/assets/img/right_arrow.png">
 					</button></td>
-				<td style="width: 10%;"><button class="btn rejectBtn"
+				<td style="width: 10%;"><button class="btn button rejectBtn"
 						id="processDemanderRejectBtn">
 						<span class="btnText">转废单</span> <img class="btnImg"
 							src="<%=request.getContextPath()%>/assets/img/right_arrow.png">

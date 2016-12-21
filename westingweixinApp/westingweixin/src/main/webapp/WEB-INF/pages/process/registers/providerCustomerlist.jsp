@@ -11,7 +11,7 @@
 				<td>联系方式:</td>
 				<td><input type="text" id="providerCustomerLP" class="search" /></td>
 				<td style="text-align: right;">
-					<button type="button" id="providerCustomerBtn" class="btn btn-main">查询</button>
+					<button type="button" id="providerCustomerBtn" class="btn button btn-main">查询</button>
 				</td>
 			</tr>
 		</tbody>

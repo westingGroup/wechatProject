@@ -85,7 +85,7 @@
 				label="确认新密码" /></td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit" class="btn" value="修改密码"
+			<td colspan="2"><input type="submit" class="btn button" value="修改密码"
 				id="updatePwd" /></td>
 		</tr>
 	</table>

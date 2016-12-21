@@ -151,7 +151,7 @@
 			</div>
 		</div>
 		<div class="footer">
-			<button class="btn" type="button" onclick="applyServiceOrder()"
+			<button class="btn button" type="button" onclick="applyServiceOrder()"
 				id="button">任务申领</button>
 		</div>
 	</div>

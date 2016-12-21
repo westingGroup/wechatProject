@@ -43,9 +43,9 @@
 		</tbody>
 	</table>
 	<div class="approval_info" style="text-align: right;">
-	<a class="btn" id="picWordAddBtn"
+	<a class="btn button" id="picWordAddBtn"
 			href="<%=request.getContextPath()%>/data/konw" target="_blank">预览</a>
-		<a class="btn" id="picWordAddBtn"
+		<a class="btn button" id="picWordAddBtn"
 			href="<%=request.getContextPath()%>/picword/add">新增</a>
 	</div>
 

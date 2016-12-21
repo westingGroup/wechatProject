@@ -48,7 +48,7 @@
 <body>
 	<div style="margin-top: 20px;">
 		<input type="text" name="brief" id="brief" style="margin-right: 10px;" /><input
-			type="submit" class="btn" onclick="add();" value="提交" />
+			type="submit" class="btn button" onclick="add();" value="提交" />
 	</div>
 	<div id="mytable" style="display: none;"></div>
 	<div style="margin-top: 20px;">

@@ -147,7 +147,7 @@ $(function() {
 				</div>
 			</div>
 			<div class="footer">
-				<button class="btn" type="submit">提交</button>
+				<button class="btn button" type="submit">提交</button>
 			</div>
 		</sf:form>
 	</div>

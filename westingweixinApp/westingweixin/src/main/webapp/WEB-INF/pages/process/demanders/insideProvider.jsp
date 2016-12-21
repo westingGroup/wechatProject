@@ -19,7 +19,7 @@
 					<td>电话:</td>
 					<td><input type="text" id="phone" /></td>
 					<td style="text-align: right;">
-						<button type="button" id="insideProviderBtn" class="btn btn-main">查询</button>
+						<button type="button" id="insideProviderBtn" class="btn button btn-main">查询</button>
 					</td>
 				</tr>
 			</tbody>
@@ -68,9 +68,9 @@
 		<input type="hidden" id="insideProviderId" /> <input type="hidden"
 			id="insideProviderName" />
 		<div style="text-align: left;color: red;" id="insideProviderTipsInfo"></div>
-		<button type="button" class="btn btn-main"
+		<button type="button" class="btn button btn-main"
 			id="insideProviderConfirmBtn">确定</button>
-		<button type="button" class="btn btn-main" data-dismiss="modal"
+		<button type="button" class="btn button btn-main" data-dismiss="modal"
 			aria-hidden="true" id="insideProviderCancelBtn">关闭</button>
 	</div>
 </div>

@@ -19,7 +19,7 @@
 				<td>类型:</td>
 				<td><input type="text" id="newDemanderST" class="search" /></td>
 				<td colspan="2" style="text-align: center;">
-					<button type="button" id="newDemanderBtn" class="btn btn-main">查询</button>
+					<button type="button" id="newDemanderBtn" class="btn button btn-main">查询</button>
 				</td>
 			</tr>
 		</tbody>
@@ -75,13 +75,13 @@
 					class="btnImg" style="margin-left: 5px; cursor: pointer;"
 					id="insideEngineerImg"
 					src="<%=request.getContextPath()%>/assets/img/magnifier.png"></td>
-				<td style="width: 20%;"><button class="btn approvalBtn"
+				<td style="width: 20%;"><button class="btn button approvalBtn"
 						id="newDemanderApprovalBtn">
 						<span class="btnText">转处理中</span> <img class="btnImg"
 							style="margin-left: 55px !important;"
 							src="<%=request.getContextPath()%>/assets/img/right_arrow.png">
 					</button></td>
-				<td style="width: 20%;"><button class="btn rejectBtn"
+				<td style="width: 20%;"><button class="btn button rejectBtn"
 						id="newDemanderRejectBtn">
 						<span class="btnText">转废单</span> <img class="btnImg"
 							src="<%=request.getContextPath()%>/assets/img/right_arrow.png">

@@ -24,7 +24,7 @@
 			<tr>
 				<td colspan="4"></td>
 				<td colspan="2" style="text-align: center;">
-					<button type="button" id="finishedDemanderBtn" class="btn btn-main">查询</button>
+					<button type="button" id="finishedDemanderBtn" class="btn button btn-main">查询</button>
 				</td>
 			</tr>
 		</tbody>

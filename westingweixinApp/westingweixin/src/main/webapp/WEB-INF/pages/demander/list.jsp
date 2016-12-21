@@ -109,7 +109,7 @@
 								style="margin-right: 0px;"></div>
 						</div>
 						<div class="col-md-10 col-xs-6" style="text-align: left;">
-							<button class="btn" id="but${order.id}">服务评价</button>
+							<button class="btn button" id="but${order.id}">服务评价</button>
 							<input type="hidden" id="id${order.id}" value="${order.id}" /> <input
 								type="hidden" id="evaluate${order.id}" value="${order.evaluate}" />
 						</div>

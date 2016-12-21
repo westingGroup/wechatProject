@@ -11,7 +11,7 @@
 				<td>联系方式:</td>
 				<td><input type="text" id="demanderApplyLP" class="search" /></td>
 				<td style="text-align: right;">
-					<button type="button" id="demanderApplyBtn" class="btn btn-main">查询</button>
+					<button type="button" id="demanderApplyBtn" class="btn button btn-main">查询</button>
 				</td>
 			</tr>
 		</tbody>
@@ -58,12 +58,12 @@
 			<tr>
 				<td style="width: 60%;"><textarea rows="3" cols="40"
 						id="demanderRemark" placeholder="备注"></textarea></td>
-				<td style="width: 20%;"><button class="btn approvalBtn"
+				<td style="width: 20%;"><button class="btn button approvalBtn"
 						id="demanderApplyApprovalBtn">
 						<span class="btnText">批准</span> <img class="btnImg"
 							src="<%=request.getContextPath()%>/assets/img/right_arrow.png">
 					</button></td>
-				<td style="width: 20%;"><button class="btn rejectBtn"
+				<td style="width: 20%;"><button class="btn button rejectBtn"
 						id="demanderApplyRejectBtn">
 						<span class="btnText">拒绝</span> <img class="btnImg"
 							src="<%=request.getContextPath()%>/assets/img/right_arrow.png">

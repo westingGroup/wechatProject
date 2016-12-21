@@ -164,9 +164,12 @@
 	padding: 10px;
 }
 
-#demanderCustomerUpdate .modal-body, #providerCustomerUpdate .modal-body,
-	#insideCustomerUpdate .modal-body {
+#demanderCustomerUpdate .modal-body, #providerCustomerUpdate .modal-body
+	 {
 	min-height: 75%;
+}
+#insideCustomerUpdate .modal-body{
+	min-height: 60%;
 }
 
 #demanderCustomerUpdate .modal-body .content, #providerCustomerUpdate .modal-body .content,

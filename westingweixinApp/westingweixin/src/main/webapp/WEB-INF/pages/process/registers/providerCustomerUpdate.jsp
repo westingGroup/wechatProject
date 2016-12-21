@@ -109,8 +109,8 @@
 	<div class="modal-footer">
 		<input type="hidden" id="pcuId" />
 		<div style="text-align: left; color: red;" id="pcuTipsInfo"></div>
-		<button type="button" class="btn btn-main" id="pcuConfirmBtn">确定</button>
-		<button type="button" class="btn btn-main" data-dismiss="modal"
+		<button type="button" class="btn button btn-main" id="pcuConfirmBtn">确定</button>
+		<button type="button" class="btn button btn-main" data-dismiss="modal"
 			aria-hidden="true" id="pcuCancelBtn">关闭</button>
 	</div>
 </div>

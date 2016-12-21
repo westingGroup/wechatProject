@@ -11,7 +11,7 @@
 				<td>联系方式:</td>
 				<td><input type="text" id="insideCustomerLP" class="search" /></td>
 				<td style="text-align: right;">
-					<button type="button" id="insideCustomerBtn" class="btn btn-main">查询</button>
+					<button type="button" id="insideCustomerBtn" class="btn button btn-main">查询</button>
 				</td>
 			</tr>
 		</tbody>
@@ -51,7 +51,7 @@
 		</div>
 	</div>
 	<div class="approval_info" style="text-align: right;">
-		<button class="btn" id="insideCustomerAddBtn">新增</button>
+		<button class="btn button" id="insideCustomerAddBtn">新增</button>
 	</div>
 	<jsp:include page="insideCustomerUpdate.jsp"></jsp:include>
 </div>

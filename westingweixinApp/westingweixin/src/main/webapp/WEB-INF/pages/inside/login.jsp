@@ -64,7 +64,7 @@
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div> -->
-			<button class="btn btn-lg btn-primary btn-block" id="btn"
+			<button class="btn button btn-lg btn-primary btn-block" id="btn"
 				type="button">登录</button>
 		</form>
 

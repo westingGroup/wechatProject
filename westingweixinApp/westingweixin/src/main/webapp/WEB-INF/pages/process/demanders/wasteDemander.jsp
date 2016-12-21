@@ -19,7 +19,7 @@
 				<td>类型:</td>
 				<td><input type="text" id="wasteDemanderST" class="search" /></td>
 				<td colspan="2" style="text-align: center;">
-					<button type="button" id="wasteDemanderBtn" class="btn btn-main">查询</button>
+					<button type="button" id="wasteDemanderBtn" class="btn button btn-main">查询</button>
 				</td>
 			</tr>
 		</tbody>

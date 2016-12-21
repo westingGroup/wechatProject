@@ -6,7 +6,7 @@
 	src="<%=request.getContextPath()%>/assets/js/process/registers/insideCustomerUpdate.js"></script>
 <div id="insideCustomerUpdate" class="modal  fade" tabindex="-1"
 	data-focus-on="input:first" aria-hidden="true"
-	style="display: none; background-color: #fff; max-width: 80%; max-height: 450px; margin: auto; overflow: scroll;">
+	style="display: none; background-color: #fff; max-width: 80%; max-height: 270px; margin: auto; overflow: scroll;">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"
 			aria-hidden="true" onclick="clearDemanderCustomerUpdate()"></button>
@@ -46,8 +46,8 @@
 	<div class="modal-footer">
 		<input type="hidden" id="icuId" />
 		<div style="text-align: left; color: red;" id="icuTipsInfo"></div>
-		<button type="button" class="btn btn-main" id="icuConfirmBtn">确定</button>
-		<button type="button" class="btn btn-main" data-dismiss="modal"
+		<button type="button" class="btn button btn-main" id="icuConfirmBtn">确定</button>
+		<button type="button" class="btn button btn-main" data-dismiss="modal"
 			aria-hidden="true" id="icuCancelBtn">关闭</button>
 	</div>
 </div>
