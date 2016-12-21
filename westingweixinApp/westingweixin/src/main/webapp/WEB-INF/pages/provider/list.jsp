@@ -104,7 +104,7 @@
 					<hr class="commonHr hidden${order.id}">
 					<div class="row serviceEvaluate hidden${order.id}">
 						<div class="col-md-1 col-xs-3 label">客户反馈：</div>
-						<div class="col-md-11 col-xs-9">
+						<div class="col-md-11 col-xs-9" style="padding-left: 0px;">
 							<div class="raty viewContent" id="raty${order.id}"
 								style="margin-right: 0px;"></div>
 						</div>

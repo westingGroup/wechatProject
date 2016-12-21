@@ -83,8 +83,8 @@ function appendRecord(recordContent) {
 	record += "<div class='row serviceEvaluate hidden" + recordContent.id
 			+ "'>";
 	record += "<div class='col-md-1 col-xs-3 label'>客户反馈：</div>";
-	record += "<div class='col-md-11 col-xs-9'>";
-	record += "<div class='raty' id='raty" + recordContent.id
+	record += "<div class='col-md-11 col-xs-9' style='padding-left:0px;'>";
+	record += "<div class='raty viewContent' id='raty" + recordContent.id
 			+ "' style='margin-right: 0px;'></div>";
 	record += "</div>";
 	record += "</div>";
