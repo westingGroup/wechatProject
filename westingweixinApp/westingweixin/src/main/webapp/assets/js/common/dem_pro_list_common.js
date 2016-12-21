@@ -24,7 +24,7 @@ function ratyInit(orderId, evaluate, type, status) {
 			starOn : 'star-on-big.png',
 			size : 24
 		});
-	else if (type == "demander" && (status == "其他") && evaluate != null
+	else if (type == "demander" && (status == "已评价") && evaluate != null
 			&& evaluate != "")// 如果为服务需求方，并且已经评价
 		$("#raty" + orderId).raty({
 			score : evaluate,
@@ -33,7 +33,7 @@ function ratyInit(orderId, evaluate, type, status) {
 			starOn : 'star-on-big.png',
 			size : 24
 		});
-	else if (type == "provider" && (status == "其他") && evaluate != null
+	else if (type == "provider" && (status == "已评价") && evaluate != null
 			&& evaluate != "")// 如果为服务提供商，并且已经评价
 		$("#raty" + orderId).raty({
 			number : evaluate,
