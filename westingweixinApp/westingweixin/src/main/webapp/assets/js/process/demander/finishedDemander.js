@@ -63,7 +63,9 @@ function appendFinishedDemander(registers, firstRegisterIndex) {
 		register += "<td>" + registers[i].serviceType + "</td>";
 		register += "<td>" + registers[i].status + "</td>";
 		register += "<td>" + registers[i].createDate + "</td>";
-		register += "<td>" + registers[i].content + "</td>";
+		register += "<td><div class='demanderContent' title='"
+				+ registers[i].content + "'>" + registers[i].content
+				+ "</div></td>";
 		register += "<td>" + registers[i].linkname + "</td>";
 		register += "<td>" + registers[i].linkphone + "</td>";
 		register += "<td>" + registers[i].dealname + "</td>";

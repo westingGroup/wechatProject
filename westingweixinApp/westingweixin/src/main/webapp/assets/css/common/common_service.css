@@ -70,6 +70,7 @@
 	border-bottom: none;
 	width: 100%;
 	background-color: white !important;
+	font-size: 0.75rem;
 }
 
 .subject .content .textarea {
@@ -78,6 +79,8 @@
 	border-top: none;
 	border-bottom: none;
 	width: 100%;
+	font-size: 0.75rem;
+	padding-top: 3px;
 }
 
 .subject .content .select {
@@ -92,6 +95,7 @@
 		transparent;
 	background-size: 10px;
 	appearance: none;
+	font-size: 0.75rem;
 }
 
 .subject .content .requireStyle {

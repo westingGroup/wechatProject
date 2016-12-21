@@ -1,12 +1,12 @@
 /**
  * 初始化新需求页面
  */
-function initNewDemander(){
-	//点击查询按钮，执行查询操作
-	$("#newDemanderBtn").click(function(){
+function initNewDemander() {
+	// 点击查询按钮，执行查询操作
+	$("#newDemanderBtn").click(function() {
 		initNewDemanderList(1);
 	});
-	
+
 	// 点击审批通过按钮
 	$("#newDemanderApprovalBtn").click(function() {
 		approvalNewDemander(2);
@@ -27,7 +27,7 @@ function initNewDemander(){
 		initInsideProviderList(1);
 		$("#insideProvider").modal("show");
 	});
-	//执行查询列表操作
+	// 执行查询列表操作
 	initNewDemanderList(1);
 }
 /**
@@ -87,7 +87,9 @@ function appendNewDemander(registers, firstRegisterIndex) {
 		register += "<td>" + registers[i].serviceType + "</td>";
 		register += "<td>" + registers[i].status + "</td>";
 		register += "<td>" + registers[i].createDate + "</td>";
-		register += "<td>" + registers[i].content + "</td>";
+		register += "<td><div class='demanderContent' title="
+				+ registers[i].content + ">" + registers[i].content
+				+ "</div></td>";
 		register += "<td>" + registers[i].linkname + "</td>";
 		register += "<td>" + registers[i].linkphone + "</td>";
 		register += "</tr>";
@@ -151,7 +153,7 @@ function approvalNewDemander(dealType) {
 		dealName = "";
 		insideOrOutSide = "";
 	}
-	
+
 	$.post(basePath + "/process/dealDemander", {
 		type : $("#newDemanderType").val(),// 新需求
 		demanderIds : selectNewDemanderId,// 选择的需求id

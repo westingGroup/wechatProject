@@ -72,10 +72,10 @@
 				<td style="width: 60%;"><textarea rows="3" cols="40"
 						class="required" label="备注" id="processDemanderRemark"
 						placeholder="备注"></textarea></td>
-				<td style="width: 10%;"><button class="btn approvalBtn"
+				<td style="width: 10%;"><button class="btn button backBtn"
 						id="processDemanderReturnBtn">
 						<span class="btnText">转待分配</span> <img class="btnImg"
-							src="<%=request.getContextPath()%>/assets/img/right_arrow.png">
+							src="<%=request.getContextPath()%>/assets/img/right_arrow.png" style="margin-left: 55px !important;">
 					</button></td>
 				<td style="width: 10%;"><button class="btn button approvalBtn"
 						id="processDemanderApprovalBtn">

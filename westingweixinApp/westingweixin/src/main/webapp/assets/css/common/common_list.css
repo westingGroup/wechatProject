@@ -149,6 +149,13 @@
 	cursor: pointer;
 }
 
+.demanderContent {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 150px;
+}
+
 .approvalBtn {
 	background: rgb(255, 0, 0);
 	color: white;
@@ -159,16 +166,22 @@
 	color: white;
 }
 
+.backBtn{
+	background: rgb(0,255,0);
+	color: white;
+}
+
 #demanderCustomerUpdate .modal-header, #providerCustomerUpdate .modal-header,
 	#insideCustomerUpdate .modal-header {
 	padding: 10px;
 }
 
 #demanderCustomerUpdate .modal-body, #providerCustomerUpdate .modal-body
-	 {
+	{
 	min-height: 75%;
 }
-#insideCustomerUpdate .modal-body{
+
+#insideCustomerUpdate .modal-body {
 	min-height: 60%;
 }
 
