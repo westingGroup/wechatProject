@@ -14,8 +14,6 @@
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/media/css/DT_bootstrap.css" />
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/media/css/style-metro.css" />
-<link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/media/css/style.css" />
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/css/common/common.css" />
@@ -40,7 +38,8 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/process/demander/approvalDemander.js"></script>
 <script type="text/javascript">
-	var basePath = "<%=request.getContextPath()%>";
+	var basePath = "<%=request.getContextPath()%>
+	";
 	$(function() {
 		initDemander();
 		if ("${type}" != null && "${type}" != "")
