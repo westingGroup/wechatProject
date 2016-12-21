@@ -107,7 +107,7 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
         StringBuffer sb = new StringBuffer(
                 "SELECT id,service_order_id,category,service_type,DATE_FORMAT(create_date,'%Y-%m-%d %T') create_date, "
                         + "content,IFNULL(evaluate,'') evaluate,CASE STATUS WHEN 0 THEN '新需求' WHEN 1 THEN '待分配' "
-                        + "WHEN 2 THEN '处理中' WHEN 9 THEN '已完成' WHEN 10 THEN '废单' ELSE '其他' END AS status FROM t_service_order where 1=1 ");
+                        + "WHEN 2 THEN '处理中' WHEN 9 THEN '已完成' WHEN 10 THEN '废单'  WHEN 11 THEN '已评价' ELSE '其他' END AS status FROM t_service_order where 1=1 ");
         if (StringUtils.isNotBlank(serviceOrderModel.getCreateBy())) {
             sb.append(" and create_by =").append(serviceOrderModel.getCreateBy());
         }
@@ -164,7 +164,7 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
         StringBuffer sb = new StringBuffer(
                 "SELECT s.id id,s.service_order_id service_order_id,s.category category,s.service_type service_type,"
                         + "DATE_FORMAT(s.create_date,'%Y-%m-%d %T') create_date,s.content content,"
-                        + "CASE s.status WHEN 0 THEN '新需求' WHEN 1 THEN '待分配' WHEN 2 THEN '处理中' WHEN 9 THEN '已完成' WHEN 10 THEN '废单' ELSE '其他' END AS status,"
+                        + "CASE s.status WHEN 0 THEN '新需求' WHEN 1 THEN '待分配' WHEN 2 THEN '处理中' WHEN 9 THEN '已完成' WHEN 10 THEN '废单' WHEN 11 THEN '已评价' ELSE '其他' END AS status,"
                         + "IFNULL(s.evaluate,'') evaluate FROM t_service_order s " + "WHERE 1=1 ");
 
         if (StringUtils.isNotBlank(serviceOrderModel.getApplyBy())) {
@@ -220,7 +220,7 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
         StringBuffer sb = new StringBuffer(
                 "SELECT s.id id,s.service_order_id service_order_id,s.category category,s.service_type service_type,"
                         + "DATE_FORMAT(s.create_date,'%Y-%m-%d %T') create_date,IFNULL(DATE_FORMAT(s.deal_date,'%Y-%m-%d %T'),'') deal_date,s.content content,"
-                        + "CASE s.status WHEN 0 THEN '新需求' WHEN 1 THEN '待分配' WHEN 2 THEN '处理中' WHEN 9 THEN '已完成' WHEN 10 THEN '废单' ELSE '其他' END AS status,"
+                        + "CASE s.status WHEN 0 THEN '新需求' WHEN 1 THEN '待分配' WHEN 2 THEN '处理中' WHEN 9 THEN '已完成' WHEN 10 THEN '废单' WHEN 11 THEN '已评价' ELSE '其他' END AS status,"
                         + "IFNULL(s.evaluate,'') evaluate FROM t_service_order s " + "WHERE 1=1 ");
 
         if (StringUtils.isNotBlank(serviceOrderModel.getDealBy())) {
@@ -302,7 +302,7 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
         StringBuffer sb = new StringBuffer(
                 "SELECT s.id id,s.service_order_id service_order_id,s.category category,s.service_type service_type,"
                         + "DATE_FORMAT(s.create_date,'%Y-%m-%d %T') create_date,IFNULL(DATE_FORMAT(s.deal_date,'%Y-%m-%d %T'),'') deal_date,s.content content,"
-                        + "CASE s.status WHEN 0 THEN '新需求' WHEN 1 THEN '待分配' WHEN 2 THEN '处理中' WHEN 9 THEN '已完成' WHEN 10 THEN '废单' ELSE '其他' END AS status,"
+                        + "CASE s.status WHEN 0 THEN '新需求' WHEN 1 THEN '待分配' WHEN 2 THEN '处理中' WHEN 9 THEN '已完成' WHEN 10 THEN '废单' WHEN 11 THEN '已评价' ELSE '其他' END AS status,"
                         + "IFNULL(s.evaluate,'') evaluate,IFNULL(s.linkname,'') linkname,IFNULL(s.linkphone,'') linkphone,"
                         + "IFNULL(s.dealname,'') dealname FROM t_service_order s " + "WHERE 1=1 ");
 
