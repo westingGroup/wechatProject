@@ -41,6 +41,8 @@
 	var totalPage = "${orders.totalPage}";
 	var isCanDown = "${orders.isCanDown}";
 	var basePath = "<%=request.getContextPath()%>";
+	var linkName = "${provider.linkname}";
+	var linkPhone = "${provider.linkphone}";
 	$(function() {
 		if ("${orders.records.size()}" != 0) {
 			<c:forEach items="${orders.records}" var="order" varStatus="status">
@@ -109,13 +111,15 @@
 							<div class="col-md-6 col-xs-6" style="padding-left: 7px;">
 								<input type="text" class="text required maxlength" label="联系人"
 									maxlength="255" placeholder="*联系人" id="linkname${order.id }"
-									style="background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;" />
+									style="background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;"
+									value="${provider.linkname }" />
 							</div>
 							<div class="col-md-6 col-xs-6" style="padding-left: 7px;">
 								<input type="text" class="text required phone maxlength"
 									label="联系电话" maxlength="13" placeholder="*联系电话"
 									id="linkphone${order.id }"
-									style="background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;" />
+									style="background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;"
+									value="${provider.linkphone }" />
 							</div>
 						</div>
 						<div class="row hidden${order.id }">
@@ -151,8 +155,8 @@
 			</div>
 		</div>
 		<div class="footer">
-			<button class="btn button" type="button" onclick="applyServiceOrder()"
-				id="button">任务申领</button>
+			<button class="btn button" type="button"
+				onclick="applyServiceOrder()" id="button">任务申领</button>
 		</div>
 	</div>
 </body>

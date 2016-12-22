@@ -78,7 +78,7 @@
 						</div>
 						<div class="col-md-11 col-xs-8">
 							<sf:input path="linkname" cssClass="text required maxlength"
-								label="联系人" maxlength="255" />
+								label="联系人" maxlength="255" value="${demander.linkname}"/>
 						</div>
 					</div>
 					<hr class="commonHr" />
@@ -91,7 +91,7 @@
 						<div class="col-md-11 col-xs-8">
 							<sf:input path="linkphone"
 								cssClass="text required phone maxlength" label="联系电话"
-								maxlength="13" />
+								maxlength="13" value="${demander.linkphone }"/>
 						</div>
 					</div>
 				</div>

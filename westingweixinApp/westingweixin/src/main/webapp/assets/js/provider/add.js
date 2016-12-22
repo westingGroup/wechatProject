@@ -45,7 +45,7 @@ function openInit(orderId) {
 	$("#zhankai" + orderId).removeClass("show").addClass("hidden");
 	$("#zhedie" + orderId).removeClass("hidden").addClass("show");
 	$("#order" + orderId).css("backgroundColor", "rgb(247, 156, 127)");
-	if ($("#order" + orderId).attr("status") == "1")//已经申领成功
+	if ($("#order" + orderId).attr("status") == "1")// 已经申领成功
 		$("#button").attr("disabled", true);
 	else
 		$("#button").attr("disabled", false);
@@ -129,22 +129,32 @@ function appendRecord(recordContent) {
 	record += "<div class='col-md-10 col-xs-8 viewContent'>"
 			+ recordContent.content + "</div>";
 	record += "</div>";
-	record += "<div class='row hidden"+recordContent.id+"'>";
+	record += "<div class='row hidden" + recordContent.id + "'>";
 	record += "<div class='col-md-6 col-xs-6' style='padding-left: 7px;'>";
-	record += "<input type='text' class='text required maxlength' label='联系人' maxlength='255' placeholder='*联系人' id='linkname"+recordContent.id+"' style='background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;' />";
+	record += "<input type='text' class='text required maxlength' label='联系人' maxlength='255' placeholder='*联系人' id='linkname"
+			+ recordContent.id
+			+ "' style='background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;' value="
+			+ linkName + "/>";
 	record += "</div>";
 	record += "<div class='col-md-6 col-xs-6' style='padding-left: 7px;'>";
-	record += "<input type='text' class='text required phone maxlength' label='联系电话' maxlength='13' placeholder='*联系电话' id='linkphone"+recordContent.id+"' style='background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;' />";
+	record += "<input type='text' class='text required phone maxlength' label='联系电话' maxlength='13' placeholder='*联系电话' id='linkphone"
+			+ recordContent.id
+			+ "' style='background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;' value="
+			+ linkPhone + "/>";
 	record += "</div>";
 	record += "</div>";
-	record += "<div class='row hidden"+recordContent.id+"'>";
+	record += "<div class='row hidden" + recordContent.id + "'>";
 	record += "<div class='col-md-6 col-xs-6' style='padding-left: 7px;'>";
-	record += "<input type='text' class='text num' label='价格' placeholder='价格' id='price"+recordContent.id+"' style='background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;' />";
+	record += "<input type='text' class='text num' label='价格' placeholder='价格' id='price"
+			+ recordContent.id
+			+ "' style='background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;' />";
 	record += "</div>";
 	record += "<div class='col-md-6 col-xs-6 input-append date form_datetime_day' style='padding-left: 7px; padding-right: 0px;'>";
 	record += "<div class='row' style='padding-top: 0px; margin-left: 0px; padding-right: 0px;'>";
 	record += "<div class='col-md-11 col-xs-8' style='padding-left: 0px; padding-right: 0px;'>";
-	record += "<input type='text' class='text' placeholder='预计完成时间' id='completeDate"+recordContent.id+"' style='background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;' />";
+	record += "<input type='text' class='text' placeholder='预计完成时间' id='completeDate"
+			+ recordContent.id
+			+ "' style='background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;' />";
 	record += "</div>";
 	record += "<div class='col-md-1 col-xs-4' style='padding-left: 0px; padding-right: 0px;'>";
 	record += "<span class='add-on'><i class='icon-remove'></i></span> <span class='add-on'><i class='icon-calendar'></i></span>";
@@ -153,7 +163,7 @@ function appendRecord(recordContent) {
 	record += "</div>";
 	record += "</div>";
 	record += "</div>";
-	
+
 	$(".providerOrders").append(record);
 	renderList(recordContent.id);
 }
@@ -190,7 +200,7 @@ function applyServiceOrder() {
 		providerType : $("#providerType").val()
 	}, function(data, status) {
 		showTipsSucc(data);
-		$("#order"+id).attr("status","1");
+		$("#order" + id).attr("status", "1");
 		disableApply(id);
 	});
 }
