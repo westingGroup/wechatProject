@@ -36,16 +36,18 @@
 						href="<%=request.getContextPath()%>/data/detail/${word.id }"
 						target="_blank">详情</a>&nbsp;<a href="#" id="pubBtn${word.id }">发布</a>]
 					</td>
-					<td><c:if test="${word.status==1}">使用</c:if><c:if test="${word.status!=1}">未使用</c:if></td>
+					<td><c:if test="${word.status==1}">使用</c:if> <c:if
+							test="${word.status!=1}">未使用</c:if></td>
 					<td>${word.lastUpdateTime }</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	<div class="approval_info" style="text-align: right;">
-	<a class="btn button" id="picWordAddBtn"
+		<a class="btn button approvalBtn" id="picWordAddBtn"
 			href="<%=request.getContextPath()%>/data/konw" target="_blank">预览</a>
-		<a class="btn button" id="picWordAddBtn"
+
+		<a class="btn button rejectBtn" id="picWordAddBtn"
 			href="<%=request.getContextPath()%>/picword/add">新增</a>
 	</div>
 

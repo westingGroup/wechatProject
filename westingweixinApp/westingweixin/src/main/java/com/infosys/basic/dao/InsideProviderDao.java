@@ -19,7 +19,12 @@ public class InsideProviderDao extends BaseDao<InsideProvider> implements IInsid
 
     @Override
     public InsideProvider loadByUsername(String username) {
-        return (InsideProvider) super.queryObject("from InsideProvider where username=?", username);
+        return (InsideProvider) super.queryObject("from InsideProvider where username=? and status=1", username);
+    }
+    
+    @Override
+    public InsideProvider loadByUsernameExcludeId(String username ,int id) {
+        return (InsideProvider) super.queryObject("from InsideProvider where username=? and status=1 and id !=?", new Object[]{username,id});
     }
 
     @Override

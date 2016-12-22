@@ -84,4 +84,9 @@ public class InsideProviderService implements IInsideProviderService {
 		return insideProviderDao.getDemanderTotalByConditions(demanderModel);
 	}
 
+    @Override
+    public InsideProvider loadByUsernameExcludeId(String username, int id) {
+        return insideProviderDao.loadByUsernameExcludeId(username, id);
+    }
+
 }

@@ -22,7 +22,7 @@
 	content="width=device-width, initial-scale=1, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<title>服务需求方审批</title>
+<title>服务提供商审批</title>
 </HEAD>
 <BODY>
 	<TABLE height='400' cellSpacing='0' cellPadding='0' width='300' align='center'

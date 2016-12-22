@@ -15,6 +15,7 @@ public interface IInsideProviderService {
     public InsideProvider load(int id);
     public InsideProvider get(int id);
     public InsideProvider loadByUsername(String username);
+    public InsideProvider loadByUsernameExcludeId(String username ,int id);
     public InsideProvider login(String username,String password) throws BusinessException;
     public List<InsideProvider> list();
     public PagerInfo<DemanderDto> listInsideProviderByKeyword(DemanderModel demanderModel);
