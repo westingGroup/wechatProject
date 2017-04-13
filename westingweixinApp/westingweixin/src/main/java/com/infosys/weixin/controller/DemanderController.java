@@ -1,6 +1,8 @@
 package com.infosys.weixin.controller;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -18,13 +20,20 @@ import com.infosys.basic.dto.PagerInfo;
 import com.infosys.basic.dto.ServiceOrderDto;
 import com.infosys.basic.dto.ServiceOrderModel;
 import com.infosys.basic.entity.Demander;
+import com.infosys.basic.entity.Provider;
 import com.infosys.basic.entity.ServiceOrder;
 import com.infosys.basic.entity.User;
 import com.infosys.basic.service.IDemanderService;
+import com.infosys.basic.service.IProviderService;
 import com.infosys.basic.service.IServiceOrderService;
 import com.infosys.basic.util.Constants;
 import com.infosys.basic.util.DateUtil;
 import com.infosys.basic.util.JsonUtil;
+import com.infosys.basic.util.XiaoqUtil;
+import com.infosys.weixin.model.TemplateData;
+import com.infosys.weixin.model.WxTemplate;
+import com.infosys.weixin.service.ITemplateService;
+import com.infosys.weixin.web.servlet.WeixinContext;
 
 //服务需求方
 @RequestMapping("/demander")
@@ -34,7 +43,13 @@ public class DemanderController {
     private IServiceOrderService serviceOrderService;
 
     @Inject
+    private ITemplateService templateService;
+
+    @Inject
     private IDemanderService demanderService;
+
+    @Inject
+    private IProviderService providerService;
 
     // 分页
     @RequestMapping(value = "/mydemanders", method = RequestMethod.POST)
@@ -104,6 +119,7 @@ public class DemanderController {
         }
         model.addAttribute("orders", userResult);
         model.addAttribute("demanderId", demander.getId());
+        model.addAttribute("demander", demander);
         return "demander/list";
     }
 
@@ -141,6 +157,9 @@ public class DemanderController {
         order.setServiceOrderId(String.valueOf(System.currentTimeMillis()));
         order.setCategory(order.getCategory());
         order.setServiceType(order.getServiceType());
+        if (StringUtils.isNotBlank(order.getContent())) {
+            order.setContent(XiaoqUtil.filterEmoji(order.getContent()));
+        }
         serviceOrderService.add(order);
         return "redirect:/demander/list";
     }
@@ -160,12 +179,14 @@ public class DemanderController {
             dem.setBusiness(demander.getBusiness());
             dem.setQualification(demander.getQualification());
             dem.setCompany(demander.getCompany());
+            dem.setCreateDate(new Date());
             demanderService.update(dem);
             model.addAttribute("demander", dem);
         } else {
             demander.setOpenid(openid);
             demander.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_NORMAL);
             demander.setBirthDate(DateUtil.parseDate(birth, "yyyy-MM-dd"));
+            demander.setCreateDate(new Date());
             demanderService.add(demander);
             model.addAttribute("demander", demander);
         }
@@ -179,15 +200,16 @@ public class DemanderController {
 
     @RequestMapping(value = "/evaluate/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public String update(@PathVariable int id, String evaluate) {
+    public String update(@PathVariable int id, String evaluate, String evaluateContent) {
         ServiceOrder tu = serviceOrderService.load(id);
         if (StringUtils.isNotBlank(tu.getEvaluate())) {
-            return "您已经评价过";
+            return JsonUtil.getInstance().obj2json("您已经评价过");
         }
         tu.setEvaluate(evaluate);
         tu.setStatus(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_DEALING_EVALUATE);
+        tu.setEvaluateContent(StringUtils.trim(evaluateContent));
         serviceOrderService.update(tu);
-        return "评价成功";
+        return JsonUtil.getInstance().obj2json("评价成功");
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
@@ -216,13 +238,103 @@ public class DemanderController {
         demanderService.update(tu);
         return "删除成功";
     }
-    
+
     @RequestMapping(value = "/enable/{id}", method = RequestMethod.POST)
     public @ResponseBody String enable(@PathVariable int id) {
         Demander tu = demanderService.load(id);
         tu.setStatus(com.infosys.basic.util.Constants.T_USER_STATUS_PASS);
         demanderService.update(tu);
-        return "启用成功";
+        return JsonUtil.getInstance().obj2json("启用成功");
+    }
+
+    @RequestMapping(value = "/apply/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public String apply(@PathVariable int id, int providerId) {
+        ServiceOrder tu = serviceOrderService.load(id);
+        tu.setStatus(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_APPLYED);
+        tu.setCompleteDate(new Date());
+        serviceOrderService.update(tu);
+        // 提供商 申请完成 发模板消息给 需求方
+        final Provider provider = providerService.get(providerId);
+        final Demander demander = demanderService.get(tu.getCreateBy());
+        final ServiceOrder so = tu;
+        // 提供商 申请完成 发模板消息给 需求方 需求方可以去完成确认 确认了后就可以去评价
+        new Thread() {
+            public void run() {
+                String bindUrl = WeixinContext.getInstance().getBaseUrl();
+                sendTemplateMsg(WeixinContext.getInstance().getTemplateDemander(), bindUrl + "/demander/list",
+                        demander.getOpenid(), "需求单" + so.getServiceOrderId() + "已完成申请", so.getContent(),
+                        provider.getLinkname() + "（手机" + provider.getLinkphone() + "）",
+                        DateUtil.format(new Date(), "yyyy-MM-dd HH:mm"), "点击该信息为本次为您服务的工程师打分");
+            }
+        }.start();
+        return JsonUtil.getInstance().obj2json("申请成功");
+    }
+
+    private void sendTemplateMsg(String templateId, String bindUrl, String openid, String msg, String serviceOrderId,
+            String serviceType, String applyDate, String remarkValue) {
+        WxTemplate temp = new WxTemplate();
+        temp.setUrl(bindUrl);
+        temp.setTouser(openid);
+        temp.setTemplate_id(templateId);
+        temp.setTopcolor("#FF0000");
+        Map<String, TemplateData> m = new HashMap<String, TemplateData>();
+        TemplateData first = new TemplateData();
+        first.setColor("#173177");
+        first.setValue(msg);
+        m.put("first", first);
+
+        TemplateData keyword1 = new TemplateData();
+        keyword1.setColor("#173177");
+        keyword1.setValue(serviceOrderId);
+        m.put("keyword1", keyword1);
+
+        TemplateData keyword2 = new TemplateData();
+        keyword2.setColor("#173177");
+        keyword2.setValue(serviceType);
+        m.put("keyword2", keyword2);
+
+        TemplateData keyword3 = new TemplateData();
+        keyword3.setColor("#173177");
+        keyword3.setValue(applyDate);
+        m.put("keyword3", keyword3);
+        temp.setData(m);
+
+        TemplateData remark = new TemplateData();
+        remark.setColor("#173177");
+        remark.setValue(remarkValue);
+        m.put("remark", remark);
+        temp.setData(m);
+
+        templateService.sendTemplateMessage(temp);
+    }
+
+    @RequestMapping(value = "/cancelServiceOrder/{serviceOrderId}", method = RequestMethod.POST)
+    public @ResponseBody String cancelServiceOrder(@PathVariable String serviceOrderId, String remark, int dealBy,
+            String dealName, HttpSession session) {
+        JsonUtil jsonUtil = JsonUtil.getInstance();
+        String rtnStr = "撤销失败";
+        if (StringUtils.isNotBlank(serviceOrderId)) {
+            ServiceOrder serviceOrder = serviceOrderService.get(Integer.parseInt(serviceOrderId));
+            if (serviceOrder.getStatus() == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_NEW) {
+                serviceOrder.setRemark1(StringUtils.isEmpty(remark) ? "主动撤销" : remark.trim());
+                serviceOrder.setDealBy(dealBy);
+                serviceOrder.setType(9);
+                serviceOrder.setDealDate(new Date());
+                serviceOrder.setDealname(dealName.trim());
+                serviceOrder.setStatus(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_CANCEL);
+                serviceOrderService.update(serviceOrder);
+                serviceOrder = null;
+                rtnStr = "撤销成功";
+            } else if (serviceOrder.getStatus() == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_APPLY) {
+                rtnStr = "需求单已经被申领，不能进行撤销操作";
+            } else if (serviceOrder.getStatus() == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_CANCEL) {
+                rtnStr = "需求单已经被撤销，不能重复撤销";
+            }
+        } else {
+            rtnStr = "请选择";
+        }
+        return jsonUtil.obj2json(rtnStr);
     }
 
 }

@@ -56,6 +56,11 @@
 		initDatePickerForDay(new Date());
 		//定义滑动操作
 		isTouchDevice("mobileApply");
+		if ("${orders.records.size()}" == 0) {
+			$("#button").addClass("hidden");
+		} else {
+			$("#button").addClass("show").attr("disabled", false);
+		} 
 	});
 </script>
 </head>
@@ -70,10 +75,11 @@
 					value="${provider.id}" id="providerId" /> <input type="hidden"
 					name="providerName" value="${provider.linkname}" id="providerName" />
 				<input type="hidden" name="applyBy" value="${provider.id}"
-					id="applyBy" /> <input type="hidden" name="id" id="id" value="0" />
+					id="applyBy" /><input type="hidden" name="openID" value="${provider.openid}"
+					id="openID" /> <input type="hidden" name="id" id="id" value="0" />
 				<c:forEach items="${orders.records}" var="order" varStatus="status">
 					<div class="container waitingTaskCommonStyle" id="order${order.id}"
-						orderId="${order.id}">
+						orderId="${order.id}" btnstatus="${order.status}" applyflag="${order.applyflag}">
 						<c:if test="${status.index!=0}">
 							<hr class="viewHr" />
 						</c:if>
@@ -105,7 +111,10 @@
 						</div>
 						<div class="row serviceDemandWaiting hidden${order.id}">
 							<div class="col-md-2 col-xs-4 label">服务需求：</div>
-							<div class="col-md-10 col-xs-8 viewContent">${order.content }</div>
+							<div id="content_${order.id}" class="col-md-10 col-xs-8 viewContent">${order.content }</div>
+						</div>
+						<div class="row serviceDemandWaiting viewContentAll hidden${order.id}" id="contentAllDiv_${order.id}">
+							<div id="contentAll_${order.id}" class="hidden">${order.content }</div>
 						</div>
 						<div class="row hidden${order.id }">
 							<div class="col-md-6 col-xs-6" style="padding-left: 7px;">
@@ -124,7 +133,7 @@
 						</div>
 						<div class="row hidden${order.id }">
 							<div class="col-md-6 col-xs-6" style="padding-left: 7px;">
-								<input type="text" class="text num" label="价格" placeholder="价格"
+								<input type="text" class="text required num maxlength" maxlength="10" label="价格" placeholder="*价格（必输）"
 									id="price${order.id }"
 									style="background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;" />
 							</div>
@@ -155,7 +164,7 @@
 			</div>
 		</div>
 		<div class="footer">
-			<button class="btn button" type="button"
+			<button class="btn button" type="button" 
 				onclick="applyServiceOrder()" id="button">任务申领</button>
 		</div>
 	</div>

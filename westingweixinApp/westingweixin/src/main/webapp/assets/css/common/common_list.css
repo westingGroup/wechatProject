@@ -1,17 +1,17 @@
 .linklist {
 	width: 100%;
 	height: 100%;
-	border: 1px solid rgb(0, 89, 143);
+	/* border: 1px solid rgb(0, 89, 143); */
 }
 
 /*tabҳ*/
 .add_head {
-	padding-top: 10px;
+	padding-top: 11px;
 	padding-left: 14px;
 	padding-bottom: 0px;
-	border-top: 1px solid rgb(0, 89, 143);
+	/* border-top: 1px solid rgb(0, 89, 143);
 	border-left: 1px solid rgb(0, 89, 143);
-	border-right: 1px solid rgb(0, 89, 143);
+	border-right: 1px solid rgb(0, 89, 143); */
 	width: 100%;
 	height: 39px;
 	background: rgb(192, 232, 255);
@@ -25,9 +25,9 @@
 	font-weight: bold;
 	line-height: 28px;
 	background: rgb(0, 124, 195);
-	border-left: 2px solid rgb(0, 89, 143);
-	border-right: 2px solid rgb(0, 89, 143);
-	border-top: 2px solid rgb(0, 89, 143);
+	border-left: 0px solid rgb(0, 89, 143);
+	border-right: 0px solid rgb(0, 89, 143);
+	border-top: 0px solid rgb(0, 89, 143);
 	font-size: 13px;
 	color: white;
 	display: block;
@@ -76,7 +76,7 @@
 
 .resultTable {
 	border-collapse: separate;
-	border-spacing: 2px;
+	border-spacing: 1px;
 }
 
 .resultTable th {
@@ -93,10 +93,12 @@
 
 .resultTable tr:nth-child(odd) td {
 	background: rgb(203, 215, 233);
+	vertical-align: middle;
 }
 
 .resultTable tr:nth-child(even) td {
 	background: rgb(231, 246, 245);
+	vertical-align: middle;
 }
 
 .approval_info {
@@ -129,19 +131,21 @@
 }
 
 .linklist .select {
-	width: 50%;
+	width: 60%;
 	margin-left: 0px;
-	font-size: 12px;
-	border: 2px solid rgb(166, 166, 166);
-	/*�ܹؼ�����Ĭ�ϵ�selectѡ�����ʽ���*/
+	font-size: inherit;
+	/*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+	border: 1px solid rgb(227, 233, 239);
+	/*很关键：将默认的select选择框样式清除*/
 	appearance: none;
 	-moz-appearance: none;
 	-webkit-appearance: none;
-	/*��ѡ�������Ҳ��м���ʾС��ͷͼƬ*/
+	/*在选择框的最右侧中间显示小箭头图片*/
 	background: url("../../img/select.png") no-repeat scroll right center
 		transparent;
 	background-size: 10px;
-	appearance: none;
+	padding-top: 2px;
+	padding-bottom: 2px;
 }
 
 .imgDelete, .imgResetPass, .imgUpdate, .imgDisabled, .imgDetail,
@@ -154,6 +158,13 @@
 	white-space: nowrap;
 	overflow: hidden;
 	width: 150px;
+}
+
+.registerBusiness {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 200px;
 }
 
 .approvalBtn {

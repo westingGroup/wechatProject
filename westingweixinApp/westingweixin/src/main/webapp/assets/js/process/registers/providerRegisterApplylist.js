@@ -10,7 +10,7 @@ function initProviderRegisterApply() {
 	$("#providerApplyApprovalBtn").click(
 			function() {
 				approvalDemanderApply("provider", 11, "providerApplyIds",
-						"providerRemark");
+						"providerRemark", "providerType1");
 			});
 
 	// 拒绝
@@ -84,21 +84,32 @@ function appendProviderRegisterApply(registers, firstRegisterIndex) {
 		register += "<td>" + (firstRegisterIndex + i) + "</td>";
 		register += "<td>" + registers[i].linkname + "</td>";
 		register += "<td>" + registers[i].linkphone + "</td>";
-		register += "<td>" + registers[i].business + "</td>";
-		register += "<td>" + registers[i].company + "</td>";
+		register += "<td>" + registers[i].birthDate + "</td>";
+		register += "<td><div align='center'><div class='registerBusiness' title='"
+			+ registers[i].business
+			+ "'>"
+			+ registers[i].business
+			+ "</div></div></td>";
+		register += "<td>" + registers[i].qualification + "</td>";
+		register += "<td><div align='center'><div class='registerBusiness' title='"
+				+ registers[i].company
+				+ "'>"
+				+ registers[i].company
+				+ "</div></div></td>";
 		register += "</tr>";
 		$("#providerRegisterApplyListBody").append(register);
 	}
 
-	$("#providerApplyPager").show();
-	$("#providerApplyApproval").show();
 	if (registers.length == 0) {// 如果没有记录
 		var noTr = $("<tr></tr>");
-		var td = "<td colspan='6' style='text-align:center;'>暂无符合条件的记录</td>";
+		var td = "<td colspan='8' style='text-align:center;'>暂无符合条件的记录</td>";
 		noTr.html(td);
 		$("#providerRegisterApplyListBody").append(noTr);
-		$("#providerApplyPager").hide();
-		$("#providerApplyApproval").hide();
+		$("#providerApplyPager").css("display", "none");
+		$("#providerApplyApproval").css("display", "none");
+	} else {
+		$("#providerApplyPager").css("display", "inline-table");
+		$("#providerApplyApproval").css("display", "inline-table");
 	}
 
 	// 如果当前页的所有项都被选中，则全选按钮被选中;如果当前页的所有项没有都被选中，则全选按钮不选中
@@ -119,4 +130,5 @@ function appendProviderRegisterApply(registers, firstRegisterIndex) {
 function clearProviderApply() {
 	$("#providerApplyIds").val("");
 	$("#providerRemark").val("");
+	$("#providerType1").val("0");
 }

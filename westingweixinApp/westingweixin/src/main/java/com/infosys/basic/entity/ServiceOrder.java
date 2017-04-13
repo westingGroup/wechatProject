@@ -115,6 +115,9 @@ public class ServiceOrder implements Serializable {
 
     private String evaluate;// 服务评价
 
+    @Column(name = "evaluate_content")
+    private String evaluateContent;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "deal_date")
     private Date dealDate;
@@ -131,8 +134,12 @@ public class ServiceOrder implements Serializable {
     private String remark3;
 
     @Column(name = "type", columnDefinition = "INT default 0")
-    private int type;
+    private int type;// 提供商处理 1内部 0 外部 自己撤销 9
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "complete_date")
+    private Date completeDate;
+    
     public ServiceOrder() {
     }
 
@@ -310,6 +317,22 @@ public class ServiceOrder implements Serializable {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public String getEvaluateContent() {
+        return evaluateContent;
+    }
+
+    public void setEvaluateContent(String evaluateContent) {
+        this.evaluateContent = evaluateContent;
+    }
+
+    public Date getCompleteDate() {
+        return completeDate;
+    }
+
+    public void setCompleteDate(Date completeDate) {
+        this.completeDate = completeDate;
     }
 
 }

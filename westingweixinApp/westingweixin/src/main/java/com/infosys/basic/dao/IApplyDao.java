@@ -8,4 +8,8 @@ import com.infosys.basic.entity.Apply;
 public interface IApplyDao extends IBaseDao<Apply> {
 
     List<Apply> listBySId(String sId);
+
+    List<Apply> listBySIdApplyBy(String sId, String applyBy);
+    
+    public void deleteBySId(String sId);
 }

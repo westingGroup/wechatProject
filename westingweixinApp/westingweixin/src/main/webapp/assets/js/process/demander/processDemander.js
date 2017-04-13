@@ -6,19 +6,19 @@ function initProcessDemander() {
 		initProcessDemanderList(1);
 	});
 
-	// 转带分配
+	// 转带分配或是新需求
 	$("#processDemanderReturnBtn").click(function() {
 		approvalProcessDemander(0);
 	});
 
 	// 审批通过
 	$("#processDemanderApprovalBtn").click(function() {
-		approvalProcessDemander(9);
+		approvalProcessDemander(90);
 	});
 
 	// 审批拒绝
 	$("#processDemanderRejectBtn").click(function() {
-		approvalProcessDemander(10);
+		approvalProcessDemander(100);
 	});
 
 	// 全选时
@@ -97,6 +97,17 @@ function appendProcessDemander(registers, firstRegisterIndex) {
 		register += "<td><div class='demanderContent' title='"
 				+ registers[i].content + "'>" + registers[i].content
 				+ "</div></td>";
+		register += "<td>";
+		register += "<input type='text' class='text required num maxlength' maxlength='10' label='价格' placeholder='请输入价格(必输)'";
+		register += " id='price" + registers[i].applyId + "' value='"
+				+ registers[i].price + "'";
+		register += " style='background: rgb(247, 156, 127) !important; border-bottom: 1px solid white;' />";
+		register += "<img alt='修改' src='"
+				+ basePath
+				+ "/assets/img/edit.png' width='16px' height='16px' apply_id="
+				+ registers[i].applyId
+				+ " class='imgUpdate processDemanderImg' title='修改'>";
+		register += "</td>";
 		register += "<td>" + registers[i].linkname + "</td>";
 		register += "<td>" + registers[i].linkphone + "</td>";
 		register += "<td>" + registers[i].dealname + "</td>";
@@ -108,11 +119,14 @@ function appendProcessDemander(registers, firstRegisterIndex) {
 
 	if (registers.length == 0) {// 如果没有记录
 		var noTr = $("<tr></tr>");
-		var td = "<td colspan='10' style='text-align:center;'>暂无符合条件的记录</td>";
+		var td = "<td colspan='11' style='text-align:center;'>暂无符合条件的记录</td>";
 		noTr.html(td);
 		$("#processDemanderBody").append(noTr);
-		$("#processDemanderPager").hide();
-		$("#processDemanderApproval").hide();
+		$("#processDemanderPager").css("display", "none");
+		$("#processDemanderApproval").css("display", "none");
+	} else {
+		$("#processDemanderPager").css("display", "inline-table");
+		$("#processDemanderApproval").css("display", "inline-table");
 	}
 
 	// 如果当前页的所有项都被选中，则全选按钮被选中;如果当前页的所有项没有都被选中，则全选按钮不选中
@@ -125,6 +139,38 @@ function appendProcessDemander(registers, firstRegisterIndex) {
 						"processDemanderIds", "processDemanderId",
 						"processDemanderAll");
 			});
+	
+	//修改价格操作
+	$(".processDemanderImg").click(function() {
+		var applyId = $(this).attr("apply_id");
+		// 校验价格信息
+		if (!validateComponent("price" + applyId, "text"))
+			return false;
+		$.confirm({
+			title : '确认',
+			content : '确定要修改吗?',
+			confirm : function() {
+				$.get(basePath + "/process/priceUpdate/" + applyId, {
+					price : $("#price"+applyId).val()
+				}, function(data, status) {
+					if (data != null && data != "") {
+						showTipsSucc(data);
+						processDemanderPagination.updateSelfInput();
+					}
+				}, "text").complete(function(jqXHR, textStatus) {
+					var sessionstatus = jqXHR.getResponseHeader("sessionstatus");
+					if (sessionstatus == "timeout") {
+						alert("请求超时，请联系管理员");
+						var url = window.parent.location.pathname;
+						window.parent.location.href = url;
+					}
+				});
+			},
+			cancel : function() {
+			}
+		});
+	});
+
 }
 
 /**
@@ -137,23 +183,33 @@ function approvalProcessDemander(dealType) {
 		showTipsError("请选择需要处理的服务单");
 		return false;
 	}
-	if (dealType == 10)// 如果转为废单
+	if (dealType == 100)// 如果转为废单
 		if (!validateComponent("processDemanderRemark", "textarea"))
 			return false;
 
 	$.post(basePath + "/process/dealDemander", {
+		from : "pc",
 		type : $("#processDemanderType").val(),// 处理中
 		demanderIds : processDemanderIds,// 选择的需求id
 		remark : processDemanderRemark,// 备注信息
 		dealType : dealType,// 处理类型
 		dealBy : 0,// 工程师
 	}, function(data, status) {// 更新信息
-		showTipsSucc(data);
-		newDemanderPagination.updateSelfInput();
-		processDemanderPagination.updateSelfInput();
-		finishedDemanderPagination.updateSelfInput();
-		wasteDemanderPagination.updateSelfInput();
-		clearProcessDemander();
+		if (data != null && data != "") {
+			showTipsSucc(data);
+			newDemanderPagination.updateSelfInput();
+			processDemanderPagination.updateSelfInput();
+			finishedDemanderPagination.updateSelfInput();
+			wasteDemanderPagination.updateSelfInput();
+			clearProcessDemander();
+		}
+	}, "json").complete(function(jqXHR, textStatus) {
+		var sessionstatus = jqXHR.getResponseHeader("sessionstatus");
+		if (sessionstatus == "timeout") {
+			alert("请求超时，请联系管理员");
+			var url = window.parent.location.pathname;
+			window.parent.location.href = url;
+		}
 	});
 }
 

@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <meta name="format-detection" content="telephone=no">
-<title>我的服务-服务需求方</title>
+<title>我的需求</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
@@ -39,11 +39,16 @@
 	var isCanDown = "${orders.isCanDown}";
 	$(function() {
 		$.fn.raty.defaults.path = basePath + "/assets/raty/demo/img";
-		<c:forEach items="${orders.records}" var="order" varStatus="status">
-		//渲染列表
-		renderingList("${order.id}", "${order.evaluate}", "demander",
-				"${order.status}");
-		</c:forEach>
+		if ("${orders.records.size()}" != 0) {
+			<c:forEach items="${orders.records}" var="order" varStatus="status">
+			//渲染列表
+			renderingList("${order.id}", "${order.evaluate}", "demander",
+					"${order.status}","${order.evaluateContent}");
+			</c:forEach>
+			$("#noData").css("display", "none");
+		} else {
+			$("#noData").css("display", "block");
+		}
 		//定义滑动操作
 		isTouchDevice("pageMyDemanders");
 	});
@@ -53,9 +58,10 @@
 	<jsp:include page="../showTips.jsp"></jsp:include>
 	<div class="subject" style="padding-top: 0px;">
 		<div class="content">
-			<div class="viewTaskTitle">我的服务单</div>
+			<div class="viewTaskTitle">我的需求单</div>
 			<input type="hidden" name="createBy" value="${demanderId}"
-				id="createBy" />
+				id="createBy" /> <input type="hidden" name="dealName"
+				value="${demander.linkname}" id="dealName" />
 			<c:forEach items="${orders.records}" var="order" varStatus="status">
 				<div class="container viewTaskCommonStyle" id="order${order.id}">
 					<c:if test="${status.index!=0}">
@@ -70,25 +76,21 @@
 								id="zhedie${order.id}">
 						</div>
 					</div>
-					<hr class="commonHr hidden${order.id}" />
 					<div class="row categoryView hidden${order.id}">
 						<div class="col-md-1 col-xs-3 label">类别：</div>
 						<div class="col-md-11 col-xs-9 viewContent">${order.category }</div>
 					</div>
-					<hr class="commonHr hidden${order.id}" />
 					<div class="row serviceTypeView hidden${order.id}">
 						<div class="col-md-1 col-xs-3 label">服务类型：</div>
 						<div class="col-md-11 col-xs-9 viewContent">${order.serviceType }</div>
 					</div>
-					<hr class="commonHr hidden${order.id}" />
 					<div class="row statusView hidden${order.id}">
 						<div class="col-md-1 col-xs-3 label">状态：</div>
-						<div class="col-md-11 col-xs-9 viewContent">${order.status }</div>
+						<div class="col-md-11 col-xs-9 viewContent" id="zt${order.id}">${order.status }</div>
 					</div>
-					<hr class="commonHr hidden${order.id}" />
 					<div class="row submitTimeView">
 						<div class="col-md-1 col-xs-3 label">提交时间：</div>
-						<div class="col-md-10 col-xs-7 viewContent zhedie">${order.createDate }<span
+						<div class="col-md-10 col-xs-7 viewContent zhedie">${order.createDate }&nbsp;<span
 								id="status${order.id }" status="${order.status }">${order.status}</span>
 						</div>
 						<div class="col-md-1 col-xs-2">
@@ -97,25 +99,37 @@
 								id="zhankai${order.id}">
 						</div>
 					</div>
-					<hr class="commonHr hidden${order.id}" />
 					<div class="row serviceDemandView hidden${order.id}">
 						<div class="col-md-1 col-xs-3 label">服务需求：</div>
-						<div class="col-md-11 col-xs-9 viewContent">${order.content }</div>
+						<div id="content_${order.id}"
+							class="col-md-11 col-xs-9 viewContent">${order.content }</div>
 					</div>
-					<hr class="commonHr hidden${order.id}">
+					<div class="row serviceDemandView viewContentAll hidden${order.id}"
+						id="contentAllDiv_${order.id}">
+						<div id="contentAll_${order.id}" class="hidden">${order.content }</div>
+					</div>
 					<div class="row serviceEvaluate hidden${order.id}">
 						<div class="col-md-2 col-xs-6" style="padding-left: 0px;">
 							<div class="raty viewContent" id="raty${order.id}"
 								style="margin-right: 0px;"></div>
 						</div>
 						<div class="col-md-10 col-xs-6" style="text-align: left;">
-							<button class="btn button" id="but${order.id}">服务评价</button>
+							<button class="btn button btnApply" id="but${order.id}">服务评价</button>
+							<button class="btn button btnApply" id="cancelbut${order.id}">撤销</button>
+							<button class="btn button btnApply" id="donebut${order.id}">确认完成</button>
 							<input type="hidden" id="id${order.id}" value="${order.id}" /> <input
 								type="hidden" id="evaluate${order.id}" value="${order.evaluate}" />
 						</div>
 					</div>
+					<div class="row serviceEvaluate hidden${order.id}" id="evaluateContentDiv${order.id}">
+						<textarea id="evaluateContent${order.id}" class="textarea required maxlength" rows="2"
+							placeholder="请输入评价内容" label="评价内容" maxlength="100">${order.evaluateContent}</textarea>
+					</div>
 				</div>
 			</c:forEach>
+			<div id="noData" style="text-align: center;">
+				<font color="grey">没有数据记录</font>
+			</div>
 		</div>
 	</div>
 </body>

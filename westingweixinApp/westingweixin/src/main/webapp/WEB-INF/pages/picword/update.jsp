@@ -10,7 +10,7 @@
 	content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<title>update</title>
+<title>更新弘弘知道</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
@@ -55,10 +55,14 @@ function update() {
 </script>
 <body>
 	<input type="hidden" id="id" value="${words.id}" />
-	<div style="margin-top: 20px;">
-		<input type="text" name="brief" id="brief" style="margin-right: 10px;" /><input
-			type="submit" onclick="update();" value="提交"/>
+	<div style="margin-top: 20px; margin-left: 5px;">
+		标题：<input type="text" name="brief" id="brief"
+			style="margin-right: 10px; width: 72%;" maxlength="255" placeholder="请输入标题"/> <span
+			style="float: right; margin-right: 110px;"> <input
+			type="submit" class="btn button" onclick="update();" value="提交" />
+		</span>
 	</div>
+	
 	<div id="mytable" style="display: none;"></div>
 	<div style="margin-top: 20px;">
 		<script type="text/plain" id="myEditor"

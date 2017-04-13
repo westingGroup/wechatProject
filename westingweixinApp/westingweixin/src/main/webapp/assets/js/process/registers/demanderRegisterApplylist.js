@@ -88,21 +88,31 @@ function appendDemanderRegisterApply(registers, firstRegisterIndex) {
 		register += "<td>" + (firstRegisterIndex + i) + "</td>";
 		register += "<td>" + registers[i].linkname + "</td>";
 		register += "<td>" + registers[i].linkphone + "</td>";
-		register += "<td>" + registers[i].business + "</td>";
-		register += "<td>" + registers[i].company + "</td>";
+		register += "<td>" + registers[i].birthDate + "</td>";
+		register += "<td><div align='center'><div class='registerBusiness' title='"
+				+ registers[i].business
+				+ "'>"
+				+ registers[i].business
+				+ "</div></div></td>";
+		register += "<td><div align='center'><div class='registerBusiness' title='"
+				+ registers[i].company
+				+ "'>"
+				+ registers[i].company
+				+ "</div></div></td>";
 		register += "</tr>";
 		$("#demanderRegisterApplyListBody").append(register);
 	}
-	$("#demanderApplyPager").show();
-	$("#demanderApplyApproval").show();
 
 	if (registers.length == 0) {// 如果没有记录
 		var noTr = $("<tr></tr>");
-		var td = "<td colspan='6' style='text-align:center;'>暂无符合条件的记录</td>";
+		var td = "<td colspan='7' style='text-align:center;'>暂无符合条件的记录</td>";
 		noTr.html(td);
 		$("#demanderRegisterApplyListBody").append(noTr);
-		$("#demanderApplyPager").hide();
-		$("#demanderApplyApproval").hide();
+		$("#demanderApplyPager").css("display", "none");
+		$("#demanderApplyApproval").css("display", "none");
+	} else {
+		$("#demanderApplyPager").css("display", "inline-table");
+		$("#demanderApplyApproval").css("display", "inline-table");
 	}
 
 	// 如果当前页的所有项都被选中，则全选按钮被选中;如果当前页的所有项没有都被选中，则全选按钮不选中

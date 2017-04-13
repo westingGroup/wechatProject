@@ -20,6 +20,8 @@
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/css/common/common_list.css" />
 <link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/assets/confirm/css/jquery-confirm.css" />
+<link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/jqPagination/css/jqpagination.css" />
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/jquery-1.8.2.min.js"></script>
@@ -31,6 +33,8 @@
 	src="<%=request.getContextPath()%>/assets/media/js/bootstrap-datetimepicker.zh-CN.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/jqPagination/js/jquery.jqpagination.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/assets/confirm/js/jquery-confirm.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/assets/js/common/common.js"></script>
 <script type="text/javascript"
@@ -55,7 +59,8 @@
 				id="newDemanderTab">新需求</a> <a
 				href="javascript:switchTab('processDemander')"
 				id="processDemanderTab">处理中</a> <a
-				href="javascript:switchTab('finishedDemander')"
+				href="javascript:switchTab('applyDemander')" id="applyDemanderTab">申请完成</a>
+			<a href="javascript:switchTab('finishedDemander')"
 				id="finishedDemanderTab">已完成</a> <a
 				href="javascript:switchTab('wasteDemander')" id="wasteDemanderTab">废单</a>
 		</div>
@@ -64,6 +69,9 @@
 		</div>
 		<div class="tab_search" id="processDemander">
 			<jsp:include page="processDemander.jsp"></jsp:include>
+		</div>
+		<div class="tab_search" id="applyDemander">
+			<jsp:include page="applyDemander.jsp"></jsp:include>
 		</div>
 		<div class="tab_search" id="finishedDemander">
 			<jsp:include page="finishedDemander.jsp"></jsp:include>

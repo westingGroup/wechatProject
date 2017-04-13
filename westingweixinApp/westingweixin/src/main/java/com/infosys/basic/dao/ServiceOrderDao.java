@@ -45,8 +45,10 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
 
     @Override
     public List<ServiceOrderDto> listProviderServiceOrder(String openid) {
-        String sql = "SELECT s.id,s.service_order_id,s.category,s.service_type,DATE_FORMAT(s.create_date,'%Y-%m-%d %T') create_date,s.content,s.status,s.evaluate "
-                + "FROM t_service_order s WHERE s.status =0 OR (s.status=1 AND s.id NOT IN (SELECT s_id FROM t_apply a WHERE a.apply_by =?))";
+        String sql = "SELECT s.id,s.service_order_id,s.category,s.service_type,DATE_FORMAT(s.create_date,'%Y%m%d %T') create_date,s.content,s.status,s.evaluate,s.evaluate_content "
+                + "FROM t_service_order s WHERE s.status =0 OR (s.status="
+                + com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_APPLY
+                + " AND s.id NOT IN (SELECT s_id FROM t_apply a WHERE a.apply_by =?))";
 
         List<Map<String, Object>> userListInDB = this.listBySql(sql, new Object[] { openid });
         List<ServiceOrderDto> orderDtoList = new ArrayList<ServiceOrderDto>();
@@ -60,6 +62,8 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
             order.setContent(valuesMap.get("content").toString());
             order.setStatus(valuesMap.get("status").toString());
             order.setEvaluate(valuesMap.get("evaluate") == null ? "" : valuesMap.get("evaluate").toString());
+            order.setEvaluateContent(valuesMap.get("evaluate_content") == null ? "" : valuesMap.get("evaluate_content")
+                    .toString());
             orderDtoList.add(order);
         }
         return orderDtoList;
@@ -105,9 +109,9 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
         PagerInfo<ServiceOrderDto> dtoPager = serviceOrderModel.getPager();
         dtoPager.setTotalRecords(this.getOrdersTotalByConditions(serviceOrderModel)); // 总数
         StringBuffer sb = new StringBuffer(
-                "SELECT id,service_order_id,category,service_type,DATE_FORMAT(create_date,'%Y-%m-%d %T') create_date, "
-                        + "content,IFNULL(evaluate,'') evaluate,CASE STATUS WHEN 0 THEN '新需求' WHEN 1 THEN '待分配' "
-                        + "WHEN 2 THEN '处理中' WHEN 9 THEN '已完成' WHEN 10 THEN '废单'  WHEN 11 THEN '已评价' ELSE '其他' END AS status FROM t_service_order where 1=1 ");
+                "SELECT id,service_order_id,category,service_type,DATE_FORMAT(create_date,'%Y%m%d %T') create_date, "
+                        + "content,IFNULL(evaluate,'') evaluate,CASE STATUS WHEN 0 THEN '新需求' WHEN 11 THEN '待分配' "
+                        + "WHEN 12 THEN '处理中' WHEN 20 THEN '已申请' WHEN 90 THEN '已完成' WHEN 100 THEN '废单'  WHEN 110 THEN '已评价' ELSE '其他' END AS status,IFNULL(evaluate_content,'') evaluate_content FROM t_service_order where 1=1 ");
         if (StringUtils.isNotBlank(serviceOrderModel.getCreateBy())) {
             sb.append(" and create_by =").append(serviceOrderModel.getCreateBy());
         }
@@ -132,6 +136,8 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
             dto.setContent(valuesMap.get("content").toString());
             dto.setEvaluate(valuesMap.get("evaluate").toString());
             dto.setStatus(valuesMap.get("status").toString());
+            dto.setEvaluateContent(valuesMap.get("evaluate_content") == null ? "" : valuesMap.get("evaluate_content")
+                    .toString());
             dtoList.add(dto);
             dto = null;
         }
@@ -144,9 +150,15 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
         StringBuffer sb = new StringBuffer();
         long num = 0L;
         sb.append("select count(*) as total from t_service_order s where 1=1");
+        sb.append(" AND s.create_by not in (select t.id from t_demander t where t.openid ='")
+                .append(serviceOrderModel.getOpenid()).append("')");
         if (StringUtils.isNotBlank(serviceOrderModel.getApplyBy())) {
-            sb.append(" and s.status =0 OR (s.status=1 AND s.id NOT IN (SELECT s_id FROM t_apply a WHERE a.apply_by =")
-                    .append(serviceOrderModel.getApplyBy()).append("))");
+            sb.append(
+                    " and (s.status =0 OR (s.status=" + com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_APPLY
+                            + " AND s.id NOT IN (SELECT s_id FROM t_apply a WHERE a.apply_by =")
+                    .append(serviceOrderModel.getApplyBy()).append("))")
+                    .append(" OR (DATE_FORMAT(s.create_date,'%Y-%m-%d') =CURDATE() AND s.status !=")
+                    .append(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_CANCEL).append(")").append(")");
         }
         String sql = sb.toString();
         List<Map<String, Object>> userListInDB = this.listBySql(sql, null);
@@ -163,16 +175,23 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
         dtoPager.setTotalRecords(this.getOrdersTotalByConditionsForMobileApply(serviceOrderModel)); // 总数
         StringBuffer sb = new StringBuffer(
                 "SELECT s.id id,s.service_order_id service_order_id,s.category category,s.service_type service_type,"
-                        + "DATE_FORMAT(s.create_date,'%Y-%m-%d %T') create_date,s.content content,"
-                        + "CASE s.status WHEN 0 THEN '新需求' WHEN 1 THEN '待分配' WHEN 2 THEN '处理中' WHEN 9 THEN '已完成' WHEN 10 THEN '废单' WHEN 11 THEN '已评价' ELSE '其他' END AS status,"
-                        + "IFNULL(s.evaluate,'') evaluate FROM t_service_order s " + "WHERE 1=1 ");
+                        + "DATE_FORMAT(s.create_date,'%Y%m%d %T') create_date,s.content content,"
+                        + "CASE s.status WHEN 0 THEN '新需求' WHEN 11 THEN '待分配' WHEN 12 THEN '处理中' WHEN 20 THEN '已申请' WHEN 90 THEN '已完成' WHEN 100 THEN '废单' WHEN 110 THEN '已评价' ELSE '其他' END AS status,"
+                        + "IFNULL(s.evaluate,'') evaluate,IFNULL(s.evaluate_content,'') evaluate_content FROM t_service_order s WHERE 1=1 ");
 
+        sb.append(" AND s.create_by not in (select t.id from t_demander t where t.openid ='")
+                .append(serviceOrderModel.getOpenid()).append("')");
         if (StringUtils.isNotBlank(serviceOrderModel.getApplyBy())) {
-            sb.append(" and s.status =0 OR (s.status=1 AND s.id NOT IN (SELECT s_id FROM t_apply a WHERE a.apply_by =")
-                    .append(serviceOrderModel.getApplyBy()).append("))");
+            sb.append(
+                    " and (s.status =0 OR (s.status=" + com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_APPLY
+                            + " AND s.id NOT IN (SELECT s_id FROM t_apply a WHERE a.apply_by =")
+                    .append(serviceOrderModel.getApplyBy()).append("))")
+                    .append(" OR (DATE_FORMAT(s.create_date,'%Y-%m-%d') =CURDATE() AND s.status !=")
+                    .append(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_CANCEL).append(")").append(")");
         }
-        sb.append(" order by create_date desc limit ").append((dtoPager.getCurrentPage() - 1) * dtoPager.getPageSize())
-                .append(",").append(dtoPager.getPageSize());
+        sb.append(" order by s.status ASC,create_date desc limit ")
+                .append((dtoPager.getCurrentPage() - 1) * dtoPager.getPageSize()).append(",")
+                .append(dtoPager.getPageSize());
         String sql = sb.toString();
         List<Map<String, Object>> userListInDB = this.listBySql(sql, null);
         List<ServiceOrderDto> dtoList = new ArrayList<ServiceOrderDto>();
@@ -186,6 +205,8 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
             dto.setContent(valuesMap.get("content").toString());
             dto.setEvaluate(valuesMap.get("evaluate").toString());
             dto.setStatus(valuesMap.get("status").toString());
+            dto.setEvaluateContent(valuesMap.get("evaluate_content") == null ? "" : valuesMap.get("evaluate_content")
+                    .toString());
             dtoList.add(dto);
             dto = null;
         }
@@ -201,8 +222,10 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
         if (StringUtils.isNotBlank(serviceOrderModel.getDealBy())) {
             sb.append(" and (s.deal_by=")
                     .append(serviceOrderModel.getDealBy())
-                    .append(" AND(s.STATUS=2 OR s.STATUS=9)) OR (s.status=1 AND s.id IN (SELECT a.s_id FROM t_apply a WHERE a.apply_by =")
-                    .append(serviceOrderModel.getDealBy()).append("))");
+                    .append(" AND (s.STATUS=12 OR s.STATUS=20 OR s.STATUS=90 OR s.STATUS=110)) OR (s.status=11 AND s.id IN (SELECT a.s_id FROM t_apply a WHERE a.apply_by =")
+                    .append(serviceOrderModel.getDealBy()).append(")").append(" OR (s.deal_by !=")
+                    .append(serviceOrderModel.getDealBy())
+                    .append(" AND s.STATUS=12 AND DATEDIFF(CURDATE(),DATE_FORMAT(s.deal_date,'%Y-%m-%d'))<=3)").append(")");
         }
         String sql = sb.toString();
         List<Map<String, Object>> userListInDB = this.listBySql(sql, null);
@@ -219,15 +242,19 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
         dtoPager.setTotalRecords(this.getOrdersTotalByConditionsForMyMobileApplys(serviceOrderModel)); // 总数
         StringBuffer sb = new StringBuffer(
                 "SELECT s.id id,s.service_order_id service_order_id,s.category category,s.service_type service_type,"
-                        + "DATE_FORMAT(s.create_date,'%Y-%m-%d %T') create_date,IFNULL(DATE_FORMAT(s.deal_date,'%Y-%m-%d %T'),'') deal_date,s.content content,"
-                        + "CASE s.status WHEN 0 THEN '新需求' WHEN 1 THEN '待分配' WHEN 2 THEN '处理中' WHEN 9 THEN '已完成' WHEN 10 THEN '废单' WHEN 11 THEN '已评价' ELSE '其他' END AS status,"
-                        + "IFNULL(s.evaluate,'') evaluate FROM t_service_order s " + "WHERE 1=1 ");
+                        + "DATE_FORMAT(s.create_date,'%Y%m%d %T') create_date,IFNULL(DATE_FORMAT(s.deal_date,'%Y%m%d %T'),'') deal_date,s.content content,"
+                        + "CASE s.status WHEN 0 THEN '新需求' WHEN 11 THEN '待分配' WHEN 12 THEN '待完成' WHEN 20 THEN '已申请' WHEN 90 THEN '已完成' WHEN 100 THEN '废单' WHEN 110 THEN '已评价' ELSE '其他' END AS status,"
+                        + "IFNULL(s.evaluate,'') evaluate,IFNULL(s.evaluate_content,'') evaluate_content,IFNULL(s.deal_by,0) deal_by FROM t_service_order s "
+                        + "WHERE 1=1 ");
 
         if (StringUtils.isNotBlank(serviceOrderModel.getDealBy())) {
             sb.append(" and (s.deal_by=")
                     .append(serviceOrderModel.getDealBy())
-                    .append(" AND(s.STATUS=2 OR s.STATUS=9)) OR (s.status=1 AND s.id IN (SELECT a.s_id FROM t_apply a WHERE a.apply_by =")
-                    .append(serviceOrderModel.getDealBy()).append("))");
+                    .append(" AND (s.STATUS=12 OR s.STATUS=20 OR s.STATUS=90 OR s.STATUS=110)) OR (s.status=11 AND s.id IN (SELECT a.s_id FROM t_apply a WHERE a.apply_by =")
+                    .append(serviceOrderModel.getDealBy()).append(")").append(" OR (s.deal_by !=")
+                    .append(serviceOrderModel.getDealBy())
+                    .append(" AND s.STATUS=12 AND DATEDIFF(CURDATE(),DATE_FORMAT(s.deal_date,'%Y-%m-%d'))<=3)").append(")");
+
         }
         sb.append(" order by create_date desc limit ").append((dtoPager.getCurrentPage() - 1) * dtoPager.getPageSize())
                 .append(",").append(dtoPager.getPageSize());
@@ -245,6 +272,9 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
             dto.setContent(valuesMap.get("content").toString());
             dto.setEvaluate(valuesMap.get("evaluate").toString());
             dto.setStatus(valuesMap.get("status").toString());
+            dto.setEvaluateContent(valuesMap.get("evaluate_content") == null ? "" : valuesMap.get("evaluate_content")
+                    .toString());
+            dto.setDealBy(Integer.valueOf(valuesMap.get("deal_by").toString()));
             dtoList.add(dto);
             dto = null;
         }
@@ -301,11 +331,13 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
         dtoPager.setTotalRecords(this.getOrdersTotalByConditionsForProcess(demanderSearchModal)); // 总数
         StringBuffer sb = new StringBuffer(
                 "SELECT s.id id,s.service_order_id service_order_id,s.category category,s.service_type service_type,"
-                        + "DATE_FORMAT(s.create_date,'%Y-%m-%d %T') create_date,IFNULL(DATE_FORMAT(s.deal_date,'%Y-%m-%d %T'),'') deal_date,s.content content,"
-                        + "CASE s.status WHEN 0 THEN '新需求' WHEN 1 THEN '待分配' WHEN 2 THEN '处理中' WHEN 9 THEN '已完成' WHEN 10 THEN '废单' WHEN 11 THEN '已评价' ELSE '其他' END AS status,"
+                        + "DATE_FORMAT(s.create_date,'%Y%m%d %T') create_date,IFNULL(DATE_FORMAT(s.deal_date,'%Y%m%d %T'),'') deal_date,s.content content,"
+                        + "CASE s.status WHEN 0 THEN '新需求' WHEN 11 THEN '待分配' WHEN 12 THEN '处理中' WHEN 20 THEN '已申请' WHEN 90 THEN '已完成' WHEN 100 THEN '废单' WHEN 110 THEN '已评价' ELSE '其他' END AS status,"
                         + "IFNULL(s.evaluate,'') evaluate,IFNULL(s.linkname,'') linkname,IFNULL(s.linkphone,'') linkphone,"
-                        + "IFNULL(s.dealname,'') dealname FROM t_service_order s " + "WHERE 1=1 ");
+                        + "IFNULL(s.dealname,'') dealname,IFNULL(s.evaluate_content,'') evaluate_content,deal_by,type,IFNULL(DATE_FORMAT(s.complete_date,'%Y%m%d'),'') complete_date,IFNULL(s.remark1,'') remark1 FROM t_service_order s "
+                        + "WHERE 1=1 ");
 
+        String ordStr = " order by id asc ";
         if (StringUtils.isNotBlank(demanderSearchModal.getStatus())) {
             if (Integer.parseInt(demanderSearchModal.getStatus()) == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_APPLY) {
                 sb.append(" and (s.status=").append(demanderSearchModal.getStatus()).append(" or").append(" s.status=")
@@ -313,6 +345,9 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
             } else if (Integer.parseInt(demanderSearchModal.getStatus()) == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_DEALING_DONE) {
                 sb.append(" and (s.status=").append(demanderSearchModal.getStatus()).append(" or").append(" s.status=")
                         .append(com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_DEALING_EVALUATE).append(")");
+                ordStr = " order by id desc ";
+            } else if (Integer.parseInt(demanderSearchModal.getStatus()) == com.infosys.basic.util.Constants.T_SERVICE_ORDER_STATUS_CANCEL) {
+                ordStr = " order by id desc ";
             } else {
                 sb.append(" and s.status=").append(demanderSearchModal.getStatus());
             }
@@ -336,7 +371,7 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
             sb.append(" and evaluate like '%").append(demanderSearchModal.getEvaluate()).append("%'");
         }
 
-        sb.append(" order by id asc limit ").append((dtoPager.getCurrentPage() - 1) * dtoPager.getPageSize())
+        sb.append(ordStr).append(" limit ").append((dtoPager.getCurrentPage() - 1) * dtoPager.getPageSize())
                 .append(",").append(dtoPager.getPageSize());
         String sql = sb.toString();
         List<Map<String, Object>> userListInDB = this.listBySql(sql, null);
@@ -355,6 +390,12 @@ public class ServiceOrderDao extends BaseDao<ServiceOrder> implements IServiceOr
             dto.setLinkname(valuesMap.get("linkname").toString());
             dto.setLinkphone(valuesMap.get("linkphone").toString());
             dto.setDealname(valuesMap.get("dealname").toString());
+            dto.setEvaluateContent(valuesMap.get("evaluate_content") == null ? "" : valuesMap.get("evaluate_content")
+                    .toString());
+            dto.setDealBy(Integer.valueOf(valuesMap.get("deal_by").toString()));
+            dto.setType(Integer.valueOf(valuesMap.get("type").toString()));
+            dto.setCompleteDate(valuesMap.get("complete_date").toString());
+            dto.setRemark1(valuesMap.get("remark1") == null ? "" : valuesMap.get("remark1").toString());
             dtoList.add(dto);
             dto = null;
         }

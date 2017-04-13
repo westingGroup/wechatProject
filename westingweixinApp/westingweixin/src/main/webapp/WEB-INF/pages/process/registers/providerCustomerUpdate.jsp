@@ -48,7 +48,7 @@
 					<div class="col-md-10 input-append date form_datetime_day"
 						style="padding: 0px;">
 						<div class="row" style="padding-top: 0px;">
-							<div class="col-md-10" style="padding: 0px;">
+							<div class="col-md-10" style="padding: 0px;padding-left: 5px;">
 								<input type="text" class="text" name="pcuBirth" id="pcuBirth"
 									readonly="readonly" />
 							</div>
@@ -97,7 +97,7 @@
 					</div>
 					<div class="col-md-10">
 						<select name="providerType" id="providerType" class="select">
-							<option value ="0" selected>外部</option>
+							<option value ="0">外部</option>
 						  	<option value ="1">内部</option>
 						</select>
 					</div>

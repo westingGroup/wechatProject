@@ -66,6 +66,8 @@ function appendFinishedDemander(registers, firstRegisterIndex) {
 		register += "<td><div class='demanderContent' title='"
 				+ registers[i].content + "'>" + registers[i].content
 				+ "</div></td>";
+		register += "<td>" + registers[i].price + "</td>";
+		register += "<td>" + registers[i].completeDate + "</td>";
 		register += "<td>" + registers[i].linkname + "</td>";
 		register += "<td>" + registers[i].linkphone + "</td>";
 		register += "<td>" + registers[i].dealname + "</td>";
@@ -76,9 +78,11 @@ function appendFinishedDemander(registers, firstRegisterIndex) {
 	$("#finishedDemanderPager").show();
 	if (registers.length == 0) {
 		var noTr = $("<tr></tr>");
-		var td = "<td colspan='10' style='text-align:center;'>暂无符合条件的记录</td>";
+		var td = "<td colspan='12' style='text-align:center;'>暂无符合条件的记录</td>";
 		noTr.html(td);
 		$("#finishedDemanderBody").append(noTr);
-		$("#finishedDemanderPager").hide();
+		$("#finishedDemanderPager").css("display", "none");
+	} else {
+		$("#finishedDemanderPager").css("display", "inline-table");
 	}
 }

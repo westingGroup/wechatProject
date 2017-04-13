@@ -28,6 +28,8 @@ public class ServiceOrderModel extends SearchModel<ServiceOrderDto> {
 
     private String evaluate;
 
+    private String openid;
+
     public String getCategory() {
         return category;
     }
@@ -122,6 +124,14 @@ public class ServiceOrderModel extends SearchModel<ServiceOrderDto> {
 
     public void setDealBy(String dealBy) {
         this.dealBy = dealBy;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 
 }

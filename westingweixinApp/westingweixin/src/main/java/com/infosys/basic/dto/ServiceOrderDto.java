@@ -62,6 +62,26 @@ public class ServiceOrderDto implements Serializable {
 
     private String remark3;
 
+    private String evaluateContent;
+
+    private String applyflag = "0";// 默认 0 没有申请 1 申请
+
+    private int price;
+    
+    private int applyId;
+
+    private int type;
+    
+    private String completeDate;
+    
+    public String getEvaluateContent() {
+        return evaluateContent;
+    }
+
+    public void setEvaluateContent(String evaluateContent) {
+        this.evaluateContent = evaluateContent;
+    }
+
     public int getId() {
         return id;
     }
@@ -228,6 +248,46 @@ public class ServiceOrderDto implements Serializable {
 
     public void setRemark3(String remark3) {
         this.remark3 = remark3;
+    }
+
+    public String getApplyflag() {
+        return applyflag;
+    }
+
+    public void setApplyflag(String applyflag) {
+        this.applyflag = applyflag;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getApplyId() {
+        return applyId;
+    }
+
+    public void setApplyId(int applyId) {
+        this.applyId = applyId;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getCompleteDate() {
+        return completeDate;
+    }
+
+    public void setCompleteDate(String completeDate) {
+        this.completeDate = completeDate;
     }
 
 }

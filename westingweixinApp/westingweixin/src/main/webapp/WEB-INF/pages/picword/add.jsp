@@ -10,7 +10,7 @@
 	content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<title>添加红红知道</title>
+<title>添加弘弘知道</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
@@ -46,9 +46,12 @@
 	}
 </script>
 <body>
-	<div style="margin-top: 20px;">
-		<input type="text" name="brief" id="brief" style="margin-right: 10px;" /><input
+	<div style="margin-top: 20px; margin-left: 5px;">
+		标题：<input type="text" name="brief" id="brief"
+			style="margin-right: 10px; width: 72%;" maxlength="255" placeholder="请输入标题"/> <span
+			style="float: right; margin-right: 110px;"> <input
 			type="submit" class="btn button" onclick="add();" value="提交" />
+		</span>
 	</div>
 	<div id="mytable" style="display: none;"></div>
 	<div style="margin-top: 20px;">

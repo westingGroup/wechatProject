@@ -30,11 +30,15 @@
 			<c:forEach items="${wordsList}" var="word">
 				<tr>
 					<td>${word.id }</td>
-					<td>${word.brief }[<a href="update/${word.id }">更新</a>&nbsp;<a
-						href="delete/${word.id }">删除</a>&nbsp;<a
-						href="disable/${word.id }">禁用</a>&nbsp;<a
+					<td><div align='center'><div class="registerBusiness" title="${word.brief }">${word.brief }</div></div>[<a href="update/${word.id }">更新</a> &nbsp;
+						<a href="delete/${word.id }">删除</a> <c:if test="${word.status==1}">
+						&nbsp;<a href="disable/${word.id }">禁用</a>
+						</c:if> &nbsp;<a
 						href="<%=request.getContextPath()%>/data/detail/${word.id }"
-						target="_blank">详情</a>&nbsp;<a href="#" id="pubBtn${word.id }">发布</a>]
+						target="_blank">详情</a> <c:if test="${word.status!=1}">
+						&nbsp;<a href="#" id="pubBtn${word.id }">发布</a>
+						</c:if> ]
+						
 					</td>
 					<td><c:if test="${word.status==1}">使用</c:if> <c:if
 							test="${word.status!=1}">未使用</c:if></td>

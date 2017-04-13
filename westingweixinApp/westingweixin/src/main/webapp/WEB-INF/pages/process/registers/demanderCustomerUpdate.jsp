@@ -49,7 +49,7 @@
 					</div>
 
 					<div class="col-md-10 input-append date form_datetime_day"
-						style="padding: 0px;">
+						style="padding: 0px;padding-left: 5px;">
 						<div class="row" style="padding-top: 0px;">
 							<div class="col-md-10" style="padding: 0px;">
 								<input type="text" class="text" id="dcuBirth"

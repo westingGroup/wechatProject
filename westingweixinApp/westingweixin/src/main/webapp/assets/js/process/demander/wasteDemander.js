@@ -66,15 +66,20 @@ function appendWasteDemander(registers, firstRegisterIndex) {
 				+ "</div></td>";
 		register += "<td>" + registers[i].linkname + "</td>";
 		register += "<td>" + registers[i].linkphone + "</td>";
+		register += "<td><div class='demanderContent' title='"
+				+ registers[i].remark1 + "'>" + registers[i].remark1
+				+ "</div></td>";
 		register += "</tr>";
 		$("#wasteDemanderBody").append(register);
 	}
 	$("#wasteDemanderPager").show();
 	if (registers.length == 0) {
 		var noTr = $("<tr></tr>");
-		var td = "<td colspan='8' style='text-align:center;'>暂无符合条件的记录</td>";
+		var td = "<td colspan='9' style='text-align:center;'>暂无符合条件的记录</td>";
 		noTr.html(td);
 		$("#wasteDemanderBody").append(noTr);
-		$("#wasteDemanderPager").hide();
+		$("#wasteDemanderPager").css("display", "none");
+	} else {
+		$("#wasteDemanderPager").css("display", "inline-table");
 	}
 }

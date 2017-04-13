@@ -43,7 +43,7 @@ function showTips(divId, divAddClass, divRemoveClass, textId, tipContent) {
  */
 function closeTips(eleId) {
 	$("#" + eleId).hide();
-	window.close();
+	//window.close();
 }
 
 /**
@@ -137,9 +137,9 @@ function validateComponent(id, type) {
 function validateRequired(id, type) {
 	if ($("#" + id).val() == null || $("#" + id).val() == "") {
 		if (type == "text" || type == "textarea")
-			showTipsError("请输入" + $("#" + id).attr("label") + "的值");
+			showTipsError("请输入" + $("#" + id).attr("label"));
 		else if (type == "select")
-			showTipsError("请选择" + $("#" + id).attr("label") + "的值");
+			showTipsError("请选择" + $("#" + id).attr("label"));
 		validateFail(id);
 		return false;
 	}
@@ -184,9 +184,9 @@ function validateMaxLength(id) {
  * 校验输入数字
  */
 function validateNum(id){
-	var digit = /^-?\d+(\.\d+)?$/;
+	var digit = /^\d+$/;
 	if (!digit.test($("#" + id).val())) {
-		$("#"+id).val($("#"+id).val().substr(0,$("#"+id).val().length-1));
+		$("#"+id).val($("#"+id).val().substr(0,$("#"+id).val().indexOf(".")));
 		showTipsError($("#" + id).attr("label") + "只能输入数字");
 		validateFail(id);
 		return false;

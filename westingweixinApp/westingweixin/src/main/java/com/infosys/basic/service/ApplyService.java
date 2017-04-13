@@ -36,10 +36,25 @@ public class ApplyService implements IApplyService {
     public Apply load(int id) {
         return applyDao.load(id);
     }
+    
+    @Override
+    public Apply get(int id) {
+        return applyDao.get(id);
+    }
 
     @Override
     public List<Apply> listBySId(String sId) {
         return applyDao.listBySId(sId);
+    }
+
+    @Override
+    public List<Apply> listBySIdApplyBy(String sId, String applyBy) {
+        return applyDao.listBySIdApplyBy(sId,applyBy);
+    }
+
+    @Override
+    public void deleteBySId(String id) {
+        applyDao.deleteBySId(id);        
     }
 
 }

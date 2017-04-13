@@ -6,13 +6,22 @@ html {
 
 body {
 	margin-top: 0px;
-	font-family: "Microsoft YaHei", "黑体";
+	font: normal 14px "Microsoft YaHei", "黑体" 
+		!important;
+	/* font-family: "Microsoft YaHei", "黑体";  */
 	height: 100%;
 }
 
 .button {
 	/* border: 2px solid rgb(0, 89, 143); */
 	width: 150px;
+	background-color: #007cc3;
+	color: white;
+}
+
+.button:hover, .button:focus, .button.focus {
+	color: white;
+	text-decoration: none;
 }
 
 .button .btnImg {
@@ -27,21 +36,21 @@ body {
 	display: block;
 }
 
-::-webkit-input-placeholder { 
+::-webkit-input-placeholder {
 	color: grey;
 }
 
-:-moz-placeholder { 
-	color: grey;
-	opacity: 1;
-}
-
-::-moz-placeholder { 
+:-moz-placeholder {
 	color: grey;
 	opacity: 1;
 }
 
-:-ms-input-placeholder { 
+::-moz-placeholder {
+	color: grey;
+	opacity: 1;
+}
+
+:-ms-input-placeholder {
 	color: grey;
 }
 
@@ -51,7 +60,7 @@ body {
 		width: 100%;
 		height: 100%;
 		margin: auto;
-		font-size: 100%; 
+		font-size: 100%;
 	}
 	.add-on {
 		font-size: 1rem;
@@ -59,24 +68,24 @@ body {
 }
 
 /**Galaxy S5,魅族魅蓝*/
-@media (min-width:321px) and ( max-width :360px) {
+@media ( min-width :321px) and ( max-width :360px) {
 	html {
 		width: 100%;
 		height: 100%;
 		margin: auto;
-		font-size: 120%; 
+		font-size: 120%;
 	}
 	.add-on {
 		font-size: 1rem;
 	}
 }
 /**Nexus 5X,苹果六*/
-@media (min-width:361px) and ( max-width :414px) {
+@media ( min-width :361px) and ( max-width :414px) {
 	html {
 		width: 100%;
 		height: 100%;
 		margin: auto;
-		font-size: 120%; 
+		font-size: 120%;
 	}
 	.add-on {
 		font-size: 1rem;
@@ -84,12 +93,12 @@ body {
 }
 
 /**苹果6plus*/
-@media (min-width:415px) and ( max-width :768px) {
+@media ( min-width :415px) and ( max-width :768px) {
 	html {
 		width: 100%;
 		height: 100%;
 		margin: auto;
-		font-size: 120%; 
+		font-size: 120%;
 	}
 	.add-on {
 		font-size: 1rem;
@@ -102,7 +111,7 @@ body {
 		width: 100%;
 		height: 100%;
 		margin: auto;
-		font-size: 120%; 
+		font-size: 120%;
 	}
 	.add-on {
 		font-size: 1rem;
@@ -128,7 +137,7 @@ body {
 		width: 100%;
 		height: 100%;
 		margin: auto;
-		font-size: 130%; 
+		font-size: 130%;
 	}
 	.add-on {
 		font-size: 1rem;

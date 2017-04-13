@@ -4,6 +4,7 @@ public class Constants {
     public final static String PC_SESSION_USER = "insiderProvider";
 
     public final static String LOGIN = "/inside/login";
+    public final static String WXLOGIN = "/inside/wxlogin";
 
     public final static String WEIXIN_SESSION_USER = "user";
 
@@ -23,19 +24,22 @@ public class Constants {
     public final static int T_SERVICE_ORDER_STATUS_NEW = 0;
 
     // 已申领待分配
-    public final static int T_SERVICE_ORDER_STATUS_APPLY = 1;
-
+    public final static int T_SERVICE_ORDER_STATUS_APPLY = 11;
+    public final static String T_SERVICE_ORDER_STATUS_APPLY_STR = "11";
     // 分配后 转处理
-    public final static int T_SERVICE_ORDER_STATUS_ALLOCATED_DEALING = 2;
-
+    public final static int T_SERVICE_ORDER_STATUS_ALLOCATED_DEALING = 12;
+    public final static String T_SERVICE_ORDER_STATUS_ALLOCATED_DEALING_STR = "12";
+    // 分配后 转已申请
+    public final static int T_SERVICE_ORDER_STATUS_APPLYED = 20;
+    public final static String T_SERVICE_ORDER_STATUS_APPLYED_STR = "20";
     // 处理中 转完成
-    public final static int T_SERVICE_ORDER_STATUS_DEALING_DONE = 9;
+    public final static int T_SERVICE_ORDER_STATUS_DEALING_DONE = 90;
 
     // 转废单
-    public final static int T_SERVICE_ORDER_STATUS_CANCEL = 10;
-
+    public final static int T_SERVICE_ORDER_STATUS_CANCEL = 100;
+    public final static String T_SERVICE_ORDER_STATUS_CANCEL_STR = "100";
     // 已评价
-    public final static int T_SERVICE_ORDER_STATUS_DEALING_EVALUATE = 11;
+    public final static int T_SERVICE_ORDER_STATUS_DEALING_EVALUATE = 110;
 
     public final static String T_SERVICE_ORDER_TYPE_OUTSIDE = "0";
 

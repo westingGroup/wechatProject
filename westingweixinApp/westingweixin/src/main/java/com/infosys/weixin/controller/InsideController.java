@@ -16,6 +16,7 @@ import com.infosys.basic.util.Constants;
 import com.infosys.basic.util.JsonUtil;
 import com.infosys.weixin.kit.SecurityKit;
 import com.infosys.weixin.web.exception.BusinessException;
+import com.infosys.weixin.web.exception.TimeoutException;
 
 @RequestMapping("/inside")
 @Controller
@@ -70,6 +71,11 @@ public class InsideController {
         if (in != null)
             return "main";
         return "inside/login";
+    }
+    
+    @RequestMapping(value = "/wxlogin", method = RequestMethod.GET)
+    public void wxlogin(HttpSession session) throws TimeoutException {
+        throw new TimeoutException("页面过期，请关闭该页面重新进入");
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)

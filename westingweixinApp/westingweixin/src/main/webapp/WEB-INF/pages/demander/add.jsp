@@ -10,7 +10,7 @@
 	content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<title>派单服务</title>
+<title>服务申请</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
@@ -105,7 +105,7 @@
 						<div class="col-md-11 col-xs-8">
 							<sf:textarea path="content"
 								cssClass="textarea required maxlength" rows="4" label="服务要求"
-								maxlength="255" />
+								maxlength="500" placeholder="请输入服务内容和地点"/>
 						</div>
 					</div>
 				</div>

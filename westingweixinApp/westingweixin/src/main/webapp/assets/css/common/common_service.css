@@ -48,7 +48,17 @@
 	font-weight: 300;
 	font-size: .75rem;
 }
-
+.subject .content .viewContentAll {
+	color: rgb(109, 110, 113);
+	text-align: left;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: .75rem;
+	line-height: 1;
+	word-break:break-all;
+}
 .subject .content .viewContent {
 	color: rgb(109, 110, 113);
 	text-align: left;
@@ -162,6 +172,7 @@
 	padding-bottom: 10px;
 	padding-left: 10px;
 	margin-bottom: 20px;
+	font-size:0.75rem;
 }
 
 .subject .content .waitingTaskCommonStyle {
@@ -211,6 +222,14 @@
 	border: none;
 	color: white;
 	background: rgb(247, 156, 127);
+}
+
+.subject .btnApply {
+	width: 90px;
+	background: rgb(247, 156, 127);
+	border: none;
+	color: white;
+	background: #007cc3;
 }
 
 .subject .footer {

@@ -23,7 +23,9 @@ public class Demander implements Serializable {
     private static final long serialVersionUID = -8644735720724713765L;
 
     private int id;
+
     private String openid;
+
     private String linkname;
 
     private String linkphone;
@@ -39,8 +41,12 @@ public class Demander implements Serializable {
     private String qualification;
 
     private int status;
-    
+
     private String remark;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date")
+    private Date createDate;
 
     @Id
     @GeneratedValue
@@ -122,5 +128,13 @@ public class Demander implements Serializable {
 
     public void setOpenid(String openid) {
         this.openid = openid;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 }

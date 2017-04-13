@@ -49,7 +49,11 @@ public class Provider implements Serializable {
 
     private String remark;
 
-    private int type;//默认外部 0 ，内部1 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date")
+    private Date createDate;
+
+    private int type;// 默认外部 0 ，内部1
 
     @Id
     @GeneratedValue
@@ -139,5 +143,13 @@ public class Provider implements Serializable {
 
     public void setOpenid(String openid) {
         this.openid = openid;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 }

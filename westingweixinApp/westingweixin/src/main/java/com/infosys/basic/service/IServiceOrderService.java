@@ -13,6 +13,7 @@ public interface IServiceOrderService {
 	public void update(ServiceOrder serviceOrder);
 	public void delete(int id);
 	public ServiceOrder load(int id);
+	public ServiceOrder get(int id);
 	public ServiceOrder loadByServiceOrderId(String serviceOrderId);
 	public List<ServiceOrder> listDemander(ServiceOrder order);
 	public List<ServiceOrder> listProvider(ServiceOrder order);

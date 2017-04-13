@@ -6,12 +6,13 @@
 	<table class="searchTable table">
 		<tbody>
 			<tr>
-				<td>联系人:</td>
+				<td>姓名:</td>
 				<td><input type="text" id="providerApplyLN" class="search" /></td>
-				<td>联系方式:</td>
+				<td>电话:</td>
 				<td><input type="text" id="providerApplyLP" class="search" /></td>
 				<td style="text-align: right;">
-					<button type="button" id="providerApplyBtn" class="btn button btn-main">查询</button>
+					<button type="button" id="providerApplyBtn"
+						class="btn button btn-main">查询</button>
 				</td>
 			</tr>
 		</tbody>
@@ -21,16 +22,19 @@
 			<tr>
 				<th><input type="checkbox" id="providerApplyAll"></th>
 				<th>序号</th>
-				<th>联系人</th>
-				<th>联系方式</th>
-				<th>相关业务</th>
+				<th>姓名</th>
+				<th>电话</th>
+				<th>出生年月</th>
+				<th>擅长业务</th>
+				<th>职称/资质</th>
 				<th>公司名称</th>
 			</tr>
 		</thead>
 		<tbody id="providerRegisterApplyListBody">
 		</tbody>
 	</table>
-	<div class="pager" id="providerApplyPager">
+	<div class="pager" style="display: none !important;"
+		id="providerApplyPager">
 		<div class="pageNum">
 			<div class="gigantic pagination" id="providerApplyPagination">
 				<a href="#" class="first" data-action="first">&laquo;</a> <a
@@ -52,12 +56,17 @@
 				id="providerApplyTotalRecords"></span>
 		</div>
 	</div>
-	<div class="approval_info" id="providerApplyApproval">
+	<div class="approval_info" style="display: none !important;"
+		id="providerApplyApproval">
 		<input type="hidden" id="providerApplyIds" />
 		<table class="table">
 			<tr>
-				<td style="width: 60%;"><textarea rows="3" cols="40"
+				<td style="width: 30%;"><textarea rows="3" cols="40"
 						id="providerRemark" placeholder="备注"></textarea></td>
+				<td style="width: 30%;"><select class="select required"
+					id="providerType1" label="工程师"><option value="0"
+							selected>外部</option>
+						<option value="1">内部</option></td>
 				<td style="width: 20%;"><button class="btn button approvalBtn"
 						id="providerApplyApprovalBtn">
 						<span class="btnText">批准</span> <img class="btnImg"

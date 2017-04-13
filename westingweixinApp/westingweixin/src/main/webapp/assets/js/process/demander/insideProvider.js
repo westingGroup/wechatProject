@@ -12,17 +12,15 @@ function initInsideProvider() {
 							$("#insideProviderTipsInfo").html("请选择要处理的内部人员");
 							return false;
 						}
-						
+
 						$("#newDemanderEngineer option:first").remove();
 						$("#newDemanderEngineer").prepend(
 								"<option value=" + $("#insideProviderId").val()
-										+ " sideType='inside'>"
+										+ " sideType='inside' selected>"
 										+ $("#insideProviderName").val()
 										+ "</option>");
-						$("#newDemanderEngineer").prepend(
-								"<option value=''>工程师</option>");
 						$("#insideProviderTipsInfo").html("操作成功");
-						setTimeout(clearInsideProvider(),5000);//5秒后执行方法
+						setTimeout(clearInsideProvider(), 5000);// 5秒后执行方法
 					});
 	// 取消按钮
 	$("#insideProviderCancelBtn").click(function() {

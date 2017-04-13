@@ -6,9 +6,9 @@
 	<table class="searchTable table">
 		<tbody>
 			<tr>
-				<td>联系人:</td>
+				<td>姓名:</td>
 				<td><input type="text" id="demanderCustomerLN" class="search" /></td>
-				<td>联系方式:</td>
+				<td>电话:</td>
 				<td><input type="text" id="demanderCustomerLP" class="search" /></td>
 				<td style="text-align: right;">
 					<button type="button" id="demanderCustomerBtn" class="btn button btn-main">查询</button>
@@ -20,8 +20,9 @@
 		<thead>
 			<tr>
 				<th>序号</th>
-				<th>联系人</th>
-				<th>联系方式</th>
+				<th>姓名</th>
+				<th>电话</th>
+				<th>出生年月</th>
 				<th>相关业务</th>
 				<th>公司名称</th>
 				<th>状态</th>
@@ -31,7 +32,7 @@
 		<tbody id="demanderCustomerListBody">
 		</tbody>
 	</table>
-	<div class="pager" id="demanderCustomerPager">
+	<div class="pager" style="display:none !important;" id="demanderCustomerPager">
 		<div class="pageNum">
 			<div class="gigantic pagination" id="demanderCustomerPagination">
 				<a href="#" class="first" data-action="first">&laquo;</a> <a

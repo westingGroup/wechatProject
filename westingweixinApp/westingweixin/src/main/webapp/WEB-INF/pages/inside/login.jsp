@@ -8,7 +8,7 @@
 	content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<title>登录</title>
+<title>微信后台管理系统</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
@@ -21,14 +21,18 @@
 	src="<%=request.getContextPath()%>/assets/confirm/js/jquery-confirm.js"></script>
 <script type="text/javascript">
 	var basePath = "<%=request.getContextPath()%>";
+	if (window != top)
+		top.location.href = location.href;
 	$(function() {
 		$("#btn").click(function() {
 			if ($("#username").val() == "") {
-				alert('请输入用户名！');
+				//alert('请输入用户名！');
+				$.alert('请输入用户名！', '提示信息');
 				return false;
 			}
 			if ($("#password").val() == "") {
-				alert('请输入密码！');
+				//alert('请输入密码！');
+				$.alert('请输入密码！', '提示信息');
 				return false;
 			}
 			$.post(basePath + "/inside/login", {
@@ -38,8 +42,8 @@
 				if (data == "登录成功") {
 					window.location = basePath + "/inside/login";
 				} else {
-					//$.alert(data, '错误信息');
-					alert(data);
+					$.alert(data, '错误信息');
+					//alert(data);
 				}
 			});
 		});
@@ -54,11 +58,14 @@
 	<div class="container">
 
 		<form class="form-signin" role="form" method="post">
-			<h2 class="form-signin-heading">后台管理登录</h2>
+			<h3>
+				<img src="<%=request.getContextPath()%>/assets/img/logo.png">
+			</h3>
+			<h2 class="form-signin-heading">&nbsp;</h2>
 			<input type="text" id="username" name="username" class="form-control"
-				placeholder="Username" required autofocus> <input
+				placeholder="请输入用户名" required autofocus> <input
 				type="password" id="password" name="password" class="form-control"
-				placeholder="Password" required>
+				placeholder="请输入密码" required>
 			<!-- <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me

@@ -1,5 +1,6 @@
 var newDemanderPagination = null;
 var processDemanderPagination = null;
+var applyDemanderPagination = null;
 var finishedDemanderPagination = null;
 var wasteDemanderPagination = null;
 /**
@@ -8,6 +9,7 @@ var wasteDemanderPagination = null;
 function initDemander() {
 	initNewDemander();
 	initProcessDemander();
+	initApplyDemander();
 	initFinishedDemander();
 	initWasteDemander();
 	initInsideProvider();

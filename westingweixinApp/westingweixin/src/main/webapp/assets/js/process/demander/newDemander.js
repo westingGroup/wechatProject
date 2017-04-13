@@ -7,14 +7,14 @@ function initNewDemander() {
 		initNewDemanderList(1);
 	});
 
-	// 点击审批通过按钮
+	// 点击处理中按钮
 	$("#newDemanderApprovalBtn").click(function() {
-		approvalNewDemander(2);
+		approvalNewDemander(12);
 	});
 
-	// 点击拒绝按钮
+	// 点击废单按钮
 	$("#newDemanderRejectBtn").click(function() {
-		approvalNewDemander(10);
+		approvalNewDemander(100);
 	});
 
 	// 内部员工
@@ -103,8 +103,11 @@ function appendNewDemander(registers, firstRegisterIndex) {
 		var td = "<td colspan='9' style='text-align:center;'>暂无符合条件的记录</td>";
 		noTr.html(td);
 		$("#newDemanderBody").append(noTr);
-		$("#newDemanderPager").hide();
-		$("#newDemanderApproval").hide();
+		$("#newDemanderPager").css("display", "none");
+		$("#newDemanderApproval").css("display", "none");
+	} else {
+		$("#newDemanderPager").css("display", "inline-table");
+		$("#newDemanderApproval").css("display", "inline-table");
 	}
 
 	$("input[name=newDemanderId]").click(
@@ -114,14 +117,31 @@ function appendNewDemander(registers, firstRegisterIndex) {
 					sId : $(this).val(),
 				}, function(data, status) {
 					$("#newDemanderEngineer").empty();
-					var options = "<option value=''>工程师</option>";
-					for (var i = 0; i < data.length; i++) {
-						options += "<option value=" + data[i].applyBy
-								+ " sideType='outside'>" + data[i].applyname
-								+ "</option>";
+					var options = "<option value=''>请选择工程师</option>";
+					var newDate = new Date();
+					if (data != null && data.length > 0) {
+						var completeDate;
+						for (var i = 0; i < data.length; i++) {
+							if (data[i].completeDate == null) {
+								completeDate = "";
+							} else {
+								newDate.setTime(data[i].completeDate );
+								completeDate = newDate.toLocaleDateString();
+							}
+							options += "<option value=" + data[i].applyBy
+									+ " sideType='outside'>" + data[i].applyname + "&nbsp;" + data[i].business + "&nbsp;"+ data[i].price + "&nbsp;" + completeDate
+									+ "&nbsp;" +data[i].linkphone+ "</option>";
+						}
 					}
 					$("#newDemanderEngineer").html(options);
-				}, "json");
+				}, "json").complete(function(jqXHR, textStatus) {
+					var sessionstatus = jqXHR.getResponseHeader("sessionstatus");
+					if (sessionstatus == "timeout") {
+						alert("请求超时，请联系管理员");
+						var url = window.parent.location.pathname;
+						window.parent.location.href = url;
+					}
+				});
 			});
 }
 
@@ -138,7 +158,7 @@ function approvalNewDemander(dealType) {
 		showTipsError("请选择需要处理的需求");
 		return false;
 	}
-	if (dealType == 2) {
+	if (dealType == 12) {
 		// 如果转处理中，需要选择处理的工程师
 		if (!validateComponent("newDemanderEngineer", "select"))
 			return false;
@@ -146,7 +166,7 @@ function approvalNewDemander(dealType) {
 		dealName = $('#newDemanderEngineer option:selected').text();
 		insideOrOutSide = $('#newDemanderEngineer option:selected').attr(
 				"sideType");
-	} else if (dealType == 10) {// 如果转废单，则需要输入备注信息
+	} else if (dealType == 100) {// 如果转废单，则需要输入备注信息
 		if (!validateComponent("newDemanderRemark", "textarea"))
 			return false;
 		dealBy = 0;
@@ -155,6 +175,7 @@ function approvalNewDemander(dealType) {
 	}
 
 	$.post(basePath + "/process/dealDemander", {
+		from :"pc",
 		type : $("#newDemanderType").val(),// 新需求
 		demanderIds : selectNewDemanderId,// 选择的需求id
 		remark : remark,// 备注信息
@@ -163,13 +184,24 @@ function approvalNewDemander(dealType) {
 		dealBy : dealBy,// 工程师
 		dealName : dealName
 	}, function(data, status) {// 更新信息
-		showTipsSucc(data);
-		newDemanderPagination.updateSelfInput();
-		processDemanderPagination.updateSelfInput();
-		wasteDemanderPagination.updateSelfInput();
-		clearNewDemander();
+		if (data != null && data != "") {
+			showTipsSucc(data);
+			newDemanderPagination.updateSelfInput();
+			processDemanderPagination.updateSelfInput();
+			wasteDemanderPagination.updateSelfInput();
+			clearNewDemander();
+		}
+	},"json").complete(function(jqXHR, textStatus) {
+		var sessionstatus = jqXHR.getResponseHeader("sessionstatus");
+		if (sessionstatus == "timeout") {
+			alert("请求超时，请联系管理员");
+			var url = window.parent.location.pathname;
+			window.parent.location.href = url;
+		}
 	});
 }
+
+
 
 /**
  * 清空新需求信息
@@ -179,5 +211,5 @@ function clearNewDemander() {
 	$("#insideOrOutSide").val("");
 	$("#newDemanderRemark").val("");
 	$("#newDemanderEngineer").empty();
-	$("#newDemanderEngineer").html("<option value=''>工程师</option>");
+	$("#newDemanderEngineer").html("<option value=''>请选择工程师</option>");
 }

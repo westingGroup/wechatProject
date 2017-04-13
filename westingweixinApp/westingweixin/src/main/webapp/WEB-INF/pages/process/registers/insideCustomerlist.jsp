@@ -6,12 +6,15 @@
 	<table class="searchTable table">
 		<tbody>
 			<tr>
-				<td>联系人:</td>
+				<td>姓名:</td>
 				<td><input type="text" id="insideCustomerLN" class="search" /></td>
-				<td>联系方式:</td>
+				<td>电话:</td>
 				<td><input type="text" id="insideCustomerLP" class="search" /></td>
 				<td style="text-align: right;">
 					<button type="button" id="insideCustomerBtn" class="btn button btn-main">查询</button>
+				</td>
+				<td style="text-align: right;">
+					<button type="button" id="insideCustomerAddBtn" class="btn button btn-main">新增</button>
 				</td>
 			</tr>
 		</tbody>
@@ -28,7 +31,7 @@
 		<tbody id="insideCustomerListBody">
 		</tbody>
 	</table>
-	<div class="pager" id="insideCustomerPager">
+	<div class="pager" style="display:none !important;" id="insideCustomerPager">
 		<div class="pageNum">
 			<div class="gigantic pagination" id="insideCustomerPagination">
 				<a href="#" class="first" data-action="first">&laquo;</a> <a
@@ -50,8 +53,8 @@
 				id="insideCustomerTotalRecords"></span>
 		</div>
 	</div>
-	<div class="approval_info" style="text-align: right;">
+	<!-- <div class="approval_info" style="text-align: right;">
 		<button class="btn button" id="insideCustomerAddBtn">新增</button>
-	</div>
+	</div> -->
 	<jsp:include page="insideCustomerUpdate.jsp"></jsp:include>
 </div>

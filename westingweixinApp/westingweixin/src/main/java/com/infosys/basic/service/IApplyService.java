@@ -9,5 +9,8 @@ public interface IApplyService {
     public void update(Apply apply);
     public void delete(int id);
     public Apply load(int id);
+    public Apply get(int id);
     public List<Apply> listBySId(String sId);
+    public List<Apply> listBySIdApplyBy(String sId,String applyBy);
+    public void deleteBySId(String id);
 }

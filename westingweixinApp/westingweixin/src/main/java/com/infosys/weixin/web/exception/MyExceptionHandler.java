@@ -18,7 +18,10 @@ public class MyExceptionHandler implements HandlerExceptionResolver {
         model.put("ex", ex);
 
         // 根据不同错误转向不同页面
-        if (ex instanceof BusinessException) {
+        if (ex instanceof TimeoutException) {
+            model.put("error", ex.getMessage());
+            return new ModelAndView("error/error-timeout", model);
+        } else if (ex instanceof BusinessException) {
             model.put("error", ex.getMessage());
             return new ModelAndView("error/error-business", model);
         } else if (ex instanceof RuntimeException) {

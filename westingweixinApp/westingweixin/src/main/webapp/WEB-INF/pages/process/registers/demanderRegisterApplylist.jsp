@@ -6,9 +6,9 @@
 	<table class="searchTable table">
 		<tbody>
 			<tr>
-				<td>联系人:</td>
+				<td>姓名:</td>
 				<td><input type="text" id="demanderApplyLN" class="search" /></td>
-				<td>联系方式:</td>
+				<td>电话:</td>
 				<td><input type="text" id="demanderApplyLP" class="search" /></td>
 				<td style="text-align: right;">
 					<button type="button" id="demanderApplyBtn" class="btn button btn-main">查询</button>
@@ -21,8 +21,9 @@
 			<tr>
 				<th><input type="checkbox" id="demanderApplyAll"></th>
 				<th>序号</th>
-				<th>联系人</th>
-				<th>联系方式</th>
+				<th>姓名</th>
+				<th>电话</th>
+				<th>出生年月</th>
 				<th>相关业务</th>
 				<th>公司名称</th>
 			</tr>
@@ -30,7 +31,7 @@
 		<tbody id="demanderRegisterApplyListBody">
 		</tbody>
 	</table>
-	<div class="pager" id="demanderApplyPager">
+	<div class="pager" style="display:none !important;" id="demanderApplyPager">
 		<div class="pageNum">
 			<div class="gigantic pagination" id="demanderApplyPagination">
 				<a href="#" class="first" data-action="first">&laquo;</a> <a
@@ -52,7 +53,7 @@
 				id="demanderApplyTotalRecords"></span>
 		</div>
 	</div>
-	<div class="approval_info" id="demanderApplyApproval">
+	<div class="approval_info" style="display:none !important;" id="demanderApplyApproval">
 		<input type="hidden" id="demanderApplyIds" />
 		<table class="table">
 			<tr>

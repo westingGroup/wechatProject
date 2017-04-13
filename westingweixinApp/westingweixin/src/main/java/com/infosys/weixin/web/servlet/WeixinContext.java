@@ -7,6 +7,9 @@ public class WeixinContext {
 	private String appSecurt;
 	private String baseUrl;
 	private String token;
+	private String templateProvider;
+	private String templateDemander;
+    private String templateRegisterAudit;
 	private AccessToken accessToken;
 	private static WeixinContext wc;
 	
@@ -47,4 +50,22 @@ public class WeixinContext {
 	public void setToken(String token) {
 		this.token = token;
 	}
+    public String getTemplateProvider() {
+        return templateProvider;
+    }
+    public void setTemplateProvider(String templateProvider) {
+        this.templateProvider = templateProvider;
+    }
+    public String getTemplateDemander() {
+        return templateDemander;
+    }
+    public void setTemplateDemander(String templateDemander) {
+        this.templateDemander = templateDemander;
+    }
+    public String getTemplateRegisterAudit() {
+        return templateRegisterAudit;
+    }
+    public void setTemplateRegisterAudit(String templateRegisterAudit) {
+        this.templateRegisterAudit = templateRegisterAudit;
+    }
 }

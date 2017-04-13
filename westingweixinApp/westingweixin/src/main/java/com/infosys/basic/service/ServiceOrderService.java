@@ -1,5 +1,6 @@
 package com.infosys.basic.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -7,10 +8,12 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.infosys.basic.dao.IApplyDao;
 import com.infosys.basic.dao.IServiceOrderDao;
 import com.infosys.basic.dto.PagerInfo;
 import com.infosys.basic.dto.ServiceOrderDto;
 import com.infosys.basic.dto.ServiceOrderModel;
+import com.infosys.basic.entity.Apply;
 import com.infosys.basic.entity.ServiceOrder;
 import com.infosys.basic.util.model.Pager;
 
@@ -20,9 +23,17 @@ public class ServiceOrderService implements IServiceOrderService {
     @Inject
     private IServiceOrderDao serviceOrderDao;
 
+    @Inject
+    private IApplyDao applyDao;
+
     @Override
     public void add(ServiceOrder serviceOrder) {
-        serviceOrderDao.add(serviceOrder);
+        try {
+            serviceOrderDao.add(serviceOrder);
+        } catch (Exception e) {
+            throw new RuntimeException("用户输入的内容包含特殊字符");
+        }
+
     }
 
     @Override
@@ -38,6 +49,11 @@ public class ServiceOrderService implements IServiceOrderService {
     @Override
     public ServiceOrder load(int id) {
         return serviceOrderDao.load(id);
+    }
+
+    @Override
+    public ServiceOrder get(int id) {
+        return serviceOrderDao.get(id);
     }
 
     @Override
@@ -72,23 +88,76 @@ public class ServiceOrderService implements IServiceOrderService {
 
     @Override
     public PagerInfo<ServiceOrderDto> listServiceOrderByKeywordForMobileApply(ServiceOrderModel serviceOrderModel) {
-        return serviceOrderDao.listServiceOrderByKeywordForMobileApply(serviceOrderModel);
+        PagerInfo<ServiceOrderDto> pageInfo = serviceOrderDao
+                .listServiceOrderByKeywordForMobileApply(serviceOrderModel);
+        List<ServiceOrderDto> serviceList = pageInfo.getRecords();
+        List<ServiceOrderDto> rtnList = new ArrayList<ServiceOrderDto>();
+        if (serviceList != null && serviceList.size() > 0) {
+            for (int i = 0; i < serviceList.size(); i++) {
+                ServiceOrderDto dto = serviceList.get(i);
+                List<Apply> apList = applyDao.listBySIdApplyBy(String.valueOf(dto.getId()),
+                        serviceOrderModel.getApplyBy());
+                if (apList != null && apList.size() > 0) {
+                    dto.setApplyflag("1");
+                }
+                rtnList.add(dto);
+            }
+            pageInfo.setRecords(rtnList);
+        }
+        return pageInfo;
     }
 
     @Override
     public PagerInfo<ServiceOrderDto> listServiceOrderByKeywordForMyMobileApplys(ServiceOrderModel serviceOrderModel) {
-        return serviceOrderDao.listServiceOrderByKeywordForMyMobileApplys(serviceOrderModel);
+        PagerInfo<ServiceOrderDto> pageInfo = serviceOrderDao
+                .listServiceOrderByKeywordForMyMobileApplys(serviceOrderModel);
+        List<ServiceOrderDto> serviceList = pageInfo.getRecords();
+        List<ServiceOrderDto> rtnList = new ArrayList<ServiceOrderDto>();
+        if (serviceList != null && serviceList.size() > 0) {
+            for (int i = 0; i < serviceList.size(); i++) {
+                ServiceOrderDto dto = serviceList.get(i);
+                List<Apply> apList = applyDao.listBySIdApplyBy(String.valueOf(dto.getId()),
+                        serviceOrderModel.getDealBy());
+                if (apList != null && apList.size() > 0) {
+                    Apply apply = apList.get(0);
+                    dto.setPrice(apply.getPrice());
+                    if (apply.getApplyBy() != dto.getDealBy()&&dto.getStatus().equals("待完成")) {
+                        dto.setStatus("被抢单");
+                    }
+                }
+                rtnList.add(dto);
+            }
+            pageInfo.setRecords(rtnList);
+        }
+        return pageInfo;
     }
 
     @Override
     public PagerInfo<ServiceOrderDto> listProcessServiceOrders(ServiceOrderModel demanderSearchModal) {
-        return serviceOrderDao.listProcessServiceOrders(demanderSearchModal);
+        PagerInfo<ServiceOrderDto> pageInfo = serviceOrderDao
+                .listProcessServiceOrders(demanderSearchModal);
+        List<ServiceOrderDto> serviceList = pageInfo.getRecords();
+        List<ServiceOrderDto> rtnList = new ArrayList<ServiceOrderDto>();
+        if (serviceList != null && serviceList.size() > 0) {
+            for (int i = 0; i < serviceList.size(); i++) {
+                ServiceOrderDto dto = serviceList.get(i);
+                List<Apply> apList = applyDao.listBySIdApplyBy(String.valueOf(dto.getId()),
+                        String.valueOf(dto.getDealBy()));
+                if (apList != null && apList.size() > 0) {
+                    Apply apply = apList.get(0);
+                    dto.setPrice(apply.getPrice());
+                    dto.setApplyId(apply.getId());
+                }
+                rtnList.add(dto);
+            }
+            pageInfo.setRecords(rtnList);
+        }
+        return pageInfo;
     }
 
-	@Override
-	public long getOrdersTotalByConditionsForProcess(
-			ServiceOrderModel demanderSearchModal) {
-		return serviceOrderDao.getOrdersTotalByConditionsForProcess(demanderSearchModal);
-	}
+    @Override
+    public long getOrdersTotalByConditionsForProcess(ServiceOrderModel demanderSearchModal) {
+        return serviceOrderDao.getOrdersTotalByConditionsForProcess(demanderSearchModal);
+    }
 
 }

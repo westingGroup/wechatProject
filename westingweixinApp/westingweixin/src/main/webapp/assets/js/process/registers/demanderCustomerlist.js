@@ -56,8 +56,17 @@ function appendDemanderCustomer(registers, firstRegisterIndex) {
 		register += "<td>" + (firstRegisterIndex + i) + "</td>";
 		register += "<td>" + registers[i].linkname + "</td>";
 		register += "<td>" + registers[i].linkphone + "</td>";
-		register += "<td>" + registers[i].business + "</td>";
-		register += "<td>" + registers[i].company + "</td>";
+		register += "<td>" + registers[i].birthDate + "</td>";
+		register += "<td><div align='center'><div class='registerBusiness' title='"
+				+ registers[i].business
+				+ "'>"
+				+ registers[i].business
+				+ "</div></div></td>";
+		register += "<td><div align='center'><div class='registerBusiness' title='"
+				+ registers[i].company
+				+ "'>"
+				+ registers[i].company
+				+ "</div></div></td>";
 		register += "<td>" + registers[i].status + "</td>";
 		register += "<td><img alt='修改' src='"
 				+ basePath
@@ -75,13 +84,14 @@ function appendDemanderCustomer(registers, firstRegisterIndex) {
 		register += "</tr>";
 		$("#demanderCustomerListBody").append(register);
 	}
-	$("#demanderCustomerPager").show();
 	if (registers.length == 0) {
 		var noTr = $("<tr></tr>");
-		var td = "<td colspan='7' style='text-align:center;'>暂无符合条件的记录</td>";
+		var td = "<td colspan='8' style='text-align:center;'>暂无符合条件的记录</td>";
 		noTr.html(td);
 		$("#demanderCustomerListBody").append(noTr);
-		$("#demanderCustomerPager").hide();
+		$("#demanderCustomerPager").css("display", "none");
+	} else {
+		$("#demanderCustomerPager").css("display", "inline-table");
 	}
 
 	// 更新操作
@@ -91,43 +101,85 @@ function appendDemanderCustomer(registers, firstRegisterIndex) {
 	});
 
 	// 删除操作
-	$(".demanderCustomerDeleteImg").click(
-			function() {
-				var registerId = $(this).attr("registerId");
-				$.confirm({
-					title : '确认',
-					content : '确定要删除吗?',
-					confirm : function() {
-						$.get(basePath + "/demander/delete/" + registerId, {},
-								function(data, status) {
-									showTipsSucc(data);
-									demanderCustomerPagination
-											.updateSelfInput();
-								}, "text");
-					},
-					cancel : function() {
-					}
-				});
-			});
-	
-	// 启用操作
-	$(".demanderCustomerEnableImg").click(
-			function() {
-				var registerId = $(this).attr("registerId");
-				$.confirm({
-					title : '确认',
-					content : '确定要启用吗?',
-					confirm : function() {
-						$.post(basePath + "/demander/enable/" + registerId, {},
-								function(data, status) {
-									showTipsSucc(data);
-									demanderCustomerPagination
-											.updateSelfInput();
+	$(".demanderCustomerDeleteImg")
+			.click(
+					function() {
+						var registerId = $(this).attr("registerId");
+						$
+								.confirm({
+									title : '确认',
+									content : '确定要删除吗?',
+									confirm : function() {
+										$
+												.get(
+														basePath
+																+ "/demander/delete/"
+																+ registerId,
+														{},
+														function(data, status) {
+															if (data != null
+																	&& data != "") {
+																showTipsSucc(data);
+																demanderCustomerPagination
+																		.updateSelfInput();
+															}
+														}, "text")
+												.complete(
+														function(jqXHR,
+																textStatus) {
+															var sessionstatus = jqXHR
+																	.getResponseHeader("sessionstatus");
+															if (sessionstatus == "timeout") {
+																alert("请求超时，请联系管理员");
+																var url = window.parent.location.pathname;
+																window.parent.location.href = url;
+															}
+														});
+									},
+									cancel : function() {
+									}
 								});
-					},
-					cancel : function() {
-					}
-				});
-			});
-	
+					});
+
+	// 启用操作
+	$(".demanderCustomerEnableImg")
+			.click(
+					function() {
+						var registerId = $(this).attr("registerId");
+						$
+								.confirm({
+									title : '确认',
+									content : '确定要启用吗?',
+									confirm : function() {
+										$
+												.post(
+														basePath
+																+ "/demander/enable/"
+																+ registerId,
+														{},
+														function(data, status) {
+															if (data != null
+																	&& data != "") {
+																showTipsSucc(data);
+																demanderCustomerPagination
+																		.updateSelfInput();
+															}
+														}, "json")
+												.complete(
+														function(jqXHR,
+																textStatus) {
+															var sessionstatus = jqXHR
+																	.getResponseHeader("sessionstatus");
+															if (sessionstatus == "timeout") {
+																alert("请求超时，请联系管理员");
+																var url = window.parent.location.pathname;
+																window.parent.location.href = url;
+															}
+														});
+									},
+									cancel : function() {
+									}
+								});
+					});
+
 }

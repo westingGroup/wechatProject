@@ -6,9 +6,9 @@
 	<table class="searchTable table">
 		<tbody>
 			<tr>
-				<td>联系人:</td>
+				<td>姓名:</td>
 				<td><input type="text" id="providerCustomerLN" class="search" /></td>
-				<td>联系方式:</td>
+				<td>电话:</td>
 				<td><input type="text" id="providerCustomerLP" class="search" /></td>
 				<td style="text-align: right;">
 					<button type="button" id="providerCustomerBtn" class="btn button btn-main">查询</button>
@@ -20,9 +20,11 @@
 		<thead>
 			<tr>
 				<th>序号</th>
-				<th>联系人</th>
-				<th>联系方式</th>
-				<th>相关业务</th>
+				<th>姓名</th>
+				<th>电话</th>
+				<th>出生年月</th>
+				<th>擅长业务</th>
+				<th>职称/资质</th>
 				<th>公司名称</th>
 				<th>状态</th>
 				<th>类型</th>
@@ -32,7 +34,7 @@
 		<tbody id="providerCustomerListBody">
 		</tbody>
 	</table>
-	<div class="pager" id="providerCustomerPager">
+	<div class="pager" style="display:none !important;" id="providerCustomerPager">
 		<div class="pageNum">
 			<div class="gigantic pagination" id="providerCustomerPagination">
 				<a href="#" class="first" data-action="first">&laquo;</a> <a

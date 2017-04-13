@@ -38,7 +38,7 @@ public class PicWordController {
             word.setBrief(brief);
             word.setHtmlContents(htmlcontent);
             word.setLastUpdateTime(new Date());
-            word.setStatus(Constants.T_USER_STATUS_NORMAL);
+            word.setStatus(Constants.T_USER_STATUS_DELETE);
             wordsService.add(word);
         }
         rtnMsg = "添加成功";

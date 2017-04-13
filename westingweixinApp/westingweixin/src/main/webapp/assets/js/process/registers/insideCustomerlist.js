@@ -76,13 +76,14 @@ function appendInsideCustomer(registers, firstRegisterIndex) {
 		register += "</tr>";
 		$("#insideCustomerListBody").append(register);
 	}
-	$("#insideCustomerPager").show();
 	if (registers.length == 0) {
 		var noTr = $("<tr></tr>");
 		var td = "<td colspan='6' style='text-align:center;'>暂无符合条件的记录</td>";
 		noTr.html(td);
 		$("#insideCustomerListBody").append(noTr);
-		$("#insideCustomerPager").hide();
+		$("#insideCustomerPager").css("display", "none");
+	} else {
+		$("#insideCustomerPager").css("display", "inline-table");
 	}
 
 	// 修改操作
@@ -92,40 +93,84 @@ function appendInsideCustomer(registers, firstRegisterIndex) {
 	});
 
 	// 重置密码
-	$(".insideCustomerResetImg").click(function() {
-		var registerId = $(this).attr("registerId");
-		$.confirm({
-			title : '确认',
-			content : '确定要重置密码吗?',
-			confirm : function() {
-				$.post(basePath + "/inside/resetPassword", {
-					id : registerId
-				}, function(data, status) {
-					showTipsSucc(data);
-				});
-			},
-			cancel : function() {
-			}
-		});
-	});
+	$(".insideCustomerResetImg")
+			.click(
+					function() {
+						var registerId = $(this).attr("registerId");
+						$
+								.confirm({
+									title : '确认',
+									content : '确定要重置密码吗?',
+									confirm : function() {
+										$
+												.post(
+														basePath
+																+ "/inside/resetPassword",
+														{
+															id : registerId
+														},
+														function(data, status) {
+															if (data != null
+																	&& data != "") {
+																showTipsSucc(data);
+															}
+														}, "json")
+												.complete(
+														function(jqXHR,
+																textStatus) {
+															var sessionstatus = jqXHR
+																	.getResponseHeader("sessionstatus");
+															if (sessionstatus == "timeout") {
+																alert("请求超时，请联系管理员");
+																var url = window.parent.location.pathname;
+																window.parent.location.href = url;
+															}
+														});
+									},
+									cancel : function() {
+									}
+								});
+					});
 
 	// 删除操作
-	$(".insideCustomerDeleteImg").click(
-			function() {
-				var registerId = $(this).attr("registerId");
-				$.confirm({
-					title : '确认',
-					content : '确定要删除吗?',
-					confirm : function() {
-						$.get(basePath + "/inside/delete/" + registerId, {},
-								function(data, status) {
-									showTipsSucc(data);
-									insideCustomerPagination.updateSelfInput();
-								}, "text");
-					},
-					cancel : function() {
-					}
-				});
+	$(".insideCustomerDeleteImg")
+			.click(
+					function() {
+						var registerId = $(this).attr("registerId");
+						$
+								.confirm({
+									title : '确认',
+									content : '确定要删除吗?',
+									confirm : function() {
+										$
+												.get(
+														basePath
+																+ "/inside/delete/"
+																+ registerId,
+														{},
+														function(data, status) {
+															if (data != null
+																	&& data != "") {
+																showTipsSucc(data);
+																insideCustomerPagination
+																		.updateSelfInput();
+															}
+														}, "text")
+												.complete(
+														function(jqXHR,
+																textStatus) {
+															var sessionstatus = jqXHR
+																	.getResponseHeader("sessionstatus");
+															if (sessionstatus == "timeout") {
+																alert("请求超时，请联系管理员");
+																var url = window.parent.location.pathname;
+																window.parent.location.href = url;
+															}
+														});
+									},
+									cancel : function() {
+									}
+								});
 
-			});
+					});
 }
