@@ -29,6 +29,9 @@ public class WeixinBasicKit {
 		WeixinContext.getInstance().setAppSecurt(prop.getProperty("appsecret"));
 		WeixinContext.getInstance().setBaseUrl(prop.getProperty("base_url"));
 		WeixinContext.getInstance().setToken(prop.getProperty("weixin_token"));
+		WeixinContext.getInstance().setTemplateProvider(prop.getProperty("template_provider"));
+		WeixinContext.getInstance().setTemplateDemander(prop.getProperty("template_demander"));
+		WeixinContext.getInstance().setTemplateRegisterAudit(prop.getProperty("template_RegisterAudit"));
 		System.out.println(WeixinContext.getInstance().getToken());
 	}
 	
